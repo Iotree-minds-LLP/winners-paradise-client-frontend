@@ -76,7 +76,7 @@ const OtpVerification = () => {
         <>
             <div className="h-screen flex flex-col">
                 {/* Top Half with Gradient */}
-                <div className="h-1/2 my-10 bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-col justify-center items-center">
+                <div className="h-1/2  bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-col justify-center items-center">
                     <img
                         className=" h-auto sm:mt-20 md:mt-5"
                         src={imageLogo}
