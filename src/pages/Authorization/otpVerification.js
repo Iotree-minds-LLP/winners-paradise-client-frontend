@@ -5,8 +5,10 @@ import NavBar from "../../components/Navbar/page";
 import WidgetButton from "../../widgets/Button/page";
 import FormattedJsonViewer from "../../widgets/JsonView/page";
 import Button from '@mui/material/Button';
-import imageLogo from "../../assets/Logos/logo.png";
-import image1 from "../../assets/Images/robo 1.png";
+import imageLogo from "../../assets/Logos/logo1.png";
+import image1 from "../../assets/Images/robo 1 (3).png";
+import image3 from "../../assets/Images/sideImage.png";
+import image2 from "../../assets/Images/robo 1 (1).png";
 import { Radio, FormControlLabel, FormControl, FormLabel, RadioGroup, TextField } from '@mui/material';
 import { PwaContext } from "../../context/PwaContext/page";
 
@@ -75,25 +77,26 @@ const OtpVerification = () => {
     return (
         <>
             <div className="h-screen flex flex-col">
-                {/* Top Half with Gradient */}
-                <div className="h-1/2  bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-col justify-center items-center">
+                <div className="h-1/2 sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-col justify-center md:justify-start items-center md:items-start">
                     <img
-                        className=" h-auto sm:mt-20 md:mt-5"
+                        className="h-auto md:hidden w-1/2 p-3 md:mt-0 sm:mt-20 mt-10 text-start"
                         src={imageLogo}
                         alt="Logo"
                     />
-                    <div>
-                        <h1 className="text-2xl mt-5 text-white font-semibold">Welcome to</h1>
+                    <div className="p-2 sm:hidden">
+                        <h1 className="text-2xl text-white font-semibold">Welcome to</h1>
                     </div>
-                    <div>
+
+                    <div className="sm:hidden">
                         <h1 className="text-4xl mt-2 text-white font-bold pb-6">Algo Achievers </h1>
                     </div>
                 </div>
 
-                {/* Bottom Half with White Background */}
-                <div className="h-full bg-white grid grid-cols-12 md:grid-cols-12 lg:pb-10">
+
+                <div className="h-full bg-white grid grid-cols-12 md:grid-cols-12 ">
                     {/* Content Section */}
-                    <div className=" col-span-12 md:col-span-7 w-full order-1 md:order-2 ">
+                    <div className=" col-span-12 md:col-span-6 w-full order-1 md:order-2 md:mt-10 mt-0 p-0 md:p-20 ">
+                        <p style={{ color: '#020065' }} className="hidden sm:block text-start mx-5 font-semibold text-3xl">Login</p>
                         <div
                             className="text-start mt-5 mx-5 rounded-lg p-4"
                             style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}
@@ -101,13 +104,14 @@ const OtpVerification = () => {
                             <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '500', fontSize: '14px' }}>
                                 Select preferred language
                             </p>
+
                             <FormControl component="fieldset" style={{ marginTop: '16px' }}>
                                 <RadioGroup
                                     row
                                     aria-label="language"
                                     name="language-group"
                                     defaultValue="English"
-                                    className="gap-4 sm:gap-6" // Tailwind class for spacing
+                                    className="gap-4 sm:gap-6"
                                 >
                                     <FormControlLabel
                                         value="English"
@@ -153,7 +157,7 @@ const OtpVerification = () => {
                                 <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '500', fontSize: '14px' }}>
                                     Login/Register to continue
                                 </p>
-                                <div className="md:grid grid-cols-2 mt-3">
+                                <div className="grid grid-cols-1 md:grid-cols-1 mt-3">
                                     <TextField
                                         label="Phone Number"
                                         variant="outlined"
@@ -166,7 +170,7 @@ const OtpVerification = () => {
                                 <div className="mt-5">
                                     <button
                                         onClick={sendOtp}
-                                        className="md:w-1/2 w-full p-3 rounded-full text-white bg-gradient-to-l from-[#020065] to-[#0400CB]"
+                                        className="md:w-full w-full p-3 rounded-full text-white bg-gradient-to-l from-[#020065] to-[#0400CB]"
                                     >
                                         Get Otp
                                     </button>
@@ -188,7 +192,7 @@ const OtpVerification = () => {
                                         Resend OTP?
                                     </p>
                                 </div>
-                                <div className="md:grid grid-cols-2 mt-3">
+                                <div className="md:grid grid-cols-1 mt-3">
                                     <TextField
                                         label="Enter OTP"
                                         variant="outlined"
@@ -203,21 +207,41 @@ const OtpVerification = () => {
                                 <div className="mt-5">
                                     <button
                                         onClick={sendOtp}
-                                        className="md:w-1/2 w-full p-3 rounded-full text-white bg-gradient-to-l from-[#020065] to-[#0400CB]"
+                                        className="md:w-full w-full p-3 rounded-full text-white bg-gradient-to-l from-[#020065] to-[#0400CB]"
                                     >
                                         Confirm
                                     </button>
                                 </div>
                             </div>
                         )}
-
-
-
                     </div>
 
-                    {/* Image Section */}
-                    <div className="p-0 col-span-12 md:col-span-5  mt-10 order-2 md:order-1 responive flex justify justify-center items-center">
-                        <img src={image1} alt="Image description" style={{ width: "550px" }} className="p-0 lg:p-5" />
+                    <div className="col-span-12 hidden sm:block overflow-hidden md:col-span-6 w-full max-h-[100vh] order-2 md:order-1 responsive relative">
+                        {/* Image */}
+                        <img src={image3} alt="Image description" className="w-full h-auto object-cover" />
+
+                        {/* Centered Content */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <h1 className="text-white text-2xl md:text-4xl font-bold bg-opacity-75 p-4 rounded-lg flex flex-col justify-center items-center">
+                                <img
+                                    className="h-auto w-1/2 p-3 md:mt-0 sm:mt-20 mt-10 text-start"
+                                    src={imageLogo}
+                                    alt="Logo"
+                                />
+                                <div className="p-2 ">
+                                    <h1 className="text-3xl text-white font-semibold">Welcome to</h1>
+                                </div>
+
+                                <div className="">
+                                    <h1 className="text-4xl mt-2 text-white font-bold pt-4">Algo Achievers </h1>
+                                </div>
+                            </h1>
+                        </div>
+                    </div>
+
+
+                    <div className="col-span-12 md:col-span-6 sm:hidden w-full h-full order-2 md:order-1 responsive">
+                        <img src={image2} alt="Image description" className="w-full h-full object-contain" />
                     </div>
                 </div>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import "../App.css";
 import Signup from "../pages/Authorization/signup";
 import OtpVerification from '../pages/Authorization/otpVerification';
@@ -11,6 +11,8 @@ import Payouts from '../pages/Payouts/payouts';
 import Enquiry from '../pages/Enquiry/page';
 import Catalogs from '../pages/Catalog/page';
 import Kyc from '../pages/Kyc/kyc';
+import Dashboard from '../components/Sidebar/page';
+import Sidebar from '../components/Sidebar/page';
 
 const routes = [
   { path: "/", element: <OtpVerification /> },
@@ -23,19 +25,35 @@ const routes = [
   { path: "/enquiry", element: <Enquiry /> },
   { path: "/catalogs", element: <Catalogs /> },
   { path: "/kyc", element: <Kyc /> },
+  { path: "/dashboard", element: <Dashboard /> },
 ];
 
-function RouterPage() {
+function AppLayout() {
+  const location = useLocation();
+  const hideSidebarRoutes = ["/", "/register"];
+
+  const isSidebarHidden = hideSidebarRoutes.includes(location.pathname);
+
   return (
-    <Router>
-      <div className="App">
+    <div className="App">
+      {!isSidebarHidden && <Sidebar />}
+      <div className={isSidebarHidden ? "content-full" : "content-wrapper"}>
         <Routes>
           {routes.map((route, index) => (
             <Route key={index} path={route.path} element={route.element} />
           ))}
         </Routes>
       </div>
+    </div>
+  );
+}
+
+function RouterPage() {
+  return (
+    <Router>
+      <AppLayout />
     </Router>
   );
 }
+
 export default RouterPage;
