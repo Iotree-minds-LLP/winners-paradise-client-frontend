@@ -14,7 +14,7 @@ import { Radio, FormControlLabel, FormControl, FormLabel, RadioGroup } from '@mu
 import TextField from '@mui/material/TextField';
 import { PwaContext } from "../../context/PwaContext/page";
 import { useLanguage } from "../../context/Language/loginContext";
-import traslations from "../../utils/Json/translation.json"
+import translations from "../../utils/Json/translation.json"
 import { useToast } from "../../context/Toast/toastHook";
 
 const OtpVerification = () => {
@@ -37,10 +37,6 @@ const OtpVerification = () => {
         console.log('Selected Language:', event.target.value);
     };
 
-    useEffect(() => {
-        console.log(traslations[language].loginModule.heading1, "traslations");
-    }, [traslations, language])
-
     const { deferredPrompt, isInstalled, handleInstallClick } = useContext(PwaContext);
 
     const [otp, setOtp] = useState();
@@ -56,7 +52,6 @@ const OtpVerification = () => {
     const handleSuccessClick = (SuccessMessage) => {
         addToast(SuccessMessage, 'success');
     };
-
 
     const onSubmit = async (data) => {
 
@@ -129,11 +124,11 @@ const OtpVerification = () => {
                     />
 
                     <div className="p-2 sm:hidden">
-                        <h1 className="text-2xl text-white font-semibold">{traslations[language].loginModule.heading1}</h1>
+                        <h1 className="text-2xl text-white font-semibold"> {translations.loginScreen.sendOtpScreen.heading1[language]}</h1>
                     </div>
 
                     <div className="sm:hidden">
-                        <h1 className="text-4xl mt-2 text-white font-bold pb-6">{traslations[language]?.loginModule?.heading2}</h1>
+                        <h1 className="text-4xl mt-2 text-white font-bold pb-6"> {translations.loginScreen.sendOtpScreen.heading2[language]}</h1>
                     </div>
 
                 </div>
@@ -142,13 +137,13 @@ const OtpVerification = () => {
                 <div className="h-full bg-white grid grid-cols-12 md:grid-cols-12 ">
                     {/* Content Section */}
                     <div className=" col-span-12 md:col-span-6 w-full order-1 md:order-2 md:mt-10 mt-0 p-0 md:p-20 ">
-                        <p style={{ color: '#020065' }} className="hidden sm:block text-center mx-5 font-semibold text-3xl ">LOGIN</p>
+                        <p style={{ color: '#020065' }} className="hidden sm:block text-center mx-5 font-semibold text-3xl ">{translations.loginScreen.sendOtpScreen.login[language]}</p>
                         <div
                             className="text-start mt-10 mx-5 rounded-lg p-4 "
                             style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}
                         >
                             <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '500', fontSize: '14px' }}>
-                                Select preferred language
+                                {translations.loginScreen.sendOtpScreen.preference[language]}
                             </p>
 
                             <FormControl component="fieldset" style={{ marginTop: '16px' }}>
@@ -202,13 +197,13 @@ const OtpVerification = () => {
                                 style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}
                             >
                                 <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '500', fontSize: '14px' }}>
-                                    Login/Register to continue
+                                    {translations.loginScreen.sendOtpScreen.loginOrRegister[language]}
                                 </p>
                                 <div className="grid grid-cols-1 md:grid-cols-1 mt-3">
                                     <form onSubmit={handleSubmit(onSubmit)}>
                                         <div className="grid grid-cols-1 md:grid-cols-1 mt-3">
                                             <TextField
-                                                label="Phone Number"
+                                                label={translations.loginScreen.sendOtpScreen.phoneField[language]}
                                                 variant="outlined"
                                                 size="medium"
                                                 type="text"
@@ -247,7 +242,7 @@ const OtpVerification = () => {
                                                         />
                                                     </svg>
                                                 ) : (
-                                                    "Get OTP"
+                                                    `${translations.loginScreen.sendOtpScreen.getOTPButton[language]}`
                                                 )}
                                             </button>
                                             <div className="text-start">
@@ -272,18 +267,17 @@ const OtpVerification = () => {
                             >
                                 <div className="flex justify justify-between">
                                     <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '500', fontSize: '14px' }}>
-                                        Confirm Phone number
+                                        {translations.loginScreen.otpConfirmation.heading1[language]}
                                     </p>
-
                                     <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '500', textDecoration: "underline", fontSize: '14px' }}>
-                                        Resend OTP?
+                                        {translations.loginScreen.otpConfirmation.resendOTPLink[language]}
                                     </p>
                                 </div>
                                 <div className="md:grid grid-cols-1 mt-3">
                                     <form onSubmit={handleSubmit(verifyOtp)}>
                                         <div className="grid grid-cols-1 md:grid-cols-1 mt-3">
                                             <TextField
-                                                label="Enter OTP"
+                                                label={translations.loginScreen.otpConfirmation.OtpField[language]}
                                                 variant="outlined"
                                                 size="medium"
                                                 type="text"
@@ -296,7 +290,7 @@ const OtpVerification = () => {
                                             />
                                         </div>
                                         <p className="text-centerlg:text-start  text-sm mt-2" style={{ color: "#49454F" }}>
-                                            Enter the OTP shared through text message
+                                            {translations.loginScreen.otpConfirmation.heading2[language]}
                                         </p>
                                         <div className="mt-5">
                                             <button
@@ -309,7 +303,7 @@ const OtpVerification = () => {
                                                         <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill" />
                                                     </svg>
                                                 ) : (
-                                                    "Verify OTP"
+                                                    `${translations.loginScreen.otpConfirmation.verifyOTPButton[language]}`
                                                 )}
                                             </button>
                                             <div className="text-start">
@@ -339,11 +333,11 @@ const OtpVerification = () => {
                                     alt="Logo"
                                 />
                                 <div className="p-2 ">
-                                    <h1 className="text-3xl text-white font-semibold">{traslations[language].loginModule.heading1}</h1>
+                                    <h1 className="text-3xl text-white font-semibold"> {translations.loginScreen.sendOtpScreen.heading1[language]}</h1>
                                 </div>
 
                                 <div className="">
-                                    <h1 className="text-4xl mt-2 text-white font-bold pt-4">{traslations[language].loginModule.heading2}</h1>
+                                    <h1 className="text-4xl mt-2 text-white font-bold pt-4"> {translations.loginScreen.sendOtpScreen.heading2[language]}</h1>
                                 </div>
                             </h1>
                         </div>

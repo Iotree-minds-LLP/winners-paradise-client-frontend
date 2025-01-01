@@ -1,36 +1,62 @@
 {
-    "English": {
-        "loginModule": {
-            "heading1": "Welcome to",
-            "heading2": "Algo Achievers"
+    "loginScreen": {
+        "sendOtpScreen": {
+            "heading1": {
+                "English": "Welcome to",
+                "Kannada": "ಆಲ್ಗೋ ಅಚೀವರ್ಸ್ ಗೆ"
+            },
+            "heading2": {
+                "English": "Algo Achievers",
+                "Kannada": "ಸುಸ್ವಾಗತ"
+            },
+            "login": {
+                "English": "LOGIN",
+                "Kannada": "ಲಾಗಿನ್"
+            },
+            "preference": {
+                "English": "Select preferred language",
+                "Kannada": "ಆದ್ಯತೆಯ ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ"
+            },
+            "loginOrRegister": {
+                "English": "Login/Register to continue",
+                "Kannada": "ಮುಂದುವರೆಯಲು ಲಾಗಿನ್/ನೋಂದಣಿ ಮಾಡಿ"
+            },
+            "phoneField": {
+                "English": "Phone Number",
+                "Kannada": "ದೂರವಾಣಿ ಸಂಖ್ಯೆ"
+            },
+            "getOTPButton": {
+                "English": "Get OTP",
+                "Kannada": "ಒಟಿಪಿ ಕಳುಹಿಸಿ"
+            }
         },
-        "language": "Language",
-        "select_language": "Select your preferred language",
-        "submit": "Submit",
-        "cancel": "Cancel",
-        "form_title": "User Information",
-        "name": "Name",
-        "email": "Email",
-        "phone": "Phone Number",
-        "address": "Address",
-        "success_message": "Form submitted successfully!",
-        "error_message": "There was an error. Please try again."
+        "otpConfirmation": {
+            "OtpField": {
+                "English": "Enter OTP",
+                "Kannada": "ಒಟಿಪಿ ನಮೂದಿಸಿ"
+            },
+            "heading1": {
+                "English": "Confirm Phone number",
+                "Kannada": "ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ದೃಢೀಕರಿಸಿ"
+            },
+            "heading2": {
+                "English": "Enter the OTP shared through text message",
+                "Kannada": "ಸಂದೇಶದ ಮೂಲಕ ಹಂಚಿಕೊಂಡ ಒಟಿಪಿ ಅನ್ನು ನಮೂದಿಸಿ"
+            },
+            "resendOTPLink": {
+                "English": "Resend OTP ?",
+                "Kannada": "ಒಟಿಪಿ ಮರುಕಳುಹಿಸುವುದೇ ?"
+            },
+            "verifyOTPButton": {
+                "English": "Verify OTP",
+                "Kannada": "ಒಟಿಪಿ ಪರಿಶೀಲಿಸಿ"
+            }
+        }
     },
-    "Kannada": {
-        "loginModule": {
-            "heading1": "ಆಲ್ಗೋ ಅಚೀವರ್ಸ್ ಗೆ",
-            "heading2": "ಸುಸ್ವಾಗತ"
-        },
-        "language": "ಭಾಷೆ",
-        "select_language": "ನಿಮ್ಮ ಇಚ್ಛಿತ ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ",
-        "submit": "ಸಲ್ಲಿಸಿ",
-        "cancel": "ರದ್ದುಮಾಡಿ",
-        "form_title": "ಬಳಕೆದಾರರ ಮಾಹಿತಿ",
-        "name": "ಹೆಸರು",
-        "email": "ಇಮೇಲ್",
-        "phone": "ಫೋನ್ ಸಂಖ್ಯೆ",
-        "address": "ವಿಳಾಸ",
-        "success_message": "ಫಾರ್ಮ್ ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಸಲಾಗಿದೆ!",
-        "error_message": "ದೋಷವಾಯಿತು. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ."
+    "validations": {
+        "phoneField": {
+            "English": "Phone number is required",
+            "Kannada": "ದಯವಿಟ್ಟು ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ"
+        }
     }
 }
