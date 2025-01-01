@@ -1,19 +1,48 @@
 import { useNavigate } from "react-router-dom";
 import { SendOtp, VerifyOtp } from "../../network/OtpVerification/page";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import NavBar from "../../components/Navbar/page";
 import WidgetButton from "../../widgets/Button/page";
 import FormattedJsonViewer from "../../widgets/JsonView/page";
 import Button from '@mui/material/Button';
+import { useForm, Controller } from 'react-hook-form';
 import imageLogo from "../../assets/Logos/logo1.png";
 import image1 from "../../assets/Images/robo 1 (3).png";
 import image3 from "../../assets/Images/sideImage.png";
 import image2 from "../../assets/Images/robo 1 (1).png";
-import { Radio, FormControlLabel, FormControl, FormLabel, RadioGroup, TextField } from '@mui/material';
+import { Radio, FormControlLabel, FormControl, FormLabel, RadioGroup } from '@mui/material';
+import TextField from '@mui/material/TextField';
 import { PwaContext } from "../../context/PwaContext/page";
+import { useLanguage } from "../../context/Language/loginContext";
+import traslations from "../../utils/Json/translation.json"
+import { useToast } from "../../context/Toast/toastHook";
 
 const OtpVerification = () => {
-    const [response, setResponse] = useState([]);
+    const { language, setLanguage } = useLanguage();
+
+    const {
+        control,
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+
+    const [isLoading, setisLoading] = useState(false)
+    const [selectedValue, setSelectedValue] = useState('English'); // Default selected value
+    const [ErrorMessage, setErrorMessage] = useState("")
+
+    const handleChange = (event) => {
+        setLanguage(event.target.value);
+        setSelectedValue(event.target.value);
+        console.log('Selected Language:', event.target.value);
+    };
+
+    useEffect(() => {
+        console.log(traslations[language].loginModule.heading1, "traslations");
+    }, [traslations, language])
+
+    const { deferredPrompt, isInstalled, handleInstallClick } = useContext(PwaContext);
+
     const [otp, setOtp] = useState();
     const [ShowotpField, setShowotpField] = useState(false);
     const [ShowPhoneField, setShowPhoneField] = useState(true);
@@ -22,83 +51,100 @@ const OtpVerification = () => {
     const [inputValue, setInputValue] = useState();
     const [isError, setIsError] = useState(false);
     const navigate = useNavigate();
+    const { addToast } = useToast();
 
-    const { deferredPrompt, isInstalled, handleInstallClick } = useContext(PwaContext);
+    const handleSuccessClick = (SuccessMessage) => {
+        addToast(SuccessMessage, 'success');
+    };
 
-    const sendOtp = async () => {
-        setShowotpField(true);
-        setShowPhoneField(false);
+
+    const onSubmit = async (data) => {
+
+        setisLoading(true);
+
         const payload = {
-            mobileNumber: inputValue,
+            mobileNumber: data.phoneNumber,
+        };
+
+        let resp;
+
+        try {
+            resp = await SendOtp(payload);
+            if (resp.data.status === 200) {
+                setErrorMessage("");
+                handleSuccessClick(resp.data.data.message);
+                setShowotpField(true);
+                setShowPhoneField(false);
+                setOtp(resp.data.data.otp);
+                setToken(resp.data.data.token);
+                setisLoading(false);
+            }
+            else {
+                setErrorMessage("Something Went Wrong");
+                setisLoading(false);
+            }
+
+        } catch (error) {
+            setErrorMessage(resp.data.data.message);
+            setisLoading(false);
+        }
+    };
+
+    const verifyOtp = async (data) => {
+
+        const payload = {
+            otp: data.enteredOtp,
+            token
         };
         let resp;
         try {
-            resp = await SendOtp(payload);
-            setOtp(resp.data.data.otp);
-            setToken(resp.data.data.token);
-            setResponse(resp.data.data);
-            setIsError(false);
-        } catch (error) {
-            setResponse(`Error: ${error.message}`);
-            setIsError(true);
-        }
-    };
-
-    const verifyOtp = async () => {
-        const payload = {
-            otp,
-            token
-        };
-        try {
-            const resp = await VerifyOtp(payload);
-            setResponse(resp.data.data);
-            setIsError(false);
-            if (resp.data.data?.customer) {
-                localStorage.setItem("customerDetails", JSON.stringify(resp.data.data.customer));
-                setTimeout(() => {
+            resp = await VerifyOtp(payload);
+            if (resp.data.status === 200) {
+                setErrorMessage("");
+                if (resp.data.data?.customer) {
+                    localStorage.setItem("customerDetails", JSON.stringify(resp.data.data.customer));
                     navigate("/homepage");
-                }, 3000);
-            } else {
-                setTimeout(() => {
+                    handleSuccessClick(resp.data.data.message);
+                } else {
                     navigate("/register");
-                }, 3000);
+                    handleSuccessClick(resp.data.data.message);
+                }
             }
             localStorage.setItem("tokenDetails", resp.data.data.token);
         } catch (error) {
-            setResponse(`Error: ${error.message}`);
-            setIsError(true);
+            setErrorMessage(resp.data.message)
         }
     };
 
-    const handleInputChange = (event) => {
-        setInputValue(event.target.value);
-    };
 
     return (
         <>
             <div className="h-screen flex flex-col">
                 <div className="h-1/2 sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-col justify-center md:justify-start items-center md:items-start">
+
                     <img
                         className="h-auto md:hidden w-1/2 p-3 md:mt-0 sm:mt-20 mt-10 text-start"
                         src={imageLogo}
                         alt="Logo"
                     />
+
                     <div className="p-2 sm:hidden">
-                        <h1 className="text-2xl text-white font-semibold">Welcome to</h1>
+                        <h1 className="text-2xl text-white font-semibold">{traslations[language].loginModule.heading1}</h1>
                     </div>
 
                     <div className="sm:hidden">
-                        <h1 className="text-4xl mt-2 text-white font-bold pb-6">Algo Achievers </h1>
+                        <h1 className="text-4xl mt-2 text-white font-bold pb-6">{traslations[language]?.loginModule?.heading2}</h1>
                     </div>
+
                 </div>
 
 
                 <div className="h-full bg-white grid grid-cols-12 md:grid-cols-12 ">
                     {/* Content Section */}
                     <div className=" col-span-12 md:col-span-6 w-full order-1 md:order-2 md:mt-10 mt-0 p-0 md:p-20 ">
-                        <p style={{ color: '#020065' }} className="hidden sm:block text-start mx-5 font-semibold text-3xl">Login</p>
+                        <p style={{ color: '#020065' }} className="hidden sm:block text-center mx-5 font-semibold text-3xl ">LOGIN</p>
                         <div
-                            className="text-start mt-5 mx-5 rounded-lg p-4"
+                            className="text-start mt-10 mx-5 rounded-lg p-4 "
                             style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}
                         >
                             <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '500', fontSize: '14px' }}>
@@ -110,7 +156,8 @@ const OtpVerification = () => {
                                     row
                                     aria-label="language"
                                     name="language-group"
-                                    defaultValue="English"
+                                    value={selectedValue}
+                                    onChange={handleChange}
                                     className="gap-4 sm:gap-6"
                                 >
                                     <FormControlLabel
@@ -158,23 +205,63 @@ const OtpVerification = () => {
                                     Login/Register to continue
                                 </p>
                                 <div className="grid grid-cols-1 md:grid-cols-1 mt-3">
-                                    <TextField
-                                        label="Phone Number"
-                                        variant="outlined"
-                                        size="medium"
-                                        fullWidth
-                                        value={inputValue}
-                                        onChange={handleInputChange}
-                                    />
+                                    <form onSubmit={handleSubmit(onSubmit)}>
+                                        <div className="grid grid-cols-1 md:grid-cols-1 mt-3">
+                                            <TextField
+                                                label="Phone Number"
+                                                variant="outlined"
+                                                size="medium"
+                                                type="text"
+                                                fullWidth
+                                                error={!!errors.phoneNumber}
+                                                helperText={errors.phoneNumber ? errors.phoneNumber.message : ''}
+                                                {...register('phoneNumber', {
+                                                    required: 'Phone number is required',
+                                                    pattern: {
+                                                        value: /^[0-9]{10}$/,
+                                                        message: 'Please enter a valid 10-digit phone number',
+                                                    },
+                                                })}
+                                            />
+                                        </div>
+                                        <div className="mt-5">
+                                            <button
+                                                type="submit"
+                                                className="md:w-full w-full p-3 rounded-full text-white bg-gradient-to-l from-[#020065] to-[#0400CB] flex items-center justify-center"
+                                            >
+                                                {isLoading ? (
+                                                    <svg
+                                                        aria-hidden="true"
+                                                        className="w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                                                        viewBox="0 0 100 101"
+                                                        fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <path
+                                                            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                                                            fill="currentColor"
+                                                        />
+                                                        <path
+                                                            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                                                            fill="currentFill"
+                                                        />
+                                                    </svg>
+                                                ) : (
+                                                    "Get OTP"
+                                                )}
+                                            </button>
+                                            <div className="text-start">
+                                                {ErrorMessage && (
+                                                    <span style={{ fontSize: '14px' }} className="text-red-400 text-xs text-start">
+                                                        {ErrorMessage}
+                                                    </span>
+                                                )}
+                                            </div>
+                                        </div>
+
+                                    </form>
                                 </div>
-                                <div className="mt-5">
-                                    <button
-                                        onClick={sendOtp}
-                                        className="md:w-full w-full p-3 rounded-full text-white bg-gradient-to-l from-[#020065] to-[#0400CB]"
-                                    >
-                                        Get Otp
-                                    </button>
-                                </div>
+
                             </div>
                         )}
 
@@ -193,24 +280,47 @@ const OtpVerification = () => {
                                     </p>
                                 </div>
                                 <div className="md:grid grid-cols-1 mt-3">
-                                    <TextField
-                                        label="Enter OTP"
-                                        variant="outlined"
-                                        size="medium"
-                                        fullWidth
-                                        type="password"
-                                    />
-                                </div>
-                                <p className="text-centerlg:text-start  text-sm mt-2" style={{ color: "#49454F" }}>
-                                    Enter the OTP shared thorough text message
-                                </p>
-                                <div className="mt-5">
-                                    <button
-                                        onClick={sendOtp}
-                                        className="md:w-full w-full p-3 rounded-full text-white bg-gradient-to-l from-[#020065] to-[#0400CB]"
-                                    >
-                                        Confirm
-                                    </button>
+                                    <form onSubmit={handleSubmit(verifyOtp)}>
+                                        <div className="grid grid-cols-1 md:grid-cols-1 mt-3">
+                                            <TextField
+                                                label="Enter OTP"
+                                                variant="outlined"
+                                                size="medium"
+                                                type="text"
+                                                fullWidth
+                                                error={!!errors.enteredOtp}
+                                                helperText={errors.enteredOtp ? errors.enteredOtp.message : ''}
+                                                {...register('enteredOtp', {
+                                                    required: 'OTP is required',
+                                                })}
+                                            />
+                                        </div>
+                                        <p className="text-centerlg:text-start  text-sm mt-2" style={{ color: "#49454F" }}>
+                                            Enter the OTP shared through text message
+                                        </p>
+                                        <div className="mt-5">
+                                            <button
+                                                type="submit"
+                                                className="md:w-full text-center w-full p-3 rounded-full text-white bg-gradient-to-l from-[#020065] to-[#0400CB]"
+                                            >
+                                                {isLoading ? (
+                                                    <svg aria-hidden="true" className="w-4 h-4 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
+                                                        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill" />
+                                                    </svg>
+                                                ) : (
+                                                    "Verify OTP"
+                                                )}
+                                            </button>
+                                            <div className="text-start">
+                                                {ErrorMessage && (
+                                                    <span style={{ fontSize: '14px' }} className="text-red-400 text-xs text-satrt">
+                                                        {ErrorMessage}
+                                                    </span>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         )}
@@ -229,11 +339,11 @@ const OtpVerification = () => {
                                     alt="Logo"
                                 />
                                 <div className="p-2 ">
-                                    <h1 className="text-3xl text-white font-semibold">Welcome to</h1>
+                                    <h1 className="text-3xl text-white font-semibold">{traslations[language].loginModule.heading1}</h1>
                                 </div>
 
                                 <div className="">
-                                    <h1 className="text-4xl mt-2 text-white font-bold pt-4">Algo Achievers </h1>
+                                    <h1 className="text-4xl mt-2 text-white font-bold pt-4">{traslations[language].loginModule.heading2}</h1>
                                 </div>
                             </h1>
                         </div>

@@ -1,0 +1,36 @@
+{
+    "English": {
+        "loginModule": {
+            "heading1": "Welcome to",
+            "heading2": "Algo Achievers"
+        },
+        "language": "Language",
+        "select_language": "Select your preferred language",
+        "submit": "Submit",
+        "cancel": "Cancel",
+        "form_title": "User Information",
+        "name": "Name",
+        "email": "Email",
+        "phone": "Phone Number",
+        "address": "Address",
+        "success_message": "Form submitted successfully!",
+        "error_message": "There was an error. Please try again."
+    },
+    "Kannada": {
+        "loginModule": {
+            "heading1": "ಆಲ್ಗೋ ಅಚೀವರ್ಸ್ ಗೆ",
+            "heading2": "ಸುಸ್ವಾಗತ"
+        },
+        "language": "ಭಾಷೆ",
+        "select_language": "ನಿಮ್ಮ ಇಚ್ಛಿತ ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+        "submit": "ಸಲ್ಲಿಸಿ",
+        "cancel": "ರದ್ದುಮಾಡಿ",
+        "form_title": "ಬಳಕೆದಾರರ ಮಾಹಿತಿ",
+        "name": "ಹೆಸರು",
+        "email": "ಇಮೇಲ್",
+        "phone": "ಫೋನ್ ಸಂಖ್ಯೆ",
+        "address": "ವಿಳಾಸ",
+        "success_message": "ಫಾರ್ಮ್ ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಸಲಾಗಿದೆ!",
+        "error_message": "ದೋಷವಾಯಿತು. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ."
+    }
+}
