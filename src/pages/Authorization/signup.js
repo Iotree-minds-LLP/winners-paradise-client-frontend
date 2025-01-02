@@ -112,6 +112,10 @@ const SignupPage = () => {
                                         value: 3,
                                         message: 'Full Name must be at least 3 characters long',
                                     },
+                                    maxLength: {
+                                        value: 30,
+                                        message: 'Full Name cannot exceed 30 characters',
+                                    },
                                     validate: {
                                         noSpecialChars: (value) =>
                                             /^[a-zA-Z\s]+$/.test(value) || 'Full Name must contain only alphabets',
