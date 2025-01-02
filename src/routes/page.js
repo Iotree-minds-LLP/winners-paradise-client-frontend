@@ -13,12 +13,17 @@ import Catalogs from '../pages/Catalog/page';
 import Kyc from '../pages/Kyc/kyc';
 import Dashboard from '../components/Sidebar/page';
 import Sidebar from '../components/Sidebar/page';
+import MyProfile from '../pages/Profile/myProfileDetails';
+import ProfileAndSettings from '../pages/Profile/profileAndSetting';
+import EditCustomerProfile from '../pages/Profile/editMyProfileDetails';
 
 const routes = [
   { path: "/", element: <OtpVerification /> },
   { path: "/register", element: <Signup /> },
+  { path: "/edit-customer-details", element: <EditCustomerProfile /> },
   { path: "/homepage", element: <HomePage /> },
-  { path: "/my-profile", element: <Profile /> },
+  { path: "/my-profile", element: <MyProfile /> },
+  { path: "/profile-and-settings", element: <ProfileAndSettings /> },
   { path: "/notifications", element: <Notifications /> },
   { path: "/my-investments", element: <ListInvestments /> },
   { path: "/payouts", element: <Payouts /> },

@@ -159,9 +159,9 @@ const Sidebar = () => {
                                 )}
                             </li>
                             <li>
-                                {currentUrl === "/my-account" ? (
+                                {currentUrl === "/profile-and-settings" ? (
                                     <Link
-                                        to="/my-account"
+                                        to="/profile-and-settings"
                                         class="rounded-lg text-start flex items-start p-4 text-white  dark:text-white bg-gradient-to-l from-[#020065] to-[#0400CB] group"
                                     >
                                         <svg
@@ -173,11 +173,11 @@ const Sidebar = () => {
                                         >
                                             <path d="M10 0a5 5 0 1 1-5 5A5 5 0 0 1 10 0Zm0 11c-4.418 0-8 2.239-8 5v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2c0-2.761-3.582-5-8-5Z" />
                                         </svg>
-                                        <span class="flex-1 ms-3 whitespace-nowrap">My Account</span>
+                                        <span class="flex-1 ms-3 whitespace-nowrap">Profile & Settings</span>
                                     </Link>
                                 ) : (
                                     <Link
-                                        to="/my-account"
+                                        to="/profile-and-settings"
                                         class="rounded-lg hover:text-black text-start flex items-center p-4 text-gray-900  dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                                     >
                                         <svg
@@ -189,7 +189,7 @@ const Sidebar = () => {
                                         >
                                             <path d="M10 0a5 5 0 1 1-5 5A5 5 0 0 1 10 0Zm0 11c-4.418 0-8 2.239-8 5v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2c0-2.761-3.582-5-8-5Z" />
                                         </svg>
-                                        <span class="flex-1 ms-3 whitespace-nowrap">My Account</span>
+                                        <span class="flex-1 ms-3 whitespace-nowrap">Profile & Settings</span>
                                     </Link>
                                 )}
                             </li>

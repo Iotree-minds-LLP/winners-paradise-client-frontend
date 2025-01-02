@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import NavBar from "../../components/Navbar/page";
-import { getCustomersNotifications } from "../../network/Notifications/page";
-import WidgetButton from "../../widgets/Button/page";
-import FormattedJsonViewer from "../../widgets/JsonView/page";
 import bellIcon from "../../assets/Logos/bellIcon2.png";
 import userIcon from "../../assets/Logos/usericon.png";
 import backImage from "../../assets/Images/backImage.jpg"
 import imageLogo from "../../assets/Logos/Algo-Achievers-Logo_009600960_38721 1 (1).png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { getCustomerById } from "../../network/Customer/page";
 import backButton from "../../assets/Logos/backButton.png"
+import acrrowright from "../../assets/Images/arrow_circle_right.png"
+import image2 from "../../assets/Images/robo 1 (1).png";
 
-const Notifications = () => {
+const ProfileAndSettings = () => {
+
     const [response, setResponse] = useState([]);
     const [customerDetails, setCustomerDetails] = useState([]);
     const [isModalOpen, setisModalOpen] = useState(false);
@@ -20,82 +20,71 @@ const Notifications = () => {
         setisModalOpen(!isModalOpen);
     }
 
-
-    useEffect(() => {
-        const data = localStorage.getItem("customerDetails");
-        const customer = JSON.parse(data);
-        setCustomerDetails(customer);
-    }, []);
-
-    useEffect(() => {
-
-        const onformSubmit = async () => {
-            if (customerDetails && customerDetails._id) {
-                const resp = await getCustomersNotifications(customerDetails._id);
-                if (resp.data.status === 201) {
-                    console.log(resp.data.data.payoutsNotifications.notifications, "resp")
-                }
-            }
-        };
-
-        onformSubmit()
-
-    }, [customerDetails])
-
-
-
     const yesLogout = () => {
         localStorage.removeItem("customerDetails");
         localStorage.removeItem("tokenDetails");
         navigate("/")
     }
 
-
     return (
         <>
             <div className="sm:ml-72 relative bg-white">
+                {/* Background Image */}
                 <img src={backImage} className="opacity-30	hidden md:block absolute inset-0 object-cover z-0 w-full" alt="Background" />
+
+                {/* Content Wrapper */}
                 <div className="relative z-10">
+                    {/* Gradient Header */}
                     <div className="h-[60px] sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row justify-between p-4">
                         <div className="flex flex-row">
                             <img src={backButton} className="w-8 h-8" alt="Back" />
-                            <p className="text-white font-semibold my-1">Notifications</p>
+                            <p className="text-white font-semibold my-1">Profile & Setting</p>
                         </div>
                         <div className="text-white" onClick={toggleModal}>
                             Logout
                         </div>
                     </div>
+
                     <div className="flex justify-between">
-                        <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10">My Notifications</h1>
-                        <p className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer" onClick={toggleModal}>Logout</p>
+                        <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10 mx-6">Profile & Settings</h1>
+                        <p className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer	" onClick={toggleModal}>Logout</p>
                     </div>
 
-                    <div className="text-start rounded-lg mt-5 p-4 grid md:grid-cols-3 grid-cols-1 gap-4">
-                        <div
-                            className="p-4 rounded-lg"
-                            style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}
-                        >
-                            <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '14px' }}>
-                                Notification Title
-                            </p>
+                    <div className="text-start rounded-lg mt-5 p-4 md:p-10 grid md:grid-cols-1 grid-cols-1 gap-4">
+                        <div className="p-4 md:p-6 rounded-lg w-full md:w-1/2" style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}>
                             <div className="flex justify justify-between">
-                                <p className="my-2">Notification description ....</p>
-                                <p className="my-2 text-sm"><b>Know More</b></p>
+                                <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>Personal Details</p>
+                                <Link to="/my-profile">
+                                    <img src={acrrowright} className="w-auto h-8" alt="Arrow Icon"></img>
+                                </Link>
+
                             </div>
                         </div>
-                        <div
-                            className="p-4 rounded-lg"
-                            style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}
-                        >
-                            <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '14px' }}>
-                                Notification Title
-                            </p>
+
+                        <div className="p-4 md:p-6 rounded-lg md:w-1/2" style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}>
                             <div className="flex justify justify-between">
-                                <p className="my-2">Notification description ....</p>
-                                <p className="my-2 text-sm"><b>Know More</b></p>
+                                <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>KYC</p>
+                                <img src={acrrowright} className="w-auto h-8" alt="Arrow Icon"></img>
                             </div>
                         </div>
+
+                        <div className="p-4 md:p-6 rounded-lg md:w-1/2" style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}>
+                            <div className="flex justify justify-between">
+                                <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>Bank Account</p>
+                                <img src={acrrowright} className="w-auto h-8" alt="Arrow Icon"></img>
+                            </div>
+                        </div>
+
+                        <div className="p-4 md:p-6 rounded-lg md:w-1/2" style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}>
+                            <div className="flex justify justify-between">
+                                <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>Language</p>
+                                <img src={acrrowright} className="w-auto h-8" alt="Arrow Icon"></img>
+                            </div>
+                        </div>
+
+
                     </div>
+
 
                 </div>
                 <div>
@@ -178,10 +167,14 @@ const Notifications = () => {
                             </div>
                         </div>
                     )}
+
+                    <div className="col-span-12 md:col-span-6 sm:hidden w-full h-full order-2 mt-10 md:order-1 responsive">
+                        <img src={image2} alt="Image description" className="w-full h-full object-contain" />
+                    </div>
                 </div>
-            </div>
+            </div >
         </>
     );
 };
 
-export default Notifications;
+export default ProfileAndSettings;

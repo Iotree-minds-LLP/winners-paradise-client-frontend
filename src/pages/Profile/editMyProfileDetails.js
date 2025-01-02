@@ -16,7 +16,7 @@ import { useForm } from 'react-hook-form';
 import { useLanguage } from "../../context/Language/loginContext";
 import { useToast } from "../../context/Toast/toastHook";
 
-const SignupPage = () => {
+const EditCustomerProfile = () => {
 
     const {
         register,
@@ -308,4 +308,4 @@ const SignupPage = () => {
     );
 };
 
-export default SignupPage;
+export default EditCustomerProfile;
