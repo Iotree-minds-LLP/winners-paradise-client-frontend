@@ -63,10 +63,13 @@ const Catalogs = () => {
                         />
                         <p className="mt-6 sm:hidden text-white font-semibold text-xl">
                             Winners Paradise
+                            <p className="mt-6 sm:hidden text-white font-semibold text-sm" onClick={toggleModal}>Logout</p>
+
                         </p>
                         <div className="flex flex-row text-white">
                             <img src={bellIcon} className="w-auto h-12 mt-4" alt="Bell Icon"></img>
                             <img src={userIcon} className="w-auto h-12 mt-4" alt="User Icon"></img>
+
                         </div>
                     </div>
 
