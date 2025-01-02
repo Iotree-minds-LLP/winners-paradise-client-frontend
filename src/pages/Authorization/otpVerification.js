@@ -86,13 +86,16 @@ const OtpVerification = () => {
     };
 
     const verifyOtp = async (data) => {
+
         setisLoading(true);
 
         const payload = {
             otp: data.enteredOtp,
             token
         };
+
         let resp;
+
         try {
             resp = await VerifyOtp(payload);
             if (resp.data.status === 200) {
