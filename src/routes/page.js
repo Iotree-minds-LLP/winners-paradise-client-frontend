@@ -6,7 +6,6 @@ import OtpVerification from '../pages/Authorization/otpVerification';
 import HomePage from '../pages/Home/page';
 import Notifications from '../pages/Notifications/listNotifications';
 import ListInvestments from '../pages/Investments/listInvestments';
-import Payouts from '../pages/Payouts/payouts';
 import Enquiry from '../pages/Enquiry/page';
 import Catalogs from '../pages/Catalog/page';
 import Kyc from '../pages/Kyc/kyc';
@@ -17,6 +16,7 @@ import ProfileAndSettings from '../pages/Profile/profileAndSetting';
 import EditCustomerProfile from '../pages/Profile/editMyProfileDetails';
 import LanguagePreference from '../pages/Profile/languagePreference';
 import DashboardPage from '../pages/Dashboard/page';
+import Payouts from '../pages/payouts/page';
 
 const routes = [
   { path: "/", element: <OtpVerification /> },

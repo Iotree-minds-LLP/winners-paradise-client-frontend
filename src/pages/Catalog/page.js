@@ -14,7 +14,7 @@ import footerLogo2 from "../../assets/Logos/onboardingLogos/timeline (1).png";
 import footerLogo3 from "../../assets/Logos/onboardingLogos/icon-container (1).png";
 import footerLogo4 from "../../assets/Logos/onboardingLogos/icon-container (1).png";
 import backImage from "../../assets/Images/backImage.jpg"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Catalogs = () => {
 
@@ -64,8 +64,9 @@ const Catalogs = () => {
                         </p>
                         <div className="flex flex-row text-white">
                             <img src={bellIcon} className="w-auto h-12 mt-4" alt="Bell Icon"></img>
-                            <img src={userIcon} className="w-auto h-12 mt-4" alt="User Icon"></img>
-
+                            <Link to="/profile-and-settings">
+                                <img src={userIcon} className="w-auto h-12 mt-4" alt="User Icon"></img>
+                            </Link>
                         </div>
                     </div>
 

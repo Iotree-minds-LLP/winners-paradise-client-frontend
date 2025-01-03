@@ -1,25 +1,22 @@
 import { useEffect, useState } from "react";
 import { getAllCatalogByCustomerId } from "../../network/Catalog/page";
-import profileIcon from "../../assets/Logos/trailing-icon.png"
-import belIcon from "../../assets/Logos/belIcon.png"
-import { TextField } from "@mui/material";
-import NavBar from "../../components/Navbar/page";
-import calculateicon from "../../assets/Images/calculate.png"
-import acrrowright from "../../assets/Images/arrow_circle_right.png"
 import imageLogo from "../../assets/Logos/Algo-Achievers-Logo_009600960_38721 1 (1).png";
 import bellIcon from "../../assets/Logos/bellIcon2.png";
 import userIcon from "../../assets/Logos/usericon.png";
 import footerLogo1 from "../../assets/Logos/onboardingLogos/featured_play_list.png";
-import footerLogo2 from "../../assets/Logos/onboardingLogos/icon-container.png";
-import footerLogo3 from "../../assets/Logos/onboardingLogos/icon-container (1).png";
+import footerLogo2 from "../../assets/Logos/onboardingLogos/featured_play_list.png";
+import footerLogo3 from "../../assets/Logos/onboardingLogos/icon-container (2).png";
 import footerLogo4 from "../../assets/Logos/onboardingLogos/icon-container (1).png";
 import backImage from "../../assets/Images/backImage.jpg"
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import logo1 from "../../assets/Images/payouts1.png"
+import logo2 from "../../assets/Images/payouts2.png"
 
-const DashboardPage = () => {
+const Payouts = () => {
 
     const [isModalOpen, setisModalOpen] = useState(false);
     const navigate = useNavigate();
+    const [past, setpast] = useState(false)
 
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
@@ -30,6 +27,11 @@ const DashboardPage = () => {
     const toggleModal = () => {
         setisModalOpen(!isModalOpen);
     }
+
+    const toggleSelection = () => {
+        setpast(!past);
+    }
+
 
     const yesLogout = () => {
         localStorage.removeItem("customerDetails");
@@ -63,9 +65,7 @@ const DashboardPage = () => {
                         </p>
                         <div className="flex flex-row text-white">
                             <img src={bellIcon} className="w-auto h-12 mt-4" alt="Bell Icon"></img>
-                            <Link to="/profile-and-settings">
-                                <img src={userIcon} className="w-auto h-12 mt-4" alt="User Icon"></img>
-                            </Link>
+                            <img src={userIcon} className="w-auto h-12 mt-4" alt="User Icon"></img>
 
                         </div>
                     </div>
@@ -79,62 +79,40 @@ const DashboardPage = () => {
 
 
                     {/* Return Calculator */}
-                    <div className="text-start rounded-full mt-5 px-4 grid md:grid-cols-3 grid-cols-1">
-                        <div
-                            className="p-4 rounded-lg  bg-gradient-to-l from-[#020065] to-[#0400CB]"
-
-                        >
-                            <p className="text-white font-bold text-xl">
-                                Your investment Statistics
-                            </p>
-
-                            <div className="grid grid-cols-2 gap-4 my-3">
-                                <div className="flex flex-col">
-                                    <p className="text-primary" style={{ color: "#7C79EB" }}>Total Invested</p>
-                                    <p className="text-white text-lg mt-2">₹0,00,000</p>
-                                </div>
-                                <div className="flex flex-col">
-                                    <p className="text-primary" style={{ color: "#7C79EB" }}>Total Earned</p>
-                                    <p className="text-white text-lg mt-2">₹0,00,000</p>
-                                </div>
+                    <div className="text-start grid grid-cols-12 grid-cols-12 p-0 md:p-10">
+                        <div className="col-span-6">
+                            <div onClick={toggleSelection}
+                                className="p-4 flex flex-row justify-center items-center gap-2" style={{ background: "#E7E7FF" }}
+                            >
+                                <img className="w-5 h-5" src={logo1}></img>
+                                <p style={{ color: "#020065" }} className="font-bold text-md">
+                                    Upcoming
+                                </p>
                             </div>
-
+                            {!past && (
+                                <p style={{ background: "#020065", height: '2.5px' }} ></p>
+                            )}
                         </div>
-                    </div>
+                        <div className="col-span-6">
+                            <div
+                                onClick={toggleSelection}
+                                className="p-4 flex flex-row justify-center gap-2 items-center" style={{ background: "#E7E7FF" }}
+                            >
+                                <img className="w-5 h-5" src={logo2}></img>
+                                <p style={{ color: "#020065" }} className="font-bold text-md">
+                                    Past
+                                </p>
 
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 p-3">
-
-                        <div className="flex justify-between mx-2">
-                            <p style={{ color: "#020065" }} className="text-lg font-bold">Upcoming Payouts</p>
-                            <p style={{ color: "#020065", textDecoration: 'underline' }}>View All</p>
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 px-5  " >
-                        <div className="flex justify-between p-4 rounded-lg" style={{ background: "#F5F5F5" }}>
-                            <div className="flex flex-col text-start">
-                                <p className="text-md">Payout Amount</p>
-                                <p className="font-bold text-md" style={{ color: "#020065" }}>₹00,00,000</p>
                             </div>
-                            <div className="flex flex-col text-start">
-                                <p className="text-md">Payout On</p>
-                                <p className="font-bold text-md" style={{ color: "#020065" }}>DD MM YYYY</p>
-                            </div>
+                            {past && (
+                                <p style={{ background: "#020065", height: '2.5px' }} ></p>
+                            )}
                         </div>
                     </div>
 
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 p-3">
 
-                        <div className="flex justify-between mx-2">
-                            <p style={{ color: "#020065" }} className="text-lg font-bold">Your Investments</p>
-                            <p style={{ color: "#020065", textDecoration: 'underline' }}>View All</p>
-                        </div>
-
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 px-5  " >
+                    <div className="grid grid-cols-1 md:grid-cols-3 px-5 md:px-10 py-4 md:py-0 p-0 " >
                         <div className="flex justify-between p-4 rounded-lg" style={{ background: "#F5F5F5" }}>
                             <div className="flex flex-col text-start">
                                 <p className="text-md">Payout Amount</p>
@@ -172,7 +150,7 @@ const DashboardPage = () => {
 
                             {/* Dashboard */}
                             <div className="p-2  flex flex-col items-center">
-                                <div className="bg-white p-3 rounded-full flex items-center justify-center">
+                                <div className="p-3 rounded-full flex items-center justify-center">
                                     <img className="w-auto h-8" src={footerLogo2} alt="Footer Logo 2" />
                                 </div>
                                 <p className="mt-2 text-md font-bold text-center text-white" >
@@ -182,8 +160,8 @@ const DashboardPage = () => {
 
                             {/* Payouts */}
                             <div className=" p-2 flex flex-col items-center">
-                                <div className="p-3 rounded-full flex items-center justify-center">
-                                    <img className="w-auto h-8" src={footerLogo4} alt="Footer Logo 3" />
+                                <div className="bg-white p-3 rounded-full flex items-center justify-center">
+                                    <img className="w-auto h-8" src={footerLogo3} alt="Footer Logo 3" />
                                 </div>
                                 <p className="mt-2 text-md font-bold text-center text-white">
                                     Payouts
@@ -279,4 +257,4 @@ const DashboardPage = () => {
     );
 };
 
-export default DashboardPage;
+export default Payouts;
