@@ -8,11 +8,11 @@ import { getCustomerById } from "../../network/Customer/page";
 import backButton from "../../assets/Logos/backButton.png"
 import acrrowright from "../../assets/Images/arrow_circle_right.png"
 import image2 from "../../assets/Images/robo 1 (1).png";
+import { goBack } from "../../utils/Functions/goBackScreen";
 
 const MyProfile = () => {
 
     const [response, setResponse] = useState([]);
-    const [customerDetailsFromToken, setCustomerDetailsFromToken] = useState([]);
     const [customerDetailsFromAPI, setCustomerDetailsFromAPI] = useState([]);
     const [isLoading, setisLoading] = useState(false)
     const [ErrorMessage, setErrorMessage] = useState("")
@@ -24,26 +24,22 @@ const MyProfile = () => {
         setisModalOpen(!isModalOpen);
     }
 
-
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
-        setCustomerDetailsFromToken(customer);
+        onformSubmit2(customer._id)
     }, []);
 
-    useEffect(() => {
 
-        const onformSubmit2 = async () => {
-            const resp = await getCustomerById(customerDetailsFromToken._id);
+    const onformSubmit2 = async (id) => {
+        if (id) {
+            const resp = await getCustomerById(id);
             if (resp.data.status === 200) {
                 console.log(resp.data.data.customer)
                 setCustomerDetailsFromAPI(resp.data.data.customer)
             }
-        };
-
-        onformSubmit2()
-
-    }, [customerDetailsFromToken])
+        }
+    };
 
 
     const yesLogout = () => {
@@ -64,7 +60,7 @@ const MyProfile = () => {
                     {/* Gradient Header */}
                     <div className="h-[60px] sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row justify-between p-4">
                         <div className="flex flex-row">
-                            <img src={backButton} className="w-8 h-8" alt="Back" />
+                            <img src={backButton} onClick={goBack} className="w-8 h-8" alt="Back" />
                             <p className="text-white font-semibold my-1">Profile Details</p>
                         </div>
                         <div className="text-white" onClick={toggleModal}>
@@ -79,16 +75,36 @@ const MyProfile = () => {
 
                     <div className="text-start rounded-lg mt-5 p-4 md:px-10 grid md:grid-cols-1 grid-cols-1 gap-4">
                         <div className="p-4 md:p-6 rounded-lg w-full md:w-1/2" style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}>
-                            <div className="">
-                                <p className="text-sm text-gray-800">Full Name</p>
-                                <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>{customerDetailsFromAPI.name}</p>
+                            <div className="flex justify-between items-center">
+                                <div>
+                                    <p className="text-sm text-gray-800">Full Name</p>
+                                    <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
+                                        {customerDetailsFromAPI.name}
+                                    </p>
+                                </div>
+                                <Link to="/edit-customer-details">
+                                    <button aria-label="Edit" className="p-2 hidden sm:block">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            fill="black"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            className="w-6 h-6"
+                                        >
+                                            <path d="M12 20h9"></path>
+                                            <path d="M16.5 3.5l4 4L7 21H3v-4L16.5 3.5z"></path>
+                                        </svg>
+                                    </button>
+                                </Link>
                             </div>
 
                             <div className="my-3">
                                 <p className="text-sm text-gray-800">Phone Number</p>
                                 <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>+91 {customerDetailsFromAPI.mobile_no}</p>
                             </div>
-
 
                             <div className="my-3">
                                 <p className="text-sm text-gray-800">Email Id</p>

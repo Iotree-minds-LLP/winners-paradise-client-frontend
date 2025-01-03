@@ -22,6 +22,7 @@ const Catalogs = () => {
     const [customerDetails, setCustomerDetails] = useState([]);
     const [isModalOpen, setisModalOpen] = useState(false);
     const navigate = useNavigate();
+
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
@@ -159,7 +160,7 @@ const Catalogs = () => {
                     >
                         <div className="grid grid-cols-3">
                             {/* Catalogue */}
-                            <div className="p-4 flex flex-col items-center">
+                            <div className=" p-2 flex flex-col items-center">
                                 <div className="bg-white px-5 p-3 rounded-full flex items-center justify-center">
                                     <img className="w-auto h-8" src={footerLogo1} alt="Footer Logo 1" />
                                 </div>
@@ -169,7 +170,7 @@ const Catalogs = () => {
                             </div>
 
                             {/* Dashboard */}
-                            <div className="p-4 flex flex-col items-center">
+                            <div className="p-2  flex flex-col items-center">
                                 <div className="p-3 rounded-full flex items-center justify-center">
                                     <img className="w-auto h-8" src={footerLogo2} alt="Footer Logo 2" />
                                 </div>
@@ -179,7 +180,7 @@ const Catalogs = () => {
                             </div>
 
                             {/* Payouts */}
-                            <div className="p-4 flex flex-col items-center">
+                            <div className=" p-2 flex flex-col items-center">
                                 <div className="p-3 rounded-full flex items-center justify-center">
                                     <img className="w-auto h-8" src={footerLogo4} alt="Footer Logo 3" />
                                 </div>

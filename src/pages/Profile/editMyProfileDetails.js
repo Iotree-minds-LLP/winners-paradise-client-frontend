@@ -1,7 +1,7 @@
-import { createCustomer } from "../../network/Customer/page";
+import { createCustomer, getCustomerById, updatecustomer } from "../../network/Customer/page";
 import { useNavigate } from "react-router-dom";
 import { SendOtp, VerifyOtp } from "../../network/OtpVerification/page";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import WidgetButton from "../../widgets/Button/page";
 import FormattedJsonViewer from "../../widgets/JsonView/page";
 import Button from '@mui/material/Button';
@@ -21,6 +21,8 @@ const EditCustomerProfile = () => {
     const {
         register,
         handleSubmit,
+        setValue,
+        watch,
         formState: { errors },
     } = useForm();
 
@@ -38,15 +40,24 @@ const EditCustomerProfile = () => {
     const navigate = useNavigate();
     const [ErrorMessage, setErrorMessage] = useState("")
     const [isLoading, setisLoading] = useState(false)
+    const [customerDetails, setCustomerDetails] = useState([]);
+
+    const watchedName = watch("fullName");
+
+    useEffect(() => {
+        const data = localStorage.getItem("customerDetails");
+        const customer = JSON.parse(data);
+        onformSubmit2(customer._id);
+    }, []);
 
     const onSubmit = async (data) => {
+
         setisLoading(true);
         const date = new Date(data.dateOfBirth);
         const formattedDateOfBirth = `${(date.getMonth() + 1).toString().padStart(2, '0')}-${date
             .getDate()
             .toString()
             .padStart(2, '0')}-${date.getFullYear()}`;
-
 
         const payload = {
             name: data.fullName,
@@ -60,17 +71,20 @@ const EditCustomerProfile = () => {
             language_preference: language.toLowerCase(),
             token: tokenDetails,
         };
-        console.log(payload, "Payload");
         let resp;
         try {
-            resp = await createCustomer(payload);
+            resp = await updatecustomer(payload, customerDetails._id);
             if (resp.data.status === 200) {
                 setisLoading(false);
-                localStorage.setItem("customerDetails", JSON.stringify(resp.data.data.customer));
-                localStorage.setItem("tokenDetails", resp.data.data.token);
+                localStorage.removeItem("customerDetails");
+                localStorage.setItem("customerDetails", JSON.stringify(resp.data.data.data));
                 setErrorMessage("");
                 handleSuccessClick(resp.data.data.message);
                 navigate("/dashboard");
+            }
+            else {
+                setErrorMessage(resp.data.error);
+                setisLoading(false);
             }
         } catch (error) {
             setErrorMessage(resp.data.error);
@@ -78,22 +92,47 @@ const EditCustomerProfile = () => {
         }
     };
 
+    const onformSubmit2 = async (id) => {
+        if (id) {
+            const resp = await getCustomerById(id);
+
+            if (resp.data.status === 200) {
+                setCustomerDetails(resp?.data?.data?.customer);
+                setValue("fullName", resp?.data?.data?.customer?.name);
+                setValue("phoneNumber", resp?.data?.data?.customer?.mobile_no);
+                setValue("email", resp?.data?.data?.customer?.email_id);
+                const dob = new Date(resp?.data?.data?.customer?.dob);
+                const formattedDob = `${dob.getFullYear()}-${(dob.getMonth() + 1)
+                    .toString()
+                    .padStart(2, '0')}-${dob.getDate().toString().padStart(2, '0')}`;
+
+                setValue("dateOfBirth", formattedDob);
+                setValue("address", resp?.data?.data?.customer?.address);
+                setValue("state", resp?.data?.data?.customer?.state);
+                setValue("district", resp?.data?.data?.customer?.district);
+                setValue("city", resp?.data?.data?.customer?.city);
+                // setValue("referralCode", resp?.data?.data?.customer?.state);
+            }
+        }
+    };
+
+
     return (
         <>
             <div className="h-screen flex flex-col">
                 {/* Mobile Header */}
-                <div className="h-[60px] sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row p-3">
+                <div className="h-[60px] fixed top-100 z-10 w-full sm:hidden  bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row p-3">
                     <img src={backButton} className="w-8 h-8" alt="Back" />
-                    <p className="text-white font-semibold my-1">Submit Personal details</p>
+                    <p className="text-white font-semibold my-1">Update Personal details</p>
                 </div>
 
                 {/* Main Content */}
-                <div className="h-full bg-white grid grid-cols-12 md:grid-cols-12 md:overflow-hidden md:p-0 sm:p-10">
+                <div className="h-full md:mt-0 mt-5 bg-white grid grid-cols-12 md:grid-cols-12 md:overflow-hidden md:p-0 sm:p-10">
                     {/* Form Section */}
                     <div className="col-span-12 md:col-span-6 w-full order-1 md:order-2 md:px-20 mt-10 overflow-auto">
                         <div className="flex flex-row">
                             <p style={{ color: '#020065' }} className="mx-5 hidden sm:block text-start font-semibold text-3xl">
-                                Submit Personal details
+                                Update Personal details
                             </p>
                         </div>
                         <form
@@ -105,12 +144,17 @@ const EditCustomerProfile = () => {
                                 label="Full Name *"
                                 variant="outlined"
                                 size="medium"
+                                value={watchedName}
                                 fullWidth
                                 {...register('fullName', {
                                     required: 'Full Name is required',
                                     minLength: {
                                         value: 3,
                                         message: 'Full Name must be at least 3 characters long',
+                                    },
+                                    maxLength: {
+                                        value: 30,
+                                        message: 'Full Name cannot exceed 30 characters',
                                     },
                                     validate: {
                                         noSpecialChars: (value) =>
@@ -119,6 +163,9 @@ const EditCustomerProfile = () => {
                                 })}
                                 error={!!errors.fullName}
                                 helperText={errors.fullName?.message}
+                                InputLabelProps={{
+                                    shrink: true, // Ensures the label stays at the top when value is present
+                                }}
                             />
 
                             <TextField
@@ -136,6 +183,9 @@ const EditCustomerProfile = () => {
                                         message: 'Please enter a valid 10-digit phone number',
                                     },
                                 })}
+                                InputLabelProps={{
+                                    shrink: true, // Ensures the label stays at the top when value is present
+                                }}
                             />
                             <TextField
                                 label="Email Id *"
@@ -152,6 +202,9 @@ const EditCustomerProfile = () => {
                                 })}
                                 error={!!errors.email}
                                 helperText={errors.email?.message}
+                                InputLabelProps={{
+                                    shrink: true, // Ensures the label stays at the top when value is present
+                                }}
                             />
                             <TextField
                                 variant="outlined"
@@ -170,6 +223,9 @@ const EditCustomerProfile = () => {
                                 })}
                                 error={!!errors.dateOfBirth}
                                 helperText={errors.dateOfBirth?.message}
+                                InputLabelProps={{
+                                    shrink: true, // Ensures the label stays at the top when value is present
+                                }}
                             />
 
                             <TextField
@@ -182,6 +238,9 @@ const EditCustomerProfile = () => {
                                 })}
                                 error={!!errors.address}
                                 helperText={errors.address?.message}
+                                InputLabelProps={{
+                                    shrink: true, // Ensures the label stays at the top when value is present
+                                }}
                             />
                             <TextField
                                 label="State *"
@@ -193,6 +252,9 @@ const EditCustomerProfile = () => {
                                 })}
                                 error={!!errors.state}
                                 helperText={errors.state?.message}
+                                InputLabelProps={{
+                                    shrink: true, // Ensures the label stays at the top when value is present
+                                }}
                             />
                             <TextField
                                 label="District *"
@@ -204,6 +266,9 @@ const EditCustomerProfile = () => {
                                 })}
                                 error={!!errors.district}
                                 helperText={errors.district?.message}
+                                InputLabelProps={{
+                                    shrink: true, // Ensures the label stays at the top when value is present
+                                }}
                             />
                             <TextField
                                 label="City *"
@@ -215,6 +280,9 @@ const EditCustomerProfile = () => {
                                 })}
                                 error={!!errors.city}
                                 helperText={errors.city?.message}
+                                InputLabelProps={{
+                                    shrink: true, // Ensures the label stays at the top when value is present
+                                }}
                             />
                             <TextField
                                 label="Alternative Phone Number"
@@ -228,9 +296,10 @@ const EditCustomerProfile = () => {
                                     required: false,
                                     pattern: {
                                         value: /^[0-9]{10}$/,
-                                        message: 'Please enter a valid 10-digit phone number',
+                                        message: 'Please enter a valid 10-digit Alternative phone number',
                                     },
                                 })}
+
                             />
                             <TextField
                                 label="Referral Code *"
@@ -243,6 +312,9 @@ const EditCustomerProfile = () => {
                                 })}
                                 error={!!errors.referralCode}
                                 helperText={errors.referralCode?.message}
+                                InputLabelProps={{
+                                    shrink: true, // Ensures the label stays at the top when value is present
+                                }}
                             />
                             {/* Submit Button */}
                             <div className="mt-5">
@@ -268,7 +340,7 @@ const EditCustomerProfile = () => {
                                             />
                                         </svg>
                                     ) : (
-                                        "Continue"
+                                        "Update"
                                     )}
                                 </button>
                             </div>

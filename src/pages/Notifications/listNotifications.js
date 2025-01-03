@@ -9,6 +9,7 @@ import backImage from "../../assets/Images/backImage.jpg"
 import imageLogo from "../../assets/Logos/Algo-Achievers-Logo_009600960_38721 1 (1).png";
 import { useNavigate } from "react-router-dom";
 import backButton from "../../assets/Logos/backButton.png"
+import { goBack } from "../../utils/Functions/goBackScreen";
 
 const Notifications = () => {
     const [response, setResponse] = useState([]);
@@ -58,7 +59,7 @@ const Notifications = () => {
                 <div className="relative z-10">
                     <div className="h-[60px] sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row justify-between p-4">
                         <div className="flex flex-row">
-                            <img src={backButton} className="w-8 h-8" alt="Back" />
+                            <img src={backButton} onClick={goBack} className="w-8 h-8" alt="Back" />
                             <p className="text-white font-semibold my-1">Notifications</p>
                         </div>
                         <div className="text-white" onClick={toggleModal}>

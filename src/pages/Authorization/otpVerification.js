@@ -28,7 +28,7 @@ const OtpVerification = () => {
     } = useForm();
 
     const [isLoading, setisLoading] = useState(false)
-    const [selectedValue, setSelectedValue] = useState('English'); // Default selected value
+    const [selectedValue, setSelectedValue] = useState('English');
     const [ErrorMessage, setErrorMessage] = useState("")
 
     const handleChange = (event) => {
@@ -65,6 +65,7 @@ const OtpVerification = () => {
 
         try {
             resp = await SendOtp(payload);
+
             if (resp.data.status === 200) {
                 setErrorMessage("");
                 handleSuccessClick(resp.data.data.message);
@@ -73,6 +74,7 @@ const OtpVerification = () => {
                 setOtp(resp.data.data.otp);
                 setToken(resp.data.data.token);
                 setisLoading(false);
+                localStorage.setItem("tempMobileNumber", data.phoneNumber)
             }
             else {
                 setErrorMessage("Something Went Wrong");

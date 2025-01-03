@@ -1,7 +1,7 @@
 import { createCustomer } from "../../network/Customer/page";
 import { useNavigate } from "react-router-dom";
 import { SendOtp, VerifyOtp } from "../../network/OtpVerification/page";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import WidgetButton from "../../widgets/Button/page";
 import FormattedJsonViewer from "../../widgets/JsonView/page";
 import Button from '@mui/material/Button';
@@ -21,6 +21,7 @@ const SignupPage = () => {
     const {
         register,
         handleSubmit,
+        setValue,
         formState: { errors },
     } = useForm();
 
@@ -47,7 +48,6 @@ const SignupPage = () => {
             .toString()
             .padStart(2, '0')}-${date.getFullYear()}`;
 
-
         const payload = {
             name: data.fullName,
             dob: formattedDateOfBirth,
@@ -59,7 +59,9 @@ const SignupPage = () => {
             address: data.address,
             language_preference: language.toLowerCase(),
             token: tokenDetails,
+            ...(data.alternatePhoneNumber && { alternate_mobile_no: data.alternatePhoneNumber }),
         };
+
         console.log(payload, "Payload");
         let resp;
         try {
@@ -72,17 +74,27 @@ const SignupPage = () => {
                 handleSuccessClick(resp.data.data.message);
                 navigate("/dashboard");
             }
+            else {
+                setErrorMessage(resp.data.error);
+                setisLoading(false);
+            }
         } catch (error) {
             setErrorMessage(resp.data.error);
             setisLoading(false);
         }
     };
 
+
+    useEffect(() => {
+        const mob = localStorage.getItem("tempMobileNumber")
+        setValue("phoneNumber", mob)
+    }, [])
+
     return (
         <>
             <div className="h-screen flex flex-col">
                 {/* Mobile Header */}
-                <div className="h-[60px] sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row p-3">
+                <div className="h-[60px] sm:hidden fixed top-0 left-0 bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row p-3">
                     <img src={backButton} className="w-8 h-8" alt="Back" />
                     <p className="text-white font-semibold my-1">Submit Personal details</p>
                 </div>
@@ -129,6 +141,7 @@ const SignupPage = () => {
                                 label="Phone Number"
                                 variant="outlined"
                                 size="medium"
+                                disabled={true}
                                 type="text"
                                 fullWidth
                                 error={!!errors.phoneNumber}
@@ -232,7 +245,7 @@ const SignupPage = () => {
                                     required: false,
                                     pattern: {
                                         value: /^[0-9]{10}$/,
-                                        message: 'Please enter a valid 10-digit phone number',
+                                        message: 'Please enter a valid 10-digit Alternative phone number',
                                     },
                                 })}
                             />

@@ -4,7 +4,6 @@ import "../App.css";
 import Signup from "../pages/Authorization/signup";
 import OtpVerification from '../pages/Authorization/otpVerification';
 import HomePage from '../pages/Home/page';
-import Profile from '../pages/Profile/myProfile';
 import Notifications from '../pages/Notifications/listNotifications';
 import ListInvestments from '../pages/Investments/listInvestments';
 import Payouts from '../pages/Payouts/payouts';
@@ -16,6 +15,7 @@ import Sidebar from '../components/Sidebar/page';
 import MyProfile from '../pages/Profile/myProfileDetails';
 import ProfileAndSettings from '../pages/Profile/profileAndSetting';
 import EditCustomerProfile from '../pages/Profile/editMyProfileDetails';
+import LanguagePreference from '../pages/Profile/languagePreference';
 
 const routes = [
   { path: "/", element: <OtpVerification /> },
@@ -31,11 +31,12 @@ const routes = [
   { path: "/catalogs", element: <Catalogs /> },
   { path: "/kyc", element: <Kyc /> },
   { path: "/dashboard", element: <Dashboard /> },
+  { path: "/update-language-preference", element: <LanguagePreference /> },
 ];
 
 function AppLayout() {
   const location = useLocation();
-  const hideSidebarRoutes = ["/", "/register"];
+  const hideSidebarRoutes = ["/", "/register", "/edit-customer-details"];
 
   const isSidebarHidden = hideSidebarRoutes.includes(location.pathname);
 

@@ -8,6 +8,7 @@ import { getCustomerById } from "../../network/Customer/page";
 import backButton from "../../assets/Logos/backButton.png"
 import acrrowright from "../../assets/Images/arrow_circle_right.png"
 import image2 from "../../assets/Images/robo 1 (1).png";
+import { goBack } from "../../utils/Functions/goBackScreen";
 
 const ProfileAndSettings = () => {
 
@@ -26,6 +27,7 @@ const ProfileAndSettings = () => {
         navigate("/")
     }
 
+
     return (
         <>
             <div className="sm:ml-72 relative bg-white">
@@ -37,7 +39,7 @@ const ProfileAndSettings = () => {
                     {/* Gradient Header */}
                     <div className="h-[60px] sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row justify-between p-4">
                         <div className="flex flex-row">
-                            <img src={backButton} className="w-8 h-8" alt="Back" />
+                            <img src={backButton} onClick={goBack} className="w-8 h-8" alt="Back" />
                             <p className="text-white font-semibold my-1">Profile & Setting</p>
                         </div>
                         <div className="text-white" onClick={toggleModal}>
@@ -52,13 +54,12 @@ const ProfileAndSettings = () => {
 
                     <div className="text-start rounded-lg mt-5 p-4 md:p-10 grid md:grid-cols-1 grid-cols-1 gap-4">
                         <div className="p-4 md:p-6 rounded-lg w-full md:w-1/2" style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}>
-                            <div className="flex justify justify-between">
-                                <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>Personal Details</p>
-                                <Link to="/my-profile">
+                            <Link to="/my-profile">
+                                <div className="flex justify justify-between">
+                                    <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>Personal Details</p>
                                     <img src={acrrowright} className="w-auto h-8" alt="Arrow Icon"></img>
-                                </Link>
-
-                            </div>
+                                </div>
+                            </Link>
                         </div>
 
                         <div className="p-4 md:p-6 rounded-lg md:w-1/2" style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}>
@@ -76,10 +77,12 @@ const ProfileAndSettings = () => {
                         </div>
 
                         <div className="p-4 md:p-6 rounded-lg md:w-1/2" style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}>
-                            <div className="flex justify justify-between">
-                                <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>Language</p>
-                                <img src={acrrowright} className="w-auto h-8" alt="Arrow Icon"></img>
-                            </div>
+                            <Link to="/update-language-preference">
+                                <div className="flex justify justify-between">
+                                    <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>Language</p>
+                                    <img src={acrrowright} className="w-auto h-8" alt="Arrow Icon"></img>
+                                </div>
+                            </Link>
                         </div>
 
 
@@ -168,9 +171,10 @@ const ProfileAndSettings = () => {
                         </div>
                     )}
 
-                    <div className="col-span-12 md:col-span-6 sm:hidden w-full h-full order-2 mt-10 md:order-1 responsive">
+                    <div className="mt-5 sm:hidden fixed bottom-0 left-0 w-full bg-white shadow-md ">
                         <img src={image2} alt="Image description" className="w-full h-full object-contain" />
                     </div>
+
                 </div>
             </div >
         </>
