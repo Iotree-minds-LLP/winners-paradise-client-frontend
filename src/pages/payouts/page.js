@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
-import { getAllCatalogByCustomerId } from "../../network/Catalog/page";
 import imageLogo from "../../assets/Logos/Algo-Achievers-Logo_009600960_38721 1 (1).png";
 import bellIcon from "../../assets/Logos/bellIcon2.png";
 import userIcon from "../../assets/Logos/usericon.png";
 import footerLogo1 from "../../assets/Logos/onboardingLogos/featured_play_list.png";
 import footerLogo2 from "../../assets/Logos/onboardingLogos/timeline (1).png";
 import footerLogo3 from "../../assets/Logos/onboardingLogos/icon-container (2).png";
-import footerLogo4 from "../../assets/Logos/onboardingLogos/icon-container (1).png";
 import backImage from "../../assets/Images/backImage.jpg"
 import { Link, useNavigate } from "react-router-dom";
 import logo1 from "../../assets/Images/payouts1.png"
 import logo2 from "../../assets/Images/payouts2.png"
+import { getAllPayouts, getAllReferralPayouts } from "../../network/Payouts/page";
 
 const Payouts = () => {
 
@@ -23,6 +22,21 @@ const Payouts = () => {
         const customer = JSON.parse(data);
         onformSubmit(customer._id)
     }, []);
+
+    const [response, setResponse] = useState([]);
+
+    const onformSubmit = async () => {
+        const id = "673b19d8175d733ba756d211";
+        const resp = await getAllPayouts(id);
+        setResponse(resp.data.data);
+    };
+
+    const onformSubmit2 = async () => {
+        const id = "673b19d8175d733ba756d211";
+        const resp = await getAllReferralPayouts(id);
+        setResponse(resp.data.data);
+    };
+
 
     const toggleModal = () => {
         setisModalOpen(!isModalOpen);
@@ -39,9 +53,7 @@ const Payouts = () => {
         navigate("/")
     }
 
-    const onformSubmit = async (id) => {
-        const resp = await getAllCatalogByCustomerId(id);
-    };
+
 
     return (
         <>
