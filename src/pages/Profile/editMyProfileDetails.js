@@ -51,7 +51,7 @@ const EditCustomerProfile = () => {
     }, []);
 
     const onSubmit = async (data) => {
-        
+
         setisLoading(true);
         const date = new Date(data.dateOfBirth);
         const formattedDateOfBirth = `${(date.getMonth() + 1).toString().padStart(2, '0')}-${date
@@ -353,8 +353,7 @@ const EditCustomerProfile = () => {
                             </div>
                         </form>
                     </div>
-
-                    {/* Right Side Image Section */}
+                    
                     <div className="col-span-12 hidden sm:block overflow-hidden md:col-span-6 w-full max-h-[100vh] order-2 md:order-1 responsive relative">
                         <img src={image3} alt="Image description" className="w-full h-auto object-cover" />
                         <div className="absolute inset-0 flex items-center justify-center">
