@@ -20,7 +20,7 @@ const Catalogs = () => {
 
     const [isModalOpen, setisModalOpen] = useState(false);
     const navigate = useNavigate();
-
+    const [listCatalogs, setlistCatalogs] = useState([])
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
@@ -39,6 +39,9 @@ const Catalogs = () => {
 
     const onformSubmit = async (id) => {
         const resp = await getAllCatalogByCustomerId(id);
+        if (resp?.data?.catalogs) {
+            setlistCatalogs(resp.data.catalogs)
+        }
     };
 
     return (
@@ -107,42 +110,63 @@ const Catalogs = () => {
 
                     {/* Investment Cards */}
                     <div className="text-start rounded-lg p-4 grid md:grid-cols-3 grid-cols-1 gap-4 mb-36">
-                        <div className="p-6 rounded-lg border border-1 border-[#020065]" style={{ backgroundColor: '#E7E7FF' }}>
-                            <div className="flex justify-between">
-                                <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '17px' }}>
-                                    Investment Name
-                                </p>
-                                <img src={acrrowright} className="w-auto h-8" alt="Arrow Icon"></img>
-                            </div>
+                        {listCatalogs.map((item, index) => {
+                            // Calculate total return
+                            const totalReturn =
+                                item.max_amt *
+                                (item.int_percent_per_month / 100) *
+                                item.no_of_months;
 
-                            <div className="grid grid-cols-2 my-2">
-                                <p>Investment Amount</p>
-                                <p>Duration</p>
-                                <p className="text-md font-bold my-2" style={{ color: 'rgba(0, 0, 148, 1)' }}>₹00,00,000</p>
-                                <p className="text-md font-bold my-2" style={{ color: 'rgba(0, 0, 148, 1)' }}>00 Months</p>
-                                <p>Returns per month</p>
-                                <p></p>
-                                <p className="text-md font-bold my-2" style={{ color: 'rgba(0, 0, 148, 1)' }}>₹00,00,000 (00%)</p>
-                            </div>
-                        </div>
-                        <div className="p-6 rounded-lg border border-1 border-[#020065] " style={{ backgroundColor: '#E7E7FF' }}>
-                            <div className="flex justify-between">
-                                <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '17px' }}>
-                                    Investment Name
-                                </p>
-                                <img src={acrrowright} className="w-auto h-8" alt="Arrow Icon"></img>
-                            </div>
+                            return (
+                                <div
+                                    key={index}
+                                    className="p-6 rounded-lg border border-1 border-[#020065]"
+                                    style={{ backgroundColor: '#E7E7FF' }}
+                                >
+                                    <div className="flex justify-between">
+                                        <p
+                                            style={{
+                                                color: 'rgba(0, 0, 148, 1)',
+                                                fontWeight: '700',
+                                                fontSize: '17px',
+                                            }}
+                                        >
+                                            {item.name}
+                                        </p>
+                                        <img
+                                            src={acrrowright}
+                                            className="w-auto h-8"
+                                            alt="Arrow Icon"
+                                        />
+                                    </div>
 
-                            <div className="grid grid-cols-2 my-2">
-                                <p>Investment Amount</p>
-                                <p>Duration</p>
-                                <p className="text-md font-bold my-2" style={{ color: 'rgba(0, 0, 148, 1)' }}>₹00,00,000</p>
-                                <p className="text-md font-bold my-2" style={{ color: 'rgba(0, 0, 148, 1)' }}>00 Months</p>
-                                <p>Returns per month</p>
-                                <p></p>
-                                <p className="text-md font-bold my-2" style={{ color: 'rgba(0, 0, 148, 1)' }}>₹00,00,000 (00%)</p>
-                            </div>
-                        </div>
+                                    <div className="grid grid-cols-2 my-2">
+                                        <p>Investment Amount</p>
+                                        <p>Duration</p>
+                                        <p
+                                            className="text-md font-bold my-2"
+                                            style={{ color: 'rgba(0, 0, 148, 1)' }}
+                                        >
+                                            ₹{item.max_amt.toLocaleString()}
+                                        </p>
+                                        <p
+                                            className="text-md font-bold my-2"
+                                            style={{ color: 'rgba(0, 0, 148, 1)' }}
+                                        >
+                                            {item.no_of_months} Months
+                                        </p>
+                                        <p>Returns per month</p>
+                                        <p></p>
+                                        <p
+                                            className="text-md font-bold my-2"
+                                            style={{ color: 'rgba(0, 0, 148, 1)' }}
+                                        >
+                                            ₹{totalReturn.toLocaleString()}
+                                        </p>
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
 
 

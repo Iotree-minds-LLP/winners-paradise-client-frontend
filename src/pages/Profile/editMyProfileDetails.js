@@ -112,7 +112,7 @@ const EditCustomerProfile = () => {
                 setValue("state", resp?.data?.data?.customer?.state);
                 setValue("district", resp?.data?.data?.customer?.district);
                 setValue("city", resp?.data?.data?.customer?.city);
-                // setValue("referralCode", resp?.data?.data?.customer?.state);
+                setValue("alternatePhoneNumber", resp?.data?.data?.customer?.alternate_mobile_no);
             }
         }
     };

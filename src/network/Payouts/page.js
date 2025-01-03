@@ -12,6 +12,17 @@ const getAllPayouts = async (id) => {
     }
 };
 
+const getAllOverAllPayouts = async (id) => {
+    try {
+        const res = await axiosInstanceWithoutToken.get(`payouts/list-my-payouts`);
+        const data = res;
+        return { data };
+    } catch (err) {
+        const errRes = (err && err.response) || "Network Error";
+        return { ...errRes };
+    }
+};
+
 const getAllReferralPayouts = async (id) => {
     try {
         const res = await axiosInstanceWithoutToken.get(`payouts/list-referral-payouts/${id}`);
@@ -24,4 +35,4 @@ const getAllReferralPayouts = async (id) => {
 };
 
 
-export { getAllPayouts, getAllReferralPayouts };
+export { getAllPayouts, getAllReferralPayouts, getAllOverAllPayouts };

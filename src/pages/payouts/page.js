@@ -9,13 +9,15 @@ import backImage from "../../assets/Images/backImage.jpg"
 import { Link, useNavigate } from "react-router-dom";
 import logo1 from "../../assets/Images/payouts1.png"
 import logo2 from "../../assets/Images/payouts2.png"
-import { getAllPayouts, getAllReferralPayouts } from "../../network/Payouts/page";
+import { getAllOverAllPayouts, getAllPayouts, getAllReferralPayouts } from "../../network/Payouts/page";
 
 const Payouts = () => {
 
     const [isModalOpen, setisModalOpen] = useState(false);
     const navigate = useNavigate();
     const [past, setpast] = useState(false)
+    const [response, setResponse] = useState([]);
+    const [listPayouts, setlistPayouts] = useState([])
 
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
@@ -23,13 +25,22 @@ const Payouts = () => {
         onformSubmit(customer._id)
     }, []);
 
-    const [response, setResponse] = useState([]);
 
     const onformSubmit = async () => {
-        const id = "673b19d8175d733ba756d211";
-        const resp = await getAllPayouts(id);
-        setResponse(resp.data.data);
+        const resp = await getAllOverAllPayouts();
+        console.log(resp.data.data.payouts, "Resp")
+        setlistPayouts(resp.data.data.payouts)
     };
+    const today = new Date();
+
+    const upcomingPayouts = listPayouts.filter(
+        (payout) => new Date(payout.expected_payout_date) >= today
+    );
+    const pastPayouts = listPayouts.filter(
+        (payout) => new Date(payout.expected_payout_date) < today
+    );
+
+    const payoutsToDisplay = past ? pastPayouts : upcomingPayouts;
 
     const onformSubmit2 = async () => {
         const id = "673b19d8175d733ba756d211";
@@ -123,17 +134,38 @@ const Payouts = () => {
 
 
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 px-5 md:px-10 py-4 md:py-0 p-0 " >
-                        <div className="flex justify-between p-4 rounded-lg" style={{ background: "#F5F5F5" }}>
-                            <div className="flex flex-col text-start">
-                                <p className="text-md">Payout Amount</p>
-                                <p className="font-bold text-md" style={{ color: "#020065" }}>₹00,00,000</p>
-                            </div>
-                            <div className="flex flex-col text-start">
-                                <p className="text-md">Payout On</p>
-                                <p className="font-bold text-md" style={{ color: "#020065" }}>DD MM YYYY</p>
-                            </div>
-                        </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 px-5 gap-4 mx-0 md:mx-4">
+                        {payoutsToDisplay?.map((payout, index) => (
+                            <>
+                                <div
+                                    key={index}
+                                    className="flex justify-between p-4 rounded-lg"
+                                    style={{ background: "#F5F5F5" }}
+                                >
+                                    <div className="flex flex-col text-start">
+                                        <p className="text-md">Payout Amount</p>
+                                        <p
+                                            className="font-bold text-md"
+                                            style={{ color: "#020065" }}
+                                        >
+                                            ₹{payout?.expected_payout_amount}
+                                        </p>
+                                    </div>
+                                    <div className="flex flex-col text-start">
+                                        <p className="text-md">Payout On</p>
+                                        <p
+                                            className="font-bold text-md"
+                                            style={{ color: "#020065" }}
+                                        >
+                                            {new Date(payout?.expected_payout_date).toLocaleDateString("en-GB")}
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div className="hidden sm:block"></div>
+                                <div className="hidden sm:block"></div>
+                            </>
+                        ))}
                     </div>
 
 

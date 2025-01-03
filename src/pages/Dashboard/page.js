@@ -15,16 +15,22 @@ import footerLogo3 from "../../assets/Logos/onboardingLogos/icon-container (1).p
 import footerLogo4 from "../../assets/Logos/onboardingLogos/icon-container (1).png";
 import backImage from "../../assets/Images/backImage.jpg"
 import { Link, useNavigate } from "react-router-dom";
+import { getAllInvestments } from "../../network/Investments/page";
+import { getAllPayouts } from "../../network/Payouts/page";
 
 const DashboardPage = () => {
-
+    const [showAllInvestments, setShowAllInvestments] = useState(false);
+    const [showAllPayouts, setShowAllPayouts] = useState(false);
     const [isModalOpen, setisModalOpen] = useState(false);
     const navigate = useNavigate();
+    const [listInvestments, setlistInvestments] = useState([])
+    const [listPayouts, setlistPayount] = useState([])
 
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
         onformSubmit(customer._id)
+        onformSubmit2(customer._id)
     }, []);
 
     const toggleModal = () => {
@@ -38,8 +44,37 @@ const DashboardPage = () => {
     }
 
     const onformSubmit = async (id) => {
-        const resp = await getAllCatalogByCustomerId(id);
+        const resp = await getAllInvestments(id);
+        if (resp.data.status === 201) {
+            setlistInvestments(resp.data.data.data)
+        }
     };
+
+
+    const onformSubmit2 = async (id) => {
+        const resp = await getAllPayouts("6777e9694fa72426bd0dce79");
+        if (resp.data.status === 201) {
+            setlistPayount(resp.data.data.payouts)
+            console.log(resp.data.data.payouts, "resp.data.data.payouts")
+        }
+    };
+
+    const investmentsToDisplay = showAllInvestments ? listInvestments : [listInvestments[0]];
+    const payoutsToDisplay = showAllPayouts ? listPayouts : [listPayouts[0]];
+    const totalInvested = listInvestments.reduce((total, investment) => total + investment.amount, 0);
+
+    // Calculate total earned till now
+    const today = new Date();
+    const totalEarned = listInvestments.reduce((total, investment) => {
+        const createdAtDate = new Date(investment.createdAt);
+        const monthsSinceCreation =
+            (today.getFullYear() - createdAtDate.getFullYear()) * 12 +
+            today.getMonth() -
+            createdAtDate.getMonth();
+        const effectiveMonths = Math.max(monthsSinceCreation, 0); // Ensure non-negative months
+        const earned = investment.amount * (investment.interest_per_month / 100) * effectiveMonths;
+        return total + earned;
+    }, 0);
 
     return (
         <>
@@ -91,61 +126,135 @@ const DashboardPage = () => {
                             <div className="grid grid-cols-2 gap-4 my-3">
                                 <div className="flex flex-col">
                                     <p className="text-primary" style={{ color: "#7C79EB" }}>Total Invested</p>
-                                    <p className="text-white text-lg mt-2">₹0,00,000</p>
+                                    <p className="text-white text-lg mt-2">₹{" "}{totalInvested}</p>
                                 </div>
                                 <div className="flex flex-col">
                                     <p className="text-primary" style={{ color: "#7C79EB" }}>Total Earned</p>
-                                    <p className="text-white text-lg mt-2">₹0,00,000</p>
+                                    <p className="text-white text-lg mt-2">₹{" "}{totalEarned}</p>
                                 </div>
                             </div>
 
                         </div>
                     </div>
 
+                    <div className="grid grid-cols-1 md:grid-cols-3 p-3">
+                        <div className="flex justify-between mx-2">
+                            <p style={{ color: "#020065" }} className="text-lg font-bold">
+                                Upcoming Payouts
+                            </p>
+                            <p
+                                style={{
+                                    color: "#020065",
+                                    textDecoration: "underline",
+                                    cursor: "pointer",
+                                }}
+                                onClick={() => setShowAllPayouts(!showAllPayouts)}
+                            >
+                                {showAllPayouts ? "View Less" : "View All"}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 px-5 gap-4">
+                        {payoutsToDisplay?.map((payout, index) => (
+                            <>
+                                <div
+                                    key={index}
+                                    className="flex justify-between p-4 rounded-lg"
+                                    style={{ background: "#F5F5F5" }}
+                                >
+                                    <div className="flex flex-col text-start">
+                                        <p className="text-md">Payout Amount</p>
+                                        <p
+                                            className="font-bold text-md"
+                                            style={{ color: "#020065" }}
+                                        >
+                                            ₹{payout?.expected_payout_amount}
+                                        </p>
+                                    </div>
+                                    <div className="flex flex-col text-start">
+                                        <p className="text-md">Payout On</p>
+                                        <p
+                                            className="font-bold text-md"
+                                            style={{ color: "#020065" }}
+                                        >
+                                            {new Date(payout?.expected_payout_date).toLocaleDateString("en-GB")}
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div className="hidden sm:block"></div>
+                                <div className="hidden sm:block"></div>
+                            </>
+                        ))}
+                    </div>
+
 
                     <div className="grid grid-cols-1 md:grid-cols-3 p-3">
-
                         <div className="flex justify-between mx-2">
-                            <p style={{ color: "#020065" }} className="text-lg font-bold">Upcoming Payouts</p>
-                            <p style={{ color: "#020065", textDecoration: 'underline' }}>View All</p>
+                            <p style={{ color: "#020065" }} className="text-lg font-bold">
+                                Your Investments
+                            </p>
+                            <p
+                                style={{ color: "#020065", textDecoration: "underline", cursor: "pointer" }}
+                                onClick={() => setShowAllInvestments(!showAllInvestments)}
+                            >
+                                {showAllInvestments ? "View Less" : "View All"}
+                            </p>
                         </div>
                     </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 px-5">
+                        {investmentsToDisplay?.map((investment, index) => {
+                            // Calculate number of months between createdAt and today
+                            const createdAtDate = new Date(investment?.createdAt);
+                            const today = new Date();
+                            const monthsSinceCreation =
+                                (today.getFullYear() - createdAtDate.getFullYear()) * 12 +
+                                today.getMonth() -
+                                createdAtDate.getMonth();
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 px-5  " >
-                        <div className="flex justify-between p-4 rounded-lg" style={{ background: "#F5F5F5" }}>
-                            <div className="flex flex-col text-start">
-                                <p className="text-md">Payout Amount</p>
-                                <p className="font-bold text-md" style={{ color: "#020065" }}>₹00,00,000</p>
-                            </div>
-                            <div className="flex flex-col text-start">
-                                <p className="text-md">Payout On</p>
-                                <p className="font-bold text-md" style={{ color: "#020065" }}>DD MM YYYY</p>
-                            </div>
-                        </div>
+                            // Ensure at least 0 months (in case the dates are the same month)
+                            const effectiveMonths = Math.max(monthsSinceCreation, 0);
+
+                            // Calculate earned returns
+                            const earnedReturnsAmount =
+                                investment?.amount *
+                                (investment?.interest_per_month / 100) *
+                                effectiveMonths;
+
+                            const earnedReturnsPercentage =
+                                investment?.interest_per_month * effectiveMonths;
+
+                            return (
+                                <div
+                                    key={index}
+                                    className="flex justify-between p-4 rounded-lg"
+                                    style={{ background: "#F5F5F5" }}
+                                >
+                                    <div className="flex flex-col text-start">
+                                        <p className="text-md">Invested Amount</p>
+                                        <p
+                                            className="font-bold text-md"
+                                            style={{ color: "#020065" }}
+                                        >
+                                            ₹{investment?.amount.toLocaleString()}
+                                        </p>
+                                    </div>
+                                    <div className="flex flex-col text-start">
+                                        <p className="text-md">Returns earned</p>
+                                        <p
+                                            className="font-bold text-md"
+                                            style={{ color: "#020065" }}
+                                        >
+                                            ₹{earnedReturnsAmount.toLocaleString()} (
+                                            {earnedReturnsPercentage}%)
+                                        </p>
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
 
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 p-3">
-
-                        <div className="flex justify-between mx-2">
-                            <p style={{ color: "#020065" }} className="text-lg font-bold">Your Investments</p>
-                            <p style={{ color: "#020065", textDecoration: 'underline' }}>View All</p>
-                        </div>
-
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 px-5  " >
-                        <div className="flex justify-between p-4 rounded-lg" style={{ background: "#F5F5F5" }}>
-                            <div className="flex flex-col text-start">
-                                <p className="text-md">Payout Amount</p>
-                                <p className="font-bold text-md" style={{ color: "#020065" }}>₹00,00,000</p>
-                            </div>
-                            <div className="flex flex-col text-start">
-                                <p className="text-md">Payout On</p>
-                                <p className="font-bold text-md" style={{ color: "#020065" }}>DD MM YYYY</p>
-                            </div>
-                        </div>
-                    </div>
 
 
                     {/* Investment Cards */}
