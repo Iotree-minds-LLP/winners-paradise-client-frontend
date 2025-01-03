@@ -51,7 +51,7 @@ const EditCustomerProfile = () => {
     }, []);
 
     const onSubmit = async (data) => {
-
+        
         setisLoading(true);
         const date = new Date(data.dateOfBirth);
         const formattedDateOfBirth = `${(date.getMonth() + 1).toString().padStart(2, '0')}-${date
