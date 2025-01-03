@@ -166,7 +166,7 @@ const Catalogs = () => {
                             </div>
 
                             {/* Dashboard */}
-                            <Link to="/dasboard">
+                            <Link to="/dashboard">
                                 <div className="p-2  flex flex-col items-center">
                                     <div className="p-3 rounded-full flex items-center justify-center">
                                         <img className="w-auto h-8" src={footerLogo2} alt="Footer Logo 2" />
