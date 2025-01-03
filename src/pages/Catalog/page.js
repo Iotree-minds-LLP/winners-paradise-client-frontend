@@ -59,7 +59,7 @@ const Catalogs = () => {
                         />
                         <p className="mt-6 sm:hidden text-white font-semibold text-xl">
                             Winners Paradise
-                            <p className="mt-6 sm:hidden text-white font-semibold text-sm" onClick={toggleModal}>Logout</p>
+                            {/* <p className="mt-6 sm:hidden text-white font-semibold text-sm" onClick={toggleModal}>Logout</p> */}
 
                         </p>
                         <div className="flex flex-row text-white">
@@ -106,7 +106,7 @@ const Catalogs = () => {
                     </div>
 
                     {/* Investment Cards */}
-                    <div className="text-start rounded-lg p-4 grid md:grid-cols-3 grid-cols-1 gap-4">
+                    <div className="text-start rounded-lg p-4 grid md:grid-cols-3 grid-cols-1 gap-4 mb-36">
                         <div className="p-6 rounded-lg border border-1 border-[#020065]" style={{ backgroundColor: '#E7E7FF' }}>
                             <div className="flex justify-between">
                                 <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '17px' }}>
@@ -125,7 +125,7 @@ const Catalogs = () => {
                                 <p className="text-md font-bold my-2" style={{ color: 'rgba(0, 0, 148, 1)' }}>₹00,00,000 (00%)</p>
                             </div>
                         </div>
-                        <div className="p-6 rounded-lg border border-1 border-[#020065]" style={{ backgroundColor: '#E7E7FF' }}>
+                        <div className="p-6 rounded-lg border border-1 border-[#020065] " style={{ backgroundColor: '#E7E7FF' }}>
                             <div className="flex justify-between">
                                 <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '17px' }}>
                                     Investment Name
@@ -144,6 +144,7 @@ const Catalogs = () => {
                             </div>
                         </div>
                     </div>
+
 
                     {/* Footer Navigation */}
                     <div
