@@ -87,6 +87,21 @@ const OtpVerification = () => {
         }
     };
 
+    const resendOTP = async () => {
+        const mobile = localStorage.getItem("tempMobileNumber");
+        const payload = {
+            mobileNumber: mobile,
+        };
+        let resp;
+        resp = await SendOtp(payload);
+        if (resp.data.status === 200) {
+            handleSuccessClick(resp.data.data.message);
+        }
+        else {
+            setErrorMessage("Something Went Wrong");
+        }
+    }
+
     const verifyOtp = async (data) => {
 
         setisLoading(true);
@@ -277,7 +292,7 @@ const OtpVerification = () => {
                                     <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '500', fontSize: '14px' }}>
                                         {translations.loginScreen.otpConfirmation.heading1[language]}
                                     </p>
-                                    <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '500', textDecoration: "underline", fontSize: '14px' }}>
+                                    <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '500', textDecoration: "underline", fontSize: '14px' }} className="cursor-pointer" onClick={resendOTP}>
                                         {translations.loginScreen.otpConfirmation.resendOTPLink[language]}
                                     </p>
                                 </div>
