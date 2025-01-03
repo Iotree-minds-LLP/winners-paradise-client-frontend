@@ -137,6 +137,27 @@ const SignupPage = () => {
                             />
 
                             <TextField
+                                label="Phone Number"
+                                variant="outlined"
+                                size="medium"
+                                disabled
+                                type="text"
+                                fullWidth
+                                {...register('phoneNumber', {
+                                    required: 'Phone number is required',
+                                    pattern: {
+                                        value: /^[0-9]{10}$/,
+                                        message: 'Please enter a valid 10-digit phone number',
+                                    },
+                                })}
+                                error={!!errors.phoneNumber}
+                                helperText={errors.phoneNumber?.message}
+                                InputLabelProps={{
+                                    shrink: true, // Ensures the label stays at the top when value is present
+                                }}
+                            />
+
+                            <TextField
                                 label="Email Id *"
                                 variant="outlined"
                                 type="text"
@@ -155,6 +176,37 @@ const SignupPage = () => {
                                 })}
                                 error={!!errors.email}
                                 helperText={errors.email?.message}
+                            />
+
+                            <TextField
+                                variant="outlined"
+                                type="date"
+                                size="medium"
+                                fullWidth
+                                {...register('dateOfBirth', {
+                                    required: 'Date of Birth is required',
+                                    validate: {
+                                        notFutureDate: (value) => {
+                                            const today = new Date();
+                                            const selectedDate = new Date(value);
+                                            return selectedDate <= today || 'Date of Birth cannot be in the future';
+                                        },
+                                    },
+                                })}
+                                error={!!errors.dateOfBirth}
+                                helperText={errors.dateOfBirth?.message}
+                            />
+
+                            <TextField
+                                label="Residential Address *"
+                                variant="outlined"
+                                size="medium"
+                                fullWidth
+                                {...register('address', {
+                                    required: 'Address is required',
+                                })}
+                                error={!!errors.address}
+                                helperText={errors.address?.message}
                             />
 
                             <TextField
@@ -228,6 +280,36 @@ const SignupPage = () => {
                                 error={!!errors.city}
                                 helperText={errors.city?.message}
                             />
+
+                            <TextField
+                                label="Alternative Phone Number"
+                                variant="outlined"
+                                size="medium"
+                                type="text"
+                                fullWidth
+                                {...register('alternatePhoneNumber', {
+                                    pattern: {
+                                        value: /^[0-9]{10}$/,
+                                        message: 'Please enter a valid 10-digit Alternative phone number',
+                                    },
+                                })}
+                                error={!!errors.alternatePhoneNumber}
+                                helperText={errors.alternatePhoneNumber?.message}
+                            />
+
+                            <TextField
+                                label="Referral Code *"
+                                variant="outlined"
+                                size="medium"
+                                type="text"
+                                fullWidth
+                                {...register('referralCode', {
+                                    required: 'Referral Code is required',
+                                })}
+                                error={!!errors.referralCode}
+                                helperText={errors.referralCode?.message}
+                            />
+
 
                             {/* Submit Button */}
                             <div className="mt-5">

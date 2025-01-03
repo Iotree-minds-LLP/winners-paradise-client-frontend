@@ -100,6 +100,16 @@ const DashboardPage = () => {
                         </div>
                     </div>
 
+                    <div className="grid grid-cols-1 md:grid-cols-3">
+
+                        <div className="flex justify-between mx-3">
+                            <p>Upcoming Payouts</p>
+                            <p>View All</p>
+                        </div>
+
+                    </div>
+
+
                     {/* Investment Cards */}
 
                     {/* Footer Navigation */}
