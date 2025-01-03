@@ -77,7 +77,6 @@ const Payouts = () => {
 
                     {/* Catalogue Heading */}
 
-
                     {/* Return Calculator */}
                     <div className="text-start grid grid-cols-12 grid-cols-12 p-0 md:p-10">
                         <div className="col-span-6">
