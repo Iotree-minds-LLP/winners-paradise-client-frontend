@@ -161,34 +161,43 @@ const DashboardPage = () => {
                     >
                         <div className="grid grid-cols-3">
                             {/* Catalogue */}
-                            <div className=" p-2 flex flex-col items-center">
-                                <div className="px-5 p-3 rounded-full flex items-center justify-center">
-                                    <img className="w-auto h-8" src={footerLogo1} alt="Footer Logo 1" />
+                            <Link to="/catalogs">
+                                <div className=" p-2 flex flex-col items-center">
+                                    <div className="px-5 p-3 rounded-full flex items-center justify-center">
+                                        <img className="w-auto h-8" src={footerLogo1} alt="Footer Logo 1" />
+                                    </div>
+                                    <p className="mt-2 text-md font-bold text-center text-white">
+                                        Catalogue
+                                    </p>
                                 </div>
-                                <p className="mt-2 text-md font-bold text-center text-white">
-                                    Catalogue
-                                </p>
-                            </div>
+                            </Link>
 
-                            {/* Dashboard */}
-                            <div className="p-2  flex flex-col items-center">
-                                <div className="bg-white p-3 rounded-full flex items-center justify-center">
-                                    <img className="w-auto h-8" src={footerLogo2} alt="Footer Logo 2" />
-                                </div>
-                                <p className="mt-2 text-md font-bold text-center text-white" >
-                                    Dashboard
-                                </p>
-                            </div>
+                            <Link to="/dashboard">
 
-                            {/* Payouts */}
-                            <div className=" p-2 flex flex-col items-center">
-                                <div className="p-3 rounded-full flex items-center justify-center">
-                                    <img className="w-auto h-8" src={footerLogo4} alt="Footer Logo 3" />
+                                {/* Dashboard */}
+                                <div className="p-2  flex flex-col items-center">
+                                    <div className="bg-white p-3 rounded-full flex items-center justify-center">
+                                        <img className="w-auto h-8" src={footerLogo2} alt="Footer Logo 2" />
+                                    </div>
+                                    <p className="mt-2 text-md font-bold text-center text-white" >
+                                        Dashboard
+                                    </p>
                                 </div>
-                                <p className="mt-2 text-md font-bold text-center text-white">
-                                    Payouts
-                                </p>
-                            </div>
+
+                            </Link>
+
+                            <Link to="/payouts">
+                                {/* Payouts */}
+                                <div className=" p-2 flex flex-col items-center">
+                                    <div className="p-3 rounded-full flex items-center justify-center">
+                                        <img className="w-auto h-8" src={footerLogo4} alt="Footer Logo 3" />
+                                    </div>
+                                    <p className="mt-2 text-md font-bold text-center text-white">
+                                        Payouts
+                                    </p>
+                                </div>
+                            </Link>
+
                         </div>
                     </div>
                 </div>

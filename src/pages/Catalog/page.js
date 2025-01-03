@@ -166,24 +166,28 @@ const Catalogs = () => {
                             </div>
 
                             {/* Dashboard */}
-                            <div className="p-2  flex flex-col items-center">
-                                <div className="p-3 rounded-full flex items-center justify-center">
-                                    <img className="w-auto h-8" src={footerLogo2} alt="Footer Logo 2" />
+                            <Link to="/dasboard">
+                                <div className="p-2  flex flex-col items-center">
+                                    <div className="p-3 rounded-full flex items-center justify-center">
+                                        <img className="w-auto h-8" src={footerLogo2} alt="Footer Logo 2" />
+                                    </div>
+                                    <p className="mt-2 text-md font-bold text-center text-white" >
+                                        Dashboard
+                                    </p>
                                 </div>
-                                <p className="mt-2 text-md font-bold text-center text-white" >
-                                    Dashboard
-                                </p>
-                            </div>
+                            </Link>
+                            <Link to="/payouts">
+                                {/*zPayouts */}
+                                <div className=" p-2 flex flex-col items-center">
+                                    <div className="p-3 rounded-full flex items-center justify-center">
+                                        <img className="w-auto h-8" src={footerLogo4} alt="Footer Logo 3" />
+                                    </div>
+                                    <p className="mt-2 text-md font-bold text-center text-white">
+                                        Payouts
+                                    </p>
+                                </div>
+                            </Link>
 
-                            {/* Payouts */}
-                            <div className=" p-2 flex flex-col items-center">
-                                <div className="p-3 rounded-full flex items-center justify-center">
-                                    <img className="w-auto h-8" src={footerLogo4} alt="Footer Logo 3" />
-                                </div>
-                                <p className="mt-2 text-md font-bold text-center text-white">
-                                    Payouts
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>

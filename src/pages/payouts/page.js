@@ -8,7 +8,7 @@ import footerLogo2 from "../../assets/Logos/onboardingLogos/featured_play_list.p
 import footerLogo3 from "../../assets/Logos/onboardingLogos/icon-container (2).png";
 import footerLogo4 from "../../assets/Logos/onboardingLogos/icon-container (1).png";
 import backImage from "../../assets/Images/backImage.jpg"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo1 from "../../assets/Images/payouts1.png"
 import logo2 from "../../assets/Images/payouts2.png"
 
@@ -139,34 +139,45 @@ const Payouts = () => {
                     >
                         <div className="grid grid-cols-3">
                             {/* Catalogue */}
-                            <div className=" p-2 flex flex-col items-center">
-                                <div className="px-5 p-3 rounded-full flex items-center justify-center">
-                                    <img className="w-auto h-8" src={footerLogo1} alt="Footer Logo 1" />
-                                </div>
-                                <p className="mt-2 text-md font-bold text-center text-white">
-                                    Catalogue
-                                </p>
-                            </div>
 
-                            {/* Dashboard */}
-                            <div className="p-2  flex flex-col items-center">
-                                <div className="p-3 rounded-full flex items-center justify-center">
-                                    <img className="w-auto h-8" src={footerLogo2} alt="Footer Logo 2" />
+                            <Link to="/catalogs">
+                                <div className=" p-2 flex flex-col items-center">
+                                    <div className="px-5 p-3 rounded-full flex items-center justify-center">
+                                        <img className="w-auto h-8" src={footerLogo1} alt="Footer Logo 1" />
+                                    </div>
+                                    <p className="mt-2 text-md font-bold text-center text-white">
+                                        Catalogue
+                                    </p>
                                 </div>
-                                <p className="mt-2 text-md font-bold text-center text-white" >
-                                    Dashboard
-                                </p>
-                            </div>
+                            </Link>
 
-                            {/* Payouts */}
-                            <div className=" p-2 flex flex-col items-center">
-                                <div className="bg-white p-3 rounded-full flex items-center justify-center">
-                                    <img className="w-auto h-8" src={footerLogo3} alt="Footer Logo 3" />
+                            <Link to="/dashboard">
+
+                                {/* Dashboard */}
+                                <div className="p-2  flex flex-col items-center">
+                                    <div className="p-3 rounded-full flex items-center justify-center">
+                                        <img className="w-auto h-8" src={footerLogo2} alt="Footer Logo 2" />
+                                    </div>
+                                    <p className="mt-2 text-md font-bold text-center text-white" >
+                                        Dashboard
+                                    </p>
                                 </div>
-                                <p className="mt-2 text-md font-bold text-center text-white">
-                                    Payouts
-                                </p>
-                            </div>
+
+                            </Link>
+
+                            <Link to="/payouts">
+
+                                {/* Payouts */}
+                                <div className=" p-2 flex flex-col items-center">
+                                    <div className="bg-white p-3 rounded-full flex items-center justify-center">
+                                        <img className="w-auto h-8" src={footerLogo3} alt="Footer Logo 3" />
+                                    </div>
+                                    <p className="mt-2 text-md font-bold text-center text-white">
+                                        Payouts
+                                    </p>
+                                </div>
+                            </Link>
+
                         </div>
                     </div>
                 </div>
