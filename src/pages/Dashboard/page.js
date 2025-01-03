@@ -9,14 +9,14 @@ import acrrowright from "../../assets/Images/arrow_circle_right.png"
 import imageLogo from "../../assets/Logos/Algo-Achievers-Logo_009600960_38721 1 (1).png";
 import bellIcon from "../../assets/Logos/bellIcon2.png";
 import userIcon from "../../assets/Logos/usericon.png";
-import footerLogo1 from "../../assets/Logos/onboardingLogos/featured_play_list (1).png";
-import footerLogo2 from "../../assets/Logos/onboardingLogos/timeline (1).png";
+import footerLogo1 from "../../assets/Logos/onboardingLogos/featured_play_list.png";
+import footerLogo2 from "../../assets/Logos/onboardingLogos/icon-container.png";
 import footerLogo3 from "../../assets/Logos/onboardingLogos/icon-container (1).png";
 import footerLogo4 from "../../assets/Logos/onboardingLogos/icon-container (1).png";
 import backImage from "../../assets/Images/backImage.jpg"
 import { useNavigate } from "react-router-dom";
 
-const Catalogs = () => {
+const DashboardPage = () => {
 
     const [isModalOpen, setisModalOpen] = useState(false);
     const navigate = useNavigate();
@@ -50,8 +50,8 @@ const Catalogs = () => {
                 {/* Content Wrapper */}
                 <div className="relative z-10">
                     {/* Gradient Header */}
-                    <div className="object-contain flex justify-between bg-gradient-to-l sm:hidden from-[#0400CB] to-[#020065]">
-                        <h1 className="text-start font-bold text-2xl p-4 text-white hidden md:block">Catalogue</h1>
+                    <div className="object-contain flex justify-between  sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB]">
+                        <h1 className="text-start font-bold text-2xl p-4 text-white hidden md:block">Dashboard</h1>
                         <img
                             className="h-auto sm:hidden w-1/5 p-4 md:mt-0 text-start"
                             src={imageLogo}
@@ -59,8 +59,7 @@ const Catalogs = () => {
                         />
                         <p className="mt-6 sm:hidden text-white font-semibold text-xl">
                             Winners Paradise
-                            <p className="mt-6 sm:hidden text-white font-semibold text-sm" onClick={toggleModal}>Logout</p>
-
+                            {/* <p className="mt-6 sm:hidden text-white font-semibold text-sm" onClick={toggleModal}>Logout</p> */}
                         </p>
                         <div className="flex flex-row text-white">
                             <img src={bellIcon} className="w-auto h-12 mt-4" alt="Bell Icon"></img>
@@ -70,7 +69,7 @@ const Catalogs = () => {
                     </div>
 
                     <div className="flex justify-between">
-                        <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10">Catalogue</h1>
+                        <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10">Dashboard</h1>
                         <p className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer	" onClick={toggleModal}>Logout</p>
                     </div>
 
@@ -78,75 +77,34 @@ const Catalogs = () => {
 
 
                     {/* Return Calculator */}
-                    <div className="text-start rounded-lg mt-5 p-4 grid md:grid-cols-3 grid-cols-1">
+                    <div className="text-start rounded-full mt-5 p-4 grid md:grid-cols-3 grid-cols-1">
                         <div
-                            className="p-6 rounded-lg"
-                            style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}
+                            className="p-4 rounded-lg  bg-gradient-to-l from-[#020065] to-[#0400CB]"
+
                         >
-                            <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '14px' }}>
-                                Return Calculator
+                            <p className="text-white font-bold text-xl">
+                                Your investment Statistics
                             </p>
 
-                            <div className="mt-3 flex justify-between gap-4">
-                                <TextField
-                                    label="Enter the amount"
-                                    variant="outlined"
-                                    size="medium"
-                                    fullWidth
-                                />
-                                <button
-                                    className="text-white p-4 rounded-lg"
-                                    style={{ background: 'rgba(0, 0, 148, 1)' }}
-                                >
-                                    <img className="w-6 h-auto" src={calculateicon} alt="Calculate Icon"></img>
-                                </button>
+                            <div className="grid grid-cols-2 gap-4 my-3">
+                                <div className="flex flex-col">
+                                    <p className="text-primary" style={{ color: "#7C79EB" }}>Total Invested</p>
+                                    <p className="text-white text-lg mt-2">₹0,00,000</p>
+                                </div>
+                                <div className="flex flex-col">
+                                    <p className="text-primary" style={{ color: "#7C79EB" }}>Total Earned</p>
+                                    <p className="text-white text-lg mt-2">₹0,00,000</p>
+                                </div>
                             </div>
+
                         </div>
                     </div>
 
                     {/* Investment Cards */}
-                    <div className="text-start rounded-lg p-4 grid md:grid-cols-3 grid-cols-1 gap-4">
-                        <div className="p-6 rounded-lg border border-1 border-[#020065]" style={{ backgroundColor: '#E7E7FF' }}>
-                            <div className="flex justify-between">
-                                <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '17px' }}>
-                                    Investment Name
-                                </p>
-                                <img src={acrrowright} className="w-auto h-8" alt="Arrow Icon"></img>
-                            </div>
-
-                            <div className="grid grid-cols-2 my-2">
-                                <p>Investment Amount</p>
-                                <p>Duration</p>
-                                <p className="text-md font-bold my-2" style={{ color: 'rgba(0, 0, 148, 1)' }}>₹00,00,000</p>
-                                <p className="text-md font-bold my-2" style={{ color: 'rgba(0, 0, 148, 1)' }}>00 Months</p>
-                                <p>Returns per month</p>
-                                <p></p>
-                                <p className="text-md font-bold my-2" style={{ color: 'rgba(0, 0, 148, 1)' }}>₹00,00,000 (00%)</p>
-                            </div>
-                        </div>
-                        <div className="p-6 rounded-lg border border-1 border-[#020065]" style={{ backgroundColor: '#E7E7FF' }}>
-                            <div className="flex justify-between">
-                                <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '17px' }}>
-                                    Investment Name
-                                </p>
-                                <img src={acrrowright} className="w-auto h-8" alt="Arrow Icon"></img>
-                            </div>
-
-                            <div className="grid grid-cols-2 my-2">
-                                <p>Investment Amount</p>
-                                <p>Duration</p>
-                                <p className="text-md font-bold my-2" style={{ color: 'rgba(0, 0, 148, 1)' }}>₹00,00,000</p>
-                                <p className="text-md font-bold my-2" style={{ color: 'rgba(0, 0, 148, 1)' }}>00 Months</p>
-                                <p>Returns per month</p>
-                                <p></p>
-                                <p className="text-md font-bold my-2" style={{ color: 'rgba(0, 0, 148, 1)' }}>₹00,00,000 (00%)</p>
-                            </div>
-                        </div>
-                    </div>
 
                     {/* Footer Navigation */}
                     <div
-                        className="sm:hidden bg-gradient-to-l from-[#0400CB] to-[#020065]"
+                        className="sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB]"
                         style={{
                             position: 'fixed',
                             bottom: 0,
@@ -156,7 +114,7 @@ const Catalogs = () => {
                         <div className="grid grid-cols-3">
                             {/* Catalogue */}
                             <div className=" p-2 flex flex-col items-center">
-                                <div className="bg-white px-5 p-3 rounded-full flex items-center justify-center">
+                                <div className="px-5 p-3 rounded-full flex items-center justify-center">
                                     <img className="w-auto h-8" src={footerLogo1} alt="Footer Logo 1" />
                                 </div>
                                 <p className="mt-2 text-md font-bold text-center text-white">
@@ -166,7 +124,7 @@ const Catalogs = () => {
 
                             {/* Dashboard */}
                             <div className="p-2  flex flex-col items-center">
-                                <div className="p-3 rounded-full flex items-center justify-center">
+                                <div className="bg-white p-3 rounded-full flex items-center justify-center">
                                     <img className="w-auto h-8" src={footerLogo2} alt="Footer Logo 2" />
                                 </div>
                                 <p className="mt-2 text-md font-bold text-center text-white" >
@@ -273,4 +231,4 @@ const Catalogs = () => {
     );
 };
 
-export default Catalogs;
+export default DashboardPage;

@@ -16,12 +16,14 @@ import MyProfile from '../pages/Profile/myProfileDetails';
 import ProfileAndSettings from '../pages/Profile/profileAndSetting';
 import EditCustomerProfile from '../pages/Profile/editMyProfileDetails';
 import LanguagePreference from '../pages/Profile/languagePreference';
+import DashboardPage from '../pages/Dashboard/page';
 
 const routes = [
   { path: "/", element: <OtpVerification /> },
   { path: "/register", element: <Signup /> },
   { path: "/edit-customer-details", element: <EditCustomerProfile /> },
-  { path: "/homepage", element: <HomePage /> },
+  { path: "/homepage", element: <DashboardPage /> },
+  { path: "/dashboard", element: <DashboardPage /> },
   { path: "/my-profile", element: <MyProfile /> },
   { path: "/profile-and-settings", element: <ProfileAndSettings /> },
   { path: "/notifications", element: <Notifications /> },

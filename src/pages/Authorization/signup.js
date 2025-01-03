@@ -112,7 +112,6 @@ const SignupPage = () => {
                             onSubmit={handleSubmit(onSubmit)}
                             className="my-5 grid grid-cols-1 gap-4 md:mx:0 mx-5"
                         >
-                            {/* Form Fields */}
                             <TextField
                                 label="Full Name *"
                                 variant="outlined"
@@ -138,23 +137,6 @@ const SignupPage = () => {
                             />
 
                             <TextField
-                                label="Phone Number"
-                                variant="outlined"
-                                size="medium"
-                                disabled={true}
-                                type="text"
-                                fullWidth
-                                error={!!errors.phoneNumber}
-                                helperText={errors.phoneNumber ? errors.phoneNumber.message : ''}
-                                {...register('phoneNumber', {
-                                    required: 'Phone number is required',
-                                    pattern: {
-                                        value: /^[0-9]{10}$/,
-                                        message: 'Please enter a valid 10-digit phone number',
-                                    },
-                                })}
-                            />
-                            <TextField
                                 label="Email Id *"
                                 variant="outlined"
                                 type="text"
@@ -162,6 +144,10 @@ const SignupPage = () => {
                                 fullWidth
                                 {...register('email', {
                                     required: 'Email is required',
+                                    maxLength: {
+                                        value: 40,
+                                        message: 'Email cannot exceed 40 characters',
+                                    },
                                     pattern: {
                                         value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
                                         message: 'Invalid email address',
@@ -170,36 +156,7 @@ const SignupPage = () => {
                                 error={!!errors.email}
                                 helperText={errors.email?.message}
                             />
-                            <TextField
-                                variant="outlined"
-                                type="date"
-                                size="medium"
-                                fullWidth
-                                {...register('dateOfBirth', {
-                                    required: 'Date of Birth is required',
-                                    validate: {
-                                        notFutureDate: (value) => {
-                                            const today = new Date();
-                                            const selectedDate = new Date(value);
-                                            return selectedDate <= today || 'Date of Birth cannot be in the future';
-                                        },
-                                    },
-                                })}
-                                error={!!errors.dateOfBirth}
-                                helperText={errors.dateOfBirth?.message}
-                            />
 
-                            <TextField
-                                label="Residential Address *"
-                                variant="outlined"
-                                size="medium"
-                                fullWidth
-                                {...register('address', {
-                                    required: 'Address is required',
-                                })}
-                                error={!!errors.address}
-                                helperText={errors.address?.message}
-                            />
                             <TextField
                                 label="State *"
                                 variant="outlined"
@@ -207,10 +164,23 @@ const SignupPage = () => {
                                 fullWidth
                                 {...register('state', {
                                     required: 'State is required',
+                                    minLength: {
+                                        value: 3,
+                                        message: 'State must be at least 3 characters long',
+                                    },
+                                    maxLength: {
+                                        value: 40,
+                                        message: 'State cannot exceed 40 characters',
+                                    },
+                                    validate: {
+                                        noSpecialChars: (value) =>
+                                            /^[a-zA-Z\s]+$/.test(value) || 'State must contain only alphabets',
+                                    },
                                 })}
                                 error={!!errors.state}
                                 helperText={errors.state?.message}
                             />
+
                             <TextField
                                 label="District *"
                                 variant="outlined"
@@ -218,10 +188,23 @@ const SignupPage = () => {
                                 fullWidth
                                 {...register('district', {
                                     required: 'District is required',
+                                    minLength: {
+                                        value: 3,
+                                        message: 'District must be at least 3 characters long',
+                                    },
+                                    maxLength: {
+                                        value: 40,
+                                        message: 'District cannot exceed 40 characters',
+                                    },
+                                    validate: {
+                                        noSpecialChars: (value) =>
+                                            /^[a-zA-Z\s]+$/.test(value) || 'District must contain only alphabets',
+                                    },
                                 })}
                                 error={!!errors.district}
                                 helperText={errors.district?.message}
                             />
+
                             <TextField
                                 label="City *"
                                 variant="outlined"
@@ -229,38 +212,23 @@ const SignupPage = () => {
                                 fullWidth
                                 {...register('city', {
                                     required: 'City is required',
+                                    minLength: {
+                                        value: 3,
+                                        message: 'City must be at least 3 characters long',
+                                    },
+                                    maxLength: {
+                                        value: 40,
+                                        message: 'City cannot exceed 40 characters',
+                                    },
+                                    validate: {
+                                        noSpecialChars: (value) =>
+                                            /^[a-zA-Z\s]+$/.test(value) || 'City must contain only alphabets',
+                                    },
                                 })}
                                 error={!!errors.city}
                                 helperText={errors.city?.message}
                             />
-                            <TextField
-                                label="Alternative Phone Number"
-                                variant="outlined"
-                                size="medium"
-                                type="text"
-                                fullWidth
-                                error={!!errors.alternatePhoneNumber}
-                                helperText={errors.alternatePhoneNumber ? errors.alternatePhoneNumber.message : ''}
-                                {...register('alternatePhoneNumber', {
-                                    required: false,
-                                    pattern: {
-                                        value: /^[0-9]{10}$/,
-                                        message: 'Please enter a valid 10-digit Alternative phone number',
-                                    },
-                                })}
-                            />
-                            <TextField
-                                label="Referral Code *"
-                                variant="outlined"
-                                size="medium"
-                                type="text"
-                                fullWidth
-                                {...register('referralCode', {
-                                    required: 'Referral Code is required',
-                                })}
-                                error={!!errors.referralCode}
-                                helperText={errors.referralCode?.message}
-                            />
+
                             {/* Submit Button */}
                             <div className="mt-5">
                                 <button

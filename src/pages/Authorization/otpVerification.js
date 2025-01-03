@@ -88,11 +88,14 @@ const OtpVerification = () => {
     };
 
     const resendOTP = async () => {
+
         const mobile = localStorage.getItem("tempMobileNumber");
         const payload = {
             mobileNumber: mobile,
         };
+
         let resp;
+
         resp = await SendOtp(payload);
         if (resp.data.status === 200) {
             handleSuccessClick(resp.data.data.message);
