@@ -94,7 +94,7 @@ const SignupPage = () => {
         <>
             <div className="h-screen flex flex-col">
                 {/* Mobile Header */}
-                <div className="h-[60px] sm:hidden fixed top-0 left-0 bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row p-3">
+                <div className="h-[60px] fixed top-100 mb-4 z-10 w-full sm:hidden  bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row p-3">
                     <img src={backButton} className="w-8 h-8" alt="Back" />
                     <p className="text-white font-semibold my-1">Submit Personal details</p>
                 </div>
@@ -110,7 +110,7 @@ const SignupPage = () => {
                         </div>
                         <form
                             onSubmit={handleSubmit(onSubmit)}
-                            className="my-5 grid grid-cols-1 gap-4 md:mx:0 mx-5"
+                            className="my-5 grid grid-cols-1 gap-4 md:mx:0 mx-5 py-3"
                         >
                             <TextField
                                 label="Full Name *"
