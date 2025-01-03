@@ -17,6 +17,7 @@ import EditCustomerProfile from '../pages/Profile/editMyProfileDetails';
 import LanguagePreference from '../pages/Profile/languagePreference';
 import DashboardPage from '../pages/Dashboard/page';
 import Payouts from '../pages/payouts/page';
+import KycStatusPage from '../pages/kycStatus/kyc';
 
 const routes = [
   { path: "/", element: <OtpVerification /> },
@@ -32,6 +33,7 @@ const routes = [
   { path: "/enquiry", element: <Enquiry /> },
   { path: "/catalogs", element: <Catalogs /> },
   { path: "/kyc", element: <Kyc /> },
+  { path: "/Kyc-status", element: <KycStatusPage /> },
   { path: "/dashboard", element: <Dashboard /> },
   { path: "/update-language-preference", element: <LanguagePreference /> },
 ];
