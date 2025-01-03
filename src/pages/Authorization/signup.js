@@ -153,7 +153,7 @@ const SignupPage = () => {
                                 error={!!errors.phoneNumber}
                                 helperText={errors.phoneNumber?.message}
                                 InputLabelProps={{
-                                    shrink: true, // Ensures the label stays at the top when value is present
+                                    shrink: true,
                                 }}
                             />
 

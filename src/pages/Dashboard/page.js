@@ -77,7 +77,7 @@ const DashboardPage = () => {
 
 
                     {/* Return Calculator */}
-                    <div className="text-start rounded-full mt-5 p-4 grid md:grid-cols-3 grid-cols-1">
+                    <div className="text-start rounded-full mt-5 px-4 grid md:grid-cols-3 grid-cols-1">
                         <div
                             className="p-4 rounded-lg  bg-gradient-to-l from-[#020065] to-[#0400CB]"
 
@@ -100,13 +100,49 @@ const DashboardPage = () => {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3">
 
-                        <div className="flex justify-between mx-3">
-                            <p>Upcoming Payouts</p>
-                            <p>View All</p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 p-3">
+
+                        <div className="flex justify-between mx-2">
+                            <p style={{ color: "#020065" }} className="text-lg font-bold">Upcoming Payouts</p>
+                            <p style={{ color: "#020065", textDecoration: 'underline' }}>View All</p>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 px-5  " >
+                        <div className="flex justify-between p-4 rounded-lg" style={{ background: "#F5F5F5" }}>
+                            <div className="flex flex-col text-start">
+                                <p className="text-md">Payout Amount</p>
+                                <p className="font-bold text-md" style={{ color: "#020065" }}>₹00,00,000</p>
+                            </div>
+                            <div className="flex flex-col text-start">
+                                <p className="text-md">Payout On</p>
+                                <p className="font-bold text-md" style={{ color: "#020065" }}>DD MM YYYY</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 p-3">
+
+                        <div className="flex justify-between mx-2">
+                            <p style={{ color: "#020065" }} className="text-lg font-bold">Your Investments</p>
+                            <p style={{ color: "#020065", textDecoration: 'underline' }}>View All</p>
                         </div>
 
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 px-5  " >
+                        <div className="flex justify-between p-4 rounded-lg" style={{ background: "#F5F5F5" }}>
+                            <div className="flex flex-col text-start">
+                                <p className="text-md">Payout Amount</p>
+                                <p className="font-bold text-md" style={{ color: "#020065" }}>₹00,00,000</p>
+                            </div>
+                            <div className="flex flex-col text-start">
+                                <p className="text-md">Payout On</p>
+                                <p className="font-bold text-md" style={{ color: "#020065" }}>DD MM YYYY</p>
+                            </div>
+                        </div>
                     </div>
 
 

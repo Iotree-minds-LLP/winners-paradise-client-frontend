@@ -144,7 +144,6 @@ const EditCustomerProfile = () => {
                                 label="Full Name *"
                                 variant="outlined"
                                 size="medium"
-                                value={watchedName}
                                 fullWidth
                                 {...register('fullName', {
                                     required: 'Full Name is required',
@@ -172,10 +171,9 @@ const EditCustomerProfile = () => {
                                 label="Phone Number"
                                 variant="outlined"
                                 size="medium"
+                                disabled
                                 type="text"
                                 fullWidth
-                                error={!!errors.phoneNumber}
-                                helperText={errors.phoneNumber ? errors.phoneNumber.message : ''}
                                 {...register('phoneNumber', {
                                     required: 'Phone number is required',
                                     pattern: {
@@ -183,10 +181,13 @@ const EditCustomerProfile = () => {
                                         message: 'Please enter a valid 10-digit phone number',
                                     },
                                 })}
+                                error={!!errors.phoneNumber}
+                                helperText={errors.phoneNumber?.message}
                                 InputLabelProps={{
-                                    shrink: true, // Ensures the label stays at the top when value is present
+                                    shrink: true,
                                 }}
                             />
+
                             <TextField
                                 label="Email Id *"
                                 variant="outlined"
@@ -195,6 +196,10 @@ const EditCustomerProfile = () => {
                                 fullWidth
                                 {...register('email', {
                                     required: 'Email is required',
+                                    maxLength: {
+                                        value: 40,
+                                        message: 'Email cannot exceed 40 characters',
+                                    },
                                     pattern: {
                                         value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
                                         message: 'Invalid email address',
@@ -206,6 +211,7 @@ const EditCustomerProfile = () => {
                                     shrink: true, // Ensures the label stays at the top when value is present
                                 }}
                             />
+
                             <TextField
                                 variant="outlined"
                                 type="date"
@@ -242,6 +248,7 @@ const EditCustomerProfile = () => {
                                     shrink: true, // Ensures the label stays at the top when value is present
                                 }}
                             />
+
                             <TextField
                                 label="State *"
                                 variant="outlined"
@@ -249,6 +256,18 @@ const EditCustomerProfile = () => {
                                 fullWidth
                                 {...register('state', {
                                     required: 'State is required',
+                                    minLength: {
+                                        value: 3,
+                                        message: 'State must be at least 3 characters long',
+                                    },
+                                    maxLength: {
+                                        value: 40,
+                                        message: 'State cannot exceed 40 characters',
+                                    },
+                                    validate: {
+                                        noSpecialChars: (value) =>
+                                            /^[a-zA-Z\s]+$/.test(value) || 'State must contain only alphabets',
+                                    },
                                 })}
                                 error={!!errors.state}
                                 helperText={errors.state?.message}
@@ -256,6 +275,7 @@ const EditCustomerProfile = () => {
                                     shrink: true, // Ensures the label stays at the top when value is present
                                 }}
                             />
+
                             <TextField
                                 label="District *"
                                 variant="outlined"
@@ -263,6 +283,18 @@ const EditCustomerProfile = () => {
                                 fullWidth
                                 {...register('district', {
                                     required: 'District is required',
+                                    minLength: {
+                                        value: 3,
+                                        message: 'District must be at least 3 characters long',
+                                    },
+                                    maxLength: {
+                                        value: 40,
+                                        message: 'District cannot exceed 40 characters',
+                                    },
+                                    validate: {
+                                        noSpecialChars: (value) =>
+                                            /^[a-zA-Z\s]+$/.test(value) || 'District must contain only alphabets',
+                                    },
                                 })}
                                 error={!!errors.district}
                                 helperText={errors.district?.message}
@@ -270,6 +302,10 @@ const EditCustomerProfile = () => {
                                     shrink: true, // Ensures the label stays at the top when value is present
                                 }}
                             />
+
+
+
+
                             <TextField
                                 label="City *"
                                 variant="outlined"
@@ -277,6 +313,18 @@ const EditCustomerProfile = () => {
                                 fullWidth
                                 {...register('city', {
                                     required: 'City is required',
+                                    minLength: {
+                                        value: 3,
+                                        message: 'City must be at least 3 characters long',
+                                    },
+                                    maxLength: {
+                                        value: 40,
+                                        message: 'City cannot exceed 40 characters',
+                                    },
+                                    validate: {
+                                        noSpecialChars: (value) =>
+                                            /^[a-zA-Z\s]+$/.test(value) || 'City must contain only alphabets',
+                                    },
                                 })}
                                 error={!!errors.city}
                                 helperText={errors.city?.message}
@@ -284,23 +332,24 @@ const EditCustomerProfile = () => {
                                     shrink: true, // Ensures the label stays at the top when value is present
                                 }}
                             />
+
                             <TextField
                                 label="Alternative Phone Number"
                                 variant="outlined"
                                 size="medium"
                                 type="text"
                                 fullWidth
-                                error={!!errors.alternatePhoneNumber}
-                                helperText={errors.alternatePhoneNumber ? errors.alternatePhoneNumber.message : ''}
                                 {...register('alternatePhoneNumber', {
-                                    required: false,
                                     pattern: {
                                         value: /^[0-9]{10}$/,
                                         message: 'Please enter a valid 10-digit Alternative phone number',
                                     },
                                 })}
+                                error={!!errors.alternatePhoneNumber}
+                                helperText={errors.alternatePhoneNumber?.message}
 
                             />
+
                             <TextField
                                 label="Referral Code *"
                                 variant="outlined"
@@ -316,6 +365,7 @@ const EditCustomerProfile = () => {
                                     shrink: true, // Ensures the label stays at the top when value is present
                                 }}
                             />
+
                             {/* Submit Button */}
                             <div className="mt-5">
                                 <button
@@ -353,7 +403,7 @@ const EditCustomerProfile = () => {
                             </div>
                         </form>
                     </div>
-                    
+
                     <div className="col-span-12 hidden sm:block overflow-hidden md:col-span-6 w-full max-h-[100vh] order-2 md:order-1 responsive relative">
                         <img src={image3} alt="Image description" className="w-full h-auto object-cover" />
                         <div className="absolute inset-0 flex items-center justify-center">
