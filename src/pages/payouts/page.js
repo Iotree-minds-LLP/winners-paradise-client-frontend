@@ -71,7 +71,7 @@ const Payouts = () => {
                     </div>
 
                     <div className="flex justify-between">
-                        <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10">Dashboard</h1>
+                        <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10 px-10">Payouts Tracker</h1>
                         <p className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer	" onClick={toggleModal}>Logout</p>
                     </div>
 

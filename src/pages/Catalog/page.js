@@ -50,7 +50,7 @@ const Catalogs = () => {
                 {/* Content Wrapper */}
                 <div className="relative z-10">
                     {/* Gradient Header */}
-                    <div className="object-contain flex justify-between bg-gradient-to-l sm:hidden from-[#0400CB] to-[#020065]">
+                    <div className="object-contain fixed top-100  flex justify-between bg-gradient-to-l sm:hidden from-[#0400CB] to-[#020065]">
                         <h1 className="text-start font-bold text-2xl p-4 text-white hidden md:block">Catalogue</h1>
                         <img
                             className="h-auto sm:hidden w-1/5 p-4 md:mt-0 text-start"
@@ -79,7 +79,7 @@ const Catalogs = () => {
 
 
                     {/* Return Calculator */}
-                    <div className="text-start rounded-lg mt-5 p-4 grid md:grid-cols-3 grid-cols-1">
+                    <div className="text-start rounded-lg mt-20 md:mt-5  p-4 grid md:grid-cols-3 grid-cols-1">
                         <div
                             className="p-6 rounded-lg"
                             style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}
