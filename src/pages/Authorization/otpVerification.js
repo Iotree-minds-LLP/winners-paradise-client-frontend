@@ -96,6 +96,8 @@ const OtpVerification = () => {
         resp = await SendOtp(payload);
         if (resp.data.status === 200) {
             handleSuccessClick(resp.data.data.message);
+            setOtp(resp.data.data.otp);
+            setToken(resp.data.data.token);
         }
         else {
             setErrorMessage("Something Went Wrong");
