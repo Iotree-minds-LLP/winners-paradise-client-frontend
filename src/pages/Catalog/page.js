@@ -113,12 +113,13 @@ const Catalogs = () => {
                         {listCatalogs.map((item, index) => {
                             // Calculate total return
                             const totalReturn =
-                                item.max_amt *
+                                item.min_amt *
                                 (item.int_percent_per_month / 100) *
                                 item.no_of_months;
 
                             return (
                                 <div
+                                    onClick={() => navigate(`/catalogs/catalog-details`, { state: { item } })}
                                     key={index}
                                     className="p-6 rounded-lg border border-1 border-[#020065]"
                                     style={{ backgroundColor: '#E7E7FF' }}
@@ -134,7 +135,6 @@ const Catalogs = () => {
                                             {item.name}
                                         </p>
                                         <img
-                                            onClick={() => navigate(`/catalogs/catalog-details`, { state: { item } })}
                                             src={acrrowright}
                                             className="w-auto h-8"
                                             alt="Arrow Icon"
@@ -148,7 +148,7 @@ const Catalogs = () => {
                                             className="text-md font-bold my-2"
                                             style={{ color: 'rgba(0, 0, 148, 1)' }}
                                         >
-                                            ₹{item.max_amt.toLocaleString()}
+                                            ₹{item.min_amt.toLocaleString()}
                                         </p>
                                         <p
                                             className="text-md font-bold my-2"

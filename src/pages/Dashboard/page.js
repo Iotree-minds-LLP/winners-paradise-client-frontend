@@ -156,7 +156,6 @@ const DashboardPage = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 px-5 gap-4">
-                        {console.log(payoutsToDisplay, "payoutsToDisplay")}
                         {payoutsToDisplay?.map((payout, index) => (
                             <>
                                 <div
