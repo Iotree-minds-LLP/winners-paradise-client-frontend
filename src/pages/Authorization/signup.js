@@ -16,6 +16,7 @@ import { useForm } from 'react-hook-form';
 import { useLanguage } from "../../context/Language/loginContext";
 import { useToast } from "../../context/Toast/toastHook";
 import { goBack } from "../../utils/Functions/goBackScreen";
+import translations from "../../utils/Json/translation.json"
 
 const SignupPage = () => {
 
@@ -97,7 +98,7 @@ const SignupPage = () => {
                 {/* Mobile Header */}
                 <div className="h-[60px] fixed top-100 mb-4 z-10 w-full sm:hidden  bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row p-3">
                     <img src={backButton} onClick={goBack} className="w-8 h-8" alt="Back" />
-                    <p className="text-white font-semibold my-1">Submit Personal details</p>
+                    <p className="text-white font-semibold my-1">{translations.registerModule.heading[language]}</p>
                 </div>
 
                 {/* Main Content */}
@@ -106,7 +107,7 @@ const SignupPage = () => {
                     <div className="col-span-12 md:col-span-6 w-full order-1 md:order-2 md:px-20 mt-10 overflow-auto">
                         <div className="flex flex-row">
                             <p style={{ color: '#020065' }} className="mx-5 hidden sm:block text-start font-semibold text-3xl">
-                                Submit Personal details
+                                {translations.registerModule.heading[language]}
                             </p>
                         </div>
                         <form
@@ -114,23 +115,23 @@ const SignupPage = () => {
                             className="my-5 grid grid-cols-1 gap-4 md:mx:0 mx-5 py-3"
                         >
                             <TextField
-                                label="Full Name *"
+                                label={translations.registerModule.fullname_field[language]}
                                 variant="outlined"
                                 size="medium"
                                 fullWidth
                                 {...register('fullName', {
-                                    required: 'Full Name is required',
+                                    required: `${translations.validations.fullname_1[language]}`,
                                     minLength: {
                                         value: 3,
-                                        message: 'Full Name must be at least 3 characters long',
+                                        message: `${translations.validations.fullname_3[language]}`,
                                     },
                                     maxLength: {
                                         value: 30,
-                                        message: 'Full Name cannot exceed 30 characters',
+                                        message: `${translations.validations.fullname_4[language]}`,
                                     },
                                     validate: {
                                         noSpecialChars: (value) =>
-                                            /^[a-zA-Z\s]+$/.test(value) || 'Full Name must contain only alphabets',
+                                            /^[a-zA-Z\s]+$/.test(value) || `${translations.validations.fullname_2[language]}`,
                                     },
                                 })}
                                 error={!!errors.fullName}
@@ -138,17 +139,17 @@ const SignupPage = () => {
                             />
 
                             <TextField
-                                label="Phone Number"
+                                label={translations.registerModule.phone_field[language]}
                                 variant="outlined"
                                 size="medium"
                                 disabled
                                 type="text"
                                 fullWidth
                                 {...register('phoneNumber', {
-                                    required: 'Phone number is required',
+                                    required: `${translations.validations.phoneField_1[language]}`,
                                     pattern: {
                                         value: /^[0-9]{10}$/,
-                                        message: 'Please enter a valid 10-digit phone number',
+                                        message: `${translations.validations.phoneField_2[language]}`,
                                     },
                                 })}
                                 error={!!errors.phoneNumber}
@@ -159,13 +160,13 @@ const SignupPage = () => {
                             />
 
                             <TextField
-                                label="Email Id *"
+                                label={translations.registerModule.email_id[language]}
                                 variant="outlined"
                                 type="text"
                                 size="medium"
                                 fullWidth
                                 {...register('email', {
-                                    required: 'Email is required',
+                                    required: `${translations.validations.email_1[language]}`,
                                     maxLength: {
                                         value: 40,
                                         message: 'Email cannot exceed 40 characters',
@@ -181,6 +182,7 @@ const SignupPage = () => {
 
                             <TextField
                                 variant="outlined"
+                                label={translations.registerModule.email_id[language]}
                                 type="date"
                                 size="medium"
                                 fullWidth
@@ -196,10 +198,13 @@ const SignupPage = () => {
                                 })}
                                 error={!!errors.dateOfBirth}
                                 helperText={errors.dateOfBirth?.message}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
                             />
 
                             <TextField
-                                label="Residential Address *"
+                                label={translations.registerModule.Residential_addressfield[language]}
                                 variant="outlined"
                                 size="medium"
                                 fullWidth
@@ -211,7 +216,7 @@ const SignupPage = () => {
                             />
 
                             <TextField
-                                label="State *"
+                                label={translations.registerModule.statefield[language]}
                                 variant="outlined"
                                 size="medium"
                                 fullWidth
@@ -235,7 +240,7 @@ const SignupPage = () => {
                             />
 
                             <TextField
-                                label="District *"
+                                label={translations.registerModule.Destrictfield[language]}
                                 variant="outlined"
                                 size="medium"
                                 fullWidth
@@ -259,7 +264,7 @@ const SignupPage = () => {
                             />
 
                             <TextField
-                                label="City *"
+                                label={translations.registerModule.cityfield[language]}
                                 variant="outlined"
                                 size="medium"
                                 fullWidth
@@ -283,7 +288,7 @@ const SignupPage = () => {
                             />
 
                             <TextField
-                                label="Alternative Phone Number"
+                                label={translations.registerModule.altno_field[language]}
                                 variant="outlined"
                                 size="medium"
                                 type="text"
@@ -299,7 +304,7 @@ const SignupPage = () => {
                             />
 
                             <TextField
-                                label="Referral Code *"
+                                label={translations.registerModule.Referralcodefield[language]}
                                 variant="outlined"
                                 size="medium"
                                 type="text"
@@ -336,7 +341,7 @@ const SignupPage = () => {
                                             />
                                         </svg>
                                     ) : (
-                                        "Continue"
+                                        `${translations.registerModule.continue_btn[language]}`
                                     )}
                                 </button>
                             </div>
@@ -360,11 +365,12 @@ const SignupPage = () => {
                                     src={imageLogo}
                                     alt="Logo"
                                 />
-                                <div className="p-2">
-                                    <h1 className="text-3xl text-white font-semibold">Welcome to</h1>
+                                <div className="p-2 ">
+                                    <h1 className="text-3xl text-white font-semibold"> {translations.loginScreen.sendOtpScreen.heading1[language]}</h1>
                                 </div>
+
                                 <div className="">
-                                    <h1 className="text-4xl mt-2 text-white font-bold pt-4">Algo Achievers</h1>
+                                    <h1 className="text-4xl mt-2 text-white font-bold pt-4"> {translations.loginScreen.sendOtpScreen.heading2[language]}</h1>
                                 </div>
                             </h1>
                         </div>

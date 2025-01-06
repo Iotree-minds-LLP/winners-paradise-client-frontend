@@ -28,11 +28,12 @@ const OtpVerification = () => {
     } = useForm();
 
     const [isLoading, setisLoading] = useState(false)
-    const [selectedValue, setSelectedValue] = useState('english');
+    const [selectedValue, setSelectedValue] = useState(language);
     const [ErrorMessage, setErrorMessage] = useState("")
 
     const handleChange = (event) => {
         setLanguage(event.target.value);
+        localStorage.setItem("language", event.target.value);
         setSelectedValue(event.target.value);
     };
 

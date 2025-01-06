@@ -53,10 +53,154 @@
             }
         }
     },
+    "registerModule": {
+        "heading": {
+            "english": "Submit Personal details",
+            "kannada": "ವೈಯಕ್ತಿಕ ವಿವರಗಳನ್ನು ಸಲ್ಲಿಸಿ"
+        },
+        "fullname_field": {
+            "english": "Full Name *",
+            "kannada": "ಪೂರ್ಣ ಹೆಸರು *"
+        },
+        "phone_field": {
+            "english": "Phone Number *",
+            "kannada": "ದೂರವಾಣಿ ಸಂಖ್ಯೆ *"
+        },
+        "email_id": {
+            "english": "Email ID *",
+            "kannada": "ಇಮೇಲ್ ಐಡಿ *"
+        },
+        "data_of_birth": {
+            "english": "Date Of Birth *",
+            "kannada": "ಹುಟ್ಟಿದ ದಿನಾಂಕ *"
+        },
+        "Residential_addressfield": {
+            "english": "Residential address *",
+            "kannada": "ವಾಸಸ್ಥಳದ ವಿಳಾಸ *"
+        },
+        "statefield": {
+            "english": "state *",
+            "kannada": "ರಾಜ್ಯ *"
+        },
+        "Destrictfield": {
+            "english": "district *",
+            "kannada": "ಜಿಲ್ಲೆ *"
+        },
+        "cityfield": {
+            "english": "city *",
+            "kannada": "ನಗರ *"
+        },
+        "altno_field": {
+            "english": "Alternative Phone Number ",
+            "kannada": "ಪರ್ಯಾಯ ದೂರವಾಣಿ ಸಂಖ್ಯೆ"
+        },
+        "Referralcodefield": {
+            "english": "Referral Code *",
+            "kannada": "ಉಲ್ಲೇಖಿತ ಕೋಡ್ *"
+        },
+        "continue_btn": {
+            "english": "Continue",
+            "kannada": "ಮುಂದುವರಿಸಿ"
+        }
+    },
+    "sideBar": {
+        "heading1": {
+            "english": "Dashboard",
+            "kannada": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್"
+        },
+        "heading2": {
+            "english": "Catalogs",
+            "kannada": "ಕ್ಯಾಟಲಾಗ್‌ಗಳು"
+        },
+        "heading3": {
+            "english": "Payouts Tracker",
+            "kannada": "ಪಾವತಿಗಳ ಟ್ರ್ಯಾಕರ್"
+        },
+        "heading4": {
+            "english": "My Notifications",
+            "kannada": "ನನ್ನ ಅಧಿಸೂಚನೆಗಳು"
+        },
+        "heading5": {
+            "english": "My Account",
+            "kannada": "ನನ್ನ ಖಾತೆ"
+        }
+    },
+    "Catalog": {
+        "heading": {
+            "english": "Catalog",
+            "kannada": "ಕ್ಯಾಟಲಾಗ್"
+        },
+        "card1": {
+            "english": "Return Calculator",
+            "kannada": ""
+        },
+        "enterAmountfield": {
+            "english": "Enter the Amount",
+            "kannada": "ಮೊತ್ತವನ್ನು ನಮೂದಿಸಿ"
+        },
+        "card2": {
+            "heading1": {
+                "english": "Investment Amount ",
+                "kannada": "ಹೂಡಿಕೆಯ ಮೊತ್ತ"
+            },
+            "heading2": {
+                "english": "Duration",
+                "kannada": "ಅವಧಿ"
+            },
+            "heading3": {
+                "english": "Returns per month",
+                "kannada": ""
+            },
+            "months": {
+                "english": "Months",
+                "kannada": "ತಿಂಗಳುಗಳು"
+            }
+        }
+    },
     "validations": {
-        "phoneField": {
+        "phoneField_1": {
             "english": "Phone number is required",
             "kannada": "ದಯವಿಟ್ಟು ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ"
+        },
+        "phoneField_2": {
+            "english": "Please enter a valid 10-digit phone number",
+            "kannada": "ದಯವಿಟ್ಟು 10-ಅಂಕಿಯ ಸರಿಯಾದ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ"
+        },
+        "fullname_1": {
+            "english": "Full Name is required",
+            "kannada": "ದಯವಿಟ್ಟು ಪೂರ್ಣ ಹೆಸರನ್ನು ನಮೂದಿಸಿ"
+        },
+        "fullname_2": {
+            "english": "Full Name must contain only letters.",
+            "kannada": "ಪೂರ್ಣ ಹೆಸರು ಕೇವಲ ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿರಬೇಕು."
+        },
+        "fullname_3": {
+            "english": "Full Name must be at least 3 characters long",
+            "kannada": "ಪೂರ್ಣ ಹೆಸರು ಕನಿಷ್ಠ 3 ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿರಬೇಕು"
+        },
+        "fullname_4": {
+            "english": "Full Name cannot exceed 30 characters",
+            "kannada": "ಪೂರ್ಣ ಹೆಸರು 30 ಅಕ್ಷರಗಳನ್ನು ಮೀರಬಾರದು"
+        },
+        "email_1": {
+            "english": "Email ID is required",
+            "kannada": "ದಯವಿಟ್ಟು ಇಮೇಲ್ ಐಡಿ ನಮೂದಿಸಿ"
+        },
+        "email_2": {
+            "english": "Invalid Email Address",
+            "kannada": "ದಯವಿಟ್ಟು ಮಾನ್ಯ ಇಮೇಲ್ ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ"
+        },
+        "email_3": {
+            "english": "Email cannot exceed 40 characters",
+            "kannada": "ಇಮೇಲ್ 40 ಅಕ್ಷರಗಳನ್ನು ಮೀರಬಾರದು"
+        },
+        "dob": {
+            "english": "Date of Birth cannot be in the future",
+            "kannada": "ಜನ್ಮ ದಿನಾಂಕ ಭವಿಷ್ಯದ ದಿನಾಂಕವನ್ನು ಸ್ವೀಕರಿಸುವುದಿಲ್ಲ"
+        },
+        "alt_phone_number": {
+            "english": "Please enter a valid 10-digit Alternative phone number",
+            "kannada": "ದಯವಿಟ್ಟು ಮಾನ್ಯವಾದ 10-ಅಂಕಿಯ ಪರ್ಯಾಯ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ"
         }
     }
 }
