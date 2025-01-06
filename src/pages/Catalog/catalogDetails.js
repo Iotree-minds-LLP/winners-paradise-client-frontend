@@ -186,7 +186,7 @@ const CatalogDetails = () => {
                     <div className="grid grid-cols-1 px-4 mt-4 md:grid-cols-2 gap-4 text-start mb-10">
                         <img className="rounded-2xl" src={image}></img>
                     </div>
-                    
+
                     <div className="p-3 sm:hidden">
                         <button
                             onClick={sendResponse}

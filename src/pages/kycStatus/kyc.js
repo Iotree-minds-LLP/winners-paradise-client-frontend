@@ -20,12 +20,19 @@ const KycStatusPage = () => {
     const [isModalOpen, setisModalOpen] = useState(false);
     const navigate = useNavigate();
     const data = [
-        { id: 1, status: "Cleared", title: "AADHAR CARD", uploaded: 1, backgroundColor: '#BBFF99', textColor: '#1C5400' },
+        { id: 1, status: "Uplaod", title: "AADHAR CARD", uploaded: 1, backgroundColor: '#F5F5F5', textColor: '#000094' },
         { id: 2, status: "Rejected", title: "PAN CARD", uploaded: 2, backgroundColor: '#FFDA99', textColor: '#533400' },
         { id: 3, status: "Cleared", title: "CANCELLED CHEQUE", uploaded: 3, backgroundColor: '#BBFF99', textColor: '#1C5400' },
-        { id: 4, status: "Cleared", title: "SELFIE", uploaded: 4, backgroundColor: '#BBFF99', textColor: '#1C5400' },
+        { id: 4, status: "Review Pending", title: "SELFIE", uploaded: 4, backgroundColor: '#000094', textColor: '#ffffff' },
 
     ];
+
+    const handleUpload = (item) => {
+        if (item.status === "Uplaod" && item.title === "AADHAR CARD") {
+            navigate("/kyc/aadhar-card-upload")
+        }
+    }
+
     const toggleModal = () => {
         setisModalOpen(!isModalOpen);
     }
@@ -49,7 +56,7 @@ const KycStatusPage = () => {
                     <div className="h-[60px] sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row justify-between p-4">
                         <div className="flex flex-row">
                             <img src={backButton} onClick={goBack} className="w-8 h-8" alt="Back" />
-                            <p className="text-white font-semibold my-1">Kyc Status</p>
+                            <p className="text-white font-semibold my-1">Complete Your KYC</p>
                         </div>
                         <div className="text-white" onClick={toggleModal}>
                             Logout
@@ -57,7 +64,7 @@ const KycStatusPage = () => {
                     </div>
 
                     <div className="flex justify-between">
-                        <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10 mx-6">Kyc Status</h1>
+                        <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10 mx-6">Complete Your KYC</h1>
                         <p className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer	" onClick={toggleModal}>Logout</p>
                     </div>
 
@@ -66,6 +73,7 @@ const KycStatusPage = () => {
                             <div className="grid grid-cols-2 gap-4 p-3 md:p-0">
                                 {data.map((item) => (
                                     <div
+                                        onClick={() => handleUpload(item)}
                                         key={item.id}
                                         className="p-4 sm:p-4 md:p-6 rounded-2xl w-full"
                                         style={{ backgroundColor: item.backgroundColor }}
@@ -75,9 +83,9 @@ const KycStatusPage = () => {
                                                 className="text-sm sm:text-md font-semibold"
                                                 style={{ color: item.textColor }}
                                             >
-                                                {item.status === "Cleared" ? "Uploaded" : "Upload"}
+                                                {item.status === "Cleared" || item.status === "Review Pending" ? "Uploaded" : "Upload"}
                                             </p>
-                                            <p className="text-sm sm:text-md">{`0${item.uploaded}`}</p>
+                                            <p className={`text-sm sm:text-md ${item.status === "Review Pending" ? "text-white" : "text-black"}`}>{`0${item.uploaded}`}</p>
                                         </div>
                                         <h1
                                             className="my-3 text-lg sm:text-xl md:text-2xl font-bold"
@@ -99,11 +107,9 @@ const KycStatusPage = () => {
 
                 </div>
 
-                <div className="hidden sm:block">
-                    {/* Fixed Bottom Save & Continue Section */}
+                {/* <div className="hidden sm:block">
                     <div className="w-full ">
                         <div className="w-1/2 flex flex-col items-start p-4">
-                            {/* Text Section */}
                             <div className="flex justify-between items-start w-full mx-4">
                                 <div className="text-start">
                                     <p className="mx-4">Read & Agree to</p>
@@ -148,7 +154,7 @@ const KycStatusPage = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
 
                 <div>
@@ -233,11 +239,9 @@ const KycStatusPage = () => {
                     )}
 
                     <div>
-                        {/* Fixed Bottom Save & Continue Section */}
                         <div className="fixed bottom-0 left-0 w-full sm:hidden bg-white shadow-lg">
                             <div className="absolute bottom-0 left-0 w-full flex flex-col items-start p-4">
-                                {/* Text Section */}
-                                <div className="flex justify-between items-start w-full">
+                                {/* <div className="flex justify-between items-start w-full">
                                     <div className="text-start">
                                         <p className="mx-4">Read & Agree to</p>
                                         <h1 className="mx-4 text-lg font-bold" style={{ color: "#000094" }}>
@@ -251,7 +255,17 @@ const KycStatusPage = () => {
                                             className="w-6 p-3 border border-blue-300 bg-gray-300 h-6 cursor-pointer accent-blue-500"
                                         />
                                     </div>
+                                </div> */}
+                                <div className="w-full mt-4">
+                                    <button
+                                        type="submit"
+                                        style={{ color: "#65558F" }}
+                                        className="w-full p-3 px-24 flex justify-center rounded-full text-sm font-semibold border border-gray-600 bg-white"
+                                    >
+                                        Skip Now
+                                    </button>
                                 </div>
+
                                 <div className="w-full mt-4">
                                     <button
                                         type="submit"
@@ -275,7 +289,7 @@ const KycStatusPage = () => {
                                                 />
                                             </svg>
                                         ) : (
-                                            "Save And Continue"
+                                            "Continue"
                                         )}
                                     </button>
                                 </div>
