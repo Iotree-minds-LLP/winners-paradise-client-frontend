@@ -16,6 +16,7 @@ import { PwaContext } from "../../context/PwaContext/page";
 import { useLanguage } from "../../context/Language/loginContext";
 import translations from "../../utils/Json/translation.json"
 import { useToast } from "../../context/Toast/toastHook";
+import { getAllInvestments } from "../../network/Investments/page";
 
 const OtpVerification = () => {
     const { language, setLanguage } = useLanguage();
@@ -126,7 +127,15 @@ const OtpVerification = () => {
                 if (resp.data.data?.customer) {
                     setLanguage(resp.data.data.customer.language_preference);
                     localStorage.setItem("customerDetails", JSON.stringify(resp.data.data.customer));
-                    navigate("/dashboard");
+                    const resp = await getAllInvestments(resp.data.data.customer._id);
+                    if (resp.data.status === 201) {
+                        if (resp.data.data.data.length === 0) {
+                            navigate("/dashboard");
+                        }
+                        else {
+                            navigate("/catalogs");
+                        }
+                    }
                     handleSuccessClick(resp.data.data.message);
                 } else {
                     navigate("/register");

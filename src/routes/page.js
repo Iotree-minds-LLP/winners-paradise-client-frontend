@@ -63,6 +63,7 @@ function AppLayout() {
     if (customerDetails && publicRoutes.includes(location.pathname)) {
       navigate("/dashboard"); // Redirect to homepage if customerDetails exist
     }
+
   }, [location, navigate]);
 
   return (
