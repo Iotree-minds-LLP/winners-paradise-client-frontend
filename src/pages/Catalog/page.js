@@ -21,6 +21,7 @@ const Catalogs = () => {
     const [isModalOpen, setisModalOpen] = useState(false);
     const navigate = useNavigate();
     const [listCatalogs, setlistCatalogs] = useState([])
+    
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
