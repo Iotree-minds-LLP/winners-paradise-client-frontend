@@ -134,6 +134,7 @@ const Catalogs = () => {
                                             {item.name}
                                         </p>
                                         <img
+                                            onClick={() => navigate(`/catalogs/catalog-details`, { state: { item } })}
                                             src={acrrowright}
                                             className="w-auto h-8"
                                             alt="Arrow Icon"

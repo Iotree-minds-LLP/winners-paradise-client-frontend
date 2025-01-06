@@ -2,61 +2,61 @@
     "loginScreen": {
         "sendOtpScreen": {
             "heading1": {
-                "English": "Welcome to",
-                "Kannada": "ಆಲ್ಗೋ ಅಚೀವರ್ಸ್ ಗೆ"
+                "english": "Welcome to",
+                "kannada": "ಆಲ್ಗೋ ಅಚೀವರ್ಸ್ ಗೆ"
             },
             "heading2": {
-                "English": "Algo Achievers",
-                "Kannada": "ಸುಸ್ವಾಗತ"
+                "english": "Algo Achievers",
+                "kannada": "ಸುಸ್ವಾಗತ"
             },
             "login": {
-                "English": "LOGIN",
-                "Kannada": "ಲಾಗಿನ್"
+                "english": "LOGIN",
+                "kannada": "ಲಾಗಿನ್"
             },
             "preference": {
-                "English": "Select preferred language",
-                "Kannada": "ಆದ್ಯತೆಯ ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ"
+                "english": "Select preferred language",
+                "kannada": "ಆದ್ಯತೆಯ ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ"
             },
             "loginOrRegister": {
-                "English": "Login/Register to continue",
-                "Kannada": "ಮುಂದುವರೆಯಲು ಲಾಗಿನ್/ನೋಂದಣಿ ಮಾಡಿ"
+                "english": "Login/Register to continue",
+                "kannada": "ಮುಂದುವರೆಯಲು ಲಾಗಿನ್/ನೋಂದಣಿ ಮಾಡಿ"
             },
             "phoneField": {
-                "English": "Phone Number",
-                "Kannada": "ದೂರವಾಣಿ ಸಂಖ್ಯೆ"
+                "english": "Phone Number",
+                "kannada": "ದೂರವಾಣಿ ಸಂಖ್ಯೆ"
             },
             "getOTPButton": {
-                "English": "Get OTP",
-                "Kannada": "ಒಟಿಪಿ ಕಳುಹಿಸಿ"
+                "english": "Get OTP",
+                "kannada": "ಒಟಿಪಿ ಕಳುಹಿಸಿ"
             }
         },
         "otpConfirmation": {
             "OtpField": {
-                "English": "Enter OTP",
-                "Kannada": "ಒಟಿಪಿ ನಮೂದಿಸಿ"
+                "english": "Enter OTP",
+                "kannada": "ಒಟಿಪಿ ನಮೂದಿಸಿ"
             },
             "heading1": {
-                "English": "Confirm Phone number",
-                "Kannada": "ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ದೃಢೀಕರಿಸಿ"
+                "english": "Confirm Phone number",
+                "kannada": "ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ದೃಢೀಕರಿಸಿ"
             },
             "heading2": {
-                "English": "Enter the OTP shared through text message",
-                "Kannada": "ಸಂದೇಶದ ಮೂಲಕ ಹಂಚಿಕೊಂಡ ಒಟಿಪಿ ಅನ್ನು ನಮೂದಿಸಿ"
+                "english": "Enter the OTP shared through text message",
+                "kannada": "ಸಂದೇಶದ ಮೂಲಕ ಹಂಚಿಕೊಂಡ ಒಟಿಪಿ ಅನ್ನು ನಮೂದಿಸಿ"
             },
             "resendOTPLink": {
-                "English": "Resend OTP ?",
-                "Kannada": "ಒಟಿಪಿ ಮರುಕಳುಹಿಸುವುದೇ ?"
+                "english": "Resend OTP ?",
+                "kannada": "ಒಟಿಪಿ ಮರುಕಳುಹಿಸುವುದೇ ?"
             },
             "verifyOTPButton": {
-                "English": "Verify OTP",
-                "Kannada": "ಒಟಿಪಿ ಪರಿಶೀಲಿಸಿ"
+                "english": "Verify OTP",
+                "kannada": "ಒಟಿಪಿ ಪರಿಶೀಲಿಸಿ"
             }
         }
     },
     "validations": {
         "phoneField": {
-            "English": "Phone number is required",
-            "Kannada": "ದಯವಿಟ್ಟು ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ"
+            "english": "Phone number is required",
+            "kannada": "ದಯವಿಟ್ಟು ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ"
         }
     }
 }

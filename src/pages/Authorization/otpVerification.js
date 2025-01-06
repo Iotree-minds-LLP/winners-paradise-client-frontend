@@ -28,13 +28,12 @@ const OtpVerification = () => {
     } = useForm();
 
     const [isLoading, setisLoading] = useState(false)
-    const [selectedValue, setSelectedValue] = useState('English');
+    const [selectedValue, setSelectedValue] = useState('english');
     const [ErrorMessage, setErrorMessage] = useState("")
 
     const handleChange = (event) => {
         setLanguage(event.target.value);
         setSelectedValue(event.target.value);
-        console.log('Selected Language:', event.target.value);
     };
 
     const { deferredPrompt, isInstalled, handleInstallClick } = useContext(PwaContext);
@@ -124,6 +123,7 @@ const OtpVerification = () => {
                 setisLoading(false);
                 setErrorMessage("");
                 if (resp.data.data?.customer) {
+                    setLanguage(resp.data.data.customer.language_preference);
                     localStorage.setItem("customerDetails", JSON.stringify(resp.data.data.customer));
                     navigate("/dashboard");
                     handleSuccessClick(resp.data.data.message);
@@ -184,7 +184,7 @@ const OtpVerification = () => {
                                     className="gap-4 sm:gap-6"
                                 >
                                     <FormControlLabel
-                                        value="English"
+                                        value="english"
                                         control={
                                             <Radio
                                                 sx={{
@@ -199,7 +199,7 @@ const OtpVerification = () => {
                                         style={{ color: 'rgba(2, 0, 101, 1)', fontWeight: 'bold' }}
                                     />
                                     <FormControlLabel
-                                        value="Kannada"
+                                        value="kannada"
                                         control={
                                             <Radio
                                                 sx={{

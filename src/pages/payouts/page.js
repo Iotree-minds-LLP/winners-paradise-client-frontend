@@ -28,7 +28,6 @@ const Payouts = () => {
 
     const onformSubmit = async () => {
         const resp = await getAllOverAllPayouts();
-        console.log(resp.data.data.payouts, "Resp")
         setlistPayouts(resp.data.data.payouts)
     };
     const today = new Date();
@@ -36,6 +35,7 @@ const Payouts = () => {
     const upcomingPayouts = listPayouts.filter(
         (payout) => new Date(payout.expected_payout_date) >= today
     );
+
     const pastPayouts = listPayouts.filter(
         (payout) => new Date(payout.expected_payout_date) < today
     );

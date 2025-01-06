@@ -156,6 +156,7 @@ const DashboardPage = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 px-5 gap-4">
+                        {console.log(payoutsToDisplay, "payoutsToDisplay")}
                         {payoutsToDisplay?.map((payout, index) => (
                             <>
                                 <div
@@ -195,64 +196,76 @@ const DashboardPage = () => {
                             <p style={{ color: "#020065" }} className="text-lg font-bold">
                                 Your Investments
                             </p>
-                            <p
-                                style={{ color: "#020065", textDecoration: "underline", cursor: "pointer" }}
-                                onClick={() => setShowAllInvestments(!showAllInvestments)}
-                            >
-                                {showAllInvestments ? "View Less" : "View All"}
-                            </p>
+
+                            {investmentsToDisplay[0] != undefined && (
+                                <p
+                                    style={{ color: "#020065", textDecoration: "underline", cursor: "pointer" }}
+                                    onClick={() => setShowAllInvestments(!showAllInvestments)}
+                                >
+                                    {showAllInvestments ? "View Less" : "View All"}
+                                </p>
+                            )}
+
                         </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 px-5">
-                        {investmentsToDisplay?.map((investment, index) => {
-                            // Calculate number of months between createdAt and today
-                            const createdAtDate = new Date(investment?.createdAt);
-                            const today = new Date();
-                            const monthsSinceCreation =
-                                (today.getFullYear() - createdAtDate.getFullYear()) * 12 +
-                                today.getMonth() -
-                                createdAtDate.getMonth();
+                        {investmentsToDisplay[0] === undefined ? (
+                            <div>
+                                <p className="text-start text-md font-bold text-gray-400">No investments found. Invest now! </p>
+                            </div>
+                        ) : (
+                            <>
+                                {investmentsToDisplay?.map((investment, index) => {
+                                    // Calculate number of months between createdAt and today
+                                    const createdAtDate = new Date(investment?.createdAt);
+                                    const today = new Date();
+                                    const monthsSinceCreation =
+                                        (today.getFullYear() - createdAtDate.getFullYear()) * 12 +
+                                        today.getMonth() -
+                                        createdAtDate.getMonth();
 
-                            // Ensure at least 0 months (in case the dates are the same month)
-                            const effectiveMonths = Math.max(monthsSinceCreation, 0);
+                                    // Ensure at least 0 months (in case the dates are the same month)
+                                    const effectiveMonths = Math.max(monthsSinceCreation, 0);
 
-                            // Calculate earned returns
-                            const earnedReturnsAmount =
-                                investment?.amount *
-                                (investment?.interest_per_month / 100) *
-                                effectiveMonths;
+                                    // Calculate earned returns
+                                    const earnedReturnsAmount =
+                                        investment?.amount *
+                                        (investment?.interest_per_month / 100) *
+                                        effectiveMonths;
 
-                            const earnedReturnsPercentage =
-                                investment?.interest_per_month * effectiveMonths;
+                                    const earnedReturnsPercentage =
+                                        investment?.interest_per_month * effectiveMonths;
 
-                            return (
-                                <div
-                                    key={index}
-                                    className="flex justify-between p-4 rounded-lg"
-                                    style={{ background: "#F5F5F5" }}
-                                >
-                                    <div className="flex flex-col text-start">
-                                        <p className="text-md">Invested Amount</p>
-                                        <p
-                                            className="font-bold text-md"
-                                            style={{ color: "#020065" }}
+                                    return (
+                                        <div
+                                            key={index}
+                                            className="flex justify-between p-4 rounded-lg"
+                                            style={{ background: "#F5F5F5" }}
                                         >
-                                            ₹{investment?.amount.toLocaleString()}
-                                        </p>
-                                    </div>
-                                    <div className="flex flex-col text-start">
-                                        <p className="text-md">Returns earned</p>
-                                        <p
-                                            className="font-bold text-md"
-                                            style={{ color: "#020065" }}
-                                        >
-                                            ₹{earnedReturnsAmount.toLocaleString()} (
-                                            {earnedReturnsPercentage}%)
-                                        </p>
-                                    </div>
-                                </div>
-                            );
-                        })}
+                                            <div className="flex flex-col text-start">
+                                                <p className="text-md">Invested Amount</p>
+                                                <p
+                                                    className="font-bold text-md"
+                                                    style={{ color: "#020065" }}
+                                                >
+                                                    ₹{investment?.amount.toLocaleString()}
+                                                </p>
+                                            </div>
+                                            <div className="flex flex-col text-start">
+                                                <p className="text-md">Returns earned</p>
+                                                <p
+                                                    className="font-bold text-md"
+                                                    style={{ color: "#020065" }}
+                                                >
+                                                    ₹{earnedReturnsAmount.toLocaleString()} (
+                                                    {earnedReturnsPercentage}%)
+                                                </p>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </>
+                        )}
                     </div>
 
 
