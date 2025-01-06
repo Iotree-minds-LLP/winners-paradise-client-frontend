@@ -1,71 +1,73 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import backImage from "../../assets/Images/backImage.jpg";
 import { useNavigate } from "react-router-dom";
 import backButton from "../../assets/Logos/backButton.png";
 import uploadImage from "../../assets/Images/upload.png";
 
 const AadharUpload = () => {
-    const [isLoading, setisLoading] = useState(false);
     const [frontImage, setFrontImage] = useState(null);
     const [backImagePreview, setBackImagePreview] = useState(null);
+    const [showCamera, setShowCamera] = useState(false);
+    const [currentImageSetter, setCurrentImageSetter] = useState(null);
+    const videoRef = useRef(null);
+    const canvasRef = useRef(null);
     const navigate = useNavigate();
 
-    const openCamera = async (setImage) => {
-        try {
-            // Open the device camera
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-            const video = document.createElement("video");
-            video.srcObject = stream;
-            video.play();
+    const startCamera = (setImage) => {
+        setCurrentImageSetter(() => setImage);
+        setShowCamera(true);
 
-            // Create a dialog for the video stream
-            const dialog = document.createElement("div");
-            dialog.style.position = "fixed";
-            dialog.style.top = "0";
-            dialog.style.left = "0";
-            dialog.style.width = "100vw";
-            dialog.style.height = "100vh";
-            dialog.style.background = "rgba(0, 0, 0, 0.8)";
-            dialog.style.display = "flex";
-            dialog.style.alignItems = "center";
-            dialog.style.justifyContent = "center";
-            dialog.appendChild(video);
+        const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
-            // Add capture button
-            const captureButton = document.createElement("button");
-            captureButton.textContent = "Capture";
-            captureButton.style.position = "absolute";
-            captureButton.style.bottom = "20px";
-            captureButton.style.padding = "10px 20px";
-            captureButton.style.background = "#0400CB";
-            captureButton.style.color = "#fff";
-            captureButton.style.border = "none";
-            captureButton.style.borderRadius = "8px";
-            dialog.appendChild(captureButton);
+        const constraints = {
+            video: {
+                facingMode: isMobile ? { exact: "environment" } : "user", // Back camera for mobile, front for desktop
+            },
+        };
 
-            // Handle capture button click
-            captureButton.onclick = () => {
-                const canvas = document.createElement("canvas");
-                canvas.width = video.videoWidth;
-                canvas.height = video.videoHeight;
-                const context = canvas.getContext("2d");
-                context.drawImage(video, 0, 0, canvas.width, canvas.height);
-                const base64 = canvas.toDataURL("image/jpeg");
-                setImage(base64);
-                stream.getTracks().forEach((track) => track.stop());
-                dialog.remove();
-            };
+        navigator.mediaDevices
+            .getUserMedia(constraints)
+            .then((stream) => {
+                videoRef.current.srcObject = stream;
+                videoRef.current.play();
+            })
+            .catch((err) => {
+                console.error("Error accessing the camera:", err);
+                setShowCamera(false);
+            });
+    };
 
-            // Append dialog to the body
-            document.body.appendChild(dialog);
-        } catch (error) {
-            console.error("Error accessing the camera:", error);
+
+    const capturePhoto = () => {
+        const canvas = canvasRef.current;
+        const video = videoRef.current;
+        const context = canvas.getContext("2d");
+
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const base64Image = canvas.toDataURL("image/jpeg");
+        currentImageSetter(base64Image);
+
+        stopCamera();
+    };
+
+    const stopCamera = () => {
+        const video = videoRef.current;
+        const stream = video.srcObject;
+
+        if (stream) {
+            const tracks = stream.getTracks();
+            tracks.forEach((track) => track.stop());
         }
+
+        setShowCamera(false);
     };
 
     return (
         <>
-            <div className="sm:ml-72 relative bg-white">
+            <div className="sm:ml-72 relative bg-white h-screen overflow-y-auto">
                 <img
                     src={backImage}
                     className="opacity-30 hidden md:block absolute inset-0 object-cover z-0 w-full"
@@ -86,50 +88,91 @@ const AadharUpload = () => {
                     </div>
 
                     <div className="flex justify-between">
-                        <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10 mx-6">
+                        <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10">
                             Upload AADHAR card
                         </h1>
                     </div>
 
-                    <div className="flex flex-wrap gap-10 p-4 md:p-10 grid grid-cols-1 md:grid-cols-3">
-                        <div className="w-full md:full flex items-center text-start justify-between p-4 border border-2 border-dotted border-gray-300">
-                            <div className="flex flex-col">
-                                <p className="text-sm">Upload</p>
-                                <p className="text-lg font-bold">AADHAR CARD FRONT</p>
+                    <div className="flex flex-col md:flex-row  gap-10 p-4">
+                        <div
+                            className={`flex flex-col text-center items-center justify-start p-4 border border-2 border-dotted border-gray-300 relative w-full max-w-md rounded-md ${frontImage ? "bg-[#F1F1FF]" : ""
+                                }`}
+                        >       {frontImage ? (
+                            <div className="w-full h-auto">
+                                <img
+                                    src={frontImage}
+                                    className="w-full max-h-50 object-contain"
+                                    alt="Uploaded Front"
+                                />
                             </div>
-                            <div
-                                className="ml-4 p-2 rounded-2xl cursor-pointer"
-                                style={{ backgroundColor: "#D4D4FF" }}
-                                onClick={() => openCamera(setFrontImage)}
-                            >
-                                {frontImage ? (
-                                    <img src={frontImage} className="w-10 h-auto" alt="Uploaded" />
-                                ) : (
+                        ) : null}
+                            <div className="mt-4 flex flex-row items-center justify-between w-full px-4">
+                                <div className="flex flex-col text-start">
+                                    <p className="text-sm">Upload</p>
+                                    <p className="text-lg font-bold">AADHAR CARD FRONT</p>
+                                </div>
+                                <div
+                                    className="p-2 rounded-2xl cursor-pointer"
+                                    style={{ backgroundColor: "#D4D4FF" }}
+                                    onClick={() => startCamera(setFrontImage)}
+                                >
                                     <img src={uploadImage} className="w-10 h-auto" alt="Upload Icon" />
-                                )}
+                                </div>
                             </div>
                         </div>
 
-                        <div className="flex w-full items-center text-start justify-between p-4 border border-2 border-dotted border-gray-300">
-                            <div className="flex flex-col">
-                                <p className="text-sm">Upload</p>
-                                <p className="text-lg font-bold">AADHAR CARD BACK</p>
-                            </div>
-                            <div
-                                className="ml-4 p-2 rounded-2xl cursor-pointer"
-                                style={{ backgroundColor: "#D4D4FF" }}
-                                onClick={() => openCamera(setBackImagePreview)}
-                            >
-                                {backImagePreview ? (
-                                    <img src={backImagePreview} className="w-10 h-auto" alt="Uploaded" />
-                                ) : (
+                        <div
+                            className={`flex flex-col text-center items-center justify-start p-4 border border-2 border-dotted border-gray-300 relative w-full max-w-md rounded-md ${backImagePreview ? "bg-[#F1F1FF]" : ""
+                                }`}
+                        >
+                            {backImagePreview ? (
+                                <div className="w-full h-auto">
+                                    <img
+                                        src={backImagePreview}
+                                        className="w-full max-h-50 object-contain"
+                                        alt="Uploaded Back"
+                                    />
+                                </div>
+                            ) : null}
+                            <div className="mt-4 flex flex-row items-center justify-between w-full px-4">
+                                <div className="flex flex-col text-start">
+                                    <p className="text-sm">Upload</p>
+                                    <p className="text-lg font-bold">AADHAR CARD BACK</p>
+                                </div>
+                                <div
+                                    className="p-2 rounded-2xl cursor-pointer"
+                                    style={{ backgroundColor: "#D4D4FF" }}
+                                    onClick={() => startCamera(setBackImagePreview)}
+                                >
                                     <img src={uploadImage} className="w-10 h-auto" alt="Upload Icon" />
-                                )}
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
+
+            {showCamera && (
+                <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
+                    <video ref={videoRef} className="w-full md:w-1/2 rounded-md" autoPlay playsInline />
+                    <canvas ref={canvasRef} className="hidden" />
+                    <div className="absolute bottom-10 flex gap-4">
+                        <button
+                            onClick={capturePhoto}
+                            className="px-6 py-2 bg-blue-500 text-white font-bold rounded-lg"
+                        >
+                            Capture
+                        </button>
+                        <button
+                            onClick={stopCamera}
+                            className="px-6 py-2 bg-red-500 text-white font-bold rounded-lg"
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            )}
         </>
     );
 };
