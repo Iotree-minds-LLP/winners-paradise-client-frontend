@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import "../App.css";
 import Signup from "../pages/Authorization/signup";
 import OtpVerification from '../pages/Authorization/otpVerification';
@@ -46,17 +46,24 @@ const routes = [
   { path: "/kyc/aadhar-card-upload", element: <AadharUpload /> },
   { path: "/dashboard/investment-details", element: <InvestmentDetails /> },
   { path: "/kyc/pan-card-upload", element: <PanUpload /> },
-
   { path: "/kyc/selfie-upload", element: <SelfieUpload /> },
   { path: "/kyc/cancelled-checque-upload", element: <ChequeUpload /> },
-
 ];
 
 function AppLayout() {
   const location = useLocation();
-  const hideSidebarRoutes = ["/", "/register", "/edit-customer-details"];
+  const navigate = useNavigate();
 
+  const hideSidebarRoutes = ["/", "/register", "/edit-customer-details"];
   const isSidebarHidden = hideSidebarRoutes.includes(location.pathname);
+
+  useEffect(() => {
+    const customerDetails = localStorage.getItem("customerDetails");
+    const publicRoutes = ["/", "/register"];
+    if (customerDetails && publicRoutes.includes(location.pathname)) {
+      navigate("/dashboard"); // Redirect to homepage if customerDetails exist
+    }
+  }, [location, navigate]);
 
   return (
     <div className="App">
