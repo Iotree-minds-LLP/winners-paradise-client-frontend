@@ -11,6 +11,7 @@ import image2 from "../../assets/Images/robo 1 (1).png";
 import { goBack } from "../../utils/Functions/goBackScreen";
 import { FormControl, FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { CheckBox } from "@mui/icons-material";
+import { getKycDetailsByCustomerId } from "../../network/KycVerification/page";
 
 const KycStatusPage = () => {
 
@@ -19,12 +20,29 @@ const KycStatusPage = () => {
     const [customerDetails, setCustomerDetails] = useState([]);
     const [isModalOpen, setisModalOpen] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const data = localStorage.getItem("customerDetails");
+        const customer = JSON.parse(data);
+        onformSubmit2(customer._id);
+    }, []);
+
+
+    const onformSubmit2 = async (id) => {
+        try {
+            const res = await getKycDetailsByCustomerId(id);
+            console.log(res, "Res")
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
     const data = [
         { id: 1, status: "Uplaod", title: "AADHAR CARD", uploaded: 1, backgroundColor: '#F5F5F5', textColor: '#000094' },
         { id: 2, status: "Rejected", title: "PAN CARD", uploaded: 2, backgroundColor: '#FFDA99', textColor: '#533400' },
         { id: 3, status: "Cleared", title: "CANCELLED CHEQUE", uploaded: 3, backgroundColor: '#BBFF99', textColor: '#1C5400' },
         { id: 4, status: "Review Pending", title: "SELFIE", uploaded: 4, backgroundColor: '#000094', textColor: '#ffffff' },
-
     ];
 
     const handleUpload = (item) => {

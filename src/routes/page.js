@@ -20,6 +20,7 @@ import Payouts from '../pages/payouts/page';
 import KycStatusPage from '../pages/kycStatus/kyc';
 import CatalogDetails from '../pages/Catalog/catalogDetails';
 import AadharUpload from '../pages/Kyc/aadharUpload';
+import InvestmentDetails from '../pages/Investments/viewnvestmetDetails';
 
 const routes = [
   { path: "/", element: <OtpVerification /> },
@@ -40,6 +41,7 @@ const routes = [
   { path: "/update-language-preference", element: <LanguagePreference /> },
   { path: "/catalogs/catalog-details", element: <CatalogDetails /> },
   { path: "/kyc/aadhar-card-upload", element: <AadharUpload /> },
+  { path: "/dashboard/investment-details", element: <InvestmentDetails /> },
 ];
 
 function AppLayout() {
