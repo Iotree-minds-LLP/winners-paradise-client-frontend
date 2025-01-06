@@ -21,6 +21,9 @@ import KycStatusPage from '../pages/kycStatus/kyc';
 import CatalogDetails from '../pages/Catalog/catalogDetails';
 import AadharUpload from '../pages/Kyc/aadharUpload';
 import InvestmentDetails from '../pages/Investments/viewnvestmetDetails';
+import PanUpload from '../pages/Kyc/panUpload';
+import SelfieUpload from '../pages/Kyc/selfieUpload';
+import ChequeUpload from '../pages/Kyc/uploadCheque';
 
 const routes = [
   { path: "/", element: <OtpVerification /> },
@@ -42,6 +45,11 @@ const routes = [
   { path: "/catalogs/catalog-details", element: <CatalogDetails /> },
   { path: "/kyc/aadhar-card-upload", element: <AadharUpload /> },
   { path: "/dashboard/investment-details", element: <InvestmentDetails /> },
+  { path: "/kyc/pan-card-upload", element: <PanUpload /> },
+
+  { path: "/kyc/selfie-upload", element: <SelfieUpload /> },
+  { path: "/kyc/cancelled-checque-upload", element: <ChequeUpload /> },
+
 ];
 
 function AppLayout() {

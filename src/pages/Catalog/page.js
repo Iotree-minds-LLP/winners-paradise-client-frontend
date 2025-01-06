@@ -67,8 +67,9 @@ const Catalogs = () => {
 
                         </p>
                         <div className="flex flex-row text-white">
-                            <img src={bellIcon} className="w-auto h-12 mt-4" alt="Bell Icon"></img>
-                            <Link to="/profile-and-settings">
+                            <Link to="/notifications">
+                                <img src={bellIcon} className="w-auto h-12 mt-4" alt="Bell Icon"></img>
+                            </Link>   <Link to="/profile-and-settings">
                                 <img src={userIcon} className="w-auto h-12 mt-4" alt="User Icon"></img>
                             </Link>
                         </div>

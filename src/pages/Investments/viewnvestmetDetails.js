@@ -190,7 +190,7 @@ const InvestmentDetails = () => {
                     </div>
 
                     <div className="z-10 my-4 grid grid-cols-1 md:grid-cols-3 px-5 gap-4 mx-0 ">
-                        
+
                         {pastPayouts?.map((payout, index) => (
                             <>
                                 <div

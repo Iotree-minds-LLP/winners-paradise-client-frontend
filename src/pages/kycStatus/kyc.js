@@ -40,14 +40,26 @@ const KycStatusPage = () => {
 
     const data = [
         { id: 1, status: "Uplaod", title: "AADHAR CARD", uploaded: 1, backgroundColor: '#F5F5F5', textColor: '#000094' },
-        { id: 2, status: "Rejected", title: "PAN CARD", uploaded: 2, backgroundColor: '#FFDA99', textColor: '#533400' },
-        { id: 3, status: "Cleared", title: "CANCELLED CHEQUE", uploaded: 3, backgroundColor: '#BBFF99', textColor: '#1C5400' },
-        { id: 4, status: "Review Pending", title: "SELFIE", uploaded: 4, backgroundColor: '#000094', textColor: '#ffffff' },
+        { id: 2, status: "Uplaod", title: "PAN CARD", uploaded: 2, backgroundColor: '#F5F5F5', textColor: '#000094' },
+        { id: 3, status: "Uplaod", title: "CANCELLED CHEQUE", uploaded: 3, backgroundColor: '#F5F5F5', textColor: '#000094' },
+        { id: 4, status: "Uplaod", title: "SELFIE", uploaded: 4, backgroundColor: '#F5F5F5', textColor: '#000094' },
     ];
 
     const handleUpload = (item) => {
         if (item.status === "Uplaod" && item.title === "AADHAR CARD") {
             navigate("/kyc/aadhar-card-upload")
+        }
+
+        if (item.status === "Uplaod" && item.title === "PAN CARD") {
+            navigate("/kyc/pan-card-upload")
+        }
+
+        if (item.status === "Uplaod" && item.title === "CANCELLED CHEQUE") {
+            navigate("/kyc/cancelled-checque-upload")
+        }
+
+        if (item.status === "Uplaod" && item.title === "SELFIE") {
+            navigate("/kyc/selfie-upload")
         }
     }
 

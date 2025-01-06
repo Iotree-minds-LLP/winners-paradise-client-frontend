@@ -87,9 +87,12 @@ const Payouts = () => {
                             {/* <p className="mt-6 sm:hidden text-white font-semibold text-sm" onClick={toggleModal}>Logout</p> */}
                         </p>
                         <div className="flex flex-row text-white">
-                            <img src={bellIcon} className="w-auto h-12 mt-4" alt="Bell Icon"></img>
-                            <img src={userIcon} className="w-auto h-12 mt-4" alt="User Icon"></img>
-
+                            <Link to="/notifications">
+                                <img src={bellIcon} className="w-auto h-12 mt-4" alt="Bell Icon"></img>
+                            </Link>
+                            <Link to="/my-profile">
+                                <img src={userIcon} className="w-auto h-12 mt-4" alt="User Icon"></img>
+                            </Link>
                         </div>
                     </div>
 
@@ -134,7 +137,7 @@ const Payouts = () => {
 
 
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 px-5 gap-4 mx-0 md:mx-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 px-5 gap-4 mx-0 md:mx-4 py-0 sm:py-4 md:py-0">
                         {payoutsToDisplay?.map((payout, index) => (
                             <>
                                 <div

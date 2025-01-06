@@ -5,9 +5,8 @@ import backButton from "../../assets/Logos/backButton.png";
 import uploadImage from "../../assets/Images/upload.png";
 import { creteCustomerKycRequest } from "../../network/KycVerification/page";
 import { useToast } from "../../context/Toast/toastHook";
-import { useForm } from "react-hook-form";
 
-const AadharUpload = () => {
+const PanUpload = () => {
     const [frontImage, setFrontImage] = useState(null);
     const [backImagePreview, setBackImagePreview] = useState(null);
     const [showCamera, setShowCamera] = useState(false);
@@ -18,13 +17,6 @@ const AadharUpload = () => {
     const [isLoading, setisLoading] = useState(false)
     const [ErrorMessage, setErrorMessage] = useState(null);
     const [customerDetails, setcustomerDetails] = useState({})
-
-    const {
-        register,
-        handleSubmit,
-        setValue,
-        formState: { errors },
-    } = useForm();
 
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
@@ -93,8 +85,8 @@ const AadharUpload = () => {
     const handleContinue = async () => {
         setisLoading(true);
 
-        if (!frontImage || !backImagePreview) {
-            setErrorMessage("Please capture both front and back images before continuing.");
+        if (!frontImage) {
+            setErrorMessage("Please capture image before continuing.");
             setisLoading(false);
         }
 
@@ -105,9 +97,9 @@ const AadharUpload = () => {
             customer_selfie: frontImage,
             blank_cheque_file: frontImage,
         }
-
         try {
             const res = await creteCustomerKycRequest(payload, customerDetails._id);
+            console.log(res, "Res")
             if (res?.data?.status === 200) {
                 setisLoading(false);
                 handleSuccessClick("KYC Request Submitted Successfully");
@@ -141,13 +133,13 @@ const AadharUpload = () => {
                                 className="w-8 h-8"
                                 alt="Back"
                             />
-                            <p className="text-white font-semibold my-1">Upload AADHAR card</p>
+                            <p className="text-white font-semibold my-1">Upload PAN card</p>
                         </div>
                     </div>
 
                     <div className="flex justify-between">
                         <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10">
-                            Upload AADHAR card
+                            Upload PAN card
                         </h1>
                     </div>
 
@@ -168,40 +160,12 @@ const AadharUpload = () => {
                             <div className="mt-4 flex flex-row items-center justify-between w-full px-4">
                                 <div className="flex flex-col text-start">
                                     <p className="text-sm">Upload</p>
-                                    <p className="text-lg font-bold">AADHAR CARD FRONT</p>
+                                    <p className="text-lg font-bold">PAN CARD</p>
                                 </div>
                                 <div
                                     className="p-2 rounded-2xl cursor-pointer"
                                     style={{ backgroundColor: "#D4D4FF" }}
                                     onClick={() => startCamera(setFrontImage)}
-                                >
-                                    <img src={uploadImage} className="w-10 h-auto" alt="Upload Icon" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div
-                            className={`flex flex-col text-center items-center justify-start p-4 border border-2 border-dotted border-gray-300 relative w-full max-w-md rounded-md ${backImagePreview ? "bg-[#F1F1FF]" : ""
-                                }`}
-                        >
-                            {backImagePreview ? (
-                                <div className="w-full h-auto">
-                                    <img
-                                        src={backImagePreview}
-                                        className="w-full max-h-50 object-contain"
-                                        alt="Uploaded Back"
-                                    />
-                                </div>
-                            ) : null}
-                            <div className="mt-4 flex flex-row items-center justify-between w-full px-4">
-                                <div className="flex flex-col text-start">
-                                    <p className="text-sm">Upload</p>
-                                    <p className="text-lg font-bold">AADHAR CARD BACK</p>
-                                </div>
-                                <div
-                                    className="p-2 rounded-2xl cursor-pointer"
-                                    style={{ backgroundColor: "#D4D4FF" }}
-                                    onClick={() => startCamera(setBackImagePreview)}
                                 >
                                     <img src={uploadImage} className="w-10 h-auto" alt="Upload Icon" />
                                 </div>
@@ -244,7 +208,6 @@ const AadharUpload = () => {
                         )}
                     </div>
                 </div>
-
             </div>
 
             <div>
@@ -313,4 +276,4 @@ const AadharUpload = () => {
     );
 };
 
-export default AadharUpload;
+export default PanUpload;
