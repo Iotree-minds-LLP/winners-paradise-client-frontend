@@ -264,7 +264,7 @@ const OtpVerification = () => {
                                                 label={translations.loginScreen.sendOtpScreen.phoneField[language]}
                                                 variant="outlined"
                                                 size="medium"
-                                                type="text"
+                                                type="number"
                                                 fullWidth
                                                 error={!!errors.phoneNumber}
                                                 helperText={errors.phoneNumber ? errors.phoneNumber.message : ''}
@@ -275,6 +275,27 @@ const OtpVerification = () => {
                                                         message: 'Please enter a valid 10-digit phone number',
                                                     },
                                                 })}
+                                                InputProps={{
+                                                    inputProps: {
+                                                        style: {
+                                                            MozAppearance: "textfield", // Removes spinner in Firefox
+                                                        },
+                                                    },
+                                                }}
+                                                onInput={(e) => {
+                                                    if (e.target.value.length > 10) {
+                                                        e.target.value = e.target.value.slice(0, 10); // Truncate input to 12 digits
+                                                    }
+                                                }}
+                                                sx={{
+                                                    "& input[type=number]": {
+                                                        MozAppearance: "textfield", // Removes spinner in Firefox
+                                                    },
+                                                    "& input[type=number]::-webkit-inner-spin-button, & input[type=number]::-webkit-outer-spin-button": {
+                                                        WebkitAppearance: "none", // Removes spinner in Chrome, Safari
+                                                        margin: 0,
+                                                    },
+                                                }}
                                             />
                                         </div>
                                         <div className="mt-5">
@@ -338,13 +359,27 @@ const OtpVerification = () => {
                                                 label={translations.loginScreen.otpConfirmation.OtpField[language]}
                                                 variant="outlined"
                                                 size="medium"
-                                                type="text"
+                                                type="number"
                                                 fullWidth
                                                 error={!!errors.enteredOtp}
                                                 helperText={errors.enteredOtp ? errors.enteredOtp.message : ''}
                                                 {...register('enteredOtp', {
                                                     required: 'OTP is required',
                                                 })}
+                                                onInput={(e) => {
+                                                    if (e.target.value.length > 6) {
+                                                        e.target.value = e.target.value.slice(0, 6); // Truncate input to 12 digits
+                                                    }
+                                                }}
+                                                sx={{
+                                                    "& input[type=number]": {
+                                                        MozAppearance: "textfield", // Removes spinner in Firefox
+                                                    },
+                                                    "& input[type=number]::-webkit-inner-spin-button, & input[type=number]::-webkit-outer-spin-button": {
+                                                        WebkitAppearance: "none", // Removes spinner in Chrome, Safari
+                                                        margin: 0,
+                                                    },
+                                                }}
                                             />
                                         </div>
                                         <p className="text-centerlg:text-start  text-sm mt-2" style={{ color: "#49454F" }}>
