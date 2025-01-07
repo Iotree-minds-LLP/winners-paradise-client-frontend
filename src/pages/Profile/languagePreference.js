@@ -80,7 +80,7 @@ const LanguagePreference = () => {
                 localStorage.setItem("customerDetails", JSON.stringify(resp.data.data.data));
                 setErrorMessage("");
                 handleSuccessClick(resp.data.data.message);
-                navigate("/dashboard");
+                navigate("/catalogs");
             }
             else {
                 setErrorMessage(resp.data.error);
