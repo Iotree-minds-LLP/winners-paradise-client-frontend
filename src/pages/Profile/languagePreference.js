@@ -21,7 +21,7 @@ const LanguagePreference = () => {
     const [isLoading, setisLoading] = useState(false)
     const [ErrorMessage, setErrorMessage] = useState("")
     const [isModalOpen, setisModalOpen] = useState(false);
-    const [selectedValue, setSelectedValue] = useState('English'); // Default selected value
+    const [selectedValue, setSelectedValue] = useState('english'); // Default selected value
 
     const handleChange = (event) => {
         setLanguage(event.target.value);
@@ -46,7 +46,7 @@ const LanguagePreference = () => {
     const onformSubmit2 = async (id) => {
         const resp = await getCustomerById(id);
         if (resp.data.status === 200) {
-            const formattedLanguage = resp.data.data.customer.language_preference.charAt(0).toUpperCase() + resp.data.data.customer.language_preference.slice(1).toLowerCase();
+            const formattedLanguage = resp.data.data.customer.language_preference;
             setLanguage(formattedLanguage);
             setSelectedValue(formattedLanguage);
             setCustomerDetailsFromAPI(resp.data.data.customer)
@@ -140,7 +140,7 @@ const LanguagePreference = () => {
                                         className="gap-4 sm:gap-6"
                                     >
                                         <FormControlLabel
-                                            value="English"
+                                            value="english"
                                             control={
                                                 <Radio
                                                     sx={{
@@ -155,7 +155,7 @@ const LanguagePreference = () => {
                                             style={{ color: 'rgba(2, 0, 101, 1)', fontWeight: 'bold' }}
                                         />
                                         <FormControlLabel
-                                            value="Kannada"
+                                            value="kannada"
                                             control={
                                                 <Radio
                                                     sx={{

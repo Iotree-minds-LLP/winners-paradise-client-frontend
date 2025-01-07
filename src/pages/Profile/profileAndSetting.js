@@ -61,7 +61,7 @@ const ProfileAndSettings = () => {
                                 </div>
                             </Link>
                         </div>
-                        
+
                         <Link to="/Kyc-status">
                             <div className="p-4 md:p-6 rounded-lg md:w-1/2" style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}>
                                 <div className="flex justify justify-between">
@@ -70,13 +70,14 @@ const ProfileAndSettings = () => {
                                 </div>
                             </div>
                         </Link>
-
-                        <div className="p-4 md:p-6 rounded-lg md:w-1/2" style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}>
-                            <div className="flex justify justify-between">
-                                <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>Bank Account</p>
-                                <img src={acrrowright} className="w-auto h-8" alt="Arrow Icon"></img>
+                        <Link to="/profile-and-settings/bank-details">
+                            <div className="p-4 md:p-6 rounded-lg md:w-1/2" style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}>
+                                <div className="flex justify justify-between">
+                                    <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>Bank Account</p>
+                                    <img src={acrrowright} className="w-auto h-8" alt="Arrow Icon"></img>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
 
                         <div className="p-4 md:p-6 rounded-lg md:w-1/2" style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}>
                             <Link to="/update-language-preference">
