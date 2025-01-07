@@ -95,27 +95,23 @@
 
         let deferredPrompt;
 
-        // Check if the app is already installed
         if (isPWA()) {
           console.log("App is already running as a PWA");
-          return; // Don't show the popup if it's a PWA
+          return;
         }
 
-        // Listen for the beforeinstallprompt event
         window.addEventListener('beforeinstallprompt', (e) => {
           console.log('beforeinstallprompt event fired');
-          e.preventDefault(); // Prevent the default mini-infobar from appearing
-          deferredPrompt = e; // Save the event for later use
+          e.preventDefault();
+          deferredPrompt = e;
 
-          // Show the popup after a delay
           setTimeout(() => {
             if (deferredPrompt) {
-              pwaPopup.style.display = 'flex'; // Show the popup
+              pwaPopup.style.display = 'flex';
             }
-          }, 5000); // 10 seconds delay
+          }, 5000);
         });
 
-        // Handle the Proceed button
         pwaProceed.addEventListener('click', () => {
           if (deferredPrompt) {
             deferredPrompt.prompt(); // Show the install prompt
@@ -125,15 +121,14 @@
               } else {
                 console.log('User dismissed the PWA installation prompt');
               }
-              deferredPrompt = null; // Clear the prompt
+              deferredPrompt = null;
             });
           }
-          pwaPopup.style.display = 'none'; // Hide the popup
+          pwaPopup.style.display = 'none';
         });
 
-        // Handle the Cancel button
         pwaCancel.addEventListener('click', () => {
-          pwaPopup.style.display = 'none'; // Hide the popup
+          pwaPopup.style.display = 'none';
         });
       });
 
