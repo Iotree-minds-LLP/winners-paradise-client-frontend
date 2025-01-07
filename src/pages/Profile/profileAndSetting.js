@@ -70,6 +70,7 @@ const ProfileAndSettings = () => {
                                 </div>
                             </div>
                         </Link>
+
                         <Link to="/profile-and-settings/bank-details">
                             <div className="p-4 md:p-6 rounded-lg md:w-1/2" style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}>
                                 <div className="flex justify justify-between">

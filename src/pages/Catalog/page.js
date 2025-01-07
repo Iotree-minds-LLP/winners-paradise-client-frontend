@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllCatalogByCustomerId } from "../../network/Catalog/page";
+import { getAllCatalogByCustomerId, getAllCatalogByReturnCalculator } from "../../network/Catalog/page";
 import profileIcon from "../../assets/Logos/trailing-icon.png"
 import belIcon from "../../assets/Logos/belIcon.png"
 import { TextField } from "@mui/material";
@@ -16,8 +16,16 @@ import footerLogo4 from "../../assets/Logos/onboardingLogos/icon-container (1).p
 import backImage from "../../assets/Images/backImage.jpg"
 import { Link, useNavigate } from "react-router-dom";
 import { useInvestment } from "../../context/Investment/investmentContext";
+import { useForm } from "react-hook-form";
 
 const Catalogs = () => {
+
+    const {
+        control,
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
 
     const [isModalOpen, setisModalOpen] = useState(false);
     const navigate = useNavigate();
@@ -46,6 +54,19 @@ const Catalogs = () => {
             setlistCatalogs(resp.data.catalogs)
         }
     };
+
+    const onSubmit = async (data) => {
+
+        const payload = {
+            amount: data.returnCalculator
+        }
+
+        const resp = await getAllCatalogByReturnCalculator(payload);
+
+        if (resp?.data?.catalogs) {
+            setlistCatalogs(resp.data.catalogs)
+        }
+    }
 
     return (
         <>
@@ -82,40 +103,72 @@ const Catalogs = () => {
                         <p className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer	" onClick={toggleModal}>Logout</p>
                     </div>
 
-                    {/* Catalogue Heading */}
-
-
-                    {/* Return Calculator */}
                     <div className="text-start rounded-lg mt-20 md:mt-5  p-4 grid md:grid-cols-3 grid-cols-1">
                         <div
                             className="p-6 rounded-lg"
                             style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}
                         >
+
                             <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '14px' }}>
                                 Return Calculator
                             </p>
 
-                            <div className="mt-3 flex justify-between gap-4">
-                                <TextField
-                                    label="Enter the amount"
-                                    variant="outlined"
-                                    size="medium"
-                                    fullWidth
-                                />
-                                <button
-                                    className="text-white p-4 rounded-lg"
-                                    style={{ background: 'rgba(0, 0, 148, 1)' }}
-                                >
-                                    <img className="w-6 h-auto" src={calculateicon} alt="Calculate Icon"></img>
-                                </button>
-                            </div>
+                            <form onSubmit={handleSubmit(onSubmit)}>
+                                <div className="mt-3 flex justify-between gap-4">
+                                    <TextField
+                                        label="Returns Calculator"
+                                        variant="outlined"
+                                        size="medium"
+                                        type="number"
+                                        fullWidth
+                                        error={!!errors.returnCalculator}
+                                        helperText={errors.returnCalculator ? errors.returnCalculator.message : ''}
+                                        {...register('returnCalculator', {
+                                            required: 'This field is required',
+                                        })}
+                                        InputProps={{
+                                            inputProps: {
+                                                style: {
+                                                    MozAppearance: "textfield",
+                                                },
+                                            },
+                                        }}
+                                        onInput={(e) => {
+                                            if (e.target.value.length > 10) {
+                                                e.target.value = e.target.value.slice(0, 10);
+                                            }
+                                        }}
+                                        sx={{
+                                            "& input[type=number]": {
+                                                MozAppearance: "textfield",
+                                            },
+                                            "& input[type=number]::-webkit-inner-spin-button, & input[type=number]::-webkit-outer-spin-button": {
+                                                WebkitAppearance: "none",
+                                                margin: 0,
+                                            },
+                                        }}
+                                    />
+                                    <div>
+                                        <button
+                                            type="submit"
+                                            className="text-white p-4 rounded-lg"
+                                            style={{ background: 'rgba(0, 0, 148, 1)' }}
+                                        >
+                                            <img className="w-9 h-auto" src={calculateicon} alt="Calculate Icon"></img>
+
+                                        </button>
+                                    </div>
+
+                                </div>
+
+
+                            </form>
                         </div>
                     </div>
 
-                    {/* Investment Cards */}
                     <div className="text-start rounded-lg p-4 grid md:grid-cols-3 grid-cols-1 gap-4 mb-36">
                         {listCatalogs.map((item, index) => {
-                            // Calculate total return
+
                             const totalReturn =
                                 item.min_amt *
                                 (item.int_percent_per_month / 100) *
@@ -166,7 +219,7 @@ const Catalogs = () => {
                                             className="text-md font-bold my-2"
                                             style={{ color: 'rgba(0, 0, 148, 1)' }}
                                         >
-                                            ₹{totalReturn.toLocaleString()}
+                                            ₹{item.returns_per_month}
                                         </p>
                                     </div>
                                 </div>

@@ -19,6 +19,7 @@ import { useToast } from "../../context/Toast/toastHook";
 import { getAllInvestments } from "../../network/Investments/page";
 
 const OtpVerification = () => {
+    
     const { language, setLanguage } = useLanguage();
 
     const {

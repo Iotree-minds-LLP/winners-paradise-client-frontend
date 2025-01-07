@@ -86,7 +86,6 @@
         console.log("DOM fully loaded and parsed");
 
         function isPWA() {
-          console.log("Checking PWA status...");
           return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
         }
 
@@ -96,50 +95,48 @@
 
         let deferredPrompt;
 
+        // Check if the app is already installed
+        if (isPWA()) {
+          console.log("App is already running as a PWA");
+          return; // Don't show the popup if it's a PWA
+        }
+
         // Listen for the beforeinstallprompt event
         window.addEventListener('beforeinstallprompt', (e) => {
           console.log('beforeinstallprompt event fired');
           e.preventDefault(); // Prevent the default mini-infobar from appearing
           deferredPrompt = e; // Save the event for later use
 
-          if (!isPWA()) {
-            console.log("App is running in a browser, not as a PWA");
+          // Show the popup after a delay
+          setTimeout(() => {
+            if (deferredPrompt) {
+              pwaPopup.style.display = 'flex'; // Show the popup
+            }
+          }, 5000); // 10 seconds delay
+        });
 
-            // Add event listeners for buttons
-            pwaProceed.addEventListener('click', () => {
-              if (deferredPrompt) {
-                // Show the install prompt
-                deferredPrompt.prompt();
-
-                // Wait for the user to respond to the prompt
-                deferredPrompt.userChoice.then((choiceResult) => {
-                  if (choiceResult.outcome === 'accepted') {
-                    console.log('User accepted the PWA installation prompt');
-                  } else {
-                    console.log('User dismissed the PWA installation prompt');
-                  }
-                  deferredPrompt = null; // Clear the prompt
-                });
+        // Handle the Proceed button
+        pwaProceed.addEventListener('click', () => {
+          if (deferredPrompt) {
+            deferredPrompt.prompt(); // Show the install prompt
+            deferredPrompt.userChoice.then((choiceResult) => {
+              if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the PWA installation prompt');
+              } else {
+                console.log('User dismissed the PWA installation prompt');
               }
-
-              pwaPopup.style.display = 'none'; // Hide the popup
+              deferredPrompt = null; // Clear the prompt
             });
-
-            pwaCancel.addEventListener('click', () => {
-              pwaPopup.style.display = 'none'; // Hide the popup
-            });
-
-            // Delay showing the popup for 10 seconds
-            setTimeout(() => {
-              if (deferredPrompt) {
-                pwaPopup.style.display = 'flex'; // Show the popup
-              }
-            }, 10000); // 10 seconds delay
-          } else {
-            console.log("App is running as a PWA");
           }
+          pwaPopup.style.display = 'none'; // Hide the popup
+        });
+
+        // Handle the Cancel button
+        pwaCancel.addEventListener('click', () => {
+          pwaPopup.style.display = 'none'; // Hide the popup
         });
       });
+
     } catch (error) {
       console.error("Error in script execution:", error);
     }
