@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import imageLogo from "../../assets/Logos/logo1.png";
 import cataloglogo from "../../assets/Logos/sidebarLogos/catalog.png"
@@ -9,21 +9,24 @@ const Sidebar = () => {
     const location = useLocation();
     const currentUrl = location.pathname;
     const [investments, setInvestments] = useState(false)
+    const navigate = useNavigate();
 
     useEffect(() => {
         const url = currentUrl;
         let capitalizedUrl = url.charAt(1).toUpperCase() + url.slice(2);
         setpath(capitalizedUrl);
-        console.log(currentUrl, "currentUrl")
     }, [location])
 
 
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
+        if (!data) {
+            navigate("/")
+            return;
+        }
         const customer = JSON.parse(data);
         onformSubmit(customer._id)
     }, []);
-
 
 
     const onformSubmit = async (id) => {

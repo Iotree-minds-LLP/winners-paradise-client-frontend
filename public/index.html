@@ -15,11 +15,69 @@
     rel="stylesheet">
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   <title>Algo Achievers</title>
+  <style>
+    /* Modal Styles */
+    #pwa-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      display: none;
+      /* Hidden by default */
+    }
+
+    #pwa-popup-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    #pwa-popup-content h2 {
+      margin-bottom: 10px;
+    }
+
+    #pwa-popup-content button {
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #pwa-proceed {
+      background: #020065;
+      color: white;
+    }
+
+    #pwa-cancel {
+      background: gray;
+      color: white;
+    }
+  </style>
 </head>
 
 <body class="gradient-background">
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
+
+  <!-- PWA Download Popup -->
+  <div id="pwa-popup">
+    <div id="pwa-popup-content">
+      <h2>Install App for a Better Experience</h2>
+      <p>Use our Progressive Web App for faster performance and offline capabilities.</p>
+      <button id="pwa-proceed">Proceed</button>
+      <button id="pwa-cancel">Cancel</button>
+    </div>
+  </div>
 
   <script>
     console.log("Script loaded");
@@ -32,58 +90,58 @@
           return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
         }
 
-        if (isPWA()) {
+        const pwaPopup = document.getElementById('pwa-popup');
+        const pwaProceed = document.getElementById('pwa-proceed');
+        const pwaCancel = document.getElementById('pwa-cancel');
 
-          let lastTouchEnd = 0;
+        let deferredPrompt;
 
-          document.addEventListener('touchend', (e) => {
-            const now = new Date().getTime();
-            if (now - lastTouchEnd <= 300) {
-              e.preventDefault();
-            }
-            lastTouchEnd = now;
-          });
+        // Listen for the beforeinstallprompt event
+        window.addEventListener('beforeinstallprompt', (e) => {
+          console.log('beforeinstallprompt event fired');
+          e.preventDefault(); // Prevent the default mini-infobar from appearing
+          deferredPrompt = e; // Save the event for later use
 
-          let lastTouchY = 0;
-          let preventPullToRefresh = false;
+          if (!isPWA()) {
+            console.log("App is running in a browser, not as a PWA");
 
-          const metaViewport = document.querySelector('meta[name="viewport"]');
-          if (metaViewport) {
-            metaViewport.setAttribute("content", "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no");
+            // Delay showing the popup for 10 seconds
+            setTimeout(() => {
+              // Show the popup
+              pwaPopup.style.display = 'flex';
+            }, 10000); // 10 seconds delay
+
+            // Proceed button
+            pwaProceed.addEventListener('click', () => {
+              if (deferredPrompt) {
+                // Show the install prompt
+                deferredPrompt.prompt();
+
+                // Wait for the user to respond to the prompt
+                deferredPrompt.userChoice.then((choiceResult) => {
+                  if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the PWA installation prompt');
+                  } else {
+                    console.log('User dismissed the PWA installation prompt');
+                  }
+                  deferredPrompt = null; // Clear the prompt
+                });
+              }
+
+              pwaPopup.style.display = 'none'; // Hide the popup
+            });
+
+            // Cancel button
+            pwaCancel.addEventListener('click', () => {
+              pwaPopup.style.display = 'none';
+            });
+          } else {
+            console.log("App is running as a PWA");
           }
-
-          document.addEventListener('gesturestart', (e) => e.preventDefault());
-          document.addEventListener('gesturechange', (e) => e.preventDefault());
-          document.addEventListener('gestureend', (e) => e.preventDefault());
-
-          document.addEventListener('touchmove', function (e) {
-            if (e.touches.length > 1) {
-              e.preventDefault();
-            }
-          }, { passive: false });
-
-
-          window.addEventListener('touchstart', (e) => {
-            if (e.touches.length != 1) return;
-            lastTouchY = e.touches[0].clientY;
-            preventPullToRefresh = window.scrollY === 0;
-          });
-
-          window.addEventListener('touchmove', (e) => {
-            const touchY = e.touches[0].clientY;
-            const touchYDelta = touchY - lastTouchY;
-
-            if (preventPullToRefresh && touchYDelta > 0) {
-              e.preventDefault();
-            }
-
-            lastTouchY = touchY;
-          });
-
-        } else {
-          console.log("App is running in a browser, not as a PWA");
-        }
+        });
       });
+
+
     } catch (error) {
       console.error("Error in script execution:", error);
     }

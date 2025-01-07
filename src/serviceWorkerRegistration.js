@@ -5,12 +5,11 @@ const isLocalhost = Boolean(
   window.location.hostname === '[::1]' ||
   window.location.href.startsWith('http://127.0.0.1:')
 );
-console.log(window.location.hostname)
 
 export function register(config) {
+
   if ('serviceWorker' in navigator) {
     const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
-
     window.addEventListener('load', () => {
       if (isLocalhost) {
         checkValidServiceWorker(swUrl, config);
@@ -22,6 +21,7 @@ export function register(config) {
 }
 
 function registerValidSW(swUrl, config) {
+  console.log("Hello")
   navigator.serviceWorker
     .register(swUrl)
     .then((registration) => {

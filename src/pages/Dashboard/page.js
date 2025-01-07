@@ -28,9 +28,13 @@ const DashboardPage = () => {
 
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
+        if (!data) {
+            navigate("/");
+            return;
+        }
         const customer = JSON.parse(data);
-        onformSubmit(customer._id)
-        onformSubmit2(customer._id)
+        onformSubmit(customer?._id)
+        onformSubmit2(customer?._id)
     }, []);
 
     const toggleModal = () => {
