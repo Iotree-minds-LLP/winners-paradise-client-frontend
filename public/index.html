@@ -78,15 +78,17 @@
       <button id="pwa-cancel">Cancel</button>
     </div>
   </div>
-
   <script>
     console.log("Script loaded");
     try {
       document.addEventListener("DOMContentLoaded", () => {
-        console.log("DOM fully loaded and parsed");
-
         function isPWA() {
           return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+        }
+
+        // Detect mobile devices
+        function isMobileDevice() {
+          return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
         }
 
         const pwaPopup = document.getElementById('pwa-popup');
@@ -100,6 +102,12 @@
           return;
         }
 
+        // Show PWA prompt only for mobile devices
+        if (!isMobileDevice()) {
+          console.log("Not a mobile device. PWA popup will not be shown.");
+          return;
+        }
+
         window.addEventListener('beforeinstallprompt', (e) => {
           console.log('beforeinstallprompt event fired');
           e.preventDefault();
@@ -107,9 +115,9 @@
 
           setTimeout(() => {
             if (deferredPrompt) {
-              pwaPopup.style.display = 'flex';
+              pwaPopup.style.display = 'flex'; // Show the popup after a delay
             }
-          }, 5000);
+          }, 5000); // Delay for 5 seconds
         });
 
         pwaProceed.addEventListener('click', () => {
@@ -124,18 +132,18 @@
               deferredPrompt = null;
             });
           }
-          pwaPopup.style.display = 'none';
+          pwaPopup.style.display = 'none'; // Hide the popup
         });
 
         pwaCancel.addEventListener('click', () => {
-          pwaPopup.style.display = 'none';
+          pwaPopup.style.display = 'none'; // Hide the popup
         });
       });
-
     } catch (error) {
       console.error("Error in script execution:", error);
     }
   </script>
+
 
 </body>
 

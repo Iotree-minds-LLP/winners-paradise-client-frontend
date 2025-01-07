@@ -35,7 +35,7 @@ const Catalogs = () => {
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
-        onformSubmit(customer._id)
+        onformSubmit()
     }, []);
 
     const toggleModal = () => {
@@ -48,8 +48,8 @@ const Catalogs = () => {
         navigate("/")
     }
 
-    const onformSubmit = async (id) => {
-        const resp = await getAllCatalogByCustomerId(id);
+    const onformSubmit = async () => {
+        const resp = await getAllCatalogByCustomerId();
         if (resp?.data?.catalogs) {
             setlistCatalogs(resp.data.catalogs)
         }

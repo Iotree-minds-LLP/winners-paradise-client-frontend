@@ -2,9 +2,9 @@ import axios from "axios";
 import { axiosInstance, axiosInstanceWithoutToken } from "../../axiosInstance/AxiosConfig/page";
 
 
-const getAllCatalogByCustomerId = async (id) => {
+const getAllCatalogByCustomerId = async () => {
     try {
-        const res = await axiosInstanceWithoutToken.post(`catalogs/list/${id}`);
+        const res = await axiosInstanceWithoutToken.post(`catalogs/list/`);
         const data = res.data;
         return { data };
     } catch (err) {

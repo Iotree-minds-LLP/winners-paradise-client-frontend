@@ -242,6 +242,18 @@ const EditCustomerProfile = () => {
                                 fullWidth
                                 {...register('address', {
                                     required: 'Address is required',
+                                    minLength: {
+                                        value: 3,
+                                        message: 'Residential Address must be at least 3 characters long',
+                                    },
+                                    maxLength: {
+                                        value: 30,
+                                        message: 'Residential Address cannot exceed 30 characters',
+                                    },
+                                    validate: {
+                                        noSpecialChars: (value) =>
+                                            /^[a-zA-Z\s]+$/.test(value) || 'State must contain only alphabets',
+                                    },
                                 })}
                                 error={!!errors.address}
                                 helperText={errors.address?.message}
@@ -330,7 +342,7 @@ const EditCustomerProfile = () => {
                                 error={!!errors.city}
                                 helperText={errors.city?.message}
                                 InputLabelProps={{
-                                    shrink: true, // Ensures the label stays at the top when value is present
+                                    shrink: true,
                                 }}
                             />
 
