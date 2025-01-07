@@ -110,218 +110,120 @@ const BankDetails = () => {
                                 Bank Account Details
                             </p>
                         </div>
+
                         <form
                             onSubmit={handleSubmit(onSubmit)}
                             className="my-5 grid grid-cols-1 gap-4 md:mx:0 mx-5 py-3"
                         >
                             <TextField
-                                label={translations.registerModule.fullname_field[language]}
+                                label="Account Holder Name  *"
                                 variant="outlined"
-                                size="medium"
                                 fullWidth
-                                {...register('fullName', {
-                                    required: `${translations.validations.fullname_1[language]}`,
-                                    minLength: {
-                                        value: 3,
-                                        message: `${translations.validations.fullname_3[language]}`,
-                                    },
-                                    maxLength: {
-                                        value: 30,
-                                        message: `${translations.validations.fullname_4[language]}`,
-                                    },
-                                    validate: {
-                                        noSpecialChars: (value) =>
-                                            /^[a-zA-Z\s]+$/.test(value) || `${translations.validations.fullname_2[language]}`,
-                                    },
-                                })}
-                                error={!!errors.fullName}
-                                helperText={errors.fullName?.message}
-                            />
-
-                            <TextField
-                                label={translations.registerModule.phone_field[language]}
-                                variant="outlined"
-                                size="medium"
-                                disabled
-                                type="text"
-                                fullWidth
-                                {...register('phoneNumber', {
-                                    required: `${translations.validations.phoneField_1[language]}`,
+                                {...register("accountholdername", {
+                                    required: "Account Holder Name is required",
                                     pattern: {
-                                        value: /^[0-9]{10}$/,
-                                        message: `${translations.validations.phoneField_2[language]}`,
+                                        value: /^[A-Z]$/,
+                                        message: "Enter a valid Account Holder Name",
                                     },
                                 })}
-                                error={!!errors.phoneNumber}
-                                helperText={errors.phoneNumber?.message}
-                                InputLabelProps={{
-                                    shrink: true,
+                                error={!!errors.accountholdername}
+                                helperText={errors.accountholdername?.message}
+                            />
+                            <TextField
+                                label="Account Number *"
+                                variant="outlined"
+                                fullWidth
+                                type="number"
+                                {...register("accountNumber", {
+                                    required: "Account Number is required",
+                                    pattern: {
+                                        value: /^\d{9,18}$/,
+                                        message: "Enter a valid account number (9-18 digits)",
+                                    },
+                                })}
+                                error={!!errors.accountNumber}
+                                helperText={errors.accountNumber?.message}
+                                onInput={(e) => {
+                                    if (e.target.value.length > 6) {
+                                        e.target.value = e.target.value.slice(0, 18); // Truncate input to 12 digits
+                                    }
+                                }}
+                                sx={{
+                                    "& input[type=number]": {
+                                        MozAppearance: "textfield", // Removes spinner in Firefox
+                                    },
+                                    "& input[type=number]::-webkit-inner-spin-button, & input[type=number]::-webkit-outer-spin-button": {
+                                        WebkitAppearance: "none", // Removes spinner in Chrome, Safari
+                                        margin: 0,
+                                    },
                                 }}
                             />
 
                             <TextField
-                                label={translations.registerModule.email_id[language]}
+                                label="Re-enter Account Number *"
                                 variant="outlined"
-                                type="text"
-                                size="medium"
+                                type="password"
                                 fullWidth
-                                {...register('email', {
-                                    required: `${translations.validations.email_1[language]}`,
-                                    maxLength: {
-                                        value: 40,
-                                        message: 'Email cannot exceed 40 characters',
-                                    },
-                                    pattern: {
-                                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                                        message: 'Invalid email address',
-                                    },
+                                {...register("reEnterAccountNumber", {
+                                    required: "Please re-enter your account number",
+                                    validate: (value) =>
+                                        value ===
+                                        document.querySelector("input[name='accountNumber']").value ||
+                                        "Account numbers do not match",
                                 })}
-                                error={!!errors.email}
-                                helperText={errors.email?.message}
-                            />
-
-                            <TextField
-                                variant="outlined"
-                                label={translations.registerModule.email_id[language]}
-                                type="date"
-                                size="medium"
-                                fullWidth
-                                {...register('dateOfBirth', {
-                                    required: 'Date of Birth is required',
-                                    validate: {
-                                        notFutureDate: (value) => {
-                                            const today = new Date();
-                                            const selectedDate = new Date(value);
-                                            return selectedDate <= today || 'Date of Birth cannot be in the future';
-                                        },
+                                error={!!errors.reEnterAccountNumber}
+                                helperText={errors.reEnterAccountNumber?.message}
+                                onInput={(e) => {
+                                    if (e.target.value.length > 6) {
+                                        e.target.value = e.target.value.slice(0, 18); // Truncate input to 12 digits
+                                    }
+                                }}
+                                sx={{
+                                    "& input[type=number]": {
+                                        MozAppearance: "textfield", // Removes spinner in Firefox
                                     },
-                                })}
-                                error={!!errors.dateOfBirth}
-                                helperText={errors.dateOfBirth?.message}
-                                InputLabelProps={{
-                                    shrink: true,
+                                    "& input[type=number]::-webkit-inner-spin-button, & input[type=number]::-webkit-outer-spin-button": {
+                                        WebkitAppearance: "none", // Removes spinner in Chrome, Safari
+                                        margin: 0,
+                                    },
                                 }}
                             />
 
                             <TextField
-                                label={translations.registerModule.Residential_addressfield[language]}
+                                label="IFSC Code *"
                                 variant="outlined"
-                                size="medium"
                                 fullWidth
-                                {...register('address', {
-                                    required: 'Address is required',
-                                })}
-                                error={!!errors.address}
-                                helperText={errors.address?.message}
-                            />
-
-                            <TextField
-                                label={translations.registerModule.statefield[language]}
-                                variant="outlined"
-                                size="medium"
-                                fullWidth
-                                {...register('state', {
-                                    required: 'State is required',
-                                    minLength: {
-                                        value: 3,
-                                        message: 'State must be at least 3 characters long',
-                                    },
-                                    maxLength: {
-                                        value: 40,
-                                        message: 'State cannot exceed 40 characters',
-                                    },
-                                    validate: {
-                                        noSpecialChars: (value) =>
-                                            /^[a-zA-Z\s]+$/.test(value) || 'State must contain only alphabets',
-                                    },
-                                })}
-                                error={!!errors.state}
-                                helperText={errors.state?.message}
-                            />
-
-                            <TextField
-                                label={translations.registerModule.Destrictfield[language]}
-                                variant="outlined"
-                                size="medium"
-                                fullWidth
-                                {...register('district', {
-                                    required: 'District is required',
-                                    minLength: {
-                                        value: 3,
-                                        message: 'District must be at least 3 characters long',
-                                    },
-                                    maxLength: {
-                                        value: 40,
-                                        message: 'District cannot exceed 40 characters',
-                                    },
-                                    validate: {
-                                        noSpecialChars: (value) =>
-                                            /^[a-zA-Z\s]+$/.test(value) || 'District must contain only alphabets',
-                                    },
-                                })}
-                                error={!!errors.district}
-                                helperText={errors.district?.message}
-                            />
-
-                            <TextField
-                                label={translations.registerModule.cityfield[language]}
-                                variant="outlined"
-                                size="medium"
-                                fullWidth
-                                {...register('city', {
-                                    required: 'City is required',
-                                    minLength: {
-                                        value: 3,
-                                        message: 'City must be at least 3 characters long',
-                                    },
-                                    maxLength: {
-                                        value: 40,
-                                        message: 'City cannot exceed 40 characters',
-                                    },
-                                    validate: {
-                                        noSpecialChars: (value) =>
-                                            /^[a-zA-Z\s]+$/.test(value) || 'City must contain only alphabets',
-                                    },
-                                })}
-                                error={!!errors.city}
-                                helperText={errors.city?.message}
-                            />
-
-                            <TextField
-                                label={translations.registerModule.altno_field[language]}
-                                variant="outlined"
-                                size="medium"
-                                type="text"
-                                fullWidth
-                                {...register('alternatePhoneNumber', {
+                                {...register("ifscCode", {
+                                    required: "IFSC Code is required",
                                     pattern: {
-                                        value: /^[0-9]{10}$/,
-                                        message: 'Please enter a valid 10-digit Alternative phone number',
+                                        value: /^[A-Z]{4}0[A-Z0-9]{6}$/,
+                                        message: "Enter a valid IFSC code",
                                     },
                                 })}
-                                error={!!errors.alternatePhoneNumber}
-                                helperText={errors.alternatePhoneNumber?.message}
+                                error={!!errors.ifscCode}
+                                helperText={errors.ifscCode?.message}
                             />
 
                             <TextField
-                                label={translations.registerModule.Referralcodefield[language]}
+                                label="Bank Name & Branch*"
                                 variant="outlined"
-                                size="medium"
-                                type="text"
                                 fullWidth
-                                {...register('referralCode', {
-                                    required: 'Referral Code is required',
+                                {...register("bankName", {
+                                    required: "Bank Name & Brnach Name is required",
+                                    minLength: {
+                                        value: 3,
+                                        message: "Bank name must be at least 3 characters",
+                                    },
                                 })}
-                                error={!!errors.referralCode}
-                                helperText={errors.referralCode?.message}
+                                error={!!errors.bankName}
+                                helperText={errors.bankName?.message}
                             />
-
 
                             {/* Submit Button */}
                             <div className="mt-5">
                                 <button
                                     type="submit"
-                                    className="md:w-full w-full p-3 rounded-full text-white bg-gradient-to-l from-[#020065] to-[#0400CB] flex items-center justify-center"
+                                    className="md:w-full w-full p-3 px-4 rounded-full text-white bg-gradient-to-l from-[#020065] to-[#0400CB] flex items-center justify-center"
                                 >
                                     {isLoading ? (
                                         <svg
@@ -341,7 +243,7 @@ const BankDetails = () => {
                                             />
                                         </svg>
                                     ) : (
-                                        `${translations.registerModule.continue_btn[language]}`
+                                        `Continue`
                                     )}
                                 </button>
                             </div>
@@ -370,7 +272,7 @@ const BankDetails = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
 
         </>
     );

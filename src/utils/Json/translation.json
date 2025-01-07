@@ -103,6 +103,12 @@
             "kannada": "ಮುಂದುವರಿಸಿ"
         }
     },
+    "bankModule": {
+        "name_field": {
+            "english": "Account holder Name *",
+            "kannada": "ವೈಯಕ್ತಿಕ ವಿವರಗಳನ್ನು ಸಲ್ಲಿಸಿ"
+        }
+    },
     "sideBar": {
         "heading1": {
             "english": "Dashboard",
