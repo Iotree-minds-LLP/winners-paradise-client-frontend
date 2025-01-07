@@ -3,12 +3,16 @@ import { useEffect, useState } from "react";
 import imageLogo from "../../assets/Logos/logo1.png";
 import cataloglogo from "../../assets/Logos/sidebarLogos/catalog.png"
 import { getAllInvestments } from "../../network/Investments/page";
+import { useInvestment } from "../../context/Investment/investmentContext";
 const Sidebar = () => {
 
     const [path, setpath] = useState("")
     const location = useLocation();
     const currentUrl = location.pathname;
     const [investments, setInvestments] = useState(false)
+
+    const { isInvestmentCreated, setIsInvestmentCreated } = useInvestment();
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -34,9 +38,11 @@ const Sidebar = () => {
         if (resp.data.status === 201) {
             if (resp.data.data.data.length === 0) {
                 setInvestments(false)
+                setIsInvestmentCreated(false);
             }
             else {
                 setInvestments(true)
+                setIsInvestmentCreated(true);
             }
         }
     };

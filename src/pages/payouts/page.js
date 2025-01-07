@@ -10,8 +10,10 @@ import { Link, useNavigate } from "react-router-dom";
 import logo1 from "../../assets/Images/payouts1.png"
 import logo2 from "../../assets/Images/payouts2.png"
 import { getAllOverAllPayouts, getAllPayouts, getAllReferralPayouts } from "../../network/Payouts/page";
+import { useInvestment } from "../../context/Investment/investmentContext";
 
 const Payouts = () => {
+    const { isInvestmentCreated, setIsInvestmentCreated } = useInvestment();
 
     const [isModalOpen, setisModalOpen] = useState(false);
     const navigate = useNavigate();
@@ -90,7 +92,7 @@ const Payouts = () => {
                             <Link to="/notifications">
                                 <img src={bellIcon} className="w-auto h-12 mt-4" alt="Bell Icon"></img>
                             </Link>
-                            <Link to="/my-profile">
+                            <Link to="/profile-and-settings">
                                 <img src={userIcon} className="w-auto h-12 mt-4" alt="User Icon"></img>
                             </Link>
                         </div>
@@ -104,7 +106,7 @@ const Payouts = () => {
                     {/* Catalogue Heading */}
 
                     {/* Return Calculator */}
-                    <div className="text-start grid grid-cols-12 grid-cols-12 p-0 md:p-10">
+                    <div className="text-start grid grid-cols-12 grid-cols-12  md:p-10">
                         <div className="col-span-6">
                             <div onClick={toggleSelection}
                                 className="p-4 flex flex-row justify-center items-center gap-2" style={{ background: "#E7E7FF" }}
@@ -135,9 +137,7 @@ const Payouts = () => {
                         </div>
                     </div>
 
-
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 px-5 gap-4 mx-0 md:mx-4 py-0 sm:py-4 md:py-0">
+                    <div className="py-5 md:py-0 grid grid-cols-1 md:grid-cols-3 px-5 gap-4 mx-0 md:mx-4  ">
                         {payoutsToDisplay?.map((payout, index) => (
                             <>
                                 <div
@@ -183,7 +183,7 @@ const Payouts = () => {
                             width: '100%',
                         }}
                     >
-                        <div className="grid grid-cols-3">
+                        <div className={`grid ${isInvestmentCreated ? "grid-cols-3" : "grid-cols-2"} `}>
                             {/* Catalogue */}
 
                             <Link to="/catalogs">
@@ -196,20 +196,23 @@ const Payouts = () => {
                                     </p>
                                 </div>
                             </Link>
+                            {isInvestmentCreated && (
+                                <Link to="/dashboard">
 
-                            <Link to="/dashboard">
-
-                                {/* Dashboard */}
-                                <div className="p-2  flex flex-col items-center">
-                                    <div className="p-3 rounded-full flex items-center justify-center">
-                                        <img className="w-auto h-8" src={footerLogo2} alt="Footer Logo 2" />
+                                    {/* Dashboard */}
+                                    <div className="p-2  flex flex-col items-center">
+                                        <div className="p-3 rounded-full flex items-center justify-center">
+                                            <img className="w-auto h-8" src={footerLogo2} alt="Footer Logo 2" />
+                                        </div>
+                                        <p className="mt-2 text-md font-bold text-center text-white" >
+                                            Dashboard
+                                        </p>
                                     </div>
-                                    <p className="mt-2 text-md font-bold text-center text-white" >
-                                        Dashboard
-                                    </p>
-                                </div>
 
-                            </Link>
+                                </Link>
+                            )}
+
+
 
                             <Link to="/payouts">
 

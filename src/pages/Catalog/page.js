@@ -15,12 +15,14 @@ import footerLogo3 from "../../assets/Logos/onboardingLogos/icon-container (1).p
 import footerLogo4 from "../../assets/Logos/onboardingLogos/icon-container (1).png";
 import backImage from "../../assets/Images/backImage.jpg"
 import { Link, useNavigate } from "react-router-dom";
+import { useInvestment } from "../../context/Investment/investmentContext";
 
 const Catalogs = () => {
 
     const [isModalOpen, setisModalOpen] = useState(false);
     const navigate = useNavigate();
     const [listCatalogs, setlistCatalogs] = useState([])
+    const { isInvestmentCreated, setIsInvestmentCreated } = useInvestment();
 
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
@@ -182,7 +184,7 @@ const Catalogs = () => {
                             width: '100%',
                         }}
                     >
-                        <div className="grid grid-cols-3">
+                        <div className={`grid ${isInvestmentCreated ? "grid-cols-3" : "grid-cols-2"} `}>
                             {/* Catalogue */}
                             <div className=" p-2 flex flex-col items-center">
                                 <div className="bg-white px-5 p-3 rounded-full flex items-center justify-center">
@@ -194,16 +196,19 @@ const Catalogs = () => {
                             </div>
 
                             {/* Dashboard */}
-                            <Link to="/dashboard">
-                                <div className="p-2  flex flex-col items-center">
-                                    <div className="p-3 rounded-full flex items-center justify-center">
-                                        <img className="w-auto h-8" src={footerLogo2} alt="Footer Logo 2" />
+                            {isInvestmentCreated && (
+                                <Link to="/dashboard">
+                                    <div className="p-2  flex flex-col items-center">
+                                        <div className="p-3 rounded-full flex items-center justify-center">
+                                            <img className="w-auto h-8" src={footerLogo2} alt="Footer Logo 2" />
+                                        </div>
+                                        <p className="mt-2 text-md font-bold text-center text-white" >
+                                            Dashboard
+                                        </p>
                                     </div>
-                                    <p className="mt-2 text-md font-bold text-center text-white" >
-                                        Dashboard
-                                    </p>
-                                </div>
-                            </Link>
+                                </Link>
+                            )}
+
                             <Link to="/payouts">
                                 {/*zPayouts */}
                                 <div className=" p-2 flex flex-col items-center">
@@ -300,7 +305,7 @@ const Catalogs = () => {
                         </div>
                     )}
                 </div>
-            </div>
+            </div >
 
         </>
     );
