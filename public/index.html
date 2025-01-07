@@ -105,13 +105,7 @@
           if (!isPWA()) {
             console.log("App is running in a browser, not as a PWA");
 
-            // Delay showing the popup for 10 seconds
-            setTimeout(() => {
-              // Show the popup
-              pwaPopup.style.display = 'flex';
-            }, 1000); // 10 seconds delay
-
-            // Proceed button
+            // Add event listeners for buttons
             pwaProceed.addEventListener('click', () => {
               if (deferredPrompt) {
                 // Show the install prompt
@@ -131,21 +125,26 @@
               pwaPopup.style.display = 'none'; // Hide the popup
             });
 
-            // Cancel button
             pwaCancel.addEventListener('click', () => {
-              pwaPopup.style.display = 'none';
+              pwaPopup.style.display = 'none'; // Hide the popup
             });
+
+            // Delay showing the popup for 10 seconds
+            setTimeout(() => {
+              if (deferredPrompt) {
+                pwaPopup.style.display = 'flex'; // Show the popup
+              }
+            }, 10000); // 10 seconds delay
           } else {
             console.log("App is running as a PWA");
           }
         });
       });
-
-
     } catch (error) {
       console.error("Error in script execution:", error);
     }
   </script>
+
 </body>
 
 </html>
