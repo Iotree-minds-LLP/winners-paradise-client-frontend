@@ -6,6 +6,7 @@ import uploadImage from "../../assets/Images/upload.png";
 import { creteCustomerKycRequest } from "../../network/KycVerification/page";
 import { useToast } from "../../context/Toast/toastHook";
 import { useForm } from "react-hook-form";
+import { TextField } from "@mui/material";
 
 const AadharUpload = () => {
     const [frontImage, setFrontImage] = useState(null);
@@ -18,19 +19,17 @@ const AadharUpload = () => {
     const [isLoading, setisLoading] = useState(false)
     const [ErrorMessage, setErrorMessage] = useState(null);
     const [customerDetails, setcustomerDetails] = useState({})
-
-    const {
-        register,
-        handleSubmit,
-        setValue,
-        formState: { errors },
-    } = useForm();
+    const [AadharNumber, setAadharNumber] = useState(null);
 
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
         setcustomerDetails(customer)
     }, []);
+
+    const handleAadharChange = (e) => {
+        setAadharNumber(e.target.value);
+    }
 
     const startCamera = (setImage) => {
         setCurrentImageSetter(() => setImage);
@@ -59,17 +58,57 @@ const AadharUpload = () => {
     const capturePhoto = () => {
         const canvas = canvasRef.current;
         const video = videoRef.current;
+
+        if (!canvas || !video) {
+            console.error("Canvas or video is not available.");
+            return;
+        }
+
         const context = canvas.getContext("2d");
 
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
+        const outputWidth = 300;
+        const outputHeight = 190;
 
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        canvas.width = outputWidth;
+        canvas.height = outputHeight;
+
+        const videoWidth = video.videoWidth;
+        const videoHeight = video.videoHeight;
+
+        const aspectRatio = videoWidth / videoHeight;
+        const targetAspectRatio = outputWidth / outputHeight;
+
+        let cropWidth, cropHeight;
+
+        if (aspectRatio > targetAspectRatio) {
+            cropHeight = videoHeight;
+            cropWidth = cropHeight * targetAspectRatio;
+        } else {
+            cropWidth = videoWidth;
+            cropHeight = cropWidth / targetAspectRatio;
+        }
+
+        const cropX = (videoWidth - cropWidth) / 2;
+        const cropY = (videoHeight - cropHeight) / 2;
+
+        context.drawImage(
+            video,
+            cropX,
+            cropY,
+            cropWidth,
+            cropHeight,
+            0,
+            0,
+            outputWidth,
+            outputHeight
+        );
+
         const base64Image = canvas.toDataURL("image/jpeg");
         currentImageSetter(base64Image);
 
         stopCamera();
     };
+
 
     const stopCamera = () => {
         const video = videoRef.current;
@@ -101,7 +140,7 @@ const AadharUpload = () => {
         const payload = {
             aadhar_file_front: frontImage,
             aadhar_file_back: backImagePreview,
-            aadhar_no: 123412341234,
+            aadhar_no: AadharNumber,
             customer_selfie: frontImage,
             blank_cheque_file: frontImage,
         }
@@ -149,6 +188,45 @@ const AadharUpload = () => {
                         <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10">
                             Upload AADHAR card
                         </h1>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
+                        <div className="flex flex-col text-start items-start justify-start w-full max-w-md rounded-md">
+                            <label className="my-2"><p>Enter Aadhar Number Here</p></label>
+                            <TextField
+                                onChange={handleAadharChange}
+                                label="Aadhar Number"
+                                variant="outlined"
+                                size="medium"
+                                type="number"
+                                fullWidth
+                                inputProps={{
+                                    maxLength: 12,
+                                }}
+                                InputProps={{
+                                    inputProps: {
+                                        style: {
+                                            MozAppearance: "textfield", // Removes spinner in Firefox
+                                        },
+                                    },
+                                }}
+                                onInput={(e) => {
+                                    if (e.target.value.length > 12) {
+                                        e.target.value = e.target.value.slice(0, 12); // Truncate input to 12 digits
+                                    }
+                                }}
+                                sx={{
+                                    "& input[type=number]": {
+                                        MozAppearance: "textfield", // Removes spinner in Firefox
+                                    },
+                                    "& input[type=number]::-webkit-inner-spin-button, & input[type=number]::-webkit-outer-spin-button": {
+                                        WebkitAppearance: "none", // Removes spinner in Chrome, Safari
+                                        margin: 0,
+                                    },
+                                }}
+                            />
+
+                        </div>
                     </div>
 
                     <div className="flex flex-col md:flex-row gap-10 p-4 mb-20 md:mb-0 overflow-y-auto ">
@@ -288,12 +366,71 @@ const AadharUpload = () => {
                     </div>
                 </div>
             </div>
-
             {showCamera && (
                 <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
-                    <video ref={videoRef} className="w-full md:w-1/2 rounded-md" autoPlay playsInline />
+                    {/* Camera feed */}
+                    <video ref={videoRef} className="w-full md:w-1/2 rounded-md relative" autoPlay playsInline />
                     <canvas ref={canvasRef} className="hidden" />
-                    <div className="absolute bottom-10 flex gap-4">
+
+                    {/* Faded background overlay with clear scanner area */}
+                    <div className="absolute inset-0">
+                        {/* Full-screen overlay */}
+                        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+
+                        {/* Scanner rectangle */}
+                        <div
+                            className="absolute"
+                            style={{
+                                top: "50%",
+                                left: "50%",
+                                width: "300px", // Scanner size width
+                                height: "190px", // Scanner size height
+                                transform: "translate(-50%, -50%)",
+                                boxShadow: "0 0 0 2000px rgba(0, 0, 0, 0.6)", // Fades the rest of the screen
+                                zIndex: 2, // Ensures scanner area is visible
+                            }}
+                        >
+                            {/* Corners */}
+                            {/* Top-left corner */}
+                            <div
+                                className="absolute top-0 left-0 border-t-4 border-l-4 border-green-500"
+                                style={{
+                                    width: "30px",
+                                    height: "30px",
+                                }}
+                            ></div>
+
+                            {/* Top-right corner */}
+                            <div
+                                className="absolute top-0 right-0 border-t-4 border-r-4 border-green-500"
+                                style={{
+                                    width: "30px",
+                                    height: "30px",
+                                }}
+                            ></div>
+
+                            {/* Bottom-left corner */}
+                            <div
+                                className="absolute bottom-0 left-0 border-b-4 border-l-4 border-green-500"
+                                style={{
+                                    width: "30px",
+                                    height: "30px",
+                                }}
+                            ></div>
+
+                            {/* Bottom-right corner */}
+                            <div
+                                className="absolute bottom-0 right-0 border-b-4 border-r-4 border-green-500"
+                                style={{
+                                    width: "30px",
+                                    height: "30px",
+                                }}
+                            ></div>
+                        </div>
+                    </div>
+
+                    {/* Capture and Cancel buttons */}
+                    <div className="absolute bottom-10 flex gap-4 z-10">
                         <button
                             onClick={capturePhoto}
                             className="px-6 py-2 bg-blue-500 text-white font-bold rounded-lg"
@@ -309,6 +446,8 @@ const AadharUpload = () => {
                     </div>
                 </div>
             )}
+
+
         </>
     );
 };
