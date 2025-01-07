@@ -133,7 +133,7 @@ const CatalogDetails = () => {
                     <div className=" text-start rounded-lg px-4 mt-4 grid md:grid-cols-3 grid-cols-1 gap-4">
                         <div className="flex flex-row  ">
                             <p style={{ color: "#020065" }} className="text-md font-semibold">Investment Description </p>
-                            <div className="flex justify-center text-center items-center hidden md:flex">
+                            {/* <div className="flex justify-center text-center items-center hidden md:flex">
                                 <button
                                     type="submit"
                                     className=""
@@ -152,7 +152,7 @@ const CatalogDetails = () => {
                                         </>
                                     )}
                                 </button>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -207,11 +207,11 @@ const CatalogDetails = () => {
                         <img className="rounded-2xl" src={image}></img>
                     </div>
 
-                    <div className="p-3 sm:hidden">
+                    <div className="p-3 ">
                         <button
                             onClick={sendResponse}
                             type="submit"
-                            className=" md:w-full w-full p-3 rounded-full text-white bg-gradient-to-l from-[#020065] to-[#0400CB] flex items-center justify-center"
+                            className=" md:w-1/2 w-full p-3 rounded-full text-white bg-gradient-to-l from-[#020065] to-[#0400CB] flex items-center justify-center"
                         >
                             {isLoading ? (
                                 <svg

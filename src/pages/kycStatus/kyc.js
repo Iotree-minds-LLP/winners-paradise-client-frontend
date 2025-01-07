@@ -46,8 +46,9 @@ const KycStatusPage = () => {
     ];
 
     const handleUpload = (item) => {
+
         if (item.status === "Uplaod" && item.title === "AADHAR CARD") {
-            navigate("/kyc/aadhar-card-upload")
+            navigate("/kyc/aadhar-card-upload", { state: { item } })
         }
 
         if (item.status === "Uplaod" && item.title === "PAN CARD") {
