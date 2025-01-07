@@ -225,8 +225,11 @@ const Catalogs = () => {
                                 </div>
                             );
                         })}
-                    </div>
 
+                    </div>
+                    {listCatalogs.length === 0 && (
+                        <p className="font-bold text-lg">Sorry We dont have any catalogs for this amount</p>
+                    )}
 
                     {/* Footer Navigation */}
                     <div
