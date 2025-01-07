@@ -196,7 +196,7 @@ const CatalogDetails = () => {
                                     className="text-md font-bold my-2"
                                     style={{ color: 'rgba(0, 0, 148, 1)' }}
                                 >
-                                    ₹{totalReturn}
+                                    ₹{SelectedCatalogDetails.returns_per_month}
                                 </p>
                             </div>
 
