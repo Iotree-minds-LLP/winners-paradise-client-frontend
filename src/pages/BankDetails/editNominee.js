@@ -18,7 +18,7 @@ import { useToast } from "../../context/Toast/toastHook";
 import { goBack } from "../../utils/Functions/goBackScreen";
 import translations from "../../utils/Json/translation.json"
 import addNomineeImage from "../../assets/Images/addnominee.png"
-const BankDetails = () => {
+const EditNominee = () => {
 
     const {
         register,
@@ -98,7 +98,7 @@ const BankDetails = () => {
                 {/* Mobile Header */}
                 <div className="h-[60px] fixed top-100 mb-4 z-10 w-full sm:hidden  bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row p-3">
                     <img src={backButton} onClick={goBack} className="w-8 h-8" alt="Back" />
-                    <p className="text-white font-semibold my-1">Bank Account Details</p>
+                    <p className="text-white font-semibold my-1">Edit Nominee</p>
                 </div>
 
                 {/* Main Content */}
@@ -107,7 +107,7 @@ const BankDetails = () => {
                     <div className="col-span-12 md:col-span-6 w-full order-1 md:order-2 md:px-20 mt-10 overflow-auto">
                         <div className="flex flex-row">
                             <p style={{ color: '#020065' }} className="mx-5 hidden sm:block text-start font-semibold text-3xl">
-                                Bank Account Details
+                                Edit Nominee
                             </p>
                         </div>
 
@@ -221,121 +221,6 @@ const BankDetails = () => {
 
                             {/* Submit Button */}
 
-                            <div className="text-start rounded-lg grid gap-4">
-                                <div className="p-4 md:p-6 rounded-lg w-full " style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}>
-                                    <div className="flex justify-between items-center">
-                                        <p style={{ color: 'rgba(0, 0, 148, 1)' }} className="font-bold text-lg">Your Bank account</p>
-                                        <Link to="/profile-and-settings/edit-bank-details">
-                                            <button aria-label="Edit" className="p-2 ">
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 24 24"
-                                                    fill="black"
-                                                    stroke="currentColor"
-                                                    strokeWidth="2"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    className="w-6 h-6"
-                                                >
-                                                    <path d="M12 20h9"></path>
-                                                    <path d="M16.5 3.5l4 4L7 21H3v-4L16.5 3.5z"></path>
-                                                </svg>
-                                            </button>
-                                        </Link>
-                                    </div>
-
-                                    <div className="flex justify-between items-center mt-2">
-                                        <div>
-                                            <p className="text-sm text-gray-800">Account Holder Name</p>
-                                            <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
-                                                ajsdk
-                                            </p>
-                                        </div>
-
-                                    </div>
-
-                                    <div className="my-3">
-                                        <p className="text-sm text-gray-800">Account Number</p>
-                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>12839</p>
-                                    </div>
-
-                                    <div className="my-3">
-                                        <p className="text-sm text-gray-800">IFSC Code</p>
-                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>ajsd</p>
-                                    </div>
-
-                                    <div className="my-3">
-                                        <p className="text-sm text-gray-800">Bank Name & Branch</p>
-                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
-                                            asdjk
-                                        </p>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div className="text-start rounded-lg grid gap-4">
-                                <div className="p-4 md:p-6 rounded-lg w-full " style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}>
-                                    <div className="flex justify-between items-center">
-                                        <p style={{ color: 'rgba(0, 0, 148, 1)' }} className="font-bold text-lg">Nominee account</p>
-                                        <Link to="/profile-and-settings/edit-nominee">
-                                            <button aria-label="Edit" className="p-2 ">
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 24 24"
-                                                    fill="black"
-                                                    stroke="currentColor"
-                                                    strokeWidth="2"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    className="w-6 h-6"
-                                                >
-                                                    <path d="M12 20h9"></path>
-                                                    <path d="M16.5 3.5l4 4L7 21H3v-4L16.5 3.5z"></path>
-                                                </svg>
-                                            </button>
-                                        </Link>
-                                    </div>
-
-                                    <div className="flex justify-between items-center mt-2">
-                                        <div>
-                                            <p className="text-sm text-gray-800">Account Holder Name</p>
-                                            <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
-                                                ajsdk
-                                            </p>
-                                        </div>
-
-                                    </div>
-
-                                    <div className="my-3">
-                                        <p className="text-sm text-gray-800">Account Number</p>
-                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>12839</p>
-                                    </div>
-
-                                    <div className="my-3">
-                                        <p className="text-sm text-gray-800">IFSC Code</p>
-                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>ajsd</p>
-                                    </div>
-
-                                    <div className="my-3">
-                                        <p className="text-sm text-gray-800">Bank Name & Branch</p>
-                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
-                                            asdjk
-                                        </p>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-                            <Link to="/profile-and-settings/add-nominee">
-                                <div className="mt-5 p-5 w-full rounded-lg border border-black border-dotted  border-2 text-start flex justify-between">
-                                    <p className="text-lg font-bold" style={{ color: 'rgba(0, 0, 148, 1)' }}>Add Nominee</p>
-                                    <img className="w-6 h-6" src={addNomineeImage}></img>
-                                </div>
-                            </Link>
                             <div className="mt-5">
                                 <button
                                     type="submit"
@@ -359,7 +244,7 @@ const BankDetails = () => {
                                             />
                                         </svg>
                                     ) : (
-                                        `Save`
+                                        `Edit`
                                     )}
                                 </button>
                             </div>
@@ -395,4 +280,4 @@ const BankDetails = () => {
     );
 };
 
-export default BankDetails;
+export default EditNominee;

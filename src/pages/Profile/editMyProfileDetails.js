@@ -198,8 +198,8 @@ const EditCustomerProfile = () => {
                                 {...register('email', {
                                     required: 'Email is required',
                                     maxLength: {
-                                        value: 40,
-                                        message: 'Email cannot exceed 40 characters',
+                                        value: 30,
+                                        message: 'Email cannot exceed 30 characters',
                                     },
                                     pattern: {
                                         value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
@@ -262,8 +262,8 @@ const EditCustomerProfile = () => {
                                         message: 'State must be at least 3 characters long',
                                     },
                                     maxLength: {
-                                        value: 40,
-                                        message: 'State cannot exceed 40 characters',
+                                        value: 30,
+                                        message: 'State cannot exceed 30 characters',
                                     },
                                     validate: {
                                         noSpecialChars: (value) =>
@@ -289,8 +289,8 @@ const EditCustomerProfile = () => {
                                         message: 'District must be at least 3 characters long',
                                     },
                                     maxLength: {
-                                        value: 40,
-                                        message: 'District cannot exceed 40 characters',
+                                        value: 30,
+                                        message: 'District cannot exceed 30 characters',
                                     },
                                     validate: {
                                         noSpecialChars: (value) =>
@@ -319,8 +319,8 @@ const EditCustomerProfile = () => {
                                         message: 'City must be at least 3 characters long',
                                     },
                                     maxLength: {
-                                        value: 40,
-                                        message: 'City cannot exceed 40 characters',
+                                        value: 30,
+                                        message: 'City cannot exceed 30 characters',
                                     },
                                     validate: {
                                         noSpecialChars: (value) =>

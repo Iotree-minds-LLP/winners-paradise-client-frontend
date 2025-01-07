@@ -25,6 +25,9 @@ import PanUpload from '../pages/Kyc/panUpload';
 import SelfieUpload from '../pages/Kyc/selfieUpload';
 import ChequeUpload from '../pages/Kyc/uploadCheque';
 import BankDetails from '../pages/BankDetails/page';
+import EditBankDetails from '../pages/BankDetails/editBankDetails';
+import AddNominee from '../pages/BankDetails/nominee';
+import EditNominee from '../pages/BankDetails/editNominee';
 
 const routes = [
   { path: "/", element: <OtpVerification /> },
@@ -50,13 +53,16 @@ const routes = [
   { path: "/kyc/selfie-upload", element: <SelfieUpload /> },
   { path: "/kyc/cancelled-checque-upload", element: <ChequeUpload /> },
   { path: "/profile-and-settings/bank-details", element: <BankDetails /> },
+  { path: "/profile-and-settings/edit-bank-details", element: <EditBankDetails /> },
+  { path: "/profile-and-settings/add-nominee", element: <AddNominee /> },
+  { path: "/profile-and-settings/edit-nominee", element: <EditNominee /> },
 ];
 
 function AppLayout() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const hideSidebarRoutes = ["/", "/register", "/edit-customer-details","/profile-and-settings/bank-details"];
+  const hideSidebarRoutes = ["/", "/register", "/edit-customer-details", "/profile-and-settings/bank-details", "/profile-and-settings/edit-bank-details", "/profile-and-settings/edit-nominee", "/profile-and-settings/add-nominee"];
   const isSidebarHidden = hideSidebarRoutes.includes(location.pathname);
 
   useEffect(() => {

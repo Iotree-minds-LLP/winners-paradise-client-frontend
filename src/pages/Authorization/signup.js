@@ -182,7 +182,7 @@ const SignupPage = () => {
 
                             <TextField
                                 variant="outlined"
-                                label={translations.registerModule.email_id[language]}
+                                label={translations.registerModule.data_of_birth[language]}
                                 type="date"
                                 size="medium"
                                 fullWidth
