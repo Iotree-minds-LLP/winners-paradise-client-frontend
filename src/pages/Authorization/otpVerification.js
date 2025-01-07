@@ -109,45 +109,65 @@ const OtpVerification = () => {
     }
 
     const verifyOtp = async (data) => {
-
-        setisLoading(true);
+        setisLoading(true); // Start loading spinner
 
         const payload = {
             otp: data.enteredOtp,
-            token
+            token,
         };
 
-        let resp;
-
         try {
-            resp = await VerifyOtp(payload);
+            const resp = await VerifyOtp(payload); // Await API response
+            console.log(resp.data.data.customer, "resp.data.data.customer");
+
             if (resp.data.status === 200) {
-                setisLoading(false);
-                setErrorMessage("");
-                if (resp.data.data?.customer) {
-                    setLanguage(resp.data.data.customer.language_preference);
-                    localStorage.setItem("customerDetails", JSON.stringify(resp.data.data.customer));
-                    const resp = await getAllInvestments(resp.data.data.customer._id);
-                    if (resp.data.status === 201) {
-                        if (resp.data.data.data.length === 0) {
+                setisLoading(false); // Stop loading spinner
+                setErrorMessage(""); // Clear any existing error message
+
+                const customer = resp.data.data.customer;
+
+                // Save token details in localStorage
+                localStorage.setItem("tokenDetails", resp.data.data.token);
+
+                if (customer) {
+                    setLanguage(customer.language_preference);
+                    await localStorage.setItem("customerDetails", JSON.stringify(customer));
+
+                    // Fetch all investments for the customer
+                    const investmentsResp = await getAllInvestments(customer._id);
+                    if (investmentsResp.data.status === 201) {
+                        const investments = investmentsResp.data.data.data;
+
+                        // Navigate based on the existence of investments
+                        if (investments.length === 0) {
                             navigate("/catalogs");
-                        }
-                        else {
+                        } else {
                             navigate("/dashboard");
                         }
                     }
                     handleSuccessClick(resp.data.data.message);
                 } else {
+                    // If customer data is not present, navigate to register
                     navigate("/register");
                     handleSuccessClick(resp.data.data.message);
                 }
+            } else {
+                // Handle non-200 status responses
+                setErrorMessage(resp.data.message || "An unexpected error occurred.");
+                setisLoading(false);
             }
-            localStorage.setItem("tokenDetails", resp.data.data.token);
         } catch (error) {
-            setErrorMessage(resp.data.message);
+            // Log and handle errors
+            console.error("Error during OTP verification:", error);
+
+            // Display a more user-friendly error message
+            const errorMessage =
+                error?.response?.data?.message || "Failed to verify OTP. Please try again.";
+            setErrorMessage(errorMessage);
             setisLoading(false);
         }
     };
+
 
 
     return (

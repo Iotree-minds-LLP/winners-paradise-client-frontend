@@ -20,10 +20,10 @@ const Sidebar = () => {
 
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
-        if (!data) {
-            navigate("/")
-            return;
-        }
+        // if (!data) {
+        //     navigate("/")
+        //     return;
+        // }
         const customer = JSON.parse(data);
         onformSubmit(customer._id)
     }, []);
