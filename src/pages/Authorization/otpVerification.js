@@ -130,10 +130,10 @@ const OtpVerification = () => {
                     const resp = await getAllInvestments(resp.data.data.customer._id);
                     if (resp.data.status === 201) {
                         if (resp.data.data.data.length === 0) {
-                            navigate("/dashboard");
+                            navigate("/catalogs");
                         }
                         else {
-                            navigate("/catalogs");
+                            navigate("/dashboard");
                         }
                     }
                     handleSuccessClick(resp.data.data.message);

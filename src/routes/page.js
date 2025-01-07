@@ -61,7 +61,7 @@ function AppLayout() {
     const customerDetails = localStorage.getItem("customerDetails");
     const publicRoutes = ["/", "/register"];
     if (customerDetails && publicRoutes.includes(location.pathname)) {
-      navigate("/dashboard"); // Redirect to homepage if customerDetails exist
+      navigate("/catalogs");
     }
 
   }, [location, navigate]);
