@@ -361,6 +361,9 @@ const EditCustomerProfile = () => {
                                 error={!!errors.alternatePhoneNumber}
                                 helperText={errors.alternatePhoneNumber?.message}
 
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
                             />
 
                             <TextField
