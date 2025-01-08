@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
 
 const AadharUpload = () => {
+    
     const [frontImage, setFrontImage] = useState(null);
     const [backImagePreview, setBackImagePreview] = useState(null);
     const [showCamera, setShowCamera] = useState(false);
