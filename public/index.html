@@ -78,7 +78,6 @@
       color: white;
     }
   </style>
-
 </head>
 
 <body class="gradient-background">
@@ -95,15 +94,24 @@
     </div>
   </div>
   <script>
-    console.log("Script loaded");
     document.addEventListener("DOMContentLoaded", () => {
       function isPWA() {
         return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
       }
 
+      // Detect iOS devices
+      function isIOS() {
+        return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+      }
+
+      // Detect Android devices
+      function isAndroid() {
+        return /Android/i.test(navigator.userAgent);
+      }
+
       // Detect mobile devices
       function isMobileDevice() {
-        return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        return isIOS() || isAndroid();
       }
 
       const pwaPopup = document.getElementById('pwa-popup');
@@ -112,51 +120,76 @@
 
       let deferredPrompt;
 
+      // Do not proceed if the app is already running as a PWA
       if (isPWA()) {
         console.log("App is already running as a PWA");
         return;
       }
 
-      // Show PWA prompt only for mobile devices
+      // Do not show popup if not a mobile device
       if (!isMobileDevice()) {
         console.log("Not a mobile device. PWA popup will not be shown.");
         return;
       }
 
-      window.addEventListener('beforeinstallprompt', (e) => {
-        console.log('beforeinstallprompt event fired');
-        e.preventDefault();
-        deferredPrompt = e;
+      // Handle for Android (beforeinstallprompt)
+      if (isAndroid()) {
+        // Listen for the 'beforeinstallprompt' event
+        window.addEventListener('beforeinstallprompt', (e) => {
+          console.log('beforeinstallprompt event fired');
+          e.preventDefault(); // Prevent the browser's default behavior
+          deferredPrompt = e;
 
-        setTimeout(() => {
+          // Show the custom popup
+          pwaPopup.classList.add('active');
+        });
+
+        // Handle the "Proceed" button click for Android
+        pwaProceed.addEventListener('click', () => {
           if (deferredPrompt) {
-            pwaPopup.classList.add('active'); // Show the popup with slide-up animation
+            deferredPrompt.prompt(); // Show the native installation prompt
+
+            deferredPrompt.userChoice.then((choiceResult) => {
+              if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the PWA installation prompt');
+              } else {
+                console.log('User dismissed the PWA installation prompt');
+              }
+
+              // Clear deferredPrompt after the first interaction
+              deferredPrompt = null;
+            });
+          } else {
+            console.log("Install prompt is not available or already used.");
           }
-        }, 5000); // Delay for 5 seconds
-      });
 
-      pwaProceed.addEventListener('click', () => {
-        if (deferredPrompt) {
-          deferredPrompt.prompt(); // Show the install prompt
-          deferredPrompt.userChoice.then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-              console.log('User accepted the PWA installation prompt');
-            } else {
-              console.log('User dismissed the PWA installation prompt');
-            }
-            deferredPrompt = null;
-          });
-        }
-        pwaPopup.classList.remove('active'); // Hide the popup
-      });
+          // Always hide the custom popup after the "Proceed" button is clicked
+          pwaPopup.classList.remove('active');
+        });
+      }
 
+      // Handle for iOS (manual installation instructions)
+      if (isIOS()) {
+        console.log("iOS device detected. Showing custom Add to Home Screen instructions.");
+        // Show the custom popup
+        pwaPopup.classList.add('active');
+
+        // Handle the "Proceed" button click for iOS
+        pwaProceed.addEventListener('click', () => {
+          alert(
+            "To install this app, tap the Share button in Safari and select 'Add to Home Screen'."
+          );
+          pwaPopup.classList.remove('active'); // Hide the popup
+        });
+      }
+
+      // Handle the "Cancel" button click for both platforms
       pwaCancel.addEventListener('click', () => {
         pwaPopup.classList.remove('active'); // Hide the popup
+        console.log("User dismissed the custom PWA popup.");
       });
     });
-
   </script>
-
 
 </body>
 
