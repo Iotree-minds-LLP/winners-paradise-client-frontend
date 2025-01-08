@@ -22,9 +22,8 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(255, 255, 255, 0.5);
       display: none;
-      /* Hidden by default */
       justify-content: center;
       align-items: flex-end;
       z-index: 1000;
@@ -147,7 +146,7 @@
         // Handle the "Proceed" button click for Android
         pwaProceed.addEventListener('click', () => {
           if (deferredPrompt) {
-            deferredPrompt.prompt(); // Show the native installation prompt
+            deferredPrompt.prompt();
 
             deferredPrompt.userChoice.then((choiceResult) => {
               if (choiceResult.outcome === 'accepted') {

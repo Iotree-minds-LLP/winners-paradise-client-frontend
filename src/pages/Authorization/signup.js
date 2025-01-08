@@ -151,6 +151,10 @@ const SignupPage = () => {
                                         value: /^[0-9]{10}$/,
                                         message: `${translations.validations.phoneField_2[language]}`,
                                     },
+                                    pattern: {
+                                        value: /^[9876][0-9]{9}$/,
+                                        message: `Invalid Phone Number`,
+                                    },
                                 })}
                                 error={!!errors.phoneNumber}
                                 helperText={errors.phoneNumber?.message}
@@ -297,6 +301,10 @@ const SignupPage = () => {
                                     pattern: {
                                         value: /^[0-9]{10}$/,
                                         message: 'Please enter a valid 10-digit Alternative phone number',
+                                    },
+                                    pattern: {
+                                        value: /^[9876][0-9]{9}$/,
+                                        message: `Invalid Phone Number`,
                                     },
                                 })}
                                 error={!!errors.alternatePhoneNumber}

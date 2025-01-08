@@ -181,6 +181,10 @@ const EditCustomerProfile = () => {
                                         value: /^[0-9]{10}$/,
                                         message: 'Please enter a valid 10-digit phone number',
                                     },
+                                    pattern: {
+                                        value: /^[9876][0-9]{9}$/,
+                                        message: `Invalid Phone Number`,
+                                    },
                                 })}
                                 error={!!errors.phoneNumber}
                                 helperText={errors.phoneNumber?.message}
@@ -356,6 +360,10 @@ const EditCustomerProfile = () => {
                                     pattern: {
                                         value: /^[0-9]{10}$/,
                                         message: 'Please enter a valid 10-digit Alternative phone number',
+                                    },
+                                    pattern: {
+                                        value: /^[9876][0-9]{9}$/,
+                                        message: `Invalid Phone Number`,
                                     },
                                 })}
                                 error={!!errors.alternatePhoneNumber}

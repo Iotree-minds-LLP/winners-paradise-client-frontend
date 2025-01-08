@@ -275,6 +275,10 @@ const OtpVerification = () => {
                                                         value: /^[0-9]{10}$/,
                                                         message: 'Please enter a valid 10-digit phone number',
                                                     },
+                                                    pattern: {
+                                                        value: /^[9876][0-9]{9}$/,
+                                                        message: `Invalid Phone Number`,
+                                                    },
                                                 })}
                                                 InputProps={{
                                                     inputProps: {
