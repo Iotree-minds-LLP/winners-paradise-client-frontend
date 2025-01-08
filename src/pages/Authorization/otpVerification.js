@@ -10,7 +10,7 @@ import imageLogo from "../../assets/Logos/logo1.png";
 import image1 from "../../assets/Images/robo 1 (3).png";
 import image3 from "../../assets/Images/sideImage.png";
 import image2 from "../../assets/Images/robo 1 (1).png";
-import { Radio, FormControlLabel, FormControl, FormLabel, RadioGroup } from '@mui/material';
+import { Radio, FormControlLabel, FormControl, FormLabel, RadioGroup, InputAdornment } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { PwaContext } from "../../context/PwaContext/page";
 import { useLanguage } from "../../context/Language/loginContext";
@@ -286,6 +286,11 @@ const OtpVerification = () => {
                                                             MozAppearance: "textfield", // Removes spinner in Firefox
                                                         },
                                                     },
+                                                    startAdornment: (
+                                                        <InputAdornment position="start">
+                                                            <span style={{ fontWeight: 'medium', color: "#1D1B20" }}>+91</span>
+                                                        </InputAdornment>
+                                                    ),
                                                 }}
                                                 onInput={(e) => {
                                                     if (e.target.value.length > 10) {

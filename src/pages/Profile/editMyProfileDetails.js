@@ -9,7 +9,7 @@ import imageLogo from "../../assets/Logos/logo1.png";
 import image1 from "../../assets/Images/robo 1 (3).png";
 import image3 from "../../assets/Images/sideImage.png";
 import image2 from "../../assets/Images/robo 1 (1).png";
-import { Radio, FormControlLabel, FormControl, FormLabel, RadioGroup, TextField } from '@mui/material';
+import { Radio, FormControlLabel, FormControl, FormLabel, RadioGroup, TextField, InputAdornment } from '@mui/material';
 import { PwaContext } from "../../context/PwaContext/page";
 import backButton from "../../assets/Logos/backButton.png"
 import { useForm } from 'react-hook-form';
@@ -173,7 +173,7 @@ const EditCustomerProfile = () => {
                                 variant="outlined"
                                 size="medium"
                                 disabled
-                                type="text"
+                                type="number"
                                 fullWidth
                                 {...register('phoneNumber', {
                                     required: 'Phone number is required',
@@ -190,6 +190,34 @@ const EditCustomerProfile = () => {
                                 helperText={errors.phoneNumber?.message}
                                 InputLabelProps={{
                                     shrink: true,
+                                }}
+
+                                InputProps={{
+                                    inputProps: {
+                                        style: {
+                                            MozAppearance: "textfield",
+                                        },
+                                    },
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <span style={{ fontWeight: 'medium', color: "#1D1B20" }}>+91</span>
+                                        </InputAdornment>
+                                    ),
+                                }}
+
+                                onInput={(e) => {
+                                    if (e.target.value.length > 10) {
+                                        e.target.value = e.target.value.slice(0, 10); // Truncate input to 12 digits
+                                    }
+                                }}
+                                sx={{
+                                    "& input[type=number]": {
+                                        MozAppearance: "textfield", // Removes spinner in Firefox
+                                    },
+                                    "& input[type=number]::-webkit-inner-spin-button, & input[type=number]::-webkit-outer-spin-button": {
+                                        WebkitAppearance: "none", // Removes spinner in Chrome, Safari
+                                        margin: 0,
+                                    },
                                 }}
                             />
 
@@ -354,7 +382,7 @@ const EditCustomerProfile = () => {
                                 label="Alternative Phone Number"
                                 variant="outlined"
                                 size="medium"
-                                type="text"
+                                type="number"
                                 fullWidth
                                 {...register('alternatePhoneNumber', {
                                     pattern: {
@@ -371,6 +399,34 @@ const EditCustomerProfile = () => {
 
                                 InputLabelProps={{
                                     shrink: true,
+                                }}
+
+                                InputProps={{
+                                    inputProps: {
+                                        style: {
+                                            MozAppearance: "textfield",
+                                        },
+                                    },
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <span style={{ fontWeight: 'medium', color: "rgba(0, 0, 0, 0.38)" }}>+91</span>
+                                        </InputAdornment>
+                                    ),
+                                }}
+
+                                onInput={(e) => {
+                                    if (e.target.value.length > 10) {
+                                        e.target.value = e.target.value.slice(0, 10); // Truncate input to 12 digits
+                                    }
+                                }}
+                                sx={{
+                                    "& input[type=number]": {
+                                        MozAppearance: "textfield", // Removes spinner in Firefox
+                                    },
+                                    "& input[type=number]::-webkit-inner-spin-button, & input[type=number]::-webkit-outer-spin-button": {
+                                        WebkitAppearance: "none", // Removes spinner in Chrome, Safari
+                                        margin: 0,
+                                    },
                                 }}
                             />
 
