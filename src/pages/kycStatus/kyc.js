@@ -16,6 +16,7 @@ import { useConsent } from "../../context/consent/consentProvider";
 
 const KycStatusPage = () => {
     const { isConsentAgreed, setIsConsentAgreed } = useConsent();
+    const [data, setdata] = useState([])
 
     const [isLoading, setisLoading] = useState(false)
     const [response, setResponse] = useState([]);
@@ -24,44 +25,99 @@ const KycStatusPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const data = localStorage.getItem("customerDetails");
-        const customer = JSON.parse(data);
-        onformSubmit2(customer._id);
+        onformSubmit2();
     }, []);
 
-
-    const onformSubmit2 = async (id) => {
+    const onformSubmit2 = async () => {
         try {
-            const res = await getKycDetailsByCustomerId(id);
-            console.log(res, "Res")
+            const res = await getKycDetailsByCustomerId(); // Fetching KYC details
+            console.log(res.data.data, "Res");
+
+            if (res.data.status === 500) {
+                console.log(res, "Res");
+
+                // Update all items to "Upload" for status 500
+                data = data.map(item => ({
+                    ...item,
+                    status: "Upload",
+                    backgroundColor: '#FFDA99',
+                    textColor: '#533400',
+                }));
+
+                console.log("Updated Data (500):", data);
+            } else if (res.data.status === 200) {
+                const {
+                    is_aadhar_verified,
+                    is_pan_verified,
+                    is_blank_cheque_verified,
+                    is_profile_image_verified
+                } = res.data.data;
+
+                console.log(is_pan_verified, "is_pan_verified");
+
+                // Define mapping for statuses and styles
+                const verificationStatuses = {
+                    "NOT SUBMITTED": { status: "Upload", backgroundColor: '#F5F5F5', textColor: '#000094' },
+                    "REVIEW PENDING": { status: "Review Pending", backgroundColor: '#000094', textColor: '#ffffff' },
+                    "CLEARED": { status: "Cleared", backgroundColor: '#BBFF99', textColor: '#1C5400' },
+                    "REJECTED": { status: "Rejected", backgroundColor: '#FFDA99', textColor: '#533400' },
+                };
+
+                // Update `data` based on received statuses
+                const dataToBeUpdate = [
+                    {
+                        id: 1,
+                        title: "AADHAR CARD",
+                        uploaded: 1,
+                        ...verificationStatuses[is_aadhar_verified] || verificationStatuses["NOT SUBMITTED"],
+                    },
+                    {
+                        id: 2,
+                        title: "PAN CARD",
+                        uploaded: 2,
+                        ...verificationStatuses[is_pan_verified] || verificationStatuses["NOT SUBMITTED"],
+                    },
+                    {
+                        id: 3,
+                        title: "CANCELLED CHEQUE",
+                        uploaded: 3,
+                        ...verificationStatuses[is_blank_cheque_verified] || verificationStatuses["NOT SUBMITTED"],
+                    },
+                    {
+                        id: 4,
+                        title: "SELFIE",
+                        uploaded: 4,
+                        ...verificationStatuses[is_profile_image_verified] || verificationStatuses["NOT SUBMITTED"],
+                    },
+                ];
+
+                setdata(dataToBeUpdate);
+
+
+            }
         } catch (error) {
-            console.log(error)
+            console.error("Error fetching KYC details:", error);
         }
-    }
+    };
 
+    console.log(data, "Data")
 
-    const data = [
-        { id: 1, status: "Uplaod", title: "AADHAR CARD", uploaded: 1, backgroundColor: '#F5F5F5', textColor: '#000094' },
-        { id: 2, status: "Uplaod", title: "PAN CARD", uploaded: 2, backgroundColor: '#F5F5F5', textColor: '#000094' },
-        { id: 3, status: "Uplaod", title: "CANCELLED CHEQUE", uploaded: 3, backgroundColor: '#F5F5F5', textColor: '#000094' },
-        { id: 4, status: "Uplaod", title: "SELFIE", uploaded: 4, backgroundColor: '#F5F5F5', textColor: '#000094' },
-    ];
 
     const handleUpload = (item) => {
 
-        if (item.status === "Uplaod" && item.title === "AADHAR CARD") {
+        if (item.title === "AADHAR CARD") {
             navigate("/kyc/aadhar-card-upload", { state: { item } })
         }
 
-        if (item.status === "Uplaod" && item.title === "PAN CARD") {
+        if (item.title === "PAN CARD") {
             navigate("/kyc/pan-card-upload")
         }
 
-        if (item.status === "Uplaod" && item.title === "CANCELLED CHEQUE") {
+        if (item.title === "CANCELLED CHEQUE") {
             navigate("/kyc/cancelled-checque-upload")
         }
 
-        if (item.status === "Uplaod" && item.title === "SELFIE") {
+        if (item.title === "SELFIE") {
             navigate("/kyc/selfie-upload")
         }
     }
@@ -75,7 +131,6 @@ const KycStatusPage = () => {
         localStorage.removeItem("tokenDetails");
         navigate("/")
     }
-
 
     return (
         <>
@@ -91,9 +146,9 @@ const KycStatusPage = () => {
                             <img src={backButton} onClick={goBack} className="w-8 h-8" alt="Back" />
                             <p className="text-white font-semibold my-1">Complete Your KYC</p>
                         </div>
-                        <div className="text-white" onClick={toggleModal}>
+                        {/* <div className="text-white" onClick={toggleModal}>
                             Logout
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="flex justify-between">
@@ -104,7 +159,7 @@ const KycStatusPage = () => {
                     <div className="text-start rounded-lg p-4 md:p-10 grid md:grid-cols-12 grid-cols-1 gap-4">
                         <div className="col-span-6">
                             <div className="grid grid-cols-2 gap-4 p-3 md:p-0">
-                                {data.map((item) => (
+                                {data?.map((item) => (
                                     <div
                                         onClick={() => handleUpload(item)}
                                         key={item.id}
@@ -116,7 +171,7 @@ const KycStatusPage = () => {
                                                 className="text-sm sm:text-md font-semibold"
                                                 style={{ color: item.textColor }}
                                             >
-                                                {item.status === "Cleared" || item.status === "Review Pending" ? "Uploaded" : "Upload"}
+                                                {item.status === "Cleared" || item.status === "Review Pending" || item.status === "Rejected" ? "Uploaded" : "Upload"}
                                             </p>
                                             <p className={`text-sm sm:text-md ${item.status === "Review Pending" ? "text-white" : "text-black"}`}>{`0${item.uploaded}`}</p>
                                         </div>
@@ -142,9 +197,9 @@ const KycStatusPage = () => {
                         <div className="w-1/2">
                             <div className="w-full flex flex-col items-start p-4">
                                 <div className="flex justify-between items-start w-full">
-                                    <div className="text-start">
-                                        <p className="mx-4">Read & Agree to</p>
-                                        <h1 className="mx-4 text-lg font-bold" style={{ color: "#000094" }}>
+                                    <div className="text-start" onClick={() => navigate("/kyc-status/consent-form")}>
+                                        <p className="mx-4" onClick={() => navigate("/kyc-status/consent-form")}>Read & Agree to</p>
+                                        <h1 onClick={() => navigate("/kyc-status/consent-form")} className="mx-4 text-lg font-bold" style={{ color: "#000094" }}>
                                             Consent Form
                                         </h1>
                                     </div>
@@ -344,9 +399,9 @@ const KycStatusPage = () => {
                         <div className="fixed bottom-0 left-0 w-full sm:hidden bg-white shadow-lg">
                             <div className="absolute bottom-0 left-0 w-full flex flex-col items-start p-4">
                                 <div className="flex justify-between items-start w-full">
-                                    <div className="text-start">
-                                        <p className="mx-4">Read & Agree to</p>
-                                        <h1 className="mx-4 text-lg font-bold" style={{ color: "#000094" }}>
+                                    <div className="text-start" onClick={() => navigate("/kyc-status/consent-form")}>
+                                        <p className="mx-4" onClick={() => navigate("/kyc-status/consent-form")}>Read & Agree to</p>
+                                        <h1 onClick={() => navigate("/kyc-status/consent-form")} className="mx-4 text-lg font-bold" style={{ color: "#000094" }}>
                                             Consent Form
                                         </h1>
                                     </div>

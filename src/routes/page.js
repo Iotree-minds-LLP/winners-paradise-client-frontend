@@ -28,6 +28,7 @@ import BankDetails from '../pages/BankDetails/page';
 import EditBankDetails from '../pages/BankDetails/editBankDetails';
 import AddNominee from '../pages/BankDetails/nominee';
 import EditNominee from '../pages/BankDetails/editNominee';
+import ConsentForm from '../pages/Kyc/consentForm';
 
 const routes = [
   { path: "/", element: <OtpVerification /> },
@@ -56,6 +57,7 @@ const routes = [
   { path: "/profile-and-settings/edit-bank-details", element: <EditBankDetails /> },
   { path: "/profile-and-settings/add-nominee", element: <AddNominee /> },
   { path: "/profile-and-settings/edit-nominee", element: <EditNominee /> },
+  { path: "/kyc-status/consent-form", element: <ConsentForm /> },
 ];
 
 function AppLayout() {

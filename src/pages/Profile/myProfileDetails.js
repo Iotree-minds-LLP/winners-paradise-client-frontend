@@ -63,9 +63,7 @@ const MyProfile = () => {
                             <img src={backButton} onClick={goBack} className="w-8 h-8" alt="Back" />
                             <p className="text-white font-semibold my-1">Profile Details</p>
                         </div>
-                        <div className="text-white" onClick={toggleModal}>
-                            Logout
-                        </div>
+                     
                     </div>
 
                     <div className="flex justify-between">

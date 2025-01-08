@@ -5,7 +5,7 @@ import { axiosInstance, axiosInstanceWithoutToken } from "../../axiosInstance/Ax
 const creteCustomerKycRequest = async (payload, id) => {
 
     try {
-        const res = await axiosInstanceWithoutToken.post(`kyc/create-kyc-request/${id}`, payload);
+        const res = await axiosInstance.post(`kyc/create-kyc-request`, payload);
         const data = res;
         return { data };
     } catch (err) {
@@ -17,7 +17,7 @@ const creteCustomerKycRequest = async (payload, id) => {
 const getKycDetailsByCustomerId = async (id) => {
 
     try {
-        const res = await axiosInstanceWithoutToken.get(`kyc/get-my-kyc-details/${id}`);
+        const res = await axiosInstance.get(`kyc/get-my-kyc-details`);
         const data = res;
         return { data };
     } catch (err) {
