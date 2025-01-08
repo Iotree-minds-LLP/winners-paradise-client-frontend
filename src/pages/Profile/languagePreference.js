@@ -259,8 +259,6 @@ const LanguagePreference = () => {
                     )}
 
                 </div>
-
-
                 <div>
                     {/* Fixed Bottom Save & Continue Section */}
                     <div className="fixed bottom-0 left-0 w-full sm:hidden">

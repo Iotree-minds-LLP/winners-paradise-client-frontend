@@ -74,7 +74,7 @@ const SignupPage = () => {
                 localStorage.setItem("tokenDetails", resp.data.data.token);
                 setErrorMessage("");
                 handleSuccessClick(resp.data.data.message);
-                navigate("/dashboard");
+                navigate("/catalogs");
             }
             else {
                 setErrorMessage(resp.data.error);
