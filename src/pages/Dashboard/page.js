@@ -246,7 +246,7 @@ const DashboardPage = () => {
                                         <div
                                             onClick={() => navigate(`/dashboard/investment-details`, { state: { item: { investment } } })}
                                             key={index}
-                                            className="flex justify-between p-4 rounded-lg"
+                                            className="flex justify-between p-4 rounded-lg  border border-[#020065]"
                                             style={{ background: "#F5F5F5" }}
                                         >
                                             <div className="flex flex-col text-start">

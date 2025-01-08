@@ -7,20 +7,23 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { PwaProvider } from './context/PwaContext/page';
 import { LanguageProvider } from './context/Language/loginContext';
 import { InvestmentProvider } from './context/Investment/investmentContext';
+import { ConsentProvider } from './context/consent/consentProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <InvestmentProvider>
-      <PwaProvider>
-        <ToastProvider>
-          <LanguageProvider>
-            <App></App>
-          </LanguageProvider>
-        </ToastProvider>
-      </PwaProvider>
-    </InvestmentProvider>
+    <ConsentProvider>
+      <InvestmentProvider>
+        <PwaProvider>
+          <ToastProvider>
+            <LanguageProvider>
+              <App></App>
+            </LanguageProvider>
+          </ToastProvider>
+        </PwaProvider>
+      </InvestmentProvider>
+    </ConsentProvider>
   </React.StrictMode>
 );
 

@@ -3,6 +3,7 @@ import React, { createContext, useState, useEffect } from 'react';
 export const PwaContext = createContext();
 
 export const PwaProvider = ({ children }) => {
+    
     const [deferredPrompt, setDeferredPrompt] = useState(null);
     const [isInstalled, setIsInstalled] = useState(false);
 

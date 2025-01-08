@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
 
 const AadharUpload = () => {
-    
+
     const [frontImage, setFrontImage] = useState(null);
     const [backImagePreview, setBackImagePreview] = useState(null);
     const [showCamera, setShowCamera] = useState(false);
@@ -290,7 +290,7 @@ const AadharUpload = () => {
                                     {frontImage ?
                                         (
                                             <img
-                                                onClick={() => startCamera()}
+                                                onClick={() => startCamera(setFrontImage)}
                                                 src={ResetImage} className="w-10 h-auto" alt="Upload Icon" />
                                         ) : (
                                             <img
@@ -334,7 +334,7 @@ const AadharUpload = () => {
                                     {backImagePreview ?
                                         (
                                             <img
-                                                onClick={() => startCamera()}
+                                                onClick={() => startCamera(setBackImagePreview)}
                                                 src={ResetImage} className="w-10 h-auto" alt="Upload Icon" />
                                         ) : (
                                             <img

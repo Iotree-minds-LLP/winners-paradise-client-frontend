@@ -17,6 +17,9 @@ import backImage from "../../assets/Images/backImage.jpg"
 import { Link, useNavigate } from "react-router-dom";
 import { useInvestment } from "../../context/Investment/investmentContext";
 import { useForm, useWatch } from "react-hook-form";
+import logoImage from "../../assets/Images/algologo.png"
+import image2 from "../../assets/Images/robo 1 (1).png";
+import image3 from "../../assets/Images/arrow_circle_right (1).png";
 
 const Catalogs = () => {
 
@@ -87,7 +90,7 @@ const Catalogs = () => {
                 {/* Content Wrapper */}
                 <div className="relative z-10">
                     {/* Gradient Header */}
-                    <div className="object-contain fixed top-0  flex justify-between bg-gradient-to-l sm:hidden from-[#0400CB] to-[#020065]">
+                    <div className="object-contain fixed top-0 z-10 flex justify-between bg-gradient-to-l sm:hidden from-[#0400CB] to-[#020065]">
                         <h1 className="text-start font-bold text-2xl p-4 text-white hidden md:block">Catalogue</h1>
                         <img
                             className="h-auto sm:hidden w-1/5 p-4 md:mt-0 text-start"
@@ -113,9 +116,36 @@ const Catalogs = () => {
                         <p className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer	" onClick={toggleModal}>Logout</p>
                     </div>
 
-                    <div className="text-start rounded-lg mt-20 md:mt-5  p-4 grid md:grid-cols-3 grid-cols-1">
+                    <div className="grid grid-cols-1 md:py-0 py-5 md:grid-cols-3 px-4 gap-0 md:gap-10 mt-20 md:mt-0 text-start">
+                        <div className="p-4 w-full  px-5 mb-3 rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex justify-between" >
+                            <div>
+                                <p className="text-start text-md font-bold text-white">
+                                    Complete KYC
+                                </p>
+                                <p style={{ color: "#54E3FC" }} className="text-xs my-2">To activate all features and to transact complete your KYC process</p>
+                            </div>
+                            <div>
+                                <img src={image3} className="w-14 md:w-10 h-auto"></img>
+                            </div>
+                        </div>
+
+                        <div className="p-4 w-full px-5 mb-3 rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex justify-between" >
+                            <div>
+                                <p className="text-start text-md font-bold text-white">
+                                    Add Bank Account
+                                </p>
+                                <p style={{ color: "#54E3FC" }} className="text-xs my-2">To transact, Please add your bank account</p>
+                            </div>
+                            <div>
+                                <img src={image3} className="w-10 h-auto"></img>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="text-start rounded-lg px-4 grid md:grid-cols-1 grid-cols-1">
+
                         <div
-                            className="p-6 rounded-lg"
+                            className="p-6 rounded-lg w-full md:w-1/3"
                             style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}
                         >
 
@@ -124,7 +154,7 @@ const Catalogs = () => {
                             </p>
 
                             <form onSubmit={handleSubmit(onSubmit)}>
-                                <div className="mt-3 flex justify-between gap-4">
+                                <div className="mt-3 md:flex md:justify-between gap-4">
                                     <TextField
                                         label="Returns Calculator"
                                         variant="outlined"
@@ -162,14 +192,12 @@ const Catalogs = () => {
                                             },
                                         }}
                                     />
-                                    <div>
+                                    <div >
                                         <button
                                             type="submit"
-                                            className="text-white p-4 rounded-lg"
-                                            style={{ background: 'rgba(0, 0, 148, 1)' }}
+                                            className="text-white p-4 w-full mt-4 md:mt-0 rounded-full md:rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065]"
                                         >
-                                            <img className="w-9 h-auto" src={calculateicon} alt="Calculate Icon"></img>
-
+                                            Calculate
                                         </button>
                                     </div>
 
@@ -192,8 +220,7 @@ const Catalogs = () => {
                                 <div
                                     onClick={() => navigate(`/catalogs/catalog-details`, { state: { item } })}
                                     key={index}
-                                    className="p-6 rounded-lg border border-1 border-[#020065]"
-                                    style={{ backgroundColor: '#E7E7FF' }}
+                                    className="relative bg-gradient-to-r from-white to-[#c2c2f5] p-6 rounded-xl border border-2 border-[#0400CB]"
                                 >
                                     <div className="flex justify-between">
                                         <p
@@ -236,7 +263,15 @@ const Catalogs = () => {
                                             ₹{item.returns_per_month}
                                         </p>
                                     </div>
+
+                                    {/* Bottom-right image */}
+                                    <img
+                                        src={logoImage} // Replace with your image source or item.image if dynamic
+                                        alt="Card Decoration"
+                                        className="absolute bottom-2 right-0 w-20 h-auto object-contain opacity-20"
+                                    />
                                 </div>
+
                             );
                         })}
 
@@ -379,6 +414,10 @@ const Catalogs = () => {
                     )}
                 </div>
             </div >
+
+            {/* <div className="mt-5 sm:hidden fixed bottom-0 left-0 w-full bg-white shadow-md ">
+                <img src={image2} alt="Image description" className="w-full h-full object-contain" />
+            </div> */}
 
         </>
     );

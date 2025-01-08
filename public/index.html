@@ -66,16 +66,6 @@
       border-radius: 5px;
       cursor: pointer;
     }
-
-    #pwa-proceed {
-      background: #020065;
-      color: white;
-    }
-
-    #pwa-cancel {
-      background: gray;
-      color: white;
-    }
   </style>
 </head>
 
@@ -83,15 +73,21 @@
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
 
-  <!-- PWA Download Popup -->
   <div id="pwa-popup">
-    <div id="pwa-popup-content">
-      <h2>Install App for a Better Experience</h2>
-      <p>Use our Progressive Web App for faster performance and offline capabilities.</p>
-      <button id="pwa-proceed">Proceed</button>
-      <button id="pwa-cancel">Cancel</button>
+    <div id="pwa-popup-content" class="flex justify-start items-start p-4">
+      <!-- App Logo -->
+      <img src="%PUBLIC_URL%/logo192.png" alt="App Logo" class="w-10 h-10" />
+      <!-- Install Message -->
+      <h2 id="pwa-proceed" class="text-sm underline font-medium text-start mx-5 my-2 text-gray-800">
+        Install App for a Better Experience
+      </h2>
+      <div class="fixed top-0 right-0 mb-4 mr-5">
+        <button id="pwa-cancel" class="text-black font-bold"> ✕ </button>
+      </div>
     </div>
   </div>
+
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       function isPWA() {
