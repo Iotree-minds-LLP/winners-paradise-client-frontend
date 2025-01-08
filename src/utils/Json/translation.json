@@ -79,15 +79,15 @@
             "kannada": "ವಾಸಸ್ಥಳದ ವಿಳಾಸ *"
         },
         "statefield": {
-            "english": "state *",
+            "english": "State *",
             "kannada": "ರಾಜ್ಯ *"
         },
         "Destrictfield": {
-            "english": "district *",
+            "english": "District *",
             "kannada": "ಜಿಲ್ಲೆ *"
         },
         "cityfield": {
-            "english": "city *",
+            "english": "City *",
             "kannada": "ನಗರ *"
         },
         "altno_field": {
