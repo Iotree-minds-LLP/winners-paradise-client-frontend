@@ -87,7 +87,7 @@ const Catalogs = () => {
                 {/* Content Wrapper */}
                 <div className="relative z-10">
                     {/* Gradient Header */}
-                    <div className="object-contain fixed top-100  flex justify-between bg-gradient-to-l sm:hidden from-[#0400CB] to-[#020065]">
+                    <div className="object-contain fixed top-0  flex justify-between bg-gradient-to-l sm:hidden from-[#0400CB] to-[#020065]">
                         <h1 className="text-start font-bold text-2xl p-4 text-white hidden md:block">Catalogue</h1>
                         <img
                             className="h-auto sm:hidden w-1/5 p-4 md:mt-0 text-start"
