@@ -16,13 +16,15 @@ import footerLogo4 from "../../assets/Logos/onboardingLogos/icon-container (1).p
 import backImage from "../../assets/Images/backImage.jpg"
 import { Link, useNavigate } from "react-router-dom";
 import { useInvestment } from "../../context/Investment/investmentContext";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 
 const Catalogs = () => {
 
     const {
         control,
         register,
+        watch,
+        setValue,
         handleSubmit,
         formState: { errors },
     } = useForm();
@@ -31,6 +33,7 @@ const Catalogs = () => {
     const navigate = useNavigate();
     const [listCatalogs, setlistCatalogs] = useState([])
     const { isInvestmentCreated, setIsInvestmentCreated } = useInvestment();
+    const watchedCatalogAmount = watch("returnCalculator");
 
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
@@ -54,6 +57,13 @@ const Catalogs = () => {
             setlistCatalogs(resp.data.catalogs)
         }
     };
+
+    useEffect(() => {
+        if (!watchedCatalogAmount) {
+            onformSubmit()
+        }
+        console.log("Watched Catalog Amount changed:", watchedCatalogAmount);
+    }, [watchedCatalogAmount]);
 
     const onSubmit = async (data) => {
 
@@ -126,6 +136,10 @@ const Catalogs = () => {
                                         {...register('returnCalculator', {
                                             required: 'This field is required',
                                         })}
+                                        onChange={(e) => {
+                                            console.log('Value changed:', e.target.value); // Log the value to the console
+                                            setValue("returnCalculator", e.target.value); // Update the state
+                                        }}
                                         InputProps={{
                                             inputProps: {
                                                 style: {

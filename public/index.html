@@ -19,26 +19,41 @@
     /* Modal Styles */
     #pwa-popup {
       position: fixed;
-      top: 0;
+      bottom: 0;
       left: 0;
       width: 100%;
-      height: 100%;
       background: rgba(0, 0, 0, 0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
       display: none;
       /* Hidden by default */
+      justify-content: center;
+      align-items: flex-end;
+      z-index: 1000;
+    }
+
+    #pwa-popup.active {
+      display: flex;
+      animation: slideUpSlowly 0.5s ease-out forwards;
+      /* Slide-up animation */
+    }
+
+    @keyframes slideUpSlowly {
+      from {
+        transform: translateY(100%);
+      }
+
+      to {
+        transform: translateY(0);
+      }
     }
 
     #pwa-popup-content {
       background: white;
       padding: 20px;
-      border-radius: 8px;
+      border-radius: 12px 12px 0 0;
       text-align: center;
-      width: 90%;
+      width: 100%;
       max-width: 400px;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
     }
 
     #pwa-popup-content h2 {
@@ -63,6 +78,7 @@
       color: white;
     }
   </style>
+
 </head>
 
 <body class="gradient-background">
@@ -80,68 +96,65 @@
   </div>
   <script>
     console.log("Script loaded");
-    try {
-      document.addEventListener("DOMContentLoaded", () => {
-        function isPWA() {
-          return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-        }
+    document.addEventListener("DOMContentLoaded", () => {
+      function isPWA() {
+        return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+      }
 
-        // Detect mobile devices
-        function isMobileDevice() {
-          return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-        }
+      // Detect mobile devices
+      function isMobileDevice() {
+        return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      }
 
-        const pwaPopup = document.getElementById('pwa-popup');
-        const pwaProceed = document.getElementById('pwa-proceed');
-        const pwaCancel = document.getElementById('pwa-cancel');
+      const pwaPopup = document.getElementById('pwa-popup');
+      const pwaProceed = document.getElementById('pwa-proceed');
+      const pwaCancel = document.getElementById('pwa-cancel');
 
-        let deferredPrompt;
+      let deferredPrompt;
 
-        if (isPWA()) {
-          console.log("App is already running as a PWA");
-          return;
-        }
+      if (isPWA()) {
+        console.log("App is already running as a PWA");
+        return;
+      }
 
-        // Show PWA prompt only for mobile devices
-        if (!isMobileDevice()) {
-          console.log("Not a mobile device. PWA popup will not be shown.");
-          return;
-        }
+      // Show PWA prompt only for mobile devices
+      if (!isMobileDevice()) {
+        console.log("Not a mobile device. PWA popup will not be shown.");
+        return;
+      }
 
-        window.addEventListener('beforeinstallprompt', (e) => {
-          console.log('beforeinstallprompt event fired');
-          e.preventDefault();
-          deferredPrompt = e;
+      window.addEventListener('beforeinstallprompt', (e) => {
+        console.log('beforeinstallprompt event fired');
+        e.preventDefault();
+        deferredPrompt = e;
 
-          setTimeout(() => {
-            if (deferredPrompt) {
-              pwaPopup.style.display = 'flex'; // Show the popup after a delay
-            }
-          }, 5000); // Delay for 5 seconds
-        });
-
-        pwaProceed.addEventListener('click', () => {
+        setTimeout(() => {
           if (deferredPrompt) {
-            deferredPrompt.prompt(); // Show the install prompt
-            deferredPrompt.userChoice.then((choiceResult) => {
-              if (choiceResult.outcome === 'accepted') {
-                console.log('User accepted the PWA installation prompt');
-              } else {
-                console.log('User dismissed the PWA installation prompt');
-              }
-              deferredPrompt = null;
-            });
+            pwaPopup.classList.add('active'); // Show the popup with slide-up animation
           }
-          pwaPopup.style.display = 'none'; // Hide the popup
-        });
-
-        pwaCancel.addEventListener('click', () => {
-          pwaPopup.style.display = 'none'; // Hide the popup
-        });
+        }, 5000); // Delay for 5 seconds
       });
-    } catch (error) {
-      console.error("Error in script execution:", error);
-    }
+
+      pwaProceed.addEventListener('click', () => {
+        if (deferredPrompt) {
+          deferredPrompt.prompt(); // Show the install prompt
+          deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+              console.log('User accepted the PWA installation prompt');
+            } else {
+              console.log('User dismissed the PWA installation prompt');
+            }
+            deferredPrompt = null;
+          });
+        }
+        pwaPopup.classList.remove('active'); // Hide the popup
+      });
+
+      pwaCancel.addEventListener('click', () => {
+        pwaPopup.classList.remove('active'); // Hide the popup
+      });
+    });
+
   </script>
 
 
