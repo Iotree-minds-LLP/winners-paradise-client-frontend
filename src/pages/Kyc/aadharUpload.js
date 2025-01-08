@@ -51,8 +51,12 @@ const AadharUpload = () => {
     }
 
     const startCamera = (setImage) => {
-        setCurrentImageSetter(() => setImage);
         setShowCamera(true);
+
+        if (setImage) {
+            setCurrentImageSetter(() => setImage);
+        }
+
 
         const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
@@ -281,13 +285,16 @@ const AadharUpload = () => {
                                 <div
                                     className="p-2 rounded-2xl cursor-pointer"
                                     {...(frontImage ? { style: { backgroundColor: "#ffffff" } } : { style: { backgroundColor: "#D4D4FF" } })}
-                                    onClick={() => startCamera(setFrontImage)}
                                 >
                                     {frontImage ?
                                         (
-                                            <img src={ResetImage} className="w-10 h-auto" alt="Upload Icon" />
+                                            <img
+                                                onClick={() => startCamera()}
+                                                src={ResetImage} className="w-10 h-auto" alt="Upload Icon" />
                                         ) : (
-                                            <img src={uploadImage} className="w-10 h-auto" alt="Upload Icon" />
+                                            <img
+                                                onClick={() => startCamera(setFrontImage)}
+                                                src={uploadImage} className="w-10 h-auto" alt="Upload Icon" />
                                         )
                                     }
                                 </div>
@@ -322,13 +329,16 @@ const AadharUpload = () => {
                                     className="p-2 rounded-2xl cursor-pointer"
                                     // style={{ backgroundColor: "#D4D4FF" }}
                                     {...(backImagePreview ? { style: { backgroundColor: "#ffffff" } } : { style: { backgroundColor: "#D4D4FF" } })}
-                                    onClick={() => startCamera(setBackImagePreview)}
                                 >
                                     {backImagePreview ?
                                         (
-                                            <img src={ResetImage} className="w-10 h-auto" alt="Upload Icon" />
+                                            <img
+                                                onClick={() => startCamera()}
+                                                src={ResetImage} className="w-10 h-auto" alt="Upload Icon" />
                                         ) : (
-                                            <img src={uploadImage} className="w-10 h-auto" alt="Upload Icon" />
+                                            <img
+                                                onClick={() => startCamera(setBackImagePreview)}
+                                                src={uploadImage} className="w-10 h-auto" alt="Upload Icon" />
                                         )
                                     }
                                 </div>
@@ -422,9 +432,9 @@ const AadharUpload = () => {
                     <canvas ref={canvasRef} className="hidden" />
 
                     {/* Faded background overlay with clear scanner area */}
-                    <div className="absolute inset-0">
+                    <div className="absolute ">
                         {/* Full-screen overlay */}
-                        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+                        <div className="absolute inset-0 bg-black"></div>
 
                         {/* Scanner rectangle */}
                         <div
