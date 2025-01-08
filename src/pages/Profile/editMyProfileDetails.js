@@ -74,7 +74,7 @@ const EditCustomerProfile = () => {
         };
         let resp;
         try {
-            resp = await updatecustomer(payload, customerDetails._id);
+            resp = await updatecustomer(payload);
             if (resp.data.status === 200) {
                 setisLoading(false);
                 localStorage.removeItem("customerDetails");

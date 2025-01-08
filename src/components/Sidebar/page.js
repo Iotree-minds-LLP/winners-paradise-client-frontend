@@ -10,10 +10,7 @@ const Sidebar = () => {
     const location = useLocation();
     const currentUrl = location.pathname;
     const [investments, setInvestments] = useState(false)
-
     const { isInvestmentCreated, setIsInvestmentCreated } = useInvestment();
-
-    const navigate = useNavigate();
 
     useEffect(() => {
         const url = currentUrl;
@@ -23,18 +20,12 @@ const Sidebar = () => {
 
 
     useEffect(() => {
-        const data = localStorage.getItem("customerDetails");
-        // if (!data) {
-        //     navigate("/")
-        //     return;
-        // }
-        const customer = JSON.parse(data);
-        onformSubmit(customer._id)
+        onformSubmit()
     }, []);
 
 
-    const onformSubmit = async (id) => {
-        const resp = await getAllInvestments(id);
+    const onformSubmit = async () => {
+        const resp = await getAllInvestments();
         if (resp.data.status === 201) {
             if (resp.data.data.data.length === 0) {
                 setInvestments(false)

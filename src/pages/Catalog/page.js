@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllCatalogByCustomerId, getAllCatalogByReturnCalculator } from "../../network/Catalog/page";
+import { getAllCatalog, getAllCatalogByReturnCalculator } from "../../network/Catalog/page";
 import profileIcon from "../../assets/Logos/trailing-icon.png"
 import belIcon from "../../assets/Logos/belIcon.png"
 import { TextField } from "@mui/material";
@@ -52,7 +52,7 @@ const Catalogs = () => {
     }
 
     const onformSubmit = async () => {
-        const resp = await getAllCatalogByCustomerId();
+        const resp = await getAllCatalog();
         if (resp?.data?.catalogs) {
             setlistCatalogs(resp.data.catalogs)
         }
@@ -242,7 +242,7 @@ const Catalogs = () => {
 
                     </div>
                     {listCatalogs.length === 0 && (
-                        <p className="font-bold text-lg">Sorry We dont have any catalogs for this amount</p>
+                        <p className="p-3 font-bold text-gray-400 text-lg">Sorry We dont have any catalogs for this amount</p>
                     )}
 
                     {/* Footer Navigation */}

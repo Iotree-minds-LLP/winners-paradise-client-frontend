@@ -127,19 +127,16 @@ const OtpVerification = () => {
 
                 const customer = resp.data.data.customer;
 
-                // Save token details in localStorage
                 localStorage.setItem("tokenDetails", resp.data.data.token);
 
                 if (customer) {
                     setLanguage(customer.language_preference);
                     await localStorage.setItem("customerDetails", JSON.stringify(customer));
 
-                    // Fetch all investments for the customer
                     const investmentsResp = await getAllInvestments(customer._id);
                     if (investmentsResp.data.status === 201) {
                         const investments = investmentsResp.data.data.data;
 
-                        // Navigate based on the existence of investments
                         if (investments.length === 0) {
                             navigate("/catalogs");
                         } else {
@@ -148,12 +145,10 @@ const OtpVerification = () => {
                     }
                     handleSuccessClick(resp.data.data.message);
                 } else {
-                    // If customer data is not present, navigate to register
                     navigate("/register");
                     handleSuccessClick(resp.data.data.message);
                 }
             } else {
-                // Handle non-200 status responses
                 setErrorMessage(resp.data.message || "An unexpected error occurred.");
                 setisLoading(false);
             }

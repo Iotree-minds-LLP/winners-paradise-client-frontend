@@ -4,7 +4,7 @@ import { axiosInstance, axiosInstanceWithoutToken } from "../../axiosInstance/Ax
 
 const getCustomersNotifications = async (id) => {
     try {
-        const res = await axiosInstanceWithoutToken.get(`notifications/list-notifications/${id}`);
+        const res = await axiosInstance.get(`notifications/list-notifications`);
         const data = res;
         return { data };
     } catch (err) {

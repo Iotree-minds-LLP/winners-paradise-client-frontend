@@ -4,7 +4,7 @@ import { axiosInstance, axiosInstanceWithoutToken } from "../../axiosInstance/Ax
 
 const createCustomer = async (payload) => {
     try {
-        const res = await axiosInstanceWithoutToken.post("customer/create", payload);
+        const res = await axiosInstance.post("customer/create", payload);
         const data = res;
         return { data };
     } catch (err) {
@@ -16,7 +16,7 @@ const createCustomer = async (payload) => {
 
 const getCustomerById = async (id) => {
     try {
-        const res = await axiosInstanceWithoutToken.post(`customer/get-my-account-details/${id}`);
+        const res = await axiosInstance.post(`customer/get-my-account-details`);
         const data = res;
         return { data };
     } catch (err) {
@@ -26,9 +26,9 @@ const getCustomerById = async (id) => {
 };
 
 
-const updatecustomer = async (payload, id) => {
+const updatecustomer = async (payload) => {
     try {
-        const res = await axiosInstanceWithoutToken.put(`customer/edit/${id}`, payload);
+        const res = await axiosInstance.put(`customer/edit`, payload);
         const data = res;
         return { data };
     } catch (err) {

@@ -24,7 +24,7 @@ const Payouts = () => {
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
-        onformSubmit(customer._id)
+        onformSubmit()
     }, []);
 
 
@@ -171,6 +171,14 @@ const Payouts = () => {
                         ))}
                     </div>
 
+                    <div className="p-3 mx-10 font-bold text-gray-400 text-lg">
+
+                        {payoutsToDisplay.length === 0 &&
+                            (
+                                <p>No Payouts Found </p>
+                            )}
+
+                    </div>
 
                     {/* Investment Cards */}
 

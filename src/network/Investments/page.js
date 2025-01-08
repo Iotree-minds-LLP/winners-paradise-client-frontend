@@ -2,7 +2,7 @@ import { axiosInstance, axiosInstanceWithoutToken } from "../../axiosInstance/Ax
 
 const getAllInvestments = async (id) => {
     try {
-        const res = await axiosInstanceWithoutToken.get(`investments/list-my-investments/${id}`);
+        const res = await axiosInstance.get(`investments/list-my-investments`);
         const data = res;
         return { data };
     } catch (err) {
