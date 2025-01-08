@@ -254,19 +254,20 @@ const Catalogs = () => {
                             width: '100%',
                         }}
                     >
-                        <div className={`grid ${isInvestmentCreated ? "grid-cols-3" : "grid-cols-2"} `}>
-                            {/* Catalogue */}
-                            <div className=" p-2 flex flex-col items-center">
-                                <div className="bg-white px-5 p-3 rounded-full flex items-center justify-center">
-                                    <img className="w-auto h-8" src={footerLogo1} alt="Footer Logo 1" />
-                                </div>
-                                <p className="mt-2 text-md font-bold text-center text-white">
-                                    Catalogue
-                                </p>
-                            </div>
+                        {isInvestmentCreated && (
 
-                            {/* Dashboard */}
-                            {isInvestmentCreated && (
+                            <div className={`grid ${isInvestmentCreated ? "grid-cols-3" : "grid-cols-2"} `}>
+                                {/* Catalogue */}
+                                <div className=" p-2 flex flex-col items-center">
+                                    <div className="bg-white px-5 p-3 rounded-full flex items-center justify-center">
+                                        <img className="w-auto h-8" src={footerLogo1} alt="Footer Logo 1" />
+                                    </div>
+                                    <p className="mt-2 text-md font-bold text-center text-white">
+                                        Catalogue
+                                    </p>
+                                </div>
+
+                                {/* Dashboard */}
                                 <Link to="/dashboard">
                                     <div className="p-2  flex flex-col items-center">
                                         <div className="p-3 rounded-full flex items-center justify-center">
@@ -277,21 +278,22 @@ const Catalogs = () => {
                                         </p>
                                     </div>
                                 </Link>
-                            )}
 
-                            <Link to="/payouts">
-                                {/*zPayouts */}
-                                <div className=" p-2 flex flex-col items-center">
-                                    <div className="p-3 rounded-full flex items-center justify-center">
-                                        <img className="w-auto h-8" src={footerLogo4} alt="Footer Logo 3" />
+                                <Link to="/payouts">
+                                    {/*zPayouts */}
+                                    <div className=" p-2 flex flex-col items-center">
+                                        <div className="p-3 rounded-full flex items-center justify-center">
+                                            <img className="w-auto h-8" src={footerLogo4} alt="Footer Logo 3" />
+                                        </div>
+                                        <p className="mt-2 text-md font-bold text-center text-white">
+                                            Payouts
+                                        </p>
                                     </div>
-                                    <p className="mt-2 text-md font-bold text-center text-white">
-                                        Payouts
-                                    </p>
-                                </div>
-                            </Link>
+                                </Link>
 
-                        </div>
+                            </div>
+                        )}
+
                     </div>
                 </div>
                 <div>
