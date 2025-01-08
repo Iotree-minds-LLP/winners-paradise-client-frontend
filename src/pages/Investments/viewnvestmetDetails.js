@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import backImage from "../../assets/Images/backImage.jpg";
 import backButton from "../../assets/Logos/backButton.png";
 import { goBack } from "../../utils/Functions/goBackScreen";
-import { getAllOverAllPayouts, getAllPayouts } from "../../network/Payouts/page";
+import { getAllOverAllPayouts, getAllPayouts, getAllPayoutsBYInvestmentId } from "../../network/Payouts/page";
 
 
 const InvestmentDetails = () => {
@@ -34,7 +34,7 @@ const InvestmentDetails = () => {
     useEffect(() => {
 
         const onformSubmit = async () => {
-            const resp = await getAllPayouts(SelectedInvestmentDetails._id);
+            const resp = await getAllPayoutsBYInvestmentId(SelectedInvestmentDetails._id);
             setlistPayouts(resp?.data?.data?.payouts)
         };
 

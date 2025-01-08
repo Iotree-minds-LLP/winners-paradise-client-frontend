@@ -12,6 +12,18 @@ const getAllPayouts = async () => {
     }
 };
 
+
+const getAllPayoutsBYInvestmentId = async (id) => {
+    try {
+        const res = await axiosInstance.get(`payouts/list-my-payouts${id}`);
+        const data = res;
+        return { data };
+    } catch (err) {
+        const errRes = (err && err.response) || "Network Error";
+        return { ...errRes };
+    }
+};
+
 const getAllOverAllPayouts = async (id) => {
     try {
         const res = await axiosInstance.get(`payouts/list-my-payouts`);
@@ -35,4 +47,4 @@ const getAllReferralPayouts = async (id) => {
 };
 
 
-export { getAllPayouts, getAllReferralPayouts, getAllOverAllPayouts };
+export { getAllPayouts, getAllReferralPayouts, getAllOverAllPayouts, getAllPayoutsBYInvestmentId };

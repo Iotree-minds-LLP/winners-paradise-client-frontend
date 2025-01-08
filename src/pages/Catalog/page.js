@@ -241,6 +241,7 @@ const Catalogs = () => {
                         })}
 
                     </div>
+
                     {listCatalogs.length === 0 && (
                         <p className="p-3 font-bold text-gray-400 text-lg">Sorry We dont have any catalogs for this amount</p>
                     )}

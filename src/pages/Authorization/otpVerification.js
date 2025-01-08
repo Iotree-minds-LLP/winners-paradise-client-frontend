@@ -31,7 +31,9 @@ const OtpVerification = () => {
 
     const [isLoading, setisLoading] = useState(false)
     const [selectedValue, setSelectedValue] = useState(language);
-    const [ErrorMessage, setErrorMessage] = useState("")
+    const [ErrorMessage, setErrorMessage] = useState("");
+    const [mobileNumber, setmobileNumber] = useState()
+
 
     const handleChange = (event) => {
         setLanguage(event.target.value);
@@ -77,6 +79,7 @@ const OtpVerification = () => {
                 setToken(resp.data.data.token);
                 setisLoading(false);
                 localStorage.setItem("tempMobileNumber", data.phoneNumber)
+                setmobileNumber(data.phoneNumber)
             }
             else {
                 setErrorMessage("Something Went Wrong");
@@ -88,6 +91,12 @@ const OtpVerification = () => {
             setisLoading(false);
         }
     };
+
+    const handeChangePhoneNumber = () => {
+        setShowotpField(false);
+        setShowPhoneField(true);
+        setmobileNumber();
+    }
 
     const resendOTP = async () => {
 
@@ -351,7 +360,7 @@ const OtpVerification = () => {
                             >
                                 <div className="flex justify justify-between">
                                     <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '500', fontSize: '14px' }}>
-                                        {translations.loginScreen.otpConfirmation.heading1[language]}
+                                        Confirm +91{" "}{mobileNumber}
                                     </p>
                                     <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '500', textDecoration: "underline", fontSize: '14px' }} className="cursor-pointer" onClick={resendOTP}>
                                         {translations.loginScreen.otpConfirmation.resendOTPLink[language]}
@@ -427,8 +436,13 @@ const OtpVerification = () => {
                                     </form>
                                 </div>
                             </div>
+
+                        )}
+                        {ShowotpField && (
+                            <p onClick={handeChangePhoneNumber} className="py-3 underline cursor-pointer" style={{ color: 'rgba(0, 0, 148, 1)' }}>Change Phone Number</p>
                         )}
                     </div>
+
 
                     <div className="col-span-12 hidden sm:block overflow-hidden md:col-span-6 w-full max-h-[100vh] order-2 md:order-1 responsive relative">
                         {/* Image */}

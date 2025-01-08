@@ -56,8 +56,9 @@ const DashboardPage = () => {
 
 
     const onformSubmit2 = async (id) => {
-        const resp = await getAllPayouts("6777e9694fa72426bd0dce79");
-        if (resp.data.status === 201) {
+        const resp = await getAllPayouts();
+        console.log(resp, "Resp")
+        if (resp.data.status === 200) {
             setlistPayount(resp.data.data.payouts)
             console.log(resp.data.data.payouts, "resp.data.data.payouts")
         }

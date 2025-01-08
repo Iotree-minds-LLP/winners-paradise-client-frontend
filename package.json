@@ -24,6 +24,7 @@
     "datatables.net-dt": "^2.1.4",
     "datatables.net-react": "^1.0.0",
     "date-fns": "^3.6.0",
+    "firebase": "^11.1.0",
     "flowbite": "^2.5.2",
     "framer-motion": "^11.2.9",
     "js-cookie": "^3.0.5",
