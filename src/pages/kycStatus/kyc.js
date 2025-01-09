@@ -23,6 +23,7 @@ const KycStatusPage = () => {
     const [customerDetails, setCustomerDetails] = useState([]);
     const [isModalOpen, setisModalOpen] = useState(false);
     const navigate = useNavigate();
+    const [KycRequestData, setKycRequestData] = useState({})
 
     useEffect(() => {
         onformSubmit2();
@@ -31,29 +32,33 @@ const KycStatusPage = () => {
     const onformSubmit2 = async () => {
         try {
             const res = await getKycDetailsByCustomerId(); // Fetching KYC details
-            console.log(res.data.data, "Res");
-
-            if (res.data.status === 500) {
+            console.log(res, "Response")
+            if (res.status === 500) {
                 console.log(res, "Res");
+                const data500 = [
+                    { id: 1, title: "AADHAR CARD", uploaded: 1 },
+                    { id: 2, title: "PAN CARD", uploaded: 2 },
+                    { id: 3, title: "CANCELLED CHEQUE", uploaded: 3 },
+                    { id: 4, title: "SELFIE", uploaded: 4 },
+                ];
 
                 // Update all items to "Upload" for status 500
-                data = data.map(item => ({
+                const updatedData = data500.map(item => ({
                     ...item,
                     status: "Upload",
-                    backgroundColor: '#FFDA99',
-                    textColor: '#533400',
+                    backgroundColor: '#F5F5F5',
+                    textColor: '#000094',
                 }));
-
-                console.log("Updated Data (500):", data);
+                setdata(updatedData);
+                console.log("Updated Data (500):", updatedData);
             } else if (res.data.status === 200) {
+                setKycRequestData(res.data.data);
                 const {
                     is_aadhar_verified,
                     is_pan_verified,
                     is_blank_cheque_verified,
                     is_profile_image_verified
                 } = res.data.data;
-
-                console.log(is_pan_verified, "is_pan_verified");
 
                 // Define mapping for statuses and styles
                 const verificationStatuses = {
@@ -105,20 +110,24 @@ const KycStatusPage = () => {
 
     const handleUpload = (item) => {
 
+        if (item.status === "Cleared") {
+            return;
+        }
+
         if (item.title === "AADHAR CARD") {
-            navigate("/kyc/aadhar-card-upload", { state: { item } })
+            navigate("/kyc/aadhar-card-upload", { state: { KycRequestData } })
         }
 
         if (item.title === "PAN CARD") {
-            navigate("/kyc/pan-card-upload")
+            navigate("/kyc/pan-card-upload", { state: { KycRequestData } })
         }
 
         if (item.title === "CANCELLED CHEQUE") {
-            navigate("/kyc/cancelled-checque-upload")
+            navigate("/kyc/cancelled-checque-upload", { state: { KycRequestData } })
         }
 
         if (item.title === "SELFIE") {
-            navigate("/kyc/selfie-upload")
+            navigate("/kyc/selfie-upload", { state: { KycRequestData } })
         }
     }
 
@@ -194,32 +203,35 @@ const KycStatusPage = () => {
                     </div>
 
                     <div className="hidden sm:block">
-                        <div className="w-1/2">
-                            <div className="w-full flex flex-col items-start p-4">
-                                <div className="flex justify-between items-start w-full">
-                                    <div className="text-start" onClick={() => navigate("/kyc-status/consent-form")}>
-                                        <p className="mx-4" onClick={() => navigate("/kyc-status/consent-form")}>Read & Agree to</p>
-                                        <h1 onClick={() => navigate("/kyc-status/consent-form")} className="mx-4 text-lg font-bold" style={{ color: "#000094" }}>
-                                            Consent Form
-                                        </h1>
-                                    </div>
-                                    <div className="mr-5 bg-[#D4D4FF] rounded-xl p-3">
-                                        <input
-                                            checked={isConsentAgreed}
-                                            type="checkbox"
-                                            id="customCheckbox"
-                                            className="w-6 p-3 border border-blue-300 bg-gray-300 h-6 cursor-pointer accent-blue-500"
-                                        />
+                        {data?.every(item => item.status === "Cleared") && (
+                            <div className="w-1/2">
+                                <div className="w-full flex flex-col items-start p-4">
+                                    <div className="flex justify-between items-start w-full">
+                                        <div className="text-start" onClick={() => navigate("/kyc-status/consent-form")}>
+                                            <p className="mx-4" onClick={() => navigate("/kyc-status/consent-form")}>Read & Agree to</p>
+                                            <h1 onClick={() => navigate("/kyc-status/consent-form")} className="mx-4 text-lg font-bold" style={{ color: "#000094" }}>
+                                                Consent Form
+                                            </h1>
+                                        </div>
+                                        <div className="mr-5 bg-[#D4D4FF] rounded-xl p-3">
+                                            <input
+                                                checked={isConsentAgreed}
+                                                type="checkbox"
+                                                id="customCheckbox"
+                                                className="w-6 p-3 border border-blue-300 bg-gray-300 h-6 cursor-pointer accent-blue-500"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        )}
+
                         <div className="grid grid-cols-2 mx-6">
 
                             <div className=" grid grid-cols-2 gap-4">
                                 <div className="w-full mt-4">
                                     <button
-                                        onClick={() => navigate("/catalogs")}
+                                        onClick={() => goBack()}
                                         type="submit"
                                         style={{ color: "#65558F" }}
                                         className="w-full p-3 px-24 flex justify-center rounded-full text-sm font-semibold border border-gray-600 bg-white"
@@ -392,31 +404,35 @@ const KycStatusPage = () => {
                         </div>
                     )}
 
-
-
-
                     <div>
                         <div className="fixed bottom-0 left-0 w-full sm:hidden bg-white shadow-lg">
                             <div className="absolute bottom-0 left-0 w-full flex flex-col items-start p-4">
-                                <div className="flex justify-between items-start w-full">
-                                    <div className="text-start" onClick={() => navigate("/kyc-status/consent-form")}>
-                                        <p className="mx-4" onClick={() => navigate("/kyc-status/consent-form")}>Read & Agree to</p>
-                                        <h1 onClick={() => navigate("/kyc-status/consent-form")} className="mx-4 text-lg font-bold" style={{ color: "#000094" }}>
-                                            Consent Form
-                                        </h1>
+                                {data?.every(item => item.status === "Cleared") && (
+                                    <div className="w-1/2">
+                                        <div className="w-full flex flex-col items-start p-4">
+                                            <div className="flex justify-between items-start w-full">
+                                                <div className="text-start" onClick={() => navigate("/kyc-status/consent-form")}>
+                                                    <p className="mx-4" onClick={() => navigate("/kyc-status/consent-form")}>Read & Agree to</p>
+                                                    <h1 onClick={() => navigate("/kyc-status/consent-form")} className="mx-4 text-lg font-bold" style={{ color: "#000094" }}>
+                                                        Consent Form
+                                                    </h1>
+                                                </div>
+                                                <div className="mr-5 bg-[#D4D4FF] rounded-xl p-3">
+                                                    <input
+                                                        checked={isConsentAgreed}
+                                                        type="checkbox"
+                                                        id="customCheckbox"
+                                                        className="w-6 p-3 border border-blue-300 bg-gray-300 h-6 cursor-pointer accent-blue-500"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="mr-5 bg-[#D4D4FF] rounded-xl p-3">
-                                        <input
-                                            type="checkbox"
-                                            checked={isConsentAgreed}
-                                            id="customCheckbox"
-                                            className="w-6 p-3 border border-blue-300 bg-gray-300 h-6 cursor-pointer accent-blue-500"
-                                        />
-                                    </div>
-                                </div>
+                                )}
+
                                 <div className="w-full mt-4">
                                     <button
-                                        onClick={() => navigate("/catalogs")}
+                                        onClick={() => goBack()}
                                         type="submit"
                                         style={{ color: "#65558F" }}
                                         className="w-full p-3 px-24 flex justify-center rounded-full text-sm font-semibold border border-gray-600 bg-white"
