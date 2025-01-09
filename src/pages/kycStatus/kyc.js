@@ -40,7 +40,7 @@ const KycStatusPage = () => {
         setisLoading(true);
 
         const payload = {
-            is_consent_given: true
+            is_consent_given: isConsentAgreed
         }
         try {
             const res = await creteCustomerKycRequest(payload);
@@ -292,7 +292,7 @@ const KycStatusPage = () => {
                                 <div className=" grid grid-cols-2 gap-4 mx-5">
                                     <div className="w-full mt-4">
                                         <button
-                                            onClick={() => goBack()}
+                                            onClick={() => navigate("/profile-and-settings")}
                                             type="submit"
                                             style={{ color: "#65558F" }}
                                             className="w-full p-3 px-24 flex justify-center rounded-full text-sm font-semibold border border-gray-600 bg-white"
@@ -509,7 +509,7 @@ const KycStatusPage = () => {
 
                                 <div className="w-full mt-4">
                                     <button
-                                        onClick={() => goBack()}
+                                        onClick={() => navigate("/profile-and-settings")}
                                         type="submit"
                                         style={{ color: "#65558F" }}
                                         className="w-full p-3 px-24 flex justify-center rounded-full text-sm font-semibold border border-gray-600 bg-white"

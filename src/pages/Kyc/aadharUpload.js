@@ -184,9 +184,6 @@ const AadharUpload = () => {
             aadhar_no: AadharNumber,
         };
 
-        console.log(payload);
-
-
         try {
             const res = await creteCustomerKycRequest(payload);
             if (res?.data?.status === 200) {
