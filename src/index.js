@@ -9,11 +9,6 @@ import { LanguageProvider } from './context/Language/loginContext';
 import { InvestmentProvider } from './context/Investment/investmentContext';
 import { ConsentProvider } from './context/consent/consentProvider';
 
-import './fcmService/firebase';
-import { requestNotificationPermission } from './fcmService/firebase';
-
-requestNotificationPermission();
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
