@@ -9,7 +9,7 @@ const App = () => {
   useEffect(() => {
     generateToken();
     onMessage(messaging, (payload) => {
-      console.log(payload)
+      console.log(payload, "Paylouad is there")
     });
   }, [])
 

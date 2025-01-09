@@ -18,9 +18,10 @@ export const messaging = getMessaging(app);
 
 export const generateToken = async () => {
     const permission = await Notification.requestPermission()
-    console.log(permission)
-    const token = await getToken(messaging, {
-        vapidKey: process.env.REACT_APP_VAPID_KEY
-    })
-    console.log(token);
+    if (permission === 'granted') {
+        const token = await getToken(messaging, {
+            vapidKey: process.env.REACT_APP_VAPID_KEY
+        })
+        alert(token)
+    }
 }

@@ -117,7 +117,7 @@ const Catalogs = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:py-0 py-5 md:grid-cols-3 px-4 gap-0 md:gap-10 mt-20 md:mt-0 text-start">
-                        <div className="p-4 w-full  px-5 mb-3 rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex justify-between" >
+                        <div className="p-4 w-full  px-5 mb-3 rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex justify-between" onClick={() => navigate("/Kyc-status")} >
                             <div>
                                 <p className="text-start text-md font-bold text-white">
                                     Complete KYC
