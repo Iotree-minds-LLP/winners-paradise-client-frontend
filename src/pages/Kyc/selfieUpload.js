@@ -130,7 +130,6 @@ const SelfieUpload = () => {
             return;
         }
 
-
         const payload = {
             ...(frontImage && !frontImage.startsWith("https") && { customer_selfie: frontImage }),
         };
@@ -140,6 +139,7 @@ const SelfieUpload = () => {
             if (res?.data?.status === 200) {
                 setisLoading(false);
                 handleSuccessClick("KYC Request Submitted Successfully");
+                navigate("/Kyc-status")
             } else {
                 setisLoading(false);
                 setErrorMessage(res.data.error);

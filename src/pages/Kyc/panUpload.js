@@ -167,15 +167,14 @@ const PanUpload = () => {
     const handleContinue = async () => {
         setisLoading(true);
 
-        if (!frontImage || !backImagePreview) {
-            setErrorMessage("Please capture both front and back images before continuing.");
+        if (!frontImage) {
+            setErrorMessage("Please capture Pan Card .");
             setisLoading(false);
             return;
         }
 
         const payload = {
-            ...(frontImage && !frontImage.startsWith("https") && { pan_file_front: frontImage }),
-            ...(backImagePreview && !backImagePreview.startsWith("https") && { pan_file_back: backImagePreview }),
+            ...(frontImage && !frontImage.startsWith("https") && { pan_file: frontImage }),
         };
 
         try {
@@ -183,6 +182,7 @@ const PanUpload = () => {
             if (res?.data?.status === 200) {
                 setisLoading(false);
                 handleSuccessClick("KYC Request Submitted Successfully");
+                navigate("/Kyc-status")
             } else {
                 setisLoading(false);
                 setErrorMessage(res.data.error);
@@ -234,7 +234,7 @@ const PanUpload = () => {
                                         : "bg-[#F1F1FF]"
                                 : ""
                                 }`}
-                        >
+                         >
                             {frontImage ? (
                                 <div className="w-full h-auto">
                                     <img
@@ -247,7 +247,7 @@ const PanUpload = () => {
                             <div className="mt-4 flex flex-row items-center justify-between w-full px-4">
                                 <div className="flex flex-col text-start">
                                     <p className="text-sm">Upload</p>
-                                    <p className="text-lg font-bold">PAN CARD FRONT</p>
+                                    <p className="text-lg font-bold">PAN CARD</p>
                                 </div>
                                 <div
                                     className="p-2 rounded-2xl cursor-pointer"
@@ -265,46 +265,7 @@ const PanUpload = () => {
                             </div>
                         </div>
 
-                        <div
-                            className={`flex flex-col text-center items-center justify-start p-4 border border-2 border-dotted border-gray-300 relative w-full max-w-md rounded-md ${backImagePreview
-                                ? panBackStatus === "CLEARED"
-                                    ? "bg-[#BBFF99]" // Green if panStatus is Cleared
-                                    : panBackStatus === "REJECTED"
-                                        ? "bg-[#FFDA99]" // Orange if panStatus is Rejected
-                                        : "bg-[#F1F1FF]" // Default blue color if panStatus is neither Cleared nor Rejected
-                                : "" // No additional class if backImagePreview is false
-                                }`}
-                        >
-                            {backImagePreview ? (
-                                <div className="w-full h-auto">
-                                    <img
-                                        src={backImagePreview}
-                                        className="w-full max-h-50 object-contain"
-                                        alt="Uploaded Back"
-                                    />
-                                </div>
-                            ) : null}
-                            <div className="mt-4 flex flex-row items-center justify-between w-full px-4">
-                                <div className="flex flex-col text-start">
-                                    <p className="text-sm">Upload</p>
-                                    <p className="text-lg font-bold">Pan CARD BACK</p>
-                                </div>
-                                <div
-                                    className="p-2 rounded-2xl cursor-pointer"
-                                    // style={{ backgroundColor: "#D4D4FF" }}
-                                    {...(backImagePreview ? { style: { backgroundColor: "#ffffff" } } : { style: { backgroundColor: "#D4D4FF" } })}
-                                    onClick={() => startCamera(setBackImagePreview)}
-                                >
-                                    {backImagePreview ?
-                                        (
-                                            <img src={ResetImage} className="w-10 h-auto" alt="Upload Icon" />
-                                        ) : (
-                                            <img src={uploadImage} className="w-10 h-auto" alt="Upload Icon" />
-                                        )
-                                    }
-                                </div>
-                            </div>
-                        </div>
+                     
                     </div>
 
                     {locationStateDetails?.is_pan_verified === "REJECTED" && (

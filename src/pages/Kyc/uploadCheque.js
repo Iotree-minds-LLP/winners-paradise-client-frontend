@@ -34,20 +34,13 @@ const ChequeUpload = () => {
 
     useEffect(() => {
         if (location.state?.KycRequestData && Object.keys(location.state.KycRequestData).length > 0) {
-            console.log(location.state.KycRequestData);
             setLocationStateDetails(location.state.KycRequestData);
-
-            setFrontImage(location.state.KycRequestData.aadhar_file_front);
-
-            setcancelledCheque(location.state.KycRequestData.is_aadhar_verified);
-
+            setFrontImage(location.state.KycRequestData.blank_cheque_file);
+            setcancelledCheque(location.state.KycRequestData.is_blank_cheque_verified);
 
         } else {
-            console.log("KycRequestData is empty");
             setLocationStateDetails(null);
-
             setcancelledCheque(null);
-
             setFrontImage(null);
         }
 
@@ -175,6 +168,7 @@ const ChequeUpload = () => {
             if (res?.data?.status === 200) {
                 setisLoading(false);
                 handleSuccessClick("KYC Request Submitted Successfully");
+                navigate("/Kyc-status")
             } else {
                 setisLoading(false);
                 setErrorMessage(res.data.error);
@@ -218,9 +212,9 @@ const ChequeUpload = () => {
                     <div className={`flex flex-col md:flex-row gap-10 p-4 md:mb-0 overflow-y-auto ${locationStateDetails?.is_blank_cheque_verified === "REJECTED" ? "mb-0" : "mb-20"}`}>
                         <div
                             className={`flex flex-col text-center items-center justify-start p-4 border border-2 border-dotted border-gray-300 relative w-full max-w-md rounded-md ${frontImage
-                                ? cancelledCheque === "Cleared"
+                                ? cancelledCheque === "CLEARED"
                                     ? "bg-[#BBFF99]"
-                                    : cancelledCheque === "Rejected"
+                                    : cancelledCheque === "REJECTED"
                                         ? "bg-[#FFDA99]"
                                         : "bg-[#F1F1FF]"
                                 : ""
@@ -236,10 +230,12 @@ const ChequeUpload = () => {
                                 </div>
                             ) : null}
                             <div className="mt-4 flex flex-row items-center justify-between w-full px-4">
+
                                 <div className="flex flex-col text-start">
                                     <p className="text-sm">Upload</p>
                                     <p className="text-lg font-bold">Cancelled Cheque</p>
                                 </div>
+
                                 <div
                                     className="p-2 rounded-2xl cursor-pointer"
                                     {...(frontImage ? { style: { backgroundColor: "#ffffff" } } : { style: { backgroundColor: "#D4D4FF" } })}

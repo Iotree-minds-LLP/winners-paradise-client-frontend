@@ -79,8 +79,13 @@ const KycStatusPage = () => {
                     textColor: '#000094',
                 }));
                 setdata(updatedData);
-                console.log("Updated Data (500):", updatedData);
+
             } else if (res.data.status === 200) {
+
+                if (res.data.data.is_consent_given) {
+                    setIsConsentAgreed(res.data.data.is_consent_given)
+                }
+
                 setKycRequestData(res.data.data);
                 const {
                     is_aadhar_verified,
@@ -139,7 +144,7 @@ const KycStatusPage = () => {
 
     const handleUpload = (item) => {
 
-        if (item.status === "Cleared") {
+        if (item.status === "Cleared" || item.status === "Review Pending") {
             return;
         }
 
@@ -235,7 +240,7 @@ const KycStatusPage = () => {
                         {data?.every(item => item.status === "Cleared") ? (
                             <>
                                 <div className="md:w-1/2">
-                                    <div className="w-full flex flex-col items-start p-4">
+                                    <div className="w-full flex flex-col items-start p-4 cursor-pointer">
                                         <div className="flex justify-between items-start w-full">
                                             <div className="text-start" onClick={() => navigate("/kyc-status/consent-form")}>
                                                 <p className="mx-4" onClick={() => navigate("/kyc-status/consent-form")}>Read & Agree to</p>
@@ -284,6 +289,11 @@ const KycStatusPage = () => {
                                             "Submit Request"
                                         )}
                                     </button>
+                                </div>
+                                <div className="px-5 mt-4">
+                                    {errorMessage && (
+                                        <p className="text-start text-red-400">{errorMessage}</p>
+                                    )}
                                 </div>
                             </>
                         ) : (
@@ -449,10 +459,8 @@ const KycStatusPage = () => {
                             <div className="absolute bottom-0 left-0 w-full flex flex-col items-start p-4">
                                 {data?.every(item => item.status === "Cleared") && (
                                     <>
-
-
                                         <div className="w-full" >
-                                            <div className="w-full flex flex-col items-star">
+                                            <div className="w-full flex flex-col items-star cursor-pointer">
                                                 <div className="flex justify-between items-start w-full">
                                                     <div className="text-start" onClick={() => navigate("/kyc-status/consent-form")}>
                                                         <p className="mx-4" onClick={() => navigate("/kyc-status/consent-form")}>Read & Agree to</p>
@@ -502,6 +510,11 @@ const KycStatusPage = () => {
                                                     "Submit Request"
                                                 )}
                                             </button>
+                                        </div>
+                                        <div>
+                                            {errorMessage && (
+                                                <p className="text-start text-red-400">{errorMessage}</p>
+                                            )}
                                         </div>
                                     </>
 
