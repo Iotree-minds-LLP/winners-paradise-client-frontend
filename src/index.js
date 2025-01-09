@@ -9,6 +9,12 @@ import { LanguageProvider } from './context/Language/loginContext';
 import { InvestmentProvider } from './context/Investment/investmentContext';
 import { ConsentProvider } from './context/consent/consentProvider';
 
+import './fcmService/firebase';
+import { requestNotificationPermission, setupOnMessageListener } from './fcmService/firebase';
+
+requestNotificationPermission();
+setupOnMessageListener();
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -26,7 +32,6 @@ root.render(
     </ConsentProvider>
   </React.StrictMode>
 );
-
 
 serviceWorkerRegistration.register();
 

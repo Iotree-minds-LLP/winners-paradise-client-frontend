@@ -174,9 +174,9 @@ const PanUpload = () => {
         }
 
         const payload = {
-            pan_file_front: frontImage,
-            pan_file_back: backImagePreview,
-        }
+            ...(frontImage && !frontImage.startsWith("https") && { pan_file_front: frontImage }),
+            ...(backImagePreview && !backImagePreview.startsWith("https") && { pan_file_back: backImagePreview }),
+        };
 
         try {
             const res = await creteCustomerKycRequest(payload, customerDetails._id);

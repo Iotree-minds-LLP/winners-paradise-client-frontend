@@ -167,8 +167,8 @@ const ChequeUpload = () => {
         }
 
         const payload = {
-            blank_cheque_file: frontImage
-        }
+            ...(frontImage && !frontImage.startsWith("https") && { blank_cheque_file: frontImage }),
+        };
 
         try {
             const res = await creteCustomerKycRequest(payload, customerDetails._id);

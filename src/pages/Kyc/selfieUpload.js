@@ -130,9 +130,10 @@ const SelfieUpload = () => {
             return;
         }
 
+
         const payload = {
-            customer_selfie: frontImage,
-        }
+            ...(frontImage && !frontImage.startsWith("https") && { customer_selfie: frontImage }),
+        };
 
         try {
             const res = await creteCustomerKycRequest(payload);
