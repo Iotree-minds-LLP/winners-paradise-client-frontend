@@ -277,7 +277,7 @@ const AadharUpload = () => {
                         </div>
                     </div>
 
-                    <div className="flex flex-col md:flex-row gap-10 p-4 mb-20 md:mb-0 overflow-y-auto ">
+                    <div className={`flex flex-col md:flex-row gap-10 p-4 md:mb-0 overflow-y-auto ${locationStateDetails?.is_aadhar_verified === "REJECTED" ? "mb-0" : "mb-20"}`}>
                         <div
                             className={`flex flex-col text-center items-center justify-start p-4 border border-2 border-dotted border-gray-300 relative w-full max-w-md rounded-md ${frontImage
                                 ? AadharFrontStatus === "CLEARED"
@@ -366,6 +366,16 @@ const AadharUpload = () => {
                         </div>
                     </div>
 
+
+                    {locationStateDetails?.is_aadhar_verified === "REJECTED" && (
+                        <div className="p-3 w-full md:w-1/3 text-start rounded-lg md:mx-5 mb-20 md:mb-0  " style={{ background: "#F1F1FF" }}>
+                            <p className="text-sm" style={{ color: "#020065" }}>Reason For Rejection</p>
+                            <p className="text-lg text-black">{locationStateDetails.reason_for_rejection}</p>
+                        </div>
+                    )}
+
+
+
                     <div className="flex justify-start mt-6 mx-4 hidden md:block ">
                         <button
                             onClick={handleContinue}
@@ -401,8 +411,9 @@ const AadharUpload = () => {
                         )}
                     </div>
                 </div>
+            </div >
 
-            </div>
+
 
             <div>
                 <div className="fixed z-10 bottom-0 left-0 w-full sm:hidden bg-white shadow-lg bg-white">
@@ -445,86 +456,88 @@ const AadharUpload = () => {
                     </div>
                 </div>
             </div>
-            {showCamera && (
-                <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
-                    {/* Camera feed */}
-                    <video ref={videoRef} className="w-full md:w-1/2 rounded-md relative" autoPlay playsInline />
-                    <canvas ref={canvasRef} className="hidden" />
+            {
+                showCamera && (
+                    <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
+                        {/* Camera feed */}
+                        <video ref={videoRef} className="w-full md:w-1/2 rounded-md relative" autoPlay playsInline />
+                        <canvas ref={canvasRef} className="hidden" />
 
-                    {/* Faded background overlay with clear scanner area */}
-                    <div className="absolute ">
-                        {/* Full-screen overlay */}
-                        <div className="absolute inset-0 bg-black"></div>
+                        {/* Faded background overlay with clear scanner area */}
+                        <div className="absolute ">
+                            {/* Full-screen overlay */}
+                            <div className="absolute inset-0 bg-black"></div>
 
-                        {/* Scanner rectangle */}
-                        <div
-                            className="absolute"
-                            style={{
-                                top: "50%",
-                                left: "50%",
-                                width: "300px", // Scanner size width
-                                height: "190px", // Scanner size height
-                                transform: "translate(-50%, -50%)",
-                                boxShadow: "0 0 0 2000px rgba(0, 0, 0, 0.6)", // Fades the rest of the screen
-                                zIndex: 2, // Ensures scanner area is visible
-                            }}
-                        >
-                            {/* Corners */}
-                            {/* Top-left corner */}
+                            {/* Scanner rectangle */}
                             <div
-                                className="absolute top-0 left-0 border-t-4 border-l-4 border-green-500"
+                                className="absolute"
                                 style={{
-                                    width: "30px",
-                                    height: "30px",
+                                    top: "50%",
+                                    left: "50%",
+                                    width: "300px", // Scanner size width
+                                    height: "190px", // Scanner size height
+                                    transform: "translate(-50%, -50%)",
+                                    boxShadow: "0 0 0 2000px rgba(0, 0, 0, 0.6)", // Fades the rest of the screen
+                                    zIndex: 2, // Ensures scanner area is visible
                                 }}
-                            ></div>
+                            >
+                                {/* Corners */}
+                                {/* Top-left corner */}
+                                <div
+                                    className="absolute top-0 left-0 border-t-4 border-l-4 border-green-500"
+                                    style={{
+                                        width: "30px",
+                                        height: "30px",
+                                    }}
+                                ></div>
 
-                            {/* Top-right corner */}
-                            <div
-                                className="absolute top-0 right-0 border-t-4 border-r-4 border-green-500"
-                                style={{
-                                    width: "30px",
-                                    height: "30px",
-                                }}
-                            ></div>
+                                {/* Top-right corner */}
+                                <div
+                                    className="absolute top-0 right-0 border-t-4 border-r-4 border-green-500"
+                                    style={{
+                                        width: "30px",
+                                        height: "30px",
+                                    }}
+                                ></div>
 
-                            {/* Bottom-left corner */}
-                            <div
-                                className="absolute bottom-0 left-0 border-b-4 border-l-4 border-green-500"
-                                style={{
-                                    width: "30px",
-                                    height: "30px",
-                                }}
-                            ></div>
+                                {/* Bottom-left corner */}
+                                <div
+                                    className="absolute bottom-0 left-0 border-b-4 border-l-4 border-green-500"
+                                    style={{
+                                        width: "30px",
+                                        height: "30px",
+                                    }}
+                                ></div>
 
-                            {/* Bottom-right corner */}
-                            <div
-                                className="absolute bottom-0 right-0 border-b-4 border-r-4 border-green-500"
-                                style={{
-                                    width: "30px",
-                                    height: "30px",
-                                }}
-                            ></div>
+                                {/* Bottom-right corner */}
+                                <div
+                                    className="absolute bottom-0 right-0 border-b-4 border-r-4 border-green-500"
+                                    style={{
+                                        width: "30px",
+                                        height: "30px",
+                                    }}
+                                ></div>
+                            </div>
+                        </div>
+
+                        {/* Capture and Cancel buttons */}
+                        <div className="absolute bottom-10 flex gap-4 z-10">
+                            <button
+                                onClick={capturePhoto}
+                                className="px-6 py-2 bg-blue-500 text-white font-bold rounded-lg"
+                            >
+                                Capture
+                            </button>
+                            <button
+                                onClick={stopCamera}
+                                className="px-6 py-2 bg-red-500 text-white font-bold rounded-lg"
+                            >
+                                Cancel
+                            </button>
                         </div>
                     </div>
-
-                    {/* Capture and Cancel buttons */}
-                    <div className="absolute bottom-10 flex gap-4 z-10">
-                        <button
-                            onClick={capturePhoto}
-                            className="px-6 py-2 bg-blue-500 text-white font-bold rounded-lg"
-                        >
-                            Capture
-                        </button>
-                        <button
-                            onClick={stopCamera}
-                            className="px-6 py-2 bg-red-500 text-white font-bold rounded-lg"
-                        >
-                            Cancel
-                        </button>
-                    </div>
-                </div>
-            )}
+                )
+            }
 
 
         </>

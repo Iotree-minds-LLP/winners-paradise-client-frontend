@@ -215,7 +215,7 @@ const ChequeUpload = () => {
                         </h1>
                     </div>
 
-                    <div className="flex flex-col md:flex-row gap-10 p-4 mb-20 md:mb-0 overflow-y-auto ">
+                    <div className={`flex flex-col md:flex-row gap-10 p-4 md:mb-0 overflow-y-auto ${locationStateDetails?.is_blank_cheque_verified === "REJECTED" ? "mb-0" : "mb-20"}`}>
                         <div
                             className={`flex flex-col text-center items-center justify-start p-4 border border-2 border-dotted border-gray-300 relative w-full max-w-md rounded-md ${frontImage
                                 ? cancelledCheque === "Cleared"
@@ -255,9 +255,14 @@ const ChequeUpload = () => {
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
+
+                    {locationStateDetails?.is_blank_cheque_verified === "REJECTED" && (
+                        <div className="p-3 w-full md:w-1/3 text-start rounded-lg md:mx-5 mb-20 md:mb-0  " style={{ background: "#F1F1FF" }}>
+                            <p className="text-sm" style={{ color: "#020065" }}>Reason For Rejection</p>
+                            <p className="text-lg text-black">{locationStateDetails.reason_for_rejection}</p>
+                        </div>
+                    )}
 
                     <div className="flex justify-start mt-6 mx-4 hidden md:block ">
                         <button
