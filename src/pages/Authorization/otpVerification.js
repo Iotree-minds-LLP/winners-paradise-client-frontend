@@ -17,6 +17,7 @@ import { useLanguage } from "../../context/Language/loginContext";
 import translations from "../../utils/Json/translation.json"
 import { useToast } from "../../context/Toast/toastHook";
 import { getAllInvestments } from "../../network/Investments/page";
+import { saveTokenForFcm } from "../../network/Fcm/saveToken";
 
 const OtpVerification = () => {
 
@@ -137,6 +138,12 @@ const OtpVerification = () => {
                 const customer = resp.data.data.customer;
 
                 localStorage.setItem("tokenDetails", resp.data.data.token);
+                // const fcmToken = localStorage.getItem("fcmToken")
+                // const data = {
+                //     fcmData: fcmToken
+                // }
+                // const saveToken = await saveTokenForFcm(data);
+                // console.log(saveToken);
 
                 if (customer) {
                     setLanguage(customer.language_preference);
@@ -436,7 +443,6 @@ const OtpVerification = () => {
                                     </form>
                                 </div>
                             </div>
-
                         )}
                         {ShowotpField && (
                             <p onClick={handeChangePhoneNumber} className="py-3 underline cursor-pointer" style={{ color: 'rgba(0, 0, 148, 1)' }}>Change Phone Number</p>

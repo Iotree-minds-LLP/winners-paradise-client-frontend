@@ -10,18 +10,18 @@ const App = () => {
     const generateTokenFromFcm = async () => {
       const res = await generateToken();
       settoken(res);
+      localStorage.setItem("fcmToken", res);
     }
     onMessage(messaging, (payload) => {
-      console.log(payload, "Paylouad is there")
+      // console.log(payload, "Paylouad is there")
     });
 
     generateTokenFromFcm();
-
   }, [])
 
   return (
     <div>
-      <p>{token}</p>
+      {/* <p>{token}</p> */}
       <RouterPage />
     </div>
   );

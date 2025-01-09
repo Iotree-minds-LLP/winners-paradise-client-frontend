@@ -20,6 +20,7 @@ import { useForm, useWatch } from "react-hook-form";
 import logoImage from "../../assets/Images/algologo.png"
 import image2 from "../../assets/Images/robo 1 (1).png";
 import image3 from "../../assets/Images/arrow_circle_right (1).png";
+import { LogoutUser } from "../../network/Fcm/saveToken";
 
 const Catalogs = () => {
 
@@ -48,10 +49,16 @@ const Catalogs = () => {
         setisModalOpen(!isModalOpen);
     }
 
-    const yesLogout = () => {
+    const yesLogout = async () => {
+        // const res = await LogoutUser();
+        // console.log(res, "Response")
         localStorage.removeItem("customerDetails");
         localStorage.removeItem("tokenDetails");
         navigate("/")
+    }
+
+    const dontdeleteuser = () => {
+        setisModalOpen(!isModalOpen);
     }
 
     const onformSubmit = async () => {
@@ -396,7 +403,7 @@ const Catalogs = () => {
                                             type="button"
                                             className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100  focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                                             data-modal-hide="popup-modal"
-                                        // onClick={dontdeleteuser}
+                                            onClick={dontdeleteuser}
                                         >
                                             No, cancel
                                         </button>
