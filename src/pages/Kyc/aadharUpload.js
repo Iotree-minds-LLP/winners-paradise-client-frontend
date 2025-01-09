@@ -172,8 +172,8 @@ const AadharUpload = () => {
     const handleContinue = async () => {
         setisLoading(true);
 
-        if (!frontImage || !backImagePreview) {
-            setErrorMessage("Please capture both front and back images before continuing.");
+        if (!frontImage || !backImagePreview || !AadharNumber) {
+            setErrorMessage("All Fields Are Required");
             setisLoading(false);
             return;
         }
@@ -199,7 +199,6 @@ const AadharUpload = () => {
             setisLoading(false);
         }
     };
-
 
 
     return (

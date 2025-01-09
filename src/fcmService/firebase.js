@@ -33,7 +33,6 @@ console.log("Messaging Initialized.");
 export const requestNotificationPermission = async () => {
     console.log("Requesting Notification Permission...");
     try {
-        console.log(process.env.REACT_APP_FIREBASE_VAPID_KEY, "process.env.REACT_APP_FIREBASE_VAPID_KEY ")
         const token = await getToken(messaging, { vapidKey: process.env.REACT_APP_FIREBASE_VAPID_KEY });
         console.log(token, "Token")
         if (token) {

@@ -16,6 +16,7 @@ import { useConsent } from "../../context/consent/consentProvider";
 import { useToast } from "../../context/Toast/toastHook";
 
 const KycStatusPage = () => {
+
     const { isConsentAgreed, setIsConsentAgreed } = useConsent();
     const [data, setdata] = useState([])
     const [errorMessage, seterrorMessage] = useState("");
