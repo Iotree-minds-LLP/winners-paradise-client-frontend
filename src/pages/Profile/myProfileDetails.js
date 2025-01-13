@@ -41,8 +41,6 @@ const MyProfile = () => {
         }
     };
 
-
-
     return (
         <>
             <div className="sm:ml-72 relative bg-white">

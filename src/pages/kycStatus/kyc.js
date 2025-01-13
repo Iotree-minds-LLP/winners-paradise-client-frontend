@@ -47,7 +47,7 @@ const KycStatusPage = () => {
             const res = await creteCustomerKycRequest(payload);
             if (res?.data?.status === 200) {
                 setisLoading(false);
-                handleSuccessClick("Consent saved successfully");
+                handleSuccessClick("Request Sent successfully");
             } else {
                 setisLoading(false);
                 seterrorMessage(res.data.error);
@@ -238,7 +238,7 @@ const KycStatusPage = () => {
                     </div>
 
                     <div className="hidden sm:block">
-                        {data?.every(item => item.status === "Cleared") ? (
+                        {data?.every(item => item.status === "Review Pending" || item.status === "Cleared") ? (
                             <>
                                 <div className="md:w-1/2">
                                     <div className="w-full flex flex-col items-start p-4 cursor-pointer">
@@ -405,7 +405,7 @@ const KycStatusPage = () => {
                     <div>
                         <div className="fixed bottom-0 left-0 w-full sm:hidden bg-white shadow-lg">
                             <div className="absolute bottom-0 left-0 w-full flex flex-col items-start p-4">
-                                {data?.every(item => item.status === "Cleared") && (
+                                {data?.every(item => item.status === "Review Pending" || item.status === "Cleared") && (
                                     <>
                                         <div className="w-full" >
                                             <div className="w-full flex flex-col items-star cursor-pointer">
@@ -417,15 +417,17 @@ const KycStatusPage = () => {
                                                         </h1>
                                                     </div>
                                                     <div
-                                                        onClick={() => navigate("/kyc-status/consent-form")}
-                                                        className="mr-5 bg-[#D4D4FF] rounded-xl p-3">
+                                                        className="mr-5 bg-[#D4D4FF] rounded-xl p-3"
+                                                    >
                                                         <input
+                                                            onClick={() => navigate("/kyc-status/consent-form")}
                                                             checked={isConsentAgreed}
                                                             type="checkbox"
                                                             id="customCheckbox"
-                                                            className="w-6 p-3 border border-blue-300 bg-gray-300 h-6 cursor-pointer accent-blue-500"
+                                                            className="w-6 h-6 cursor-pointer accent-blue-500 border border-blue-300 bg-gray-300"
                                                         />
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
