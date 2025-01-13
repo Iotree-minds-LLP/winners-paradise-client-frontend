@@ -140,11 +140,13 @@ const OtpVerification = () => {
                 localStorage.setItem("tokenDetails", resp.data.data.token);
 
                 const fcmToken = localStorage.getItem("fcmToken")
-                const data = {
-                    fcmData: fcmToken
+                if (fcmToken) {
+                    const data = {
+                        fcmData: fcmToken
+                    }
+                    const saveToken = await saveTokenForFcm(data);
+                    console.log(saveToken);
                 }
-                const saveToken = await saveTokenForFcm(data);
-                console.log(saveToken);
 
                 if (customer) {
                     setLanguage(customer.language_preference);
@@ -261,7 +263,6 @@ const OtpVerification = () => {
 
                         </div>
 
-                        {/* Login/Register Form */}
                         {ShowPhoneField && (
                             <div
                                 className="text-start mt-5 mx-5 rounded-lg p-5 mt-5 lg:mt-10 "
