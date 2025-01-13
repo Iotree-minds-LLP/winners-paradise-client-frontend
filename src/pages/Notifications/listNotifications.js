@@ -74,7 +74,7 @@ const Notifications = () => {
                         {loading ? (
                             // Shimmering Effect Using Skeleton
                             Array.from({ length: 6 }).map((_, index) => (
-                                <div key={index} className="p-4 rounded-lg bg-gray-200">
+                                <div key={index} className="p-4 rounded-lg bg-gray-100">
                                     <Skeleton height={20} width={`60%`} />
                                     <Skeleton height={15} width={`80%`} className="mt-2" />
                                     <Skeleton height={15} width={`90%`} className="mt-2" />

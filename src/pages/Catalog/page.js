@@ -3,6 +3,8 @@ import { getAllCatalog, getAllCatalogByReturnCalculator } from "../../network/Ca
 import profileIcon from "../../assets/Logos/trailing-icon.png"
 import belIcon from "../../assets/Logos/belIcon.png"
 import { TextField } from "@mui/material";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import NavBar from "../../components/Navbar/page";
 import calculateicon from "../../assets/Images/calculate.png"
 import acrrowright from "../../assets/Images/arrow_circle_right.png"
@@ -40,15 +42,19 @@ const Catalogs = () => {
     const { isInvestmentCreated, setIsInvestmentCreated } = useInvestment();
     const watchedCatalogAmount = watch("returnCalculator");
     const [showCompleteKycCard, setshowCompleteKycCard] = useState(false);
+    const [completeCardsLoading, setcompleteCardsLoading] = useState(false)
+    const [catalogListShow, setcatalogListShow] = useState(false)
 
     const getKycStatus = async () => {
+        setcompleteCardsLoading(true);
         const res = await getKycDetailsByCustomerId();
-        console.log(res.data.data.status, "Response")
         if (res.data.data.status === "pending") {
             setshowCompleteKycCard(true);
+            setcompleteCardsLoading(false);
         }
         if (res.status === 500) {
-            setshowCompleteKycCard(true)
+            setshowCompleteKycCard(true);
+            setcompleteCardsLoading(false);
         }
     }
 
@@ -76,9 +82,11 @@ const Catalogs = () => {
     }
 
     const onformSubmit = async () => {
+        setcatalogListShow(true);
         const resp = await getAllCatalog();
         if (resp?.data?.catalogs) {
             setlistCatalogs(resp.data.catalogs)
+            setcatalogListShow(false);
         }
     };
 
@@ -138,32 +146,61 @@ const Catalogs = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:py-0 py-5 md:grid-cols-3 px-4 gap-0 md:gap-10 mt-20 md:mt-0 text-start">
-                        {showCompleteKycCard && (
-                            <div className="p-4 w-full px-5 mb-3 rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex justify-between" onClick={() => navigate("/Kyc-status")} >
-                                <div>
-                                    <p className="text-start text-md font-bold text-white">
-                                        Complete KYC
-                                    </p>
-                                    <p style={{ color: "#54E3FC" }} className="text-xs my-2">To activate all features and to transact complete your KYC process</p>
+                        {completeCardsLoading ? (
+                            <>
+                                <div className="p-4 w-full px-5 mb-3 bg-gray-100 rounded-lg flex justify-between">
+                                    <div className="flex-1">
+                                        <Skeleton width="60%" height={20} />
+                                        <Skeleton width="90%" height={15} className="mt-2" />
+                                    </div>
+                                    <div>
+                                        <Skeleton circle={true} width={40} height={40} />
+                                    </div>
                                 </div>
-                                <div>
-                                    <img src={image3} className="w-10 h-10 object-contain"></img>
+                                <div className="p-4 w-full px-5 mb-3 rounded-lg bg-gray-100 flex justify-between">
+                                    <div className="flex-1">
+                                        <Skeleton width="60%" height={20} />
+                                        <Skeleton width="90%" height={15} className="mt-2" />
+                                    </div>
+                                    <div>
+                                        <Skeleton circle={true} width={40} height={40} />
+                                    </div>
                                 </div>
-                            </div>
+                            </>
+                        ) : (
+                            // Show actual cards when loading is complete
+                            <>
+                                {showCompleteKycCard && (
+                                    <div
+                                        className="p-4 w-full px-5 mb-3 rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex justify-between"
+                                        onClick={() => navigate("/Kyc-status")}
+                                    >
+                                        <div>
+                                            <p className="text-start text-md font-bold text-white">Complete KYC</p>
+                                            <p style={{ color: "#54E3FC" }} className="text-xs my-2">
+                                                To activate all features and to transact, complete your KYC process
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <img src={image3} className="w-10 h-10 object-contain" />
+                                        </div>
+                                    </div>
+                                )}
+                                <div className="p-4 w-full px-5 mb-3 rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex justify-between">
+                                    <div>
+                                        <p className="text-start text-md font-bold text-white">Add Bank Account</p>
+                                        <p style={{ color: "#54E3FC" }} className="text-xs my-2">
+                                            Link your bank account to enable to access all financial features.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <img src={image3} className="w-10 h-10 object-contain" />
+                                    </div>
+                                </div>
+                            </>
                         )}
+                    </div>;
 
-                        <div className="p-4 w-full px-5 mb-3 rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex justify-between" >
-                            <div>
-                                <p className="text-start text-md font-bold text-white">
-                                    Add Bank Account
-                                </p>
-                                <p style={{ color: "#54E3FC" }} className="text-xs my-2"> Link your bank account to enable to access all financial features. </p>
-                            </div>
-                            <div>
-                                <img src={image3} className="w-10 h-10 object-contain"></img>
-                            </div>
-                        </div>
-                    </div>
 
 
                     <div className="text-start rounded-lg px-4 grid md:grid-cols-1 grid-cols-1">
@@ -232,73 +269,96 @@ const Catalogs = () => {
                         </div>
                     </div>
 
+                    ;
+
                     <div className="text-start rounded-lg p-4 grid md:grid-cols-3 grid-cols-1 gap-4 mb-36">
-                        {listCatalogs.map((item, index) => {
-
-                            const totalReturn =
-                                item.min_amt *
-                                (item.int_percent_per_month / 100) *
-                                item.no_of_months;
-
-                            return (
+                        {catalogListShow ? (
+                            // Show shimmer effect for two catalog cards
+                            Array.from({ length: 2 }).map((_, index) => (
                                 <div
-                                    onClick={() => navigate(`/catalogs/catalog-details`, { state: { item } })}
                                     key={index}
-                                    className="relative bg-gradient-to-r from-white to-[#c2c2f5] p-6 rounded-xl border border-2 border-[#0400CB]"
+                                    className="relative bg-gray-100  p-6 rounded-xl "
                                 >
                                     <div className="flex justify-between">
-                                        <p
-                                            style={{
-                                                color: 'rgba(0, 0, 148, 1)',
-                                                fontWeight: '700',
-                                                fontSize: '17px',
-                                            }}
-                                        >
-                                            {item.name}
-                                        </p>
-                                        <img
-                                            src={acrrowright}
-                                            className="w-auto h-8"
-                                            alt="Arrow Icon"
-                                        />
+                                        <Skeleton width="60%" height={20} />
+                                        <Skeleton circle={true} height={32} width={32} />
                                     </div>
 
                                     <div className="grid grid-cols-2 my-2">
-                                        <p>Investment Amount</p>
-                                        <p>Duration</p>
-                                        <p
-                                            className="text-md font-bold my-2"
-                                            style={{ color: 'rgba(0, 0, 148, 1)' }}
-                                        >
-                                            ₹{item.min_amt.toLocaleString()}
-                                        </p>
-                                        <p
-                                            className="text-md font-bold my-2"
-                                            style={{ color: 'rgba(0, 0, 148, 1)' }}
-                                        >
-                                            {item.no_of_months} Months
-                                        </p>
-                                        <p>Returns per month</p>
-                                        <p></p>
-                                        <p
-                                            className="text-md font-bold my-2"
-                                            style={{ color: 'rgba(0, 0, 148, 1)' }}
-                                        >
-                                            ₹{item.returns_per_month}
-                                        </p>
+                                        <p><Skeleton width="80%" height={15} /></p>
+                                        <p><Skeleton width="50%" height={15} /></p>
+                                        <p><Skeleton width="60%" height={20} className="my-2" /></p>
+                                        <p><Skeleton width="40%" height={20} className="my-2" /></p>
+                                        <p><Skeleton width="70%" height={15} /></p>
                                     </div>
-
-                                    {/* Bottom-right image */}
-                                    <img
-                                        src={logoImage} // Replace with your image source or item.image if dynamic
-                                        alt="Card Decoration"
-                                        className="absolute bottom-2 right-0 w-20 h-auto object-contain opacity-20"
-                                    />
                                 </div>
+                            ))
+                        ) : (
+                            // Show actual catalog cards
+                            listCatalogs.map((item, index) => {
+                                const totalReturn =
+                                    item.min_amt *
+                                    (item.int_percent_per_month / 100) *
+                                    item.no_of_months;
 
-                            );
-                        })}
+                                return (
+                                    <div
+                                        onClick={() => navigate(`/catalogs/catalog-details`, { state: { item } })}
+                                        key={index}
+                                        className="relative bg-gradient-to-r from-white to-[#c2c2f5] p-6 rounded-xl border border-2 border-[#0400CB]"
+                                    >
+                                        <div className="flex justify-between">
+                                            <p
+                                                style={{
+                                                    color: 'rgba(0, 0, 148, 1)',
+                                                    fontWeight: '700',
+                                                    fontSize: '17px',
+                                                }}
+                                            >
+                                                {item.name}
+                                            </p>
+                                            <img
+                                                src={acrrowright}
+                                                className="w-auto h-8"
+                                                alt="Arrow Icon"
+                                            />
+                                        </div>
 
+                                        <div className="grid grid-cols-2 my-2">
+                                            <p>Investment Amount</p>
+                                            <p>Duration</p>
+                                            <p
+                                                className="text-md font-bold my-2"
+                                                style={{ color: 'rgba(0, 0, 148, 1)' }}
+                                            >
+                                                ₹{item.min_amt.toLocaleString()}
+                                            </p>
+                                            <p
+                                                className="text-md font-bold my-2"
+                                                style={{ color: 'rgba(0, 0, 148, 1)' }}
+                                            >
+                                                {item.no_of_months} Months
+                                            </p>
+                                            <p>Returns per month</p>
+                                            <p></p>
+                                            <p
+                                                className="text-md font-bold my-2"
+                                                style={{ color: 'rgba(0, 0, 148, 1)' }}
+                                            >
+                                                ₹{item.returns_per_month}
+                                            </p>
+                                        </div>
+
+                                        {/* Bottom-right image */}
+                                        <img
+                                            src={logoImage} // Replace with your image source or item.image if dynamic
+                                            alt="Card Decoration"
+                                            className="absolute bottom-2 right-0 w-20 h-auto object-contain opacity-20"
+                                        />
+                                    </div>
+                                );
+                            })
+                        )}
                     </div>
 
                     {listCatalogs.length === 0 && (
