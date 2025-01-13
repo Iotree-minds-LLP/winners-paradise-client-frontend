@@ -10,6 +10,9 @@ import { CircularProgress } from "@mui/material";
 import { createEnquiry } from "../../network/Enquiry/page";
 import toast from "react-hot-toast";
 import { useToast } from "../../context/Toast/toastHook";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+
 const CatalogDetails = () => {
 
     const [expandedCard, setExpandedCard] = useState(null);
@@ -23,10 +26,13 @@ const CatalogDetails = () => {
     const [ErrorMessage, setErrorMessage] = useState("");
     const [enquirySent, setEnquirySent] = useState(false);
     const [enquirySubmitedSuccessfully, setenquirySubmitedSuccessfully] = useState(false);
+    const [showShimmer, setshowShimmer] = useState(false)
 
     useEffect(() => {
+        setshowShimmer(true);
         setSelectedCatalogDetails(location.state?.item)
         console.log(location.state?.item, "location.state?.item")
+        setshowShimmer(false);
     }, [location.state]);
 
     useEffect(() => {
@@ -112,85 +118,88 @@ const CatalogDetails = () => {
                         <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10">
                             {SelectedCatalogDetails?.name}
                         </h1>
-                        {/* <p
-                            className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer"
-                            onClick={toggleModal}
-                        >
-                            Logout
-                        </p> */}
                     </div>
 
                     <div className=" text-start rounded-lg px-4 mt-4 grid md:grid-cols-3 grid-cols-1 gap-4">
                         <div className="flex flex-row  ">
                             <p style={{ color: "#020065" }} className="text-md font-semibold">Investment Description </p>
-                            {/* <div className="flex justify-center text-center items-center hidden md:flex">
-                                <button
-                                    type="submit"
-                                    className=""
-                                >
-                                    {isLoading ? (
-                                        <CircularProgress size={13} className="mx-2" style={{ color: 'blue' }} />
-                                    ) : (
-                                        <>
 
-                                            {enquirySent ? (
-
-                                                <CheckCircleOutlineRounded className="text-green-400 mx-2" />
-                                            ) : (
-                                                <AddCircleOutline size={13} onClick={sendResponse} className="text-blue-600 mx-2" />
-                                            )}
-                                        </>
-                                    )}
-                                </button>
-                            </div> */}
                         </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <p className="text-md px-4 mt-3 text-start font-medium">Lorem Ipsum is simply dummy text of the printing and  typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of  type and scrambled it to make a type specimen book. It has survived not  only five centuries,</p>
                     </div>
                     <div className="grid grid-cols-1 px-4 mt-4 md:grid-cols-2 gap-4 text-start">
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4"  >
-                            <div style={{ background: "#F5F5F5" }} className="p-3">
-                                <p>Investment Amount</p>
-                                <p
-                                    className="text-md font-bold my-2"
-                                    style={{ color: 'rgba(0, 0, 148, 1)' }}
-                                >
-                                    ₹{SelectedCatalogDetails.min_amt}
-
-                                </p>
-                            </div>
-                            <div style={{ background: "#F5F5F5" }} className="p-4">
-                                <p>Returns</p>
-                                <p></p>
-                                <p
-                                    className="text-md font-bold my-2"
-                                    style={{ color: 'rgba(0, 0, 148, 1)' }}
-                                >
-                                    {SelectedCatalogDetails.int_percent_per_month}%
-                                </p>
-                            </div>
-                            <div style={{ background: "#F5F5F5" }} className="p-4">
-                                <p>Duration</p>
-                                <p
-                                    className="text-md font-bold my-2"
-                                    style={{ color: 'rgba(0, 0, 148, 1)' }}
-                                >
-                                    {SelectedCatalogDetails.no_of_months} Months
-                                </p>
-                            </div>
-                            <div style={{ background: "#F5F5F5" }} className="p-4">
-                                <p>Returns per month</p>
-                                <p></p>
-                                <p
-                                    className="text-md font-bold my-2"
-                                    style={{ color: 'rgba(0, 0, 148, 1)' }}
-                                >
-                                    ₹{SelectedCatalogDetails.returns_per_month}
-                                </p>
-                            </div>
-
-
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            {showShimmer ? (
+                                // Render skeletons when `showShimmer` is true
+                                <>
+                                    <div style={{ background: '#F5F5F5' }} className="p-3">
+                                        <p><Skeleton width={100} /></p>
+                                        <p className="my-2">
+                                            <Skeleton width={80} height={20} />
+                                        </p>
+                                    </div>
+                                    <div style={{ background: '#F5F5F5' }} className="p-4">
+                                        <p><Skeleton width={100} /></p>
+                                        <p className="my-2">
+                                            <Skeleton width={80} height={20} />
+                                        </p>
+                                    </div>
+                                    <div style={{ background: '#F5F5F5' }} className="p-4">
+                                        <p><Skeleton width={100} /></p>
+                                        <p className="my-2">
+                                            <Skeleton width={80} height={20} />
+                                        </p>
+                                    </div>
+                                    <div style={{ background: '#F5F5F5' }} className="p-4">
+                                        <p><Skeleton width={150} /></p>
+                                        <p className="my-2">
+                                            <Skeleton width={100} height={20} />
+                                        </p>
+                                    </div>
+                                </>
+                            ) : (
+                                // Render actual content when `showShimmer` is false
+                                <>
+                                    <div style={{ background: '#F5F5F5' }} className="p-3">
+                                        <p>Investment Amount</p>
+                                        <p
+                                            className="text-md font-bold my-2"
+                                            style={{ color: 'rgba(0, 0, 148, 1)' }}
+                                        >
+                                            ₹{SelectedCatalogDetails.min_amt}
+                                        </p>
+                                    </div>
+                                    <div style={{ background: '#F5F5F5' }} className="p-4">
+                                        <p>Returns</p>
+                                        <p
+                                            className="text-md font-bold my-2"
+                                            style={{ color: 'rgba(0, 0, 148, 1)' }}
+                                        >
+                                            {SelectedCatalogDetails.int_percent_per_month}%
+                                        </p>
+                                    </div>
+                                    <div style={{ background: '#F5F5F5' }} className="p-4">
+                                        <p>Duration</p>
+                                        <p
+                                            className="text-md font-bold my-2"
+                                            style={{ color: 'rgba(0, 0, 148, 1)' }}
+                                        >
+                                            {SelectedCatalogDetails.no_of_months} Months
+                                        </p>
+                                    </div>
+                                    <div style={{ background: '#F5F5F5' }} className="p-4">
+                                        <p>Returns per month</p>
+                                        <p
+                                            className="text-md font-bold my-2"
+                                            style={{ color: 'rgba(0, 0, 148, 1)' }}
+                                        >
+                                            ₹{SelectedCatalogDetails.returns_per_month}
+                                        </p>
+                                    </div>
+                                </>
+                            )}
                         </div>
                     </div>
                     <div className="grid grid-cols-1 px-4 mt-4 md:grid-cols-2 gap-4 text-start mb-10">
@@ -245,12 +254,9 @@ const CatalogDetails = () => {
                                 )}
                             </div>
                         </>
-
                     )}
-
-
                 </div>
-            
+
             </div >
         </>
     );
