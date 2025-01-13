@@ -138,12 +138,13 @@ const OtpVerification = () => {
                 const customer = resp.data.data.customer;
 
                 localStorage.setItem("tokenDetails", resp.data.data.token);
-                // const fcmToken = localStorage.getItem("fcmToken")
-                // const data = {
-                //     fcmData: fcmToken
-                // }
-                // const saveToken = await saveTokenForFcm(data);
-                // console.log(saveToken);
+
+                const fcmToken = localStorage.getItem("fcmToken")
+                const data = {
+                    fcmData: fcmToken
+                }
+                const saveToken = await saveTokenForFcm(data);
+                console.log(saveToken);
 
                 if (customer) {
                     setLanguage(customer.language_preference);
