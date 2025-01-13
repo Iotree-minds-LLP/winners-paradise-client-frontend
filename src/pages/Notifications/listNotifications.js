@@ -28,8 +28,7 @@ const Notifications = () => {
 
     const getAllNotifications = async (id) => {
         const resp = await getCustomersNotifications(id);
-        console.log(resp.data.data.payoutsNotifications.notifications, "resp")
-        setnotificationData(resp.data.data.payoutsNotifications.notifications)
+        setnotificationData(resp?.data?.data?.payoutsNotifications?.notifications)
     }
 
 
