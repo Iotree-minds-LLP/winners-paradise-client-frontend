@@ -124,7 +124,7 @@ const Catalogs = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:py-0 py-5 md:grid-cols-3 px-4 gap-0 md:gap-10 mt-20 md:mt-0 text-start">
-                        <div className="p-4 w-full  px-5 mb-3 rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex justify-between" onClick={() => navigate("/Kyc-status")} >
+                        <div className="p-4 w-full px-5 mb-3 rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex justify-between" onClick={() => navigate("/Kyc-status")} >
                             <div>
                                 <p className="text-start text-md font-bold text-white">
                                     Complete KYC
@@ -132,7 +132,7 @@ const Catalogs = () => {
                                 <p style={{ color: "#54E3FC" }} className="text-xs my-2">To activate all features and to transact complete your KYC process</p>
                             </div>
                             <div>
-                                <img src={image3} className="w-14 md:w-10 h-auto"></img>
+                                <img src={image3} className="w-10 h-10 object-contain"></img>
                             </div>
                         </div>
 
@@ -141,13 +141,14 @@ const Catalogs = () => {
                                 <p className="text-start text-md font-bold text-white">
                                     Add Bank Account
                                 </p>
-                                <p style={{ color: "#54E3FC" }} className="text-xs my-2">To transact, Please add your bank account</p>
+                                <p style={{ color: "#54E3FC" }} className="text-xs my-2"> Link your bank account to enable to access all financial features. </p>
                             </div>
                             <div>
-                                <img src={image3} className="w-10 h-auto"></img>
+                                <img src={image3} className="w-10 h-10 object-contain"></img>
                             </div>
                         </div>
                     </div>
+
 
                     <div className="text-start rounded-lg px-4 grid md:grid-cols-1 grid-cols-1">
 

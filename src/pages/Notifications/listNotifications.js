@@ -6,6 +6,7 @@ import { goBack } from "../../utils/Functions/goBackScreen";
 import { getCustomersNotifications } from "../../network/Notifications/page";
 
 const Notifications = () => {
+
     const [expandedCard, setExpandedCard] = useState(null); // Track expanded card
     const [isModalOpen, setisModalOpen] = useState(false);
     const navigate = useNavigate();
