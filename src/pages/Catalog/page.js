@@ -21,6 +21,7 @@ import logoImage from "../../assets/Images/algologo.png"
 import image2 from "../../assets/Images/robo 1 (1).png";
 import image3 from "../../assets/Images/arrow_circle_right (1).png";
 import { LogoutUser } from "../../network/Fcm/saveToken";
+import { getKycDetailsByCustomerId } from "../../network/KycVerification/page";
 
 const Catalogs = () => {
 
@@ -38,11 +39,24 @@ const Catalogs = () => {
     const [listCatalogs, setlistCatalogs] = useState([])
     const { isInvestmentCreated, setIsInvestmentCreated } = useInvestment();
     const watchedCatalogAmount = watch("returnCalculator");
+    const [showCompleteKycCard, setshowCompleteKycCard] = useState(false);
+
+    const getKycStatus = async () => {
+        const res = await getKycDetailsByCustomerId();
+        console.log(res.data.data.status, "Response")
+        if (res.data.data.status === "pending") {
+            setshowCompleteKycCard(true);
+        }
+        if (res.status === 500) {
+            setshowCompleteKycCard(true)
+        }
+    }
 
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
         onformSubmit()
+        getKycStatus()
     }, []);
 
     const toggleModal = () => {
@@ -124,17 +138,19 @@ const Catalogs = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:py-0 py-5 md:grid-cols-3 px-4 gap-0 md:gap-10 mt-20 md:mt-0 text-start">
-                        <div className="p-4 w-full px-5 mb-3 rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex justify-between" onClick={() => navigate("/Kyc-status")} >
-                            <div>
-                                <p className="text-start text-md font-bold text-white">
-                                    Complete KYC
-                                </p>
-                                <p style={{ color: "#54E3FC" }} className="text-xs my-2">To activate all features and to transact complete your KYC process</p>
+                        {showCompleteKycCard && (
+                            <div className="p-4 w-full px-5 mb-3 rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex justify-between" onClick={() => navigate("/Kyc-status")} >
+                                <div>
+                                    <p className="text-start text-md font-bold text-white">
+                                        Complete KYC
+                                    </p>
+                                    <p style={{ color: "#54E3FC" }} className="text-xs my-2">To activate all features and to transact complete your KYC process</p>
+                                </div>
+                                <div>
+                                    <img src={image3} className="w-10 h-10 object-contain"></img>
+                                </div>
                             </div>
-                            <div>
-                                <img src={image3} className="w-10 h-10 object-contain"></img>
-                            </div>
-                        </div>
+                        )}
 
                         <div className="p-4 w-full px-5 mb-3 rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex justify-between" >
                             <div>
@@ -423,9 +439,9 @@ const Catalogs = () => {
                 </div>
             </div >
 
-            {/* <div className="mt-5 sm:hidden fixed bottom-0 left-0 w-full bg-white shadow-md ">
+            <div className="mt-5 sm:hidden fixed bottom-0 left-0 w-full bg-white shadow-md ">
                 <img src={image2} alt="Image description" className="w-full h-full object-contain" />
-            </div> */}
+            </div>
 
         </>
     );
