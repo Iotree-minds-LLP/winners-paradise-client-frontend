@@ -132,7 +132,6 @@ const OtpVerification = () => {
             console.log(resp.data.data.customer, "resp.data.data.customer");
 
             if (resp.data.status === 200) {
-                setisLoading(false); // Stop loading spinner
                 setErrorMessage(""); // Clear any existing error message
 
                 const customer = resp.data.data.customer;
@@ -157,6 +156,7 @@ const OtpVerification = () => {
                         const investments = investmentsResp.data.data.data;
 
                         if (investments.length === 0) {
+                            setisLoading(false); // Stop loading spinner
                             navigate("/catalogs");
                         } else {
                             navigate("/dashboard");
@@ -164,6 +164,7 @@ const OtpVerification = () => {
                     }
                     handleSuccessClick(resp.data.data.message);
                 } else {
+                    setisLoading(false); // Stop loading spinner
                     navigate("/register");
                     handleSuccessClick(resp.data.data.message);
                 }

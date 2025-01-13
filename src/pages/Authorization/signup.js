@@ -17,6 +17,7 @@ import { useLanguage } from "../../context/Language/loginContext";
 import { useToast } from "../../context/Toast/toastHook";
 import { goBack } from "../../utils/Functions/goBackScreen";
 import translations from "../../utils/Json/translation.json"
+import { saveTokenForFcm } from "../../network/Fcm/saveToken";
 
 const SignupPage = () => {
 
@@ -64,7 +65,6 @@ const SignupPage = () => {
             ...(data.alternatePhoneNumber && { alternate_mobile_no: data.alternatePhoneNumber }),
         };
 
-        console.log(payload, "Payload");
         let resp;
         try {
             resp = await createCustomer(payload);
@@ -72,6 +72,16 @@ const SignupPage = () => {
                 setisLoading(false);
                 localStorage.setItem("customerDetails", JSON.stringify(resp.data.data.customer));
                 localStorage.setItem("tokenDetails", resp.data.data.token);
+
+                const fcmToken = localStorage.getItem("fcmToken")
+                if (fcmToken) {
+                    const data = {
+                        fcmData: fcmToken
+                    }
+                    const saveToken = await saveTokenForFcm(data);
+                    console.log(saveToken);
+                }
+
                 setErrorMessage("");
                 handleSuccessClick(resp.data.data.message);
                 navigate("/catalogs");
