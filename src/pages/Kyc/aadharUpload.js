@@ -172,8 +172,20 @@ const AadharUpload = () => {
     const handleContinue = async () => {
         setisLoading(true);
 
-        if (!frontImage || !backImagePreview || !AadharNumber) {
-            setErrorMessage("All Fields Are Required");
+        if (!frontImage) {
+            setErrorMessage("Aadhar Front Image is required.");
+            setisLoading(false);
+            return;
+        }
+
+        if (!backImagePreview) {
+            setErrorMessage("Aadhar Back Image is required.");
+            setisLoading(false);
+            return;
+        }
+
+        if (!AadharNumber) {
+            setErrorMessage("Aadhar Number is required.");
             setisLoading(false);
             return;
         }

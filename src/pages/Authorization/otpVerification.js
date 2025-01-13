@@ -25,7 +25,9 @@ const OtpVerification = () => {
 
     const {
         control,
+        watch,
         register,
+        setValue,
         handleSubmit,
         formState: { errors },
     } = useForm();
@@ -34,7 +36,7 @@ const OtpVerification = () => {
     const [selectedValue, setSelectedValue] = useState(language);
     const [ErrorMessage, setErrorMessage] = useState("");
     const [mobileNumber, setmobileNumber] = useState()
-
+    const watchOtp = watch("enteredOtp");
 
     const handleChange = (event) => {
         setLanguage(event.target.value);
@@ -97,6 +99,7 @@ const OtpVerification = () => {
         setShowotpField(false);
         setShowPhoneField(true);
         setmobileNumber();
+        setValue("enteredOtp", "")
     }
 
     const resendOTP = async () => {
@@ -120,7 +123,8 @@ const OtpVerification = () => {
     }
 
     const verifyOtp = async (data) => {
-        setisLoading(true); // Start loading spinner
+
+        setisLoading(true);
 
         const payload = {
             otp: data.enteredOtp,
@@ -128,11 +132,11 @@ const OtpVerification = () => {
         };
 
         try {
-            const resp = await VerifyOtp(payload); // Await API response
+            const resp = await VerifyOtp(payload);
             console.log(resp.data.data.customer, "resp.data.data.customer");
 
             if (resp.data.status === 200) {
-                setErrorMessage(""); // Clear any existing error message
+                setErrorMessage("");
 
                 const customer = resp.data.data.customer;
 
@@ -380,6 +384,7 @@ const OtpVerification = () => {
                                     <form onSubmit={handleSubmit(verifyOtp)}>
                                         <div className="grid grid-cols-1 md:grid-cols-1 mt-3">
                                             <TextField
+                                                value={watchOtp}
                                                 label={translations.loginScreen.otpConfirmation.OtpField[language]}
                                                 variant="outlined"
                                                 size="medium"
@@ -451,7 +456,6 @@ const OtpVerification = () => {
                             <p onClick={handeChangePhoneNumber} className="py-3 underline cursor-pointer" style={{ color: 'rgba(0, 0, 148, 1)' }}>Change Phone Number</p>
                         )}
                     </div>
-
 
                     <div className="col-span-12 hidden sm:block overflow-hidden md:col-span-6 w-full max-h-[100vh] order-2 md:order-1 responsive relative">
                         {/* Image */}
