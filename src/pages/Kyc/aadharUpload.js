@@ -95,6 +95,7 @@ const AadharUpload = () => {
             });
     };
 
+
     const capturePhoto = () => {
         const canvas = canvasRef.current;
         const video = videoRef.current;
@@ -106,61 +107,40 @@ const AadharUpload = () => {
 
         const context = canvas.getContext("2d");
 
-        // Dimensions of the scanner box (must match the styles)
-        const scannerBoxWidth = 300; // Match the width of the green-bordered box
-        const scannerBoxHeight = 190; // Match the height of the green-bordered box
+        // Define the green bordered box dimensions
+        const scannerWidth = 300;
+        const scannerHeight = 190;
 
-        // Canvas dimensions (should match the scanner box for precise cropping)
-        canvas.width = scannerBoxWidth;
-        canvas.height = scannerBoxHeight;
-
-        // Video dimensions
+        // Get video feed dimensions
         const videoWidth = video.videoWidth;
         const videoHeight = video.videoHeight;
 
-        // Calculate scale factors to map video dimensions to scanner box
-        const videoAspectRatio = videoWidth / videoHeight;
-        const boxAspectRatio = scannerBoxWidth / scannerBoxHeight;
+        // Center the green box in the video feed
+        const cropX = (videoWidth - scannerWidth) / 2;
+        const cropY = (videoHeight - scannerHeight) / 2;
 
-        let cropWidth, cropHeight;
+        // Set canvas dimensions to match the green box
+        canvas.width = scannerWidth;
+        canvas.height = scannerHeight;
 
-        if (videoAspectRatio > boxAspectRatio) {
-            // Video is wider than the scanner box
-            cropHeight = videoHeight;
-            cropWidth = cropHeight * boxAspectRatio;
-        } else {
-            // Video is taller than the scanner box
-            cropWidth = videoWidth;
-            cropHeight = cropWidth / boxAspectRatio;
-        }
-
-        // Calculate the cropping offset to align with the scanner box
-        const cropX = (videoWidth - cropWidth) / 2;
-        const cropY = (videoHeight - cropHeight) / 2;
-
-        // Draw the cropped portion of the video onto the canvas
+        // Crop the image to the green box dimensions
         context.drawImage(
             video,
             cropX,
             cropY,
-            cropWidth,
-            cropHeight,
+            scannerWidth,
+            scannerHeight,
             0,
             0,
-            scannerBoxWidth,
-            scannerBoxHeight
+            scannerWidth,
+            scannerHeight
         );
 
-        // Convert the canvas content to a base64 image
         const base64Image = canvas.toDataURL("image/jpeg");
-
-        // Pass the captured image to the current setter
         currentImageSetter(base64Image);
 
-        // Stop the camera after capturing the photo
         stopCamera();
     };
-
 
 
     const stopCamera = () => {

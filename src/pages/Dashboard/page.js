@@ -41,7 +41,7 @@ const DashboardPage = () => {
         setisModalOpen(!isModalOpen);
     }
 
- 
+
     const onformSubmit = async (id) => {
         const resp = await getAllInvestments(id);
         if (resp.data.status === 201) {
@@ -325,7 +325,7 @@ const DashboardPage = () => {
                         </div>
                     </div>
                 </div>
-              
+
             </div>
 
         </>

@@ -90,6 +90,7 @@ const PanUpload = () => {
             });
     };
 
+
     const capturePhoto = () => {
         const canvas = canvasRef.current;
         const video = videoRef.current;
@@ -101,41 +102,33 @@ const PanUpload = () => {
 
         const context = canvas.getContext("2d");
 
-        const outputWidth = 300;
-        const outputHeight = 190;
+        // Define the green bordered box dimensions
+        const scannerWidth = 300;
+        const scannerHeight = 190;
 
-        canvas.width = outputWidth;
-        canvas.height = outputHeight;
-
+        // Get video feed dimensions
         const videoWidth = video.videoWidth;
         const videoHeight = video.videoHeight;
 
-        const aspectRatio = videoWidth / videoHeight;
-        const targetAspectRatio = outputWidth / outputHeight;
+        // Center the green box in the video feed
+        const cropX = (videoWidth - scannerWidth) / 2;
+        const cropY = (videoHeight - scannerHeight) / 2;
 
-        let cropWidth, cropHeight;
+        // Set canvas dimensions to match the green box
+        canvas.width = scannerWidth;
+        canvas.height = scannerHeight;
 
-        if (aspectRatio > targetAspectRatio) {
-            cropHeight = videoHeight;
-            cropWidth = cropHeight * targetAspectRatio;
-        } else {
-            cropWidth = videoWidth;
-            cropHeight = cropWidth / targetAspectRatio;
-        }
-
-        const cropX = (videoWidth - cropWidth) / 2;
-        const cropY = (videoHeight - cropHeight) / 2;
-
+        // Crop the image to the green box dimensions
         context.drawImage(
             video,
             cropX,
             cropY,
-            cropWidth,
-            cropHeight,
+            scannerWidth,
+            scannerHeight,
             0,
             0,
-            outputWidth,
-            outputHeight
+            scannerWidth,
+            scannerHeight
         );
 
         const base64Image = canvas.toDataURL("image/jpeg");
@@ -143,7 +136,6 @@ const PanUpload = () => {
 
         stopCamera();
     };
-
 
     const stopCamera = () => {
         const video = videoRef.current;
