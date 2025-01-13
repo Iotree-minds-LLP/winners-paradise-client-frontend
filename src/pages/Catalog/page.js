@@ -199,10 +199,7 @@ const Catalogs = () => {
                                 </div>
                             </>
                         )}
-                    </div>;
-
-
-
+                    </div>
                     <div className="text-start rounded-lg px-4 grid md:grid-cols-1 grid-cols-1">
 
                         <div
@@ -269,7 +266,7 @@ const Catalogs = () => {
                         </div>
                     </div>
 
-                    ;
+                    
 
                     <div className="text-start rounded-lg p-4 grid md:grid-cols-3 grid-cols-1 gap-4 mb-36">
                         {catalogListShow ? (

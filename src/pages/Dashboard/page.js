@@ -17,6 +17,8 @@ import backImage from "../../assets/Images/backImage.jpg"
 import { Link, useNavigate } from "react-router-dom";
 import { getAllInvestments } from "../../network/Investments/page";
 import { getAllPayouts } from "../../network/Payouts/page";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const DashboardPage = () => {
     const [showAllInvestments, setShowAllInvestments] = useState(false);
@@ -25,6 +27,7 @@ const DashboardPage = () => {
     const navigate = useNavigate();
     const [listInvestments, setlistInvestments] = useState([])
     const [listPayouts, setlistPayount] = useState([])
+    const [showShimmerStatistics, setshowShimmerStatistics] = useState(false);
 
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
@@ -43,10 +46,12 @@ const DashboardPage = () => {
 
 
     const onformSubmit = async (id) => {
+        setshowShimmerStatistics(true);
         const resp = await getAllInvestments(id);
         if (resp.data.status === 201) {
             setlistInvestments(resp.data.data.data)
         }
+        setshowShimmerStatistics(false);
     };
 
 
@@ -117,25 +122,50 @@ const DashboardPage = () => {
 
                     {/* Return Calculator */}
                     <div className="text-start rounded-full mt-5 px-4 grid md:grid-cols-3 grid-cols-1">
-                        <div
-                            className="p-4 rounded-lg  bg-gradient-to-l from-[#020065] to-[#0400CB]"
-
-                        >
+                        <div className="p-4 rounded-lg bg-gradient-to-l from-[#020065] to-[#0400CB]">
                             <p className="text-white font-bold text-xl">
-                                Your investment Statistics
+                                Your Investment Statistics
                             </p>
 
                             <div className="grid grid-cols-2 gap-4 my-3">
-                                <div className="flex flex-col">
-                                    <p className="text-primary" style={{ color: "#7C79EB" }}>Total Invested</p>
-                                    <p className="text-white text-lg mt-2">₹{" "}{totalInvested}</p>
-                                </div>
-                                <div className="flex flex-col">
-                                    <p className="text-primary" style={{ color: "#7C79EB" }}>Total Earned</p>
-                                    <p className="text-white text-lg mt-2">₹{" "}{totalEarned}</p>
-                                </div>
+                                {showShimmerStatistics ? (
+                                    // Skeleton placeholders while loading
+                                    <>
+                                        <div className="flex flex-col">
+                                            <p className="text-primary" style={{ color: "#7C79EB" }}>
+                                                <Skeleton width={100} />
+                                            </p>
+                                            <p className="text-white text-lg mt-2">
+                                                <Skeleton width={80} />
+                                            </p>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <p className="text-primary" style={{ color: "#7C79EB" }}>
+                                                <Skeleton width={100} />
+                                            </p>
+                                            <p className="text-white text-lg mt-2">
+                                                <Skeleton width={80} />
+                                            </p>
+                                        </div>
+                                    </>
+                                ) : (
+                                    // Actual data when shimmer is false
+                                    <>
+                                        <div className="flex flex-col">
+                                            <p className="text-primary" style={{ color: "#7C79EB" }}>
+                                                Total Invested
+                                            </p>
+                                            <p className="text-white text-lg mt-2">₹ {totalInvested}</p>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <p className="text-primary" style={{ color: "#7C79EB" }}>
+                                                Total Earned
+                                            </p>
+                                            <p className="text-white text-lg mt-2">₹ {totalEarned}</p>
+                                        </div>
+                                    </>
+                                )}
                             </div>
-
                         </div>
                     </div>
 
