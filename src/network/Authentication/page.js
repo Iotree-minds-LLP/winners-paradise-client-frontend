@@ -36,4 +36,16 @@ const ResetPassword = async (payload) => {
 };
 
 
-export { getpermissions, login, ResetPassword };
+const Logoutuser = async () => {
+    try {
+        const res = await axiosInstance.post("user-auth/logout");
+        const data = res;
+        return { data };
+    } catch (err) {
+        const errRes = (err && err.response) || "Network Error";
+        return { ...errRes };
+    }
+};
+
+
+export { getpermissions, login, ResetPassword, Logoutuser };

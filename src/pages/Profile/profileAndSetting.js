@@ -5,6 +5,7 @@ import backButton from "../../assets/Logos/backButton.png";
 import acrrowright from "../../assets/Images/arrow_circle_right.png";
 import image2 from "../../assets/Images/robo 1 (1).png";
 import logoutImage from "../../assets/Images/logoutItemLogo.png";
+import { Logoutuser } from "../../network/Authentication/page";
 
 const ProfileAndSettings = () => {
     const [isModalOpen, setisModalOpen] = useState(false);
@@ -16,10 +17,13 @@ const ProfileAndSettings = () => {
         setisModalOpen(!isModalOpen);
     };
 
-    const yesLogout = () => {
-        localStorage.removeItem("customerDetails");
-        localStorage.removeItem("tokenDetails");
-        navigate("/");
+    const yesLogout = async () => {
+        const resp = await Logoutuser();
+        if (resp.data.status === 200) {
+            localStorage.removeItem("customerDetails");
+            localStorage.removeItem("tokenDetails");
+            navigate("/");
+        }
     };
 
     const dontdeleteuser = () => {
@@ -27,15 +31,13 @@ const ProfileAndSettings = () => {
     };
 
     useEffect(() => {
-        // Check if the app is running as a PWA
         const isPwa = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone;
 
         if (isPwa) {
             console.log("App is already running as a PWA");
-            return; // Do not show the PWA installation prompt
+            return;
         }
 
-        // Listen for the `beforeinstallprompt` event
         window.addEventListener("beforeinstallprompt", (e) => {
             console.log("beforeinstallprompt event fired");
             e.preventDefault(); // Prevent the browser's default installation prompt
@@ -44,7 +46,6 @@ const ProfileAndSettings = () => {
         });
 
         return () => {
-            // Clean up the event listener
             window.removeEventListener("beforeinstallprompt", () => { });
         };
     }, []);
@@ -58,7 +59,7 @@ const ProfileAndSettings = () => {
                 } else {
                     console.log("User dismissed the PWA installation prompt");
                 }
-                setDeferredPrompt(null); // Clear the deferred prompt
+                setDeferredPrompt(null);
             });
         } else {
             console.log("PWA installation prompt is not available.");
@@ -280,6 +281,20 @@ const ProfileAndSettings = () => {
                         </div>
                     </div>
                 )}
+
+                <div className="fixed bottom-0 left-0 w-full sm:hidden">
+                    <div className="bg-white shadow-md">
+                        <img
+                            src={image2}
+                            alt="Image description"
+                            className="w-full h-full object-contain"
+                        />
+                    </div>
+                    <div onClick={toggleModal} className="absolute bottom-20 left-0 w-full flex justify-center items-center p-3">
+                        <p className="text-xl font-bold underline">Logout</p>
+                        <p><img src={logoutImage} className="w-6 h-auto mx-3"></img></p>
+                    </div>
+                </div>
 
             </div>
         </>
