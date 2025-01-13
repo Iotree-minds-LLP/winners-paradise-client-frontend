@@ -120,7 +120,7 @@ const Catalogs = () => {
 
                     <div className="flex justify-between">
                         <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10">Catalogue</h1>
-                        <p className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer	" onClick={toggleModal}>Logout</p>
+                        {/* <p className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer	" onClick={toggleModal}>Logout</p> */}
                     </div>
 
                     <div className="grid grid-cols-1 md:py-0 py-5 md:grid-cols-3 px-4 gap-0 md:gap-10 mt-20 md:mt-0 text-start">

@@ -65,12 +65,12 @@ const Notifications = () => {
                         <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10">
                             My Notifications
                         </h1>
-                        <p
+                        {/* <p
                             className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer"
                             onClick={toggleModal}
                         >
                             Logout
-                        </p>
+                        </p> */}
                     </div>
 
                     <div className="text-start rounded-lg mt-5 p-4 grid md:grid-cols-3 grid-cols-1 gap-4">
