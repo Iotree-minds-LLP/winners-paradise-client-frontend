@@ -50,7 +50,6 @@ const SelfieUpload = () => {
     const handleselfieUploadChange = (e) => {
         setselfieUploadNumber(e.target.value);
     }
-
     const startCamera = (setImage) => {
         setCurrentImageSetter(() => setImage);
         setShowCamera(true);
@@ -59,7 +58,7 @@ const SelfieUpload = () => {
 
         const constraints = {
             video: {
-                facingMode: isMobile ? { exact: "environment" } : "user", // Back camera for mobile, front for desktop
+                facingMode: isMobile ? "user" : "user", // Front camera for both mobile and desktop
             },
         };
 
@@ -74,6 +73,7 @@ const SelfieUpload = () => {
                 setShowCamera(false);
             });
     };
+
 
     const capturePhoto = () => {
         const canvas = canvasRef.current;
