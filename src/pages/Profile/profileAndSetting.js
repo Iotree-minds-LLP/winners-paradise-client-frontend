@@ -195,7 +195,7 @@ const ProfileAndSettings = () => {
                                             fontSize: "18px",
                                         }}
                                     >
-                                        Download PWA
+                                        Install PWA App
                                     </p>
                                     <img src={acrrowright} className="w-auto h-8" alt="Arrow Icon"></img>
                                 </div>
