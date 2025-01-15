@@ -52,7 +52,7 @@ const DashboardPage = () => {
         setloadingInvestments(true);
         setshowShimmerStatistics(true);
         const resp = await getAllInvestments(id);
-        if (resp.data.status === 201) {
+        if (resp.data.status === 200) {
             setlistInvestments(resp.data.data.data)
         }
         setshowShimmerStatistics(false);
@@ -67,6 +67,9 @@ const DashboardPage = () => {
         if (resp.data.status === 200) {
             setlistPayount(resp.data.data.payouts)
             console.log(resp.data.data.payouts, "resp.data.data.payouts")
+        }
+        else {
+            setlistPayount([])
         }
         setloadingPayouts(false)
     };
@@ -184,16 +187,20 @@ const DashboardPage = () => {
                             <p style={{ color: "#020065" }} className="text-lg font-bold">
                                 Upcoming Payouts
                             </p>
-                            <p
-                                style={{
-                                    color: "#020065",
-                                    textDecoration: "underline",
-                                    cursor: "pointer",
-                                }}
-                                onClick={() => setShowAllPayouts(!showAllPayouts)}
-                            >
-                                {showAllPayouts ? "View Less" : "View All"}
-                            </p>
+                            {payoutsToDisplay && payoutsToDisplay[0] !== undefined && (
+
+                                <p
+                                    style={{
+                                        color: "#020065",
+                                        textDecoration: "underline",
+                                        cursor: "pointer",
+                                    }}
+                                    onClick={() => setShowAllPayouts(!showAllPayouts)}
+                                >
+                                    {showAllPayouts ? "View Less" : "View All"}
+                                </p>
+                            )}
+
                         </div>
                     </div>
 
@@ -206,8 +213,8 @@ const DashboardPage = () => {
                                     style={{ borderRadius: "8px", background: "#F5F5F5" }}
                                 />
                             ))
-                        ) : (
-                            payoutsToDisplay?.map((payout, index) => (
+                        ) : payoutsToDisplay && payoutsToDisplay[0] === "undefined" && payoutsToDisplay.length > 0 ? (
+                            payoutsToDisplay.map((payout, index) => (
                                 <div
                                     key={index}
                                     className="flex justify-between p-4 rounded-lg"
@@ -233,8 +240,13 @@ const DashboardPage = () => {
                                     </div>
                                 </div>
                             ))
+                        ) : (
+                            <div>
+                                <p className="text-start text-md font-bold text-gray-400">No Payouts Available Yet </p>
+                            </div>
                         )}
                     </div>
+
 
 
 

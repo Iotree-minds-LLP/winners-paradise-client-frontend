@@ -156,7 +156,8 @@ const OtpVerification = () => {
                     await localStorage.setItem("customerDetails", JSON.stringify(customer));
 
                     const investmentsResp = await getAllInvestments(customer._id);
-                    if (investmentsResp.data.status === 201) {
+                    console.log(investmentsResp, "Resp")
+                    if (investmentsResp.data.status === 200) {
                         const investments = investmentsResp.data.data.data;
 
                         if (investments.length === 0) {

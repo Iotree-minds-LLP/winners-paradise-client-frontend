@@ -1,6 +1,6 @@
 import { axiosInstance, axiosInstanceWithoutToken } from "../../axiosInstance/AxiosConfig/page";
 
-const getAllInvestments = async (id) => {
+const getAllInvestments = async () => {
     try {
         const res = await axiosInstance.get(`investments/list-my-investments`);
         const data = res;

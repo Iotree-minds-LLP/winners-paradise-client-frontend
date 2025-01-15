@@ -26,7 +26,7 @@ const Sidebar = () => {
 
     const onformSubmit = async () => {
         const resp = await getAllInvestments();
-        if (resp.data.status === 201) {
+        if (resp.data.status === 200) {
             if (resp.data.data.data.length === 0) {
                 setInvestments(false)
                 setIsInvestmentCreated(false);
