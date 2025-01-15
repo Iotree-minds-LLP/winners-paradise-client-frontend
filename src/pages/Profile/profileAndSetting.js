@@ -28,6 +28,12 @@ const ProfileAndSettings = () => {
             setisLoadingLogoutButton(false);
             navigate("/");
         }
+        else {
+            localStorage.removeItem("customerDetails");
+            localStorage.removeItem("tokenDetails");
+            setisLoadingLogoutButton(false);
+            navigate("/");
+        }
     };
 
     const dontdeleteuser = () => {
