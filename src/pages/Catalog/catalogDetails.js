@@ -168,7 +168,7 @@ const CatalogDetails = () => {
                                             className="text-md font-bold my-2"
                                             style={{ color: 'rgba(0, 0, 148, 1)' }}
                                         >
-                                            ₹{SelectedCatalogDetails.min_amt}
+                                            ₹{SelectedCatalogDetails.your_investment_amount}
                                         </p>
                                     </div>
                                     <div style={{ background: '#F5F5F5' }} className="p-4">
