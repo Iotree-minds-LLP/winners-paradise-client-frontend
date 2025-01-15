@@ -6,6 +6,7 @@ import backButton from "../../assets/Logos/backButton.png";
 import { Link, useNavigate } from "react-router-dom";
 import { getCustomerById } from "../../network/Customer/page";
 import { goBack } from "../../utils/Functions/goBackScreen";
+import image2 from "../../assets/Images/robo 1 (1).png";
 
 const MyProfile = () => {
     const [customerDetailsFromAPI, setCustomerDetailsFromAPI] = useState(null); // Initially null to show loading state
@@ -156,7 +157,33 @@ const MyProfile = () => {
                         </div>
                     </div>
                 </div>
-            </div >
+            </div>
+            <div>
+                {/* Fixed Bottom Save & Continue Section */}
+                <div className="fixed bottom-0 left-0 w-full sm:hidden">
+                    <div className="bg-white shadow-md">
+                        <img
+                            src={image2}
+                            alt="Image description"
+                            className="w-full h-full object-contain"
+                        />
+                    </div>
+                    <Link to="/edit-customer-details">
+
+                        <div className="absolute bottom-0 left-0 w-full flex justify-center items-center p-3">
+                            <button
+                                type="submit"
+                                className="w-full p-3 px-24 flex justify-center rounded-full text-white bg-gradient-to-l from-[#020065] to-[#0400CB]"
+                            >
+                                Edit Profile Details
+                            </button>
+                        </div>
+                    </Link>
+                </div>
+
+
+            </div>
+
         </>
     );
 };

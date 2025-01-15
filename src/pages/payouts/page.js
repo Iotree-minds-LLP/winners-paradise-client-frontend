@@ -30,7 +30,12 @@ const Payouts = () => {
 
     const onformSubmit = async () => {
         const resp = await getAllOverAllPayouts();
-        setlistPayouts(resp.data.data.payouts)
+        if (resp?.data?.data?.payouts) {
+            setlistPayouts(resp?.data?.data?.payouts)
+        }
+        else {
+            setlistPayouts([])
+        }
     };
     const today = new Date();
 

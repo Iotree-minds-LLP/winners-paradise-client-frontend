@@ -49,7 +49,7 @@ const Catalogs = () => {
     const getKycStatus = async () => {
         setcompleteCardsLoading(true);
         const res = await getKycDetailsByCustomerId();
-        if (res.data.data.status === "pending") {
+        if (res?.data?.data?.status === "pending") {
             setshowCompleteKycCard(true);
             setcompleteCardsLoading(false);
         }

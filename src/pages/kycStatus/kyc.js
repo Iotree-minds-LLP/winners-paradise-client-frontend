@@ -270,7 +270,7 @@ const KycStatusPage = () => {
                                 )}
                             </div>
                         </div>
-                    </div>;
+                    </div>
 
                     {!kycCardShow && (
 
@@ -336,7 +336,7 @@ const KycStatusPage = () => {
                                 </>
                             ) : (
                                 <>
-                                    <div className="grid grid-cols-2 mx-6">
+                                    {/* <div className="grid grid-cols-2 mx-6">
                                         <div className="grid grid-cols-2 gap-4 mx-5">
                                             <div className="w-full mt-4">
                                                 <button
@@ -349,7 +349,7 @@ const KycStatusPage = () => {
                                                 </button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </>
                             )}
 

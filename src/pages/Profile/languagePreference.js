@@ -300,7 +300,6 @@ const LanguagePreference = () => {
                         </div>
                     </div>
 
-                    {/* Update Button Section */}
 
                 </div>
             </div >

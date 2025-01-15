@@ -97,12 +97,12 @@ const ProfileAndSettings = () => {
                         <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10 mx-6">
                             Profile & Settings
                         </h1>
-                        <p
+                        {/* <p
                             className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer"
                             onClick={toggleModal}
                         >
                             Logout
-                        </p>
+                        </p> */}
                     </div>
 
                     <div className="text-start rounded-lg mt-5 p-4 md:p-10 grid md:grid-cols-1 grid-cols-1 gap-4">
@@ -201,12 +201,32 @@ const ProfileAndSettings = () => {
                                             fontSize: "18px",
                                         }}
                                     >
-                                        Install PWA App
+                                        Install the App on your device
                                     </p>
                                     <img src={acrrowright} className="w-auto h-8" alt="Arrow Icon"></img>
                                 </div>
                             </div>
                         )}
+
+                        <div
+                            className="p-4 md:p-6 rounded-lg md:w-1/2"
+                            style={{ backgroundColor: "rgba(245, 245, 245, 1)" }}
+                        >
+                            <>
+                                <div onClick={toggleModal} className="flex justify justify-between">
+                                    <p
+                                        style={{
+                                            color: "rgba(0, 0, 148, 1)",
+                                            fontWeight: "700",
+                                            fontSize: "18px",
+                                        }}
+                                    >
+                                        Logout
+                                    </p>
+                                    <img src={acrrowright} className="w-auto h-8" alt="Arrow Icon"></img>
+                                </div>
+                            </>
+                        </div>
                     </div>
 
                 </div>
@@ -318,10 +338,6 @@ const ProfileAndSettings = () => {
                             alt="Image description"
                             className="w-full h-full object-contain"
                         />
-                    </div>
-                    <div onClick={toggleModal} className="absolute bottom-20 left-0 w-full flex justify-center items-center p-3">
-                        <p className="text-xl font-bold underline">Logout</p>
-                        <p><img src={logoutImage} className="w-6 h-auto mx-3"></img></p>
                     </div>
                 </div>
 

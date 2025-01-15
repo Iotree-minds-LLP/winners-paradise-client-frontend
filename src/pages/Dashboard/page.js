@@ -22,6 +22,8 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 const DashboardPage = () => {
     const [showAllInvestments, setShowAllInvestments] = useState(false);
+    const [loadingInvestments, setloadingInvestments] = useState(false)
+    const [loadingPayouts, setloadingPayouts] = useState(false)
     const [showAllPayouts, setShowAllPayouts] = useState(false);
     const [isModalOpen, setisModalOpen] = useState(false);
     const navigate = useNavigate();
@@ -46,22 +48,26 @@ const DashboardPage = () => {
 
 
     const onformSubmit = async (id) => {
+        setloadingInvestments(true);
         setshowShimmerStatistics(true);
         const resp = await getAllInvestments(id);
         if (resp.data.status === 201) {
             setlistInvestments(resp.data.data.data)
         }
         setshowShimmerStatistics(false);
+        setloadingInvestments(false);
     };
 
 
     const onformSubmit2 = async (id) => {
+        setloadingPayouts(true);
         const resp = await getAllPayouts();
         console.log(resp, "Resp")
         if (resp.data.status === 200) {
             setlistPayount(resp.data.data.payouts)
             console.log(resp.data.data.payouts, "resp.data.data.payouts")
         }
+        setloadingPayouts(false)
     };
 
     const investmentsToDisplay = showAllInvestments ? listInvestments : [listInvestments[0]];
@@ -188,8 +194,16 @@ const DashboardPage = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 px-5 gap-4">
-                        {payoutsToDisplay?.map((payout, index) => (
-                            <>
+                        {loadingPayouts ? (
+                            Array.from({ length: 3 }).map((_, index) => (
+                                <Skeleton
+                                    key={index}
+                                    height={100}
+                                    style={{ borderRadius: "8px", background: "#F5F5F5" }}
+                                />
+                            ))
+                        ) : (
+                            payoutsToDisplay?.map((payout, index) => (
                                 <div
                                     key={index}
                                     className="flex justify-between p-4 rounded-lg"
@@ -213,13 +227,11 @@ const DashboardPage = () => {
                                             {new Date(payout?.expected_payout_date).toLocaleDateString("en-GB")}
                                         </p>
                                     </div>
-
                                 </div>
-                                <div className="hidden sm:block"></div>
-                                <div className="hidden sm:block"></div>
-                            </>
-                        ))}
+                            ))
+                        )}
                     </div>
+
 
 
                     <div className="grid grid-cols-1 md:grid-cols-3 p-3">
@@ -239,64 +251,81 @@ const DashboardPage = () => {
 
                         </div>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 px-5">
-                        {investmentsToDisplay[0] === undefined ? (
-                            <div>
-                                <p className="text-start text-md font-bold text-gray-400">No investments found. Invest now! </p>
-                            </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 px-5 gap-4">
+
+                        {loadingInvestments ? (
+                            Array.from({ length: 3 }).map((_, index) => (
+                                <Skeleton
+                                    key={index}
+                                    height={100}
+                                    style={{ borderRadius: "8px", background: "#F5F5F5" }}
+                                />
+                            ))
                         ) : (
+
                             <>
-                                {investmentsToDisplay?.map((investment, index) => {
-                                    // Calculate number of months between createdAt and today
-                                    const createdAtDate = new Date(investment?.createdAt);
-                                    const today = new Date();
-                                    const monthsSinceCreation =
-                                        (today.getFullYear() - createdAtDate.getFullYear()) * 12 +
-                                        today.getMonth() -
-                                        createdAtDate.getMonth();
-
-                                    // Ensure at least 0 months (in case the dates are the same month)
-                                    const effectiveMonths = Math.max(monthsSinceCreation, 0);
-
-                                    // Calculate earned returns
-                                    const earnedReturnsAmount =
-                                        investment?.amount *
-                                        (investment?.interest_per_month / 100) *
-                                        effectiveMonths;
-
-                                    const earnedReturnsPercentage =
-                                        investment?.interest_per_month * effectiveMonths;
-
-                                    return (
-                                        <div
-                                            onClick={() => navigate(`/dashboard/investment-details`, { state: { item: { investment } } })}
-                                            key={index}
-                                            className="flex justify-between p-4 rounded-lg  border border-[#020065]"
-                                            style={{ background: "#F5F5F5" }}
-                                        >
-                                            <div className="flex flex-col text-start">
-                                                <p className="text-md">Invested Amount</p>
-                                                <p
-                                                    className="font-bold text-md"
-                                                    style={{ color: "#020065" }}
-                                                >
-                                                    ₹{investment?.amount.toLocaleString()}
-                                                </p>
-                                            </div>
-                                            <div className="flex flex-col text-start">
-                                                <p className="text-md">Returns earned</p>
-                                                <p
-                                                    className="font-bold text-md"
-                                                    style={{ color: "#020065" }}
-                                                >
-                                                    ₹{earnedReturnsAmount.toLocaleString()} (
-                                                    {earnedReturnsPercentage}%)
-                                                </p>
-                                            </div>
+                                {
+                                    investmentsToDisplay[0] === undefined ? (
+                                        <div>
+                                            <p className="text-start text-md font-bold text-gray-400">No investments found. Invest now! </p>
                                         </div>
-                                    );
-                                })}
+                                    ) : (
+                                        <>
+                                            {investmentsToDisplay?.map((investment, index) => {
+                                                // Calculate number of months between createdAt and today
+                                                const createdAtDate = new Date(investment?.createdAt);
+                                                const today = new Date();
+                                                const monthsSinceCreation =
+                                                    (today.getFullYear() - createdAtDate.getFullYear()) * 12 +
+                                                    today.getMonth() -
+                                                    createdAtDate.getMonth();
+
+                                                // Ensure at least 0 months (in case the dates are the same month)
+                                                const effectiveMonths = Math.max(monthsSinceCreation, 0);
+
+                                                // Calculate earned returns
+                                                const earnedReturnsAmount =
+                                                    investment?.amount *
+                                                    (investment?.interest_per_month / 100) *
+                                                    effectiveMonths;
+
+                                                const earnedReturnsPercentage =
+                                                    investment?.interest_per_month * effectiveMonths;
+
+                                                return (
+                                                    <div
+                                                        onClick={() => navigate(`/dashboard/investment-details`, { state: { item: { investment } } })}
+                                                        key={index}
+                                                        className="flex justify-between p-4 rounded-lg  border border-[#020065]"
+                                                        style={{ background: "#F5F5F5" }}
+                                                    >
+                                                        <div className="flex flex-col text-start">
+                                                            <p className="text-md">Invested Amount</p>
+                                                            <p
+                                                                className="font-bold text-md"
+                                                                style={{ color: "#020065" }}
+                                                            >
+                                                                ₹{investment?.amount.toLocaleString()}
+                                                            </p>
+                                                        </div>
+                                                        <div className="flex flex-col text-start">
+                                                            <p className="text-md">Returns earned</p>
+                                                            <p
+                                                                className="font-bold text-md"
+                                                                style={{ color: "#020065" }}
+                                                            >
+                                                                ₹{earnedReturnsAmount.toLocaleString()} (
+                                                                {earnedReturnsPercentage}%)
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })}
+                                        </>
+                                    )
+                                }
                             </>
+
                         )}
                     </div>
 
