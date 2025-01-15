@@ -177,7 +177,7 @@ const ConsentForm = () => {
                         </div>
                     )}
                 </div>
-                <div className="mt-5 sm:hidden p-3 fixed bottom-0 left-0 w-full bg-white shadow-md">
+                <div className="mt-5 sm:hidden p-3 fixed bottom-0 left-0 w-full bg-white shadow-md z-10">
                     <Link to="/Kyc-status" onClick={setIsConsentAgreed(true)}>
                         <button
                             type="submit"

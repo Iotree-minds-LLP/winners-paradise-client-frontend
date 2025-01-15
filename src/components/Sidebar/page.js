@@ -29,13 +29,10 @@ const Sidebar = () => {
     useEffect(() => {
         const CallverifyToken = async () => {
             if (localStorage.getItem("tokenDetails")) {
-
                 const payload = {
                     token: localStorage.getItem("tokenDetails")
                 }
-
                 const res = await verifyToken(payload);
-
                 if (res?.data?.status != 200) {
                     localStorage.removeItem("customerDetails");
                     localStorage.removeItem("tokenDetails");

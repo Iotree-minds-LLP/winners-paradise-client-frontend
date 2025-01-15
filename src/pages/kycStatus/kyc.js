@@ -443,7 +443,7 @@ const KycStatusPage = () => {
                     <div>
                         <div className="fixed bottom-0 left-0 w-full sm:hidden bg-white shadow-lg">
                             <div className="absolute bottom-0 left-0 w-full flex flex-col items-start p-4">
-                                {data?.every(item => item.status === "Review Pending" || item.status === "Cleared") && (
+                                {data?.every(item => item.status === "Review Pending" || item.status === "Cleared") ? (
                                     <>
                                         <div className="w-full" >
                                             <div className="w-full flex flex-col items-star cursor-pointer">
@@ -508,6 +508,8 @@ const KycStatusPage = () => {
                                         </div>
                                     </>
 
+                                ) : (
+                                    <p>as</p>
                                 )}
 
                                 {/* <div className="w-full mt-4">
@@ -521,11 +523,15 @@ const KycStatusPage = () => {
                                     </button>
                                 </div> */}
 
-                                <div className="mt-5 sm:hidden fixed bottom-0 left-0 w-full bg-white shadow-md ">
-                                    <img src={image2} alt="Image description" className="w-full h-full object-contain" />
-                                </div>
 
+                                {data?.every(item => item.status === "Review Pending" || item.status === "Cleared") ? (
+                                    <p></p>
 
+                                ) : (
+                                    <div className="mt-5 sm:hidden fixed bottom-0 left-0 w-full bg-white shadow-md ">
+                                        <img src={image2} alt="Image description" className="w-full h-full object-contain" />
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
