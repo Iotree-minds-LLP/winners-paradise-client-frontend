@@ -3,8 +3,10 @@ import RouterPage from "./routes/page";
 import './index.css';
 import { generateToken, messaging } from './firebase';
 import { onMessage } from "firebase/messaging"
+import { verifyToken } from './network/Authentication/page';
 const App = () => {
   const [token, settoken] = useState()
+  
 
   useEffect(() => {
     const generateTokenFromFcm = async () => {
@@ -18,6 +20,8 @@ const App = () => {
 
     generateTokenFromFcm();
   }, [])
+
+
 
   return (
     <div>

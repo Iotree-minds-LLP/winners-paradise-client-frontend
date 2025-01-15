@@ -48,4 +48,16 @@ const Logoutuser = async () => {
 };
 
 
-export { getpermissions, login, ResetPassword, Logoutuser };
+const verifyToken = async (payload) => {
+    try {
+        const res = await axiosInstance.post("auth/verify-token", payload);
+        const data = res;
+        return { data };
+    } catch (err) {
+        const errRes = (err && err.response) || "Network Error";
+        return { ...errRes };
+    }
+};
+
+
+export { getpermissions, login, ResetPassword, Logoutuser, verifyToken };

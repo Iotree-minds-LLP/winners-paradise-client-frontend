@@ -29,6 +29,7 @@ import EditBankDetails from '../pages/BankDetails/editBankDetails';
 import AddNominee from '../pages/BankDetails/nominee';
 import EditNominee from '../pages/BankDetails/editNominee';
 import ConsentForm from '../pages/Kyc/consentForm';
+import { verifyToken } from '../network/Authentication/page';
 
 const routes = [
   { path: "/", element: <OtpVerification /> },

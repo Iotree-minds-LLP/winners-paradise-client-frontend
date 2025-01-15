@@ -4,10 +4,12 @@ import imageLogo from "../../assets/Logos/logo1.png";
 import cataloglogo from "../../assets/Logos/sidebarLogos/catalog.png"
 import { getAllInvestments } from "../../network/Investments/page";
 import { useInvestment } from "../../context/Investment/investmentContext";
+import { verifyToken } from "../../network/Authentication/page";
 const Sidebar = () => {
 
     const [path, setpath] = useState("")
     const location = useLocation();
+    const navigate = useNavigate();
     const currentUrl = location.pathname;
     const [investments, setInvestments] = useState(false)
     const { isInvestmentCreated, setIsInvestmentCreated } = useInvestment();
@@ -22,6 +24,27 @@ const Sidebar = () => {
     useEffect(() => {
         onformSubmit()
     }, []);
+
+
+    useEffect(() => {
+        const CallverifyToken = async () => {
+            if (localStorage.getItem("tokenDetails")) {
+
+                const payload = {
+                    token: localStorage.getItem("tokenDetails")
+                }
+
+                const res = await verifyToken(payload);
+
+                if (res?.data?.status != 200) {
+                    localStorage.removeItem("customerDetails");
+                    localStorage.removeItem("tokenDetails");
+                    navigate("/");
+                }
+            }
+        }
+        CallverifyToken()
+    }, [])
 
 
     const onformSubmit = async () => {
