@@ -168,13 +168,15 @@ const DashboardPage = () => {
                                             <p className="text-primary" style={{ color: "#7C79EB" }}>
                                                 Total Invested
                                             </p>
-                                            <p className="text-white text-lg mt-2">₹ {totalInvested}</p>
+                                            <p className="text-white text-lg mt-2">₹ {totalInvested.toLocaleString("en-IN")
+                                            }</p>
                                         </div>
                                         <div className="flex flex-col">
                                             <p className="text-primary" style={{ color: "#7C79EB" }}>
                                                 Total Earned
                                             </p>
-                                            <p className="text-white text-lg mt-2">₹ {totalEarned}</p>
+                                            <p className="text-white text-lg mt-2">₹ {totalEarned.toLocaleString("en-IN")
+                                            }</p>
                                         </div>
                                     </>
                                 )}
@@ -267,7 +269,7 @@ const DashboardPage = () => {
 
                         </div>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 px-5 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 px-5 gap-4 overflow-y-auto">
 
                         {loadingInvestments ? (
                             Array.from({ length: 3 }).map((_, index) => (
@@ -309,32 +311,38 @@ const DashboardPage = () => {
                                                     investment?.interest_per_month * effectiveMonths;
 
                                                 return (
-                                                    <div
-                                                        onClick={() => navigate(`/dashboard/investment-details`, { state: { item: { investment } } })}
-                                                        key={index}
-                                                        className="flex justify-between p-4 rounded-lg  border border-[#020065]"
-                                                        style={{ background: "#F5F5F5" }}
-                                                    >
-                                                        <div className="flex flex-col text-start">
-                                                            <p className="text-md">Invested Amount</p>
-                                                            <p
-                                                                className="font-bold text-md"
-                                                                style={{ color: "#020065" }}
-                                                            >
-                                                                ₹{investment?.amount.toLocaleString()}
-                                                            </p>
+                                                    <>
+                                                        <div
+                                                            onClick={() => navigate(`/dashboard/investment-details`, { state: { item: { investment } } })}
+                                                            key={index}
+                                                            className=" flex justify-between p-4 rounded-lg  border border-[#020065]"
+                                                            style={{ background: "#F5F5F5" }}
+                                                        >
+                                                            <div className="flex flex-col text-start">
+                                                                <p className="text-md">Invested Amount</p>
+                                                                <p
+                                                                    className="font-bold text-md"
+                                                                    style={{ color: "#020065" }}
+                                                                >
+                                                                    ₹{investment?.amount.toLocaleString("en-IN")
+                                                                    }
+                                                                </p>
+                                                            </div>
+                                                            <div className="flex flex-col text-start">
+                                                                <p className="text-md">Returns earned</p>
+                                                                <p
+                                                                    className="font-bold text-md"
+                                                                    style={{ color: "#020065" }}
+                                                                >
+                                                                    ₹{earnedReturnsAmount.toLocaleString("en-IN")
+                                                                    } (
+                                                                    {earnedReturnsPercentage}%)
+                                                                </p>
+                                                            </div>
                                                         </div>
-                                                        <div className="flex flex-col text-start">
-                                                            <p className="text-md">Returns earned</p>
-                                                            <p
-                                                                className="font-bold text-md"
-                                                                style={{ color: "#020065" }}
-                                                            >
-                                                                ₹{earnedReturnsAmount.toLocaleString()} (
-                                                                {earnedReturnsPercentage}%)
-                                                            </p>
-                                                        </div>
-                                                    </div>
+                                                        <div className="hidden sm:block"></div>
+                                                        <div className="hidden sm:block"></div>
+                                                    </>
                                                 );
                                             })}
                                         </>
@@ -343,6 +351,7 @@ const DashboardPage = () => {
                             </>
 
                         )}
+
                     </div>
 
 

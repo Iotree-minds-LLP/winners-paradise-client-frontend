@@ -106,7 +106,7 @@ const InvestmentDetails = () => {
                                     className="text-md font-bold my-2"
                                     style={{ color: 'rgba(0, 0, 148, 1)' }}
                                 >
-                                    ₹{SelectedInvestmentDetails.amount}
+                                    ₹{SelectedInvestmentDetails?.amount?.toLocaleString("en-IN")}
 
                                 </p>
                             </div>
@@ -136,21 +136,24 @@ const InvestmentDetails = () => {
                                     className="text-md font-bold my-2"
                                     style={{ color: 'rgba(0, 0, 148, 1)' }}
                                 >
-                                    ₹{totalReturn}
+                                    ₹{totalReturn.toLocaleString("en-IN")}
                                 </p>
                             </div>
                         </div>
                     </div>
 
+
                     <div className=" text-start rounded-lg px-4 mt-4 grid md:grid-cols-3 grid-cols-1 gap-4">
-                        <div className="flex flex-row  ">
-                            <p style={{ color: "#020065" }} className="text-md font-semibold">Upcoming Payout </p>
+                        <div className="flex flex-row">
+                            <p style={{ color: "#020065" }} className="text-md font-semibold">
+                                Upcoming Payout
+                            </p>
                         </div>
                     </div>
 
-                    <div className="z-10 my-4 grid grid-cols-1 md:grid-cols-3 px-5 gap-4 mx-0 ">
-                        {upcomingPayouts?.map((payout, index) => (
-                            <>
+                    <div className="z-10 my-4 grid grid-cols-1 md:grid-cols-3 px-5 gap-4 mx-0">
+                        {upcomingPayouts?.length > 0 ? (
+                            upcomingPayouts.map((payout, index) => (
                                 <div
                                     key={index}
                                     className="flex justify-between p-4 rounded-lg"
@@ -174,25 +177,25 @@ const InvestmentDetails = () => {
                                             {new Date(payout?.expected_payout_date).toLocaleDateString("en-GB")}
                                         </p>
                                     </div>
-
                                 </div>
-                                <div className="hidden sm:block"></div>
-                                <div className="hidden sm:block"></div>
-                            </>
-                        ))}
+                            ))
+                        ) : (
+                            <p className="text-start text-md font-bold text-gray-400">
+                                No upcoming payouts available.
+                            </p>
+                        )}
                     </div>
-
-
                     <div className=" text-start rounded-lg px-4 mt-4 grid md:grid-cols-3 grid-cols-1 gap-4">
-                        <div className="flex flex-row  ">
-                            <p style={{ color: "#020065" }} className="text-md font-semibold">Payout History </p>
+                        <div className="flex flex-row">
+                            <p style={{ color: "#020065" }} className="text-md font-semibold">
+                                Payout History
+                            </p>
                         </div>
                     </div>
 
-                    <div className="z-10 my-4 grid grid-cols-1 md:grid-cols-3 px-5 gap-4 mx-0 ">
-
-                        {pastPayouts?.map((payout, index) => (
-                            <>
+                    <div className="z-10 my-4 grid grid-cols-1 md:grid-cols-3 px-5 gap-4 mx-0">
+                        {pastPayouts?.length > 0 ? (
+                            pastPayouts.map((payout, index) => (
                                 <div
                                     key={index}
                                     className="flex justify-between p-4 rounded-lg"
@@ -216,15 +219,14 @@ const InvestmentDetails = () => {
                                             {new Date(payout?.expected_payout_date).toLocaleDateString("en-GB")}
                                         </p>
                                     </div>
-
                                 </div>
-                                <div className="hidden sm:block"></div>
-                                <div className="hidden sm:block"></div>
-                            </>
-                        ))}
+                            ))
+                        ) : (
+                            <p className="text-start text-md font-bold text-gray-400">
+                                No payout history available.
+                            </p>
+                        )}
                     </div>
-
-
                 </div>
 
 

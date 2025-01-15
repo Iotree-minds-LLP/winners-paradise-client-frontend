@@ -510,7 +510,7 @@ const KycStatusPage = () => {
 
                                 )}
 
-                                <div className="w-full mt-4">
+                                {/* <div className="w-full mt-4">
                                     <button
                                         onClick={() => navigate("/profile-and-settings")}
                                         type="submit"
@@ -519,6 +519,10 @@ const KycStatusPage = () => {
                                     >
                                         Skip Now
                                     </button>
+                                </div> */}
+
+                                <div className="mt-5 sm:hidden fixed bottom-0 left-0 w-full bg-white shadow-md ">
+                                    <img src={image2} alt="Image description" className="w-full h-full object-contain" />
                                 </div>
 
 

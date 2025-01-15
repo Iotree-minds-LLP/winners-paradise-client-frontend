@@ -127,7 +127,10 @@ const CatalogDetails = () => {
                         </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <p className="text-md px-4 mt-3 text-start font-medium">Lorem Ipsum is simply dummy text of the printing and  typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of  type and scrambled it to make a type specimen book. It has survived not  only five centuries,</p>
+                        <p className="text-md px-4 mt-3 text-start font-medium">
+                            {SelectedCatalogDetails?.description}
+
+                        </p>
                     </div>
                     <div className="grid grid-cols-1 px-4 mt-4 md:grid-cols-2 gap-4 text-start">
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -163,12 +166,12 @@ const CatalogDetails = () => {
                                 // Render actual content when `showShimmer` is false
                                 <>
                                     <div style={{ background: '#F5F5F5' }} className="p-3">
-                                        <p>Investment Amount</p>
+                                        <p>Your Investment Amount</p>
                                         <p
                                             className="text-md font-bold my-2"
                                             style={{ color: 'rgba(0, 0, 148, 1)' }}
                                         >
-                                            ₹{SelectedCatalogDetails.your_investment_amount}
+                                            ₹{SelectedCatalogDetails.your_investment_amount ? SelectedCatalogDetails.your_investment_amount : SelectedCatalogDetails.min_amt}
                                         </p>
                                     </div>
                                     <div style={{ background: '#F5F5F5' }} className="p-4">
@@ -256,6 +259,8 @@ const CatalogDetails = () => {
                         </>
                     )}
                 </div>
+
+
 
             </div >
         </>
