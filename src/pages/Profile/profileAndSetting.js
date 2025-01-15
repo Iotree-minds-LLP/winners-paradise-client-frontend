@@ -6,6 +6,7 @@ import acrrowright from "../../assets/Images/arrow_circle_right.png";
 import image2 from "../../assets/Images/robo 1 (1).png";
 import logoutImage from "../../assets/Images/logoutItemLogo.png";
 import { Logoutuser } from "../../network/Authentication/page";
+import { goBack } from "../../utils/Functions/goBackScreen";
 
 const ProfileAndSettings = () => {
     const [isModalOpen, setisModalOpen] = useState(false);
@@ -93,17 +94,14 @@ const ProfileAndSettings = () => {
                         </div>
                     </div>
 
-                    <div className="flex justify-between">
-                        <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10 mx-6">
-                            Profile & Settings
-                        </h1>
-                        {/* <p
-                            className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer"
-                            onClick={toggleModal}
-                        >
-                            Logout
-                        </p> */}
+                    <div className="flex justify-between hidden md:block">
+                        <div className="flex flex-row mx-4 gap-4 mt-14">
+                            <img onClick={goBack} src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" className="w-auto h-8" alt="Background" />
+                            <h1 className="text-start font-bold text-2xl text-black hidden md:block">Profile & Settings</h1>
+                        </div>
+                        {/* <p className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer	" onClick={toggleModal}>Logout</p> */}
                     </div>
+
 
                     <div className="text-start rounded-lg mt-5 p-4 md:p-10 grid md:grid-cols-1 grid-cols-1 gap-4">
                         <div

@@ -24,6 +24,7 @@ import image2 from "../../assets/Images/robo 1 (1).png";
 import image3 from "../../assets/Images/arrow_circle_right (1).png";
 import { LogoutUser } from "../../network/Fcm/saveToken";
 import { getKycDetailsByCustomerId } from "../../network/KycVerification/page";
+import { goBack } from "../../utils/Functions/goBackScreen";
 
 const Catalogs = () => {
 
@@ -146,11 +147,13 @@ const Catalogs = () => {
                         </div>
                     </div>
 
-                    <div className="flex justify-between">
-                        <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10">Catalogue</h1>
+                    <div className="flex justify-between hidden md:block">
+                        <div className="flex flex-row mx-4 gap-4 mt-14 mb-8">
+                            <img onClick={goBack} src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" className="w-auto h-8" alt="Background" />
+                            <h1 className="text-start font-bold text-2xl text-black hidden md:block">Catalogue</h1>
+                        </div>
                         {/* <p className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer	" onClick={toggleModal}>Logout</p> */}
                     </div>
-
                     <div className="grid grid-cols-1 md:py-0 py-5 md:grid-cols-3 px-4 gap-0 md:gap-10 mt-20 md:mt-0 text-start">
                         {completeCardsLoading ? (
                             <>

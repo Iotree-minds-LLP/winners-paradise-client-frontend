@@ -64,11 +64,14 @@ const Notifications = () => {
                             <p className="text-white font-semibold my-1">Notifications</p>
                         </div>
                     </div>
-                    <div className="flex justify-between">
-                        <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10">
-                            My Notifications
-                        </h1>
+                    <div className="flex justify-between hidden md:block">
+                        <div className="flex flex-row mx-4 gap-4 mt-14">
+                            <img onClick={goBack} src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" className="w-auto h-8" alt="Background" />
+                            <h1 className="text-start font-bold text-2xl text-black hidden md:block">My Notifications</h1>
+                        </div>
+                        {/* <p className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer	" onClick={toggleModal}>Logout</p> */}
                     </div>
+
 
                     <div className="text-start rounded-lg mt-5 p-4 grid md:grid-cols-3 grid-cols-1 gap-4">
                         {loading ? (
