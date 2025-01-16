@@ -157,7 +157,6 @@ const KycStatusPage = () => {
         // }
 
         if (item.title === "AADHAR CARD") {
-            console.log(KycRequestData, "KycRequestData")
             navigate("/kyc/aadhar-card-upload", { state: { KycRequestData } })
         }
 

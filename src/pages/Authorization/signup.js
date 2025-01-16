@@ -9,7 +9,7 @@ import imageLogo from "../../assets/Logos/logo1.png";
 import image1 from "../../assets/Images/robo 1 (3).png";
 import image3 from "../../assets/Images/sideImage.png";
 import image2 from "../../assets/Images/robo 1 (1).png";
-import { Radio, FormControlLabel, FormControl, FormLabel, RadioGroup, TextField, InputAdornment } from '@mui/material';
+import { Radio, FormControlLabel, FormControl, FormLabel, RadioGroup, TextField, InputAdornment, Checkbox, IconButton } from '@mui/material';
 import { PwaContext } from "../../context/PwaContext/page";
 import backButton from "../../assets/Logos/backButton.png"
 import { useForm } from 'react-hook-form';
@@ -18,6 +18,7 @@ import { useToast } from "../../context/Toast/toastHook";
 import { goBack } from "../../utils/Functions/goBackScreen";
 import translations from "../../utils/Json/translation.json"
 import { saveTokenForFcm } from "../../network/Fcm/saveToken";
+import { AddAPhoto, CheckBox, DeleteForeverOutlined } from "@mui/icons-material";
 
 const SignupPage = () => {
 
@@ -42,9 +43,50 @@ const SignupPage = () => {
     const navigate = useNavigate();
     const [ErrorMessage, setErrorMessage] = useState("")
     const [isLoading, setisLoading] = useState(false)
+    const [isChecked, setIsChecked] = useState(false);
+
+    const handleChange = (event) => {
+        setIsChecked(event.target.checked);
+    };
+
+    const [image, setImage] = useState(null);
+
+    // Convert selected file to Base64
+    const handleImageUpload = (event) => {
+        const file = event.target.files[0];
+        if (file && (file.type === "image/jpeg" || file.type === "image/png" || file.type === "image/jpg")) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImage(reader.result); // Set Base64 image
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert("Please select a valid image file (JPEG, JPG, PNG).");
+        }
+    };
+
+    // Remove the image
+    const handleRemoveImage = () => {
+        setImage(null);
+    };
+
+
 
     const onSubmit = async (data) => {
         setisLoading(true);
+
+        if (!isChecked) {
+            setisLoading(false);
+            setErrorMessage("You Need to accept the terms and conditions to proceed");
+            return
+        }
+
+        if (!image) {
+            setisLoading(false);
+            setErrorMessage("Profile Image Is Required");
+            return
+        }
+
         const date = new Date(data.dateOfBirth);
         const formattedDateOfBirth = `${(date.getMonth() + 1).toString().padStart(2, '0')}-${date
             .getDate()
@@ -376,7 +418,76 @@ const SignupPage = () => {
                                 helperText={errors.referralCode?.message}
                             />
 
+                            <div className="flex flex-col items-start justify-start">
+                                {/* Label for Image Upload */}
+                                <p className="text-sm mb-2 text-gray-500">Upload Profile Image</p>
+                                <div className="text-end flex jutify-end items-end mx-50">
 
+                                </div>
+                                <div
+                                    className={`border-dashed border-2 ${image ? "border-gray-300" : "border-gray-500"
+                                        } flex items-center justify-center w-40 h-40 sm:w-60 sm:h-60 rounded-md relative`}
+                                >
+
+                                    {image ? (
+                                        <>
+                                            {/* Uploaded Image */}
+                                            <div className="relative w-full h-full group">
+                                                {/* Image */}
+                                                <img
+                                                    src={image}
+                                                    alt="Uploaded"
+                                                    className="object-cover w-full h-full rounded-md"
+                                                />
+
+                                                {/* Overlay */}
+                                                <div className="absolute inset-0 bg-black bg-opacity-10 rounded-md flex justify-end items-start group-hover:bg-opacity-20 transition duration-300">
+                                                    {/* Delete Icon */}
+                                                    <IconButton
+                                                        aria-label="delete"
+                                                        size="small"
+                                                        className="absolute top-0 bg-white text-red-500 p-2 rounded-full group-hover:bg-red-500 group-hover:text-white shadow-md transition duration-300 m-2"
+                                                        onClick={handleRemoveImage}
+                                                    >
+                                                        <DeleteForeverOutlined fontSize="small" />
+                                                    </IconButton>
+                                                </div>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <label
+                                            htmlFor="upload-image"
+                                            className="flex flex-col items-center justify-center cursor-pointer text-gray-400"
+                                        >
+                                            <AddAPhoto fontSize="large" />
+                                            <span className="text-sm">Upload Image</span>
+                                            <input
+                                                id="upload-image"
+                                                type="file"
+                                                accept="image/jpeg,image/png,image/jpg"
+                                                className="hidden"
+                                                onChange={handleImageUpload}
+                                            />
+                                        </label>
+                                    )}
+                                </div>
+                            </div>
+
+
+                            <div className="flex flex-row">
+                                <Checkbox
+                                    checked={isChecked}
+                                    onChange={handleChange}
+                                    sx={{
+                                        width: { xs: 30, sm: 30 }, // Mobile: 40px, Desktop: 20px
+                                        height: { xs: 30, sm: 30 }, // Mobile: 40px, Desktop: 20px
+                                        "& .MuiSvgIcon-root": { fontSize: { xs: 30, sm: 30 } }, // Adjust icon size
+                                    }}
+                                />
+                                <p className="text-sm text-start mx-2 text-gray-600 font-semibold">
+                                    Investments are subject to the market conditions and risks associated with the Indian stock market.
+                                </p>
+                            </div>
                             {/* Submit Button */}
                             <div className="mt-5">
                                 <button
@@ -435,8 +546,8 @@ const SignupPage = () => {
                             </h1>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div >
+            </div >
 
         </>
     );

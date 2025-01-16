@@ -35,24 +35,12 @@ const PanUpload = () => {
 
     useEffect(() => {
         if (location.state?.KycRequestData && Object.keys(location.state.KycRequestData).length > 0) {
-            console.log(location.state.KycRequestData);
             setLocationStateDetails(location.state.KycRequestData);
-
-            setBackImagePreview(location.state.KycRequestData.pan_file_back);
-            setFrontImage(location.state.KycRequestData.pan_file_front);
-
+            setFrontImage(location.state.KycRequestData.pan_file);
             setpanFrontStatus(location.state.KycRequestData.is_pan_verified);
-            setpanBackStatus(location.state.KycRequestData.is_pan_verified);
-
-
         } else {
-            console.log("KycRequestData is empty");
             setLocationStateDetails(null);
-
-            setpanBackStatus(null);
             setpanFrontStatus(null);
-
-            setBackImagePreview(null);
             setFrontImage(null);
         }
 
@@ -226,7 +214,7 @@ const PanUpload = () => {
                                         : "bg-[#F1F1FF]"
                                 : ""
                                 }`}
-                         >
+                        >
                             {frontImage ? (
                                 <div className="w-full h-auto">
                                     <img
@@ -257,7 +245,7 @@ const PanUpload = () => {
                             </div>
                         </div>
 
-                     
+
                     </div>
 
                     {locationStateDetails?.is_pan_verified === "REJECTED" && (
