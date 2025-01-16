@@ -404,7 +404,7 @@ const SelfieUpload = () => {
                         </button>
                         <button
                             onClick={stopCamera}
-                            className="px-6 py-2 bg-red-500 text-white font-bold rounded-full"
+                            className="px-6 py-2 bg-gray-500 text-white font-bold rounded-full"
                         >
                             Cancel
                         </button>
