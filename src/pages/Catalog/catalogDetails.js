@@ -114,10 +114,18 @@ const CatalogDetails = () => {
                         </div>
 
                     </div>
-                    <div className="flex justify-between">
+                    {/* <div className="flex justify-between">
                         <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10">
                             {SelectedCatalogDetails?.name}
                         </h1>
+                    </div> */}
+
+                    <div className="flex justify-between hidden md:block">
+                        <div className="flex flex-row mx-4 gap-4 mt-14 mb-8">
+                            <img onClick={goBack} src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" className="w-auto h-8" alt="Background" />
+                            <h1 className="text-start font-bold text-2xl text-black hidden md:block">{SelectedCatalogDetails?.name}</h1>
+                        </div>
+                        {/* <p className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer	" onClick={toggleModal}>Logout</p> */}
                     </div>
 
                     <div className=" text-start rounded-lg px-4 mt-4 grid md:grid-cols-3 grid-cols-1 gap-4">
@@ -171,7 +179,7 @@ const CatalogDetails = () => {
                                             className="text-md font-bold my-2"
                                             style={{ color: 'rgba(0, 0, 148, 1)' }}
                                         >
-                                            ₹{SelectedCatalogDetails.your_investment_amount ? SelectedCatalogDetails.your_investment_amount : SelectedCatalogDetails.min_amt}
+                                            ₹{SelectedCatalogDetails.your_investment_amount ? Number(SelectedCatalogDetails.your_investment_amount).toLocaleString("en-IN") : Number(SelectedCatalogDetails.min_amt).toLocaleString("en-IN")}
                                         </p>
                                     </div>
                                     <div style={{ background: '#F5F5F5' }} className="p-4">
@@ -198,7 +206,7 @@ const CatalogDetails = () => {
                                             className="text-md font-bold my-2"
                                             style={{ color: 'rgba(0, 0, 148, 1)' }}
                                         >
-                                            ₹{SelectedCatalogDetails.returns_per_month}
+                                            ₹{Number(SelectedCatalogDetails?.returns_per_month)?.toLocaleString("en-IN") || "N/A"}
                                         </p>
                                     </div>
                                 </>

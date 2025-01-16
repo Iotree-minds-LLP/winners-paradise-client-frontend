@@ -76,19 +76,16 @@ const InvestmentDetails = () => {
                             Logout
                         </div> */}
                     </div>
-                    <div className="flex justify-between">
-                        <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10">
-                            Investment Details
-                        </h1>
-                        {/* <p
-                            className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer"
-                            onClick={toggleModal}
-                        >
-                            Logout
-                        </p> */}
+                    <div className="flex justify-between hidden md:block">
+                        <div className="flex flex-row mx-4 gap-4 mt-14">
+                            <img onClick={goBack} src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" className="w-auto h-8" alt="Background" />
+                            <h1 className="text-start font-bold text-2xl text-black hidden md:block">
+                                Investment Details
+                            </h1>
+                        </div>
                     </div>
 
-                    <div className=" text-start rounded-lg px-4 mt-4 grid md:grid-cols-3 grid-cols-1 gap-4">
+                    {/* <div className=" text-start rounded-lg px-4 mt-4 grid md:grid-cols-3 grid-cols-1 gap-4">
                         <div className="flex flex-row  ">
                             <p style={{ color: "#020065" }} className="text-md font-semibold">Investment Description </p>
                         </div>
@@ -96,7 +93,7 @@ const InvestmentDetails = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <p className="text-md px-4 mt-3 text-start font-medium">Lorem Ipsum is simply dummy text of the printing and  typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of  type and scrambled it to make a type specimen book. It has survived not  only five centuries,</p>
-                    </div>
+                    </div> */}
 
                     <div className="grid grid-cols-1 px-4 mt-4 md:grid-cols-2 gap-4 text-start">
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4"  >

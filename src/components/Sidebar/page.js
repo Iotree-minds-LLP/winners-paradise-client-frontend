@@ -41,6 +41,13 @@ const Sidebar = () => {
                     navigate("/");
                 }
             }
+            else {
+                localStorage.removeItem("customerDetails");
+                localStorage.removeItem("tokenDetails");
+                localStorage.removeItem("fcmToken");
+                localStorage.removeItem("tempMobileNumber");
+                navigate("/");
+            }
         }
         CallverifyToken()
     }, [])

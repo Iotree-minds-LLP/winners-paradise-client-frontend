@@ -166,6 +166,61 @@ const SignupPage = () => {
                             onSubmit={handleSubmit(onSubmit)}
                             className="my-5 grid grid-cols-1 gap-4 md:mx:0 mx-5 py-3"
                         >
+
+                            <p className="text-md text-start mb-4 text-gray-500">Upload Profile Image</p>
+
+                            <div className="flex flex-col items-center justify-center">
+                                {/* Label for Image Upload */}
+
+                                <div
+                                    className={`border-dashed border-2 ${image ? "border-gray-300" : "border-gray-500"
+                                        } flex items-center justify-center w-40 h-40 sm:w-40 sm:h-40 rounded-full relative`}
+                                >
+                                    {image ? (
+                                        <>
+                                            {/* Uploaded Image */}
+                                            <div className="relative w-full h-full group">
+                                                {/* Image */}
+                                                <img
+                                                    src={image}
+                                                    alt="Uploaded"
+                                                    className="object-cover w-full h-full rounded-full"
+                                                />
+
+                                                {/* Overlay */}
+                                                <div className="absolute inset-0 bg-black bg-opacity-10 rounded-full flex justify-end items-start group-hover:bg-opacity-20 transition duration-300">
+                                                    {/* Delete Icon */}
+                                                    <IconButton
+                                                        aria-label="delete"
+                                                        size="small"
+                                                        className="absolute top-2 right-2 bg-white text-red-500 p-2 rounded-full group-hover:bg-red-500 group-hover:text-white shadow-md transition duration-300"
+                                                        onClick={handleRemoveImage}
+                                                    >
+                                                        <DeleteForeverOutlined fontSize="small" />
+                                                    </IconButton>
+                                                </div>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <label
+                                            htmlFor="upload-image"
+                                            className="flex flex-col items-center justify-center cursor-pointer text-gray-400"
+                                        >
+                                            <AddAPhoto fontSize="large" />
+                                            <span className="text-sm">Upload Image</span>
+                                            <input
+                                                id="upload-image"
+                                                type="file"
+                                                accept="image/jpeg,image/png,image/jpg"
+                                                className="hidden"
+                                                onChange={handleImageUpload}
+                                            />
+                                        </label>
+                                    )}
+                                </div>
+                            </div>
+
+
                             <TextField
                                 label={translations.registerModule.fullname_field[language]}
                                 variant="outlined"
@@ -417,62 +472,6 @@ const SignupPage = () => {
                                 error={!!errors.referralCode}
                                 helperText={errors.referralCode?.message}
                             />
-
-                            <div className="flex flex-col items-start justify-start">
-                                {/* Label for Image Upload */}
-                                <p className="text-sm mb-2 text-gray-500">Upload Profile Image</p>
-                                <div className="text-end flex jutify-end items-end mx-50">
-
-                                </div>
-                                <div
-                                    className={`border-dashed border-2 ${image ? "border-gray-300" : "border-gray-500"
-                                        } flex items-center justify-center w-40 h-40 sm:w-60 sm:h-60 rounded-md relative`}
-                                >
-
-                                    {image ? (
-                                        <>
-                                            {/* Uploaded Image */}
-                                            <div className="relative w-full h-full group">
-                                                {/* Image */}
-                                                <img
-                                                    src={image}
-                                                    alt="Uploaded"
-                                                    className="object-cover w-full h-full rounded-md"
-                                                />
-
-                                                {/* Overlay */}
-                                                <div className="absolute inset-0 bg-black bg-opacity-10 rounded-md flex justify-end items-start group-hover:bg-opacity-20 transition duration-300">
-                                                    {/* Delete Icon */}
-                                                    <IconButton
-                                                        aria-label="delete"
-                                                        size="small"
-                                                        className="absolute top-0 bg-white text-red-500 p-2 rounded-full group-hover:bg-red-500 group-hover:text-white shadow-md transition duration-300 m-2"
-                                                        onClick={handleRemoveImage}
-                                                    >
-                                                        <DeleteForeverOutlined fontSize="small" />
-                                                    </IconButton>
-                                                </div>
-                                            </div>
-                                        </>
-                                    ) : (
-                                        <label
-                                            htmlFor="upload-image"
-                                            className="flex flex-col items-center justify-center cursor-pointer text-gray-400"
-                                        >
-                                            <AddAPhoto fontSize="large" />
-                                            <span className="text-sm">Upload Image</span>
-                                            <input
-                                                id="upload-image"
-                                                type="file"
-                                                accept="image/jpeg,image/png,image/jpg"
-                                                className="hidden"
-                                                onChange={handleImageUpload}
-                                            />
-                                        </label>
-                                    )}
-                                </div>
-                            </div>
-
 
                             <div className="flex flex-row">
                                 <Checkbox

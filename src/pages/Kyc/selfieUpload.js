@@ -8,6 +8,8 @@ import { creteCustomerKycRequest } from "../../network/KycVerification/page";
 import { useToast } from "../../context/Toast/toastHook";
 import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
+import { CameraAlt, Cancel, CancelOutlined, FileUpload } from "@mui/icons-material";
+import { goBack } from "../../utils/Functions/goBackScreen";
 
 const SelfieUpload = () => {
     const [frontImage, setFrontImage] = useState(null);
@@ -15,6 +17,7 @@ const SelfieUpload = () => {
     const [showCamera, setShowCamera] = useState(false);
     const [currentImageSetter, setCurrentImageSetter] = useState(null);
     const videoRef = useRef(null);
+    const [showOptions, setshowOptions] = useState(false);
     const canvasRef = useRef(null);
     const navigate = useNavigate();
     const [isLoading, setisLoading] = useState(false)
@@ -53,6 +56,7 @@ const SelfieUpload = () => {
     const startCamera = (setImage) => {
         setCurrentImageSetter(() => setImage);
         setShowCamera(true);
+        setshowOptions(false)
 
         const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
@@ -71,6 +75,7 @@ const SelfieUpload = () => {
             .catch((err) => {
                 console.error("Error accessing the camera:", err);
                 setShowCamera(false);
+                setshowOptions(false)
             });
     };
 
@@ -98,8 +103,22 @@ const SelfieUpload = () => {
 
         // Stop the camera after capturing the photo
         stopCamera();
+        setshowOptions(false)
     };
 
+    const handleFileUpload = (event) => {
+        const file = event.target.files[0];
+        if (file && (file.type === "image/jpeg" || file.type === "image/png" || file.type === "image/jpg")) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFrontImage(reader.result); // Set Base64 image
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert("Please select a valid image file (JPEG, JPG, PNG).");
+        }
+        setshowOptions(false); // Close modal after file selection
+    };
 
 
     const stopCamera = () => {
@@ -174,10 +193,13 @@ const SelfieUpload = () => {
                         </div>
                     </div>
 
-                    <div className="flex justify-between">
-                        <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10">
-                            Upload Selfie
-                        </h1>
+                    <div className="flex justify-between hidden md:block">
+                        <div className="flex flex-row mx-4 gap-4 mt-14">
+                            <img onClick={goBack} src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" className="w-auto h-8" alt="Background" />
+                            <h1 className="text-start font-bold text-2xl text-black hidden md:block">
+                                Upload Selfie
+                            </h1>
+                        </div>
                     </div>
 
                     <div className={`flex flex-col md:flex-row gap-10 p-4 md:mb-0 overflow-y-auto ${locationStateDetails?.is_profile_image_verified === "REJECTED" ? "mb-0" : "mb-20"}`}>
@@ -211,13 +233,13 @@ const SelfieUpload = () => {
                                     <div
                                         className="p-2 rounded-2xl cursor-pointer"
                                         {...(frontImage ? { style: { backgroundColor: "#ffffff" } } : { style: { backgroundColor: "#D4D4FF" } })}
-                                        onClick={() => startCamera(setFrontImage)}
+
                                     >
                                         {frontImage ?
                                             (
-                                                <img src={ResetImage} className="w-10 h-auto" alt="Upload Icon" />
+                                                <img src={ResetImage} onClick={() => setshowOptions(true)} className="w-10 h-auto" alt="Upload Icon" />
                                             ) : (
-                                                <img src={uploadImage} className="w-10 h-auto" alt="Upload Icon" />
+                                                <img src={uploadImage} onClick={() => setshowOptions(true)} className="w-10 h-auto" alt="Upload Icon" />
                                             )
                                         }
                                     </div>
@@ -274,8 +296,54 @@ const SelfieUpload = () => {
                         )}
                     </div>
                 </div>
-
             </div>
+
+            {showOptions && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex md:items-center items-end justify-center z-50">
+                    <div
+                        className="bg-white rounded-lg w-full max-w-md p-6 shadow-lg animate-slide-up"
+                    >
+                        {/* Header */}
+                        <div className="flex justify-between">
+
+                            <p className="text-lg font-semibold text-center mb-6">Choose or take a picture</p>
+                            <CancelOutlined onClick={() => setshowOptions(false)}></CancelOutlined>
+                            {/* Options */}
+                        </div>
+                        <div className="flex flex-col gap-4">
+                            {/* Use Camera Option */}
+                            <button
+                                onClick={() => startCamera(setFrontImage)}
+                                className="w-full p-4 flex items-center gap-4 border border-gray-100 bg-white text-black rounded-lg hover:bg-gray-100  transition"
+                            >
+                                <CameraAlt></CameraAlt>
+                                <p className="font-medium">Use Camera</p>
+                            </button>
+
+                            {/* Upload from Files Option */}
+                            <label
+                                htmlFor="file-upload"
+                                className="w-full p-4 flex items-center gap-4 bg-white border border-gray-100 hover:bg-gray-100 text-black rounded-lg transition cursor-pointer"
+                            >
+                                <FileUpload></FileUpload>
+                                <p className="font-medium">Upload from Files</p>
+                                <input
+                                    id="file-upload"
+                                    type="file"
+                                    accept="image/jpeg,image/png,image/jpg"
+                                    className="hidden"
+                                    onChange={handleFileUpload}
+                                />
+                            </label>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            )}
+
+
             {!((selfieUpload === "REVIEW PENDING" || selfieUpload === "CLEARED")) && (
 
                 <div>
@@ -330,13 +398,13 @@ const SelfieUpload = () => {
                     <div className="absolute bottom-10 flex gap-4">
                         <button
                             onClick={capturePhoto}
-                            className="px-6 py-2 bg-blue-500 text-white font-bold rounded-lg"
+                            className="px-6 py-2  bg-gradient-to-l from-[#020065] to-[#0400CB] text-white font-bold rounded-full"
                         >
                             Capture
                         </button>
                         <button
                             onClick={stopCamera}
-                            className="px-6 py-2 bg-red-500 text-white font-bold rounded-lg"
+                            className="px-6 py-2 bg-red-500 text-white font-bold rounded-full"
                         >
                             Cancel
                         </button>

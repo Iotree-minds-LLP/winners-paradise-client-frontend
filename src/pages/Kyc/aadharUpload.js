@@ -8,6 +8,8 @@ import { creteCustomerKycRequest } from "../../network/KycVerification/page";
 import { useToast } from "../../context/Toast/toastHook";
 import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
+import { CameraAlt, CancelOutlined, FileUpload } from "@mui/icons-material";
+import { goBack } from "../../utils/Functions/goBackScreen";
 
 const AadharUpload = () => {
 
@@ -26,12 +28,43 @@ const AadharUpload = () => {
     const [locationStateDetails, setLocationStateDetails] = useState(null);
     const [AadharFrontStatus, setAadharFrontStatus] = useState('');
     const [AadharBackStatus, setAadharBackStatus] = useState('');
+    const [showOptions, setshowOptions] = useState(false);
+    const [showOptions2, setshowOptions2] = useState(false);
 
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
         setcustomerDetails(customer)
     }, []);
+
+    const handleFileUpload = (event) => {
+        const file = event.target.files[0];
+        if (file && (file.type === "image/jpeg" || file.type === "image/png" || file.type === "image/jpg")) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFrontImage(reader.result); // Set Base64 image
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert("Please select a valid image file (JPEG, JPG, PNG).");
+        }
+        setshowOptions(false);
+    };
+
+    const handleFileUpload2 = (event) => {
+        const file = event.target.files[0];
+        if (file && (file.type === "image/jpeg" || file.type === "image/png" || file.type === "image/jpg")) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setBackImagePreview(reader.result);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert("Please select a valid image file (JPEG, JPG, PNG).");
+        }
+        setshowOptions2(false);
+    };
+
 
 
     useEffect(() => {
@@ -69,6 +102,8 @@ const AadharUpload = () => {
 
     const startCamera = (setImage) => {
         setShowCamera(true);
+        setshowOptions2(false);
+        setshowOptions(false);
 
         if (setImage) {
             setCurrentImageSetter(() => setImage);
@@ -228,15 +263,18 @@ const AadharUpload = () => {
                         </div>
                     </div>
 
-                    <div className="flex justify-between">
-                        <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10">
-                            Upload AADHAR card
-                        </h1>
+                    <div className="flex justify-between hidden md:block">
+                        <div className="flex flex-row mx-4 gap-4 mt-14">
+                            <img onClick={goBack} src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" className="w-auto h-8" alt="Background" />
+                            <h1 className="text-start font-bold text-2xl text-black hidden md:block">
+                                Upload AADHAR card
+                            </h1>
+                        </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
                         <div className="flex flex-col text-start items-start justify-start w-full max-w-md rounded-md">
-                            <label className="my-2"><p>Enter Aadhar Number Here</p></label>
+                            <label className="my-3"><p>Enter Aadhar Number Here</p></label>
                             <TextField
                                 onChange={handleAadharChange}
                                 label="Aadhar Number"
@@ -316,11 +354,11 @@ const AadharUpload = () => {
                                             {frontImage ?
                                                 (
                                                     <img
-                                                        onClick={() => startCamera(setFrontImage)}
+                                                        onClick={() => setshowOptions(true)}
                                                         src={ResetImage} className="w-10 h-auto" alt="Upload Icon" />
                                                 ) : (
                                                     <img
-                                                        onClick={() => startCamera(setFrontImage)}
+                                                        onClick={() => setshowOptions(true)}
                                                         src={uploadImage} className="w-10 h-auto" alt="Upload Icon" />
                                                 )
                                             }
@@ -367,11 +405,11 @@ const AadharUpload = () => {
                                             {backImagePreview ?
                                                 (
                                                     <img
-                                                        onClick={() => startCamera(setBackImagePreview)}
+                                                        onClick={() => setshowOptions2(true)}
                                                         src={ResetImage} className="w-10 h-auto" alt="Upload Icon" />
                                                 ) : (
                                                     <img
-                                                        onClick={() => startCamera(setBackImagePreview)}
+                                                        onClick={() => setshowOptions2(true)}
                                                         src={uploadImage} className="w-10 h-auto" alt="Upload Icon" />
                                                 )
                                             }
@@ -484,6 +522,8 @@ const AadharUpload = () => {
                 )}
 
 
+
+
             {
                 showCamera && (
                     <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
@@ -552,13 +592,13 @@ const AadharUpload = () => {
                         <div className="absolute bottom-10 flex gap-4 z-10">
                             <button
                                 onClick={capturePhoto}
-                                className="px-6 py-2 bg-blue-500 text-white font-bold rounded-lg"
+                                className="px-6 py-2  bg-gradient-to-l from-[#020065] to-[#0400CB] text-white font-bold rounded-full"
                             >
                                 Capture
                             </button>
                             <button
                                 onClick={stopCamera}
-                                className="px-6 py-2 bg-red-500 text-white font-bold rounded-lg"
+                                className="px-6 py-2 bg-red-500 text-white font-bold rounded-full"
                             >
                                 Cancel
                             </button>
@@ -567,6 +607,93 @@ const AadharUpload = () => {
                 )
             }
 
+            {showOptions && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex md:items-center items-end justify-center z-50">
+                    <div
+                        className="bg-white rounded-lg w-full max-w-md p-6 shadow-lg animate-slide-up"
+                    >
+                        {/* Header */}
+                        <div className="flex justify-between">
+                            <p className="text-lg font-semibold text-center mb-6">Choose or take a picture</p>
+                            <CancelOutlined onClick={() => setshowOptions(false)}></CancelOutlined>
+                            {/* Options */}
+                        </div>
+                        <div className="flex flex-col gap-4">
+                            {/* Use Camera Option */}
+                            <button
+                                onClick={() => startCamera(setFrontImage)}
+                                className="w-full p-4 flex items-center gap-4 border border-gray-100 bg-white text-black rounded-lg hover:bg-gray-100  transition"
+                            >
+                                <CameraAlt></CameraAlt>
+                                <p className="font-medium">Use Camera</p>
+                            </button>
+
+                            {/* Upload from Files Option */}
+                            <label
+                                htmlFor="file-upload"
+                                className="w-full p-4 flex items-center gap-4 bg-white border border-gray-100 hover:bg-gray-100 text-black rounded-lg transition cursor-pointer"
+                            >
+                                <FileUpload></FileUpload>
+                                <p className="font-medium">Upload from Files</p>
+                                <input
+                                    id="file-upload"
+                                    type="file"
+                                    accept="image/jpeg,image/png,image/jpg"
+                                    className="hidden"
+                                    onChange={handleFileUpload}
+                                />
+                            </label>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {showOptions2 && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex md:items-center items-end justify-center z-50">
+                    <div
+                        className="bg-white rounded-lg w-full max-w-md p-6 shadow-lg animate-slide-up"
+                    >
+                        {/* Header */}
+                        <div className="flex justify-between">
+                            <p className="text-lg font-semibold text-center mb-6">Choose or take a picture</p>
+                            <CancelOutlined onClick={() => setshowOptions2(false)}></CancelOutlined>
+                            {/* Options */}
+                        </div>
+                        <div className="flex flex-col gap-4">
+                            {/* Use Camera Option */}
+                            <button
+                                onClick={() => startCamera(setBackImagePreview)}
+                                className="w-full p-4 flex items-center gap-4 border border-gray-100 bg-white text-black rounded-lg hover:bg-gray-100  transition"
+                            >
+                                <CameraAlt></CameraAlt>
+                                <p className="font-medium">Use Camera</p>
+                            </button>
+
+                            {/* Upload from Files Option */}
+                            <label
+                                htmlFor="file-upload"
+                                className="w-full p-4 flex items-center gap-4 bg-white border border-gray-100 hover:bg-gray-100 text-black rounded-lg transition cursor-pointer"
+                            >
+                                <FileUpload></FileUpload>
+                                <p className="font-medium">Upload from Files</p>
+                                <input
+                                    id="file-upload"
+                                    type="file"
+                                    accept="image/jpeg,image/png,image/jpg"
+                                    className="hidden"
+                                    onChange={handleFileUpload2}
+                                />
+                            </label>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            )}
 
         </>
     );

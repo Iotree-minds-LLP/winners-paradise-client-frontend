@@ -230,7 +230,7 @@ const EditCustomerProfile = () => {
                                 {...register('email', {
                                     required: 'Email is required',
                                     maxLength: {
-                                        value: 30,
+                                        value: 40,
                                         message: 'Email cannot exceed 30 characters',
                                     },
                                     pattern: {

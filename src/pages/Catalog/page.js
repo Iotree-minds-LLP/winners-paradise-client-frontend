@@ -36,7 +36,7 @@ const Catalogs = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
-
+    const [ErrorMessage, setErrorMessage] = useState("");
     const [isModalOpen, setisModalOpen] = useState(false);
     const navigate = useNavigate();
     const [listCatalogs, setlistCatalogs] = useState([])
@@ -111,7 +111,7 @@ const Catalogs = () => {
             navigate(`/catalogs/catalog-details`, { state: { item: resp.data.catalogs[0] } })
         }
         else {
-            setlistCatalogs([]);
+            setErrorMessage("The minimum investment amount is ₹1 Lakh.");
         }
 
         setLoadingButtonStart(false);
@@ -149,7 +149,7 @@ const Catalogs = () => {
 
                     <div className="flex justify-between hidden md:block">
                         <div className="flex flex-row mx-4 gap-4 mt-14 mb-8">
-                            <img onClick={goBack} src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" className="w-auto h-8" alt="Background" />
+                            {/* <img onClick={goBack} src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" className="w-auto h-8" alt="Background" /> */}
                             <h1 className="text-start font-bold text-2xl text-black hidden md:block">Catalogue</h1>
                         </div>
                         {/* <p className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer	" onClick={toggleModal}>Logout</p> */}
@@ -223,7 +223,7 @@ const Catalogs = () => {
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <div className="mt-3 md:flex md:justify-between gap-4">
                                     <TextField
-                                        label="Returns Calculator"
+                                        label="Enter an amount (Minimum ₹1 Lakh)"
                                         variant="outlined"
                                         size="medium"
                                         type="number"
@@ -294,6 +294,11 @@ const Catalogs = () => {
 
 
                             </form>
+                            {ErrorMessage && (
+                                <div className="text-red-500 text-sm mt-2">
+                                    {ErrorMessage}
+                                </div>
+                            )}
                         </div>
                     </div>
 

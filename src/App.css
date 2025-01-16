@@ -39,3 +39,21 @@
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: 768px) {
+
+  /* Adjust breakpoint as needed */
+  @keyframes slide-up {
+    from {
+      transform: translateY(100%);
+    }
+
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.3s ease-out;
+  }
+}
