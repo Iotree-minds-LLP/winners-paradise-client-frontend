@@ -9,13 +9,14 @@ import imageLogo from "../../assets/Logos/logo1.png";
 import image1 from "../../assets/Images/robo 1 (3).png";
 import image3 from "../../assets/Images/sideImage.png";
 import image2 from "../../assets/Images/robo 1 (1).png";
-import { Radio, FormControlLabel, FormControl, FormLabel, RadioGroup, TextField, InputAdornment } from '@mui/material';
+import { Radio, FormControlLabel, FormControl, FormLabel, RadioGroup, TextField, InputAdornment, IconButton } from '@mui/material';
 import { PwaContext } from "../../context/PwaContext/page";
 import backButton from "../../assets/Logos/backButton.png"
 import { useForm } from 'react-hook-form';
 import { useLanguage } from "../../context/Language/loginContext";
 import { useToast } from "../../context/Toast/toastHook";
 import { goBack } from "../../utils/Functions/goBackScreen";
+import { AddAPhoto, DeleteForeverOutlined } from "@mui/icons-material";
 
 const EditCustomerProfile = () => {
 
@@ -42,8 +43,27 @@ const EditCustomerProfile = () => {
     const [ErrorMessage, setErrorMessage] = useState("")
     const [isLoading, setisLoading] = useState(false)
     const [customerDetails, setCustomerDetails] = useState([]);
-
     const watchedName = watch("fullName");
+    const [image, setImage] = useState(null);
+
+    // Convert selected file to Base64
+    const handleImageUpload = (event) => {
+        const file = event.target.files[0];
+        if (file && (file.type === "image/jpeg" || file.type === "image/png" || file.type === "image/jpg")) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImage(reader.result); // Set Base64 image
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert("Please select a valid image file (JPEG, JPG, PNG).");
+        }
+    };
+
+    // Remove the image
+    const handleRemoveImage = () => {
+        setImage(null);
+    };
 
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
@@ -140,7 +160,60 @@ const EditCustomerProfile = () => {
                             onSubmit={handleSubmit(onSubmit)}
                             className="my-5 grid grid-cols-1 gap-4 md:mx:0 mx-5"
                         >
-                            {/* Form Fields */}
+                            <p className="text-md text-start mb-4 text-gray-500">Upload Profile Image</p>
+
+                            <div className="flex flex-col items-center justify-center">
+                                {/* Label for Image Upload */}
+
+                                <div
+                                    className={`border-dashed border-2 ${image ? "border-gray-300" : "border-gray-500"
+                                        } flex items-center justify-center w-40 h-40 sm:w-40 sm:h-40 rounded-full relative`}
+                                >
+                                    {image ? (
+                                        <>
+                                            {/* Uploaded Image */}
+                                            <div className="relative w-full h-full group">
+                                                {/* Image */}
+                                                <img
+                                                    src={image}
+                                                    alt="Uploaded"
+                                                    className="object-cover w-full h-full rounded-full"
+                                                />
+
+                                                {/* Overlay */}
+                                                <div className="absolute inset-0 bg-black bg-opacity-10 rounded-full flex justify-end items-start group-hover:bg-opacity-20 transition duration-300">
+                                                    {/* Delete Icon */}
+                                                    <IconButton
+                                                        aria-label="delete"
+                                                        size="small"
+                                                        className="absolute top-2 right-2 bg-white text-red-500 p-2 rounded-full group-hover:bg-red-500 group-hover:text-white shadow-md transition duration-300"
+                                                        onClick={handleRemoveImage}
+                                                    >
+                                                        <DeleteForeverOutlined fontSize="small" />
+                                                    </IconButton>
+                                                </div>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <label
+                                            htmlFor="upload-image"
+                                            className="flex flex-col items-center justify-center cursor-pointer text-gray-400"
+                                        >
+                                            <AddAPhoto fontSize="large" />
+                                            <span className="text-sm">Upload Image</span>
+                                            <input
+                                                id="upload-image"
+                                                type="file"
+                                                accept="image/jpeg,image/png,image/jpg"
+                                                className="hidden"
+                                                onChange={handleImageUpload}
+                                            />
+                                        </label>
+                                    )}
+                                </div>
+                            </div>
+
+
                             <TextField
                                 label="Full Name *"
                                 variant="outlined"
