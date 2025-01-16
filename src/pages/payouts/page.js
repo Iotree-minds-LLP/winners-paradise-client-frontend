@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import imageLogo from "../../assets/Logos/Algo-Achievers-Logo_009600960_38721 1 (1).png";
+import imageLogo from "../../assets/Logos/logohere.png";
 import bellIcon from "../../assets/Logos/bellIcon2.png";
 import userIcon from "../../assets/Logos/usericon.png";
 import footerLogo1 from "../../assets/Logos/onboardingLogos/featured_play_list.png";
