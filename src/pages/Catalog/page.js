@@ -212,13 +212,9 @@ const Catalogs = () => {
                     <div className="text-start rounded-lg px-4 grid md:grid-cols-1 grid-cols-1">
 
                         <div
-                            className="p-6 rounded-lg w-full md:w-1/2"
+                            className="p-6 rounded-lg w-full md:w-1/3"
                             style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}
                         >
-                            <div>
-
-
-                            </div>
 
                             <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '14px' }}>
                                 Return Calculator
@@ -227,7 +223,7 @@ const Catalogs = () => {
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <div className="mt-3 md:flex md:justify-between gap-4">
                                     <TextField
-                                        label="Enter amount Minimum ₹1 Lakh"
+                                        label="Minimum ₹1 Lakh"
                                         variant="outlined"
                                         size="medium"
                                         type="number"

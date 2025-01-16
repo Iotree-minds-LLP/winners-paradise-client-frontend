@@ -166,8 +166,7 @@ const SignupPage = () => {
                             onSubmit={handleSubmit(onSubmit)}
                             className="my-5 grid grid-cols-1 gap-4 md:mx:0 mx-5 py-3"
                         >
-
-                            <p className="text-md text-start mb-4 text-gray-500">Upload Profile Image</p>
+                            <p className="text-md text-start text-gray-500">Upload Profile Image</p>
 
                             <div className="flex flex-col items-center justify-center">
                                 {/* Label for Image Upload */}

@@ -4,6 +4,7 @@ import backImage from "../../assets/Images/backImage.jpg";
 import backButton from "../../assets/Logos/backButton.png";
 import { goBack } from "../../utils/Functions/goBackScreen";
 import { getAllOverAllPayouts, getAllPayouts, getAllPayoutsBYInvestmentId } from "../../network/Payouts/page";
+import { DownloadForOffline } from "@mui/icons-material";
 
 
 const InvestmentDetails = () => {
@@ -14,18 +15,36 @@ const InvestmentDetails = () => {
     const [SelectedInvestmentDetails, setSelectedInvestmentDetails] = useState({});
     const [totalReturn, settotalReturn] = useState(0);
     const [listPayouts, setlistPayouts] = useState([]);
-
+    const [ReturnPerMonth, setReturnPerMonth] = useState()
     useEffect(() => {
         setSelectedInvestmentDetails(location.state?.item?.investment);
+        console.log(location.state?.item?.investment, "location.state?.item?.investment")
     }, [location.state]);
 
     useEffect(() => {
-        const totalReturn =
-            SelectedInvestmentDetails.amount *
-            (SelectedInvestmentDetails.interest_per_month / 100) *
-            SelectedInvestmentDetails.period_in_months;
-        settotalReturn(totalReturn);
-    }, [SelectedInvestmentDetails])
+        if (
+            SelectedInvestmentDetails?.amount &&
+            SelectedInvestmentDetails?.interest_per_month &&
+            SelectedInvestmentDetails?.period_in_months
+        ) {
+            // Calculate the monthly interest and add it to the amount
+            const totalReturn =
+                SelectedInvestmentDetails.amount +
+                (SelectedInvestmentDetails.amount *
+                    (SelectedInvestmentDetails.interest_per_month / 100) *
+                    SelectedInvestmentDetails.period_in_months);
+
+            // Calculate return per month
+            const returnPerMonth =
+                (SelectedInvestmentDetails.amount *
+                    (SelectedInvestmentDetails.interest_per_month / 100));
+
+            // Update states
+            settotalReturn(totalReturn);
+            setReturnPerMonth(returnPerMonth);
+        }
+    }, [SelectedInvestmentDetails]);
+
 
     const toggleModal = () => {
         setisModalOpen(!isModalOpen);
@@ -57,6 +76,16 @@ const InvestmentDetails = () => {
         localStorage.removeItem("tokenDetails");
         navigate("/");
     };
+
+
+    const investmentAmount = SelectedInvestmentDetails?.amount || 0;
+    const annualReturnRate = SelectedInvestmentDetails?.interest_per_month || 0;
+    const durationInMonths = SelectedInvestmentDetails?.period_in_months || 12;
+
+
+    // Calculate total amount after 12 months
+    const totalReturnsIn12Months = annualReturnRate * 12;
+    const amountAfter12Months = investmentAmount + totalReturnsIn12Months;
 
     return (
         <>
@@ -96,6 +125,8 @@ const InvestmentDetails = () => {
                     </div> */}
 
                     <div className="grid grid-cols-1 px-4 mt-4 md:grid-cols-2 gap-4 text-start">
+
+
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4"  >
                             <div style={{ background: "#F5F5F5" }} className="p-3">
                                 <p>Investment Amount</p>
@@ -133,8 +164,21 @@ const InvestmentDetails = () => {
                                     className="text-md font-bold my-2"
                                     style={{ color: 'rgba(0, 0, 148, 1)' }}
                                 >
-                                    ₹{totalReturn.toLocaleString("en-IN")}
+                                    ₹{ReturnPerMonth?.toLocaleString("en-IN")}
                                 </p>
+                            </div>
+
+                            <div style={{ background: "#F5F5F5" }} className="p-4">
+                                <p>Total Returns</p>
+                                <p
+                                    className="text-md font-bold my-2"
+                                    style={{ color: 'rgba(0, 0, 148, 1)' }}
+                                >
+                                    ₹{totalReturn?.toLocaleString("en-IN")}
+                                </p>
+                            </div>
+                            <div style={{ background: "#F5F5F5" }} className="p-4">
+                                <p>Download Investment Plan<DownloadForOffline className="mx-0 md:mx-1"></DownloadForOffline></p>
                             </div>
                         </div>
                     </div>
