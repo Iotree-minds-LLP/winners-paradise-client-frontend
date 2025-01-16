@@ -212,9 +212,13 @@ const Catalogs = () => {
                     <div className="text-start rounded-lg px-4 grid md:grid-cols-1 grid-cols-1">
 
                         <div
-                            className="p-6 rounded-lg w-full md:w-1/3"
+                            className="p-6 rounded-lg w-full md:w-1/2"
                             style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}
                         >
+                            <div>
+
+
+                            </div>
 
                             <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '14px' }}>
                                 Return Calculator
@@ -223,7 +227,7 @@ const Catalogs = () => {
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <div className="mt-3 md:flex md:justify-between gap-4">
                                     <TextField
-                                        label="Enter an amount (Minimum ₹1 Lakh)"
+                                        label="Enter amount Minimum ₹1 Lakh"
                                         variant="outlined"
                                         size="medium"
                                         type="number"
@@ -262,7 +266,7 @@ const Catalogs = () => {
                                     <div>
                                         <button
                                             type="submit"
-                                            className="text-white p-4 w-full mt-4 md:mt-0 rounded-full md:rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex items-center justify-center"
+                                            className="text-white p-4 w-full mt-4 md:mt-0 rounded-full md:rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex items-center justify-center whitespace-nowrap"
                                         >
                                             {LoadingButtonStart ? (
                                                 // Loading spinner
@@ -284,9 +288,10 @@ const Catalogs = () => {
                                                 </svg>
                                             ) : (
                                                 // Text before loading
-                                                <span>Calculate</span>
+                                                <span>Check Returns</span>
                                             )}
                                         </button>
+
                                     </div>
 
 
@@ -303,6 +308,10 @@ const Catalogs = () => {
                     </div>
 
 
+                    <p
+                        className="text-lg text-start font-bold my-2 mx-4 mt-5 "
+                        style={{ color: 'rgba(0, 0, 148, 1)' }}
+                    > list of investment opportunities</p>
 
                     <div className="text-start rounded-lg p-4 grid md:grid-cols-3 grid-cols-1 gap-4 mb-36">
                         {catalogListShow ? (
@@ -328,11 +337,10 @@ const Catalogs = () => {
                             ))
                         ) : (
                             // Show actual catalog cards
+
+
                             listCatalogs.map((item, index) => {
-                                const totalReturn =
-                                    item.min_amt *
-                                    (item.int_percent_per_month / 100) *
-                                    item.no_of_months;
+
 
                                 return (
                                     <div
@@ -534,7 +542,7 @@ const Catalogs = () => {
                 </div>
             </div >
 
-            <div className="mt-5 sm:hidden fixed bottom-0 left-0 w-full bg-white shadow-md ">
+            <div className="mt-5 opacity-20  sm:hidden fixed bottom-0 left-0 w-full bg-white shadow-md ">
                 <img src={image2} alt="Image description" className="w-full h-full object-contain" />
             </div>
 

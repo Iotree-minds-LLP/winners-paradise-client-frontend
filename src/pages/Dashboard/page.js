@@ -135,14 +135,17 @@ const DashboardPage = () => {
                     <div className="flex flex-row justify-between items-center mx-4 mt-14 hidden md:flex">
                         {/* Left Section */}
                         <h1 className="font-bold text-2xl text-black">Dashboard</h1>
-                        <Avatar
-                            alt="User Avatar"
-                            color="primary"
+                        <div className="flex flex-row justify-center items-center gap-4">
+                            <p style={{ color: "#020065" }} className="text-md font-bold">Welcome,{CustomerDetails.name}</p>
+                            <Avatar
+                                alt="User Avatar"
+                                color="primary"
 
-                            sx={{ width: 40, height: 40, bgcolor: "primary.main" }} // Adjust size as needed
-                        >
-                            {CustomerDetails?.name?.charAt(0) || "U"}
-                        </Avatar>
+                                sx={{ width: 40, height: 40, bgcolor: "primary.main" }} // Adjust size as needed
+                            >
+                                {CustomerDetails?.name?.charAt(0) || "U"}
+                            </Avatar>
+                        </div>
                     </div>
                     {/* 
                     
@@ -156,7 +159,11 @@ const DashboardPage = () => {
 
                     {/* Return Calculator */}
                     <div className="text-start rounded-full mt-5 px-4 grid md:grid-cols-3 grid-cols-1">
+                        <div className="mb-3 sm:hidden">
+                            <p style={{ color: "#020065" }} className="text-md font-bold">Welcome,{CustomerDetails.name}</p>
+                        </div>
                         <div className="p-4 rounded-lg bg-gradient-to-l from-[#020065] to-[#0400CB]">
+
                             <p className="text-white font-bold text-xl">
                                 Your Investment Statistics
                             </p>
@@ -167,20 +174,22 @@ const DashboardPage = () => {
                                     <>
                                         <div className="flex flex-col">
                                             <p className="text-primary" style={{ color: "#7C79EB" }}>
-                                                <Skeleton width={100} />
+                                                <Skeleton width={100} baseColor="#B0C4FF" highlightColor="#D0E0FF" />
                                             </p>
                                             <p className="text-white text-lg mt-2">
-                                                <Skeleton width={80} />
+                                                <Skeleton width={80} baseColor="#B0C4FF" highlightColor="#D0E0FF" />
                                             </p>
                                         </div>
                                         <div className="flex flex-col">
                                             <p className="text-primary" style={{ color: "#7C79EB" }}>
-                                                <Skeleton width={100} />
+                                                <Skeleton width={100} baseColor="#B0C4FF" highlightColor="#D0E0FF" />
                                             </p>
                                             <p className="text-white text-lg mt-2">
-                                                <Skeleton width={80} />
+                                                <Skeleton width={80} baseColor="#B0C4FF" highlightColor="#D0E0FF" />
                                             </p>
                                         </div>
+
+
                                     </>
                                 ) : (
                                     // Actual data when shimmer is false
