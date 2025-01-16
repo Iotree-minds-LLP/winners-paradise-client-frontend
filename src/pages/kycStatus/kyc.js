@@ -21,6 +21,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 const KycStatusPage = () => {
 
     const { isConsentAgreed, setIsConsentAgreed } = useConsent();
+    const [isDisabled, setisDisabled] = useState(false);
     const [data, setdata] = useState([])
     const [errorMessage, seterrorMessage] = useState("");
     const { addToast } = useToast();
@@ -89,8 +90,9 @@ const KycStatusPage = () => {
 
             } else if (res.data.status === 200) {
 
-                if (res.data.data.is_consent_given) {
-                    setIsConsentAgreed(res.data.data.is_consent_given)
+                if (res?.data?.data?.is_consent_given) {
+                    setIsConsentAgreed(res?.data?.data?.is_consent_given || false)
+                    setisDisabled(true);
                 }
 
                 setKycRequestData(res.data.data);
@@ -150,11 +152,12 @@ const KycStatusPage = () => {
 
     const handleUpload = (item) => {
 
-        if (item.status === "Cleared" || item.status === "Review Pending") {
-            return;
-        }
+        // if (item.status === "Cleared" || item.status === "Review Pending") {
+        //     return;
+        // }
 
         if (item.title === "AADHAR CARD") {
+            console.log(KycRequestData, "KycRequestData")
             navigate("/kyc/aadhar-card-upload", { state: { KycRequestData } })
         }
 

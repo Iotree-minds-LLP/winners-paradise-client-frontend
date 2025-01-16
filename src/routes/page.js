@@ -30,9 +30,11 @@ import AddNominee from '../pages/BankDetails/nominee';
 import EditNominee from '../pages/BankDetails/editNominee';
 import ConsentForm from '../pages/Kyc/consentForm';
 import { verifyToken } from '../network/Authentication/page';
+import SplashScreen from '../pages/Splash/page';
 
 const routes = [
   { path: "/", element: <OtpVerification /> },
+  { path: "/splash", element: <SplashScreen /> },
   { path: "/register", element: <Signup /> },
   { path: "/edit-customer-details", element: <EditCustomerProfile /> },
   { path: "/homepage", element: <DashboardPage /> },
