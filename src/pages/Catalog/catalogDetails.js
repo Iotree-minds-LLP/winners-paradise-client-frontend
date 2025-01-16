@@ -184,6 +184,7 @@ const CatalogDetails = () => {
                                     </div>
                                     <div style={{ background: '#F5F5F5' }} className="p-4">
                                         <p>Returns</p>
+                                        <p className="mt-0 md:mt-5"></p>
                                         <p
                                             className="text-md font-bold my-2"
                                             style={{ color: 'rgba(0, 0, 148, 1)' }}
@@ -193,6 +194,8 @@ const CatalogDetails = () => {
                                     </div>
                                     <div style={{ background: '#F5F5F5' }} className="p-4">
                                         <p>Duration</p>
+                                        <p className="mt-0 md:mt-5"></p>
+
                                         <p
                                             className="text-md font-bold my-2"
                                             style={{ color: 'rgba(0, 0, 148, 1)' }}
@@ -202,6 +205,16 @@ const CatalogDetails = () => {
                                     </div>
                                     <div style={{ background: '#F5F5F5' }} className="p-4">
                                         <p>Returns per month</p>
+                                        <p
+                                            className="text-md font-bold my-2"
+                                            style={{ color: 'rgba(0, 0, 148, 1)' }}
+                                        >
+                                            ₹{Number(SelectedCatalogDetails?.returns_per_month)?.toLocaleString("en-IN") || "N/A"}
+                                        </p>
+                                    </div>
+
+                                    <div style={{ background: '#F5F5F5' }} className="p-4">
+                                        <p>Total Returns</p>
                                         <p
                                             className="text-md font-bold my-2"
                                             style={{ color: 'rgba(0, 0, 148, 1)' }}
