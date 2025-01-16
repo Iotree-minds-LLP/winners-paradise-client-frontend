@@ -36,6 +36,8 @@ const Sidebar = () => {
                 if (res?.data?.status != 200) {
                     localStorage.removeItem("customerDetails");
                     localStorage.removeItem("tokenDetails");
+                    localStorage.removeItem("fcmToken");
+                    localStorage.removeItem("tempMobileNumber");
                     navigate("/");
                 }
             }

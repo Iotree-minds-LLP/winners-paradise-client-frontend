@@ -26,12 +26,16 @@ const ProfileAndSettings = () => {
         if (resp.data.status === 200) {
             localStorage.removeItem("customerDetails");
             localStorage.removeItem("tokenDetails");
+            localStorage.removeItem("fcmToken");
+            localStorage.removeItem("tempMobileNumber");
             setisLoadingLogoutButton(false);
             navigate("/");
         }
         else {
             localStorage.removeItem("customerDetails");
             localStorage.removeItem("tokenDetails");
+            localStorage.removeItem("fcmToken");
+            localStorage.removeItem("tempMobileNumber");
             setisLoadingLogoutButton(false);
             navigate("/");
         }
