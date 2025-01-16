@@ -81,11 +81,11 @@ const SignupPage = () => {
             return
         }
 
-        if (!image) {
-            setisLoading(false);
-            setErrorMessage("Profile Image Is Required");
-            return
-        }
+        // if (!image) {
+        //     setisLoading(false);
+        //     setErrorMessage("Profile Image Is Required");
+        //     return
+        // }
 
         const date = new Date(data.dateOfBirth);
         const formattedDateOfBirth = `${(date.getMonth() + 1).toString().padStart(2, '0')}-${date
