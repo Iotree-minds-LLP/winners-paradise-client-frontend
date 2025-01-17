@@ -174,7 +174,7 @@ const InvestmentDetails = () => {
                                     className="text-md font-bold my-2"
                                     style={{ color: 'rgba(0, 0, 148, 1)' }}
                                 >
-                                    ₹{totalReturn?.toLocaleString("en-IN")}
+                                    ₹{SelectedInvestmentDetails.totalPayout?.toLocaleString("en-IN")}
                                 </p>
                             </div>
                             <div style={{ background: "#F5F5F5" }} className="p-4">
