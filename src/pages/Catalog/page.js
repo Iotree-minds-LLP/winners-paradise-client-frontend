@@ -212,11 +212,14 @@ const Catalogs = () => {
                     <div className="text-start rounded-lg px-4 grid md:grid-cols-1 grid-cols-1">
 
                         <div
-                            className="p-6 rounded-lg w-full md:w-1/3"
+                            className="px-6 py-3 pb-4 rounded-lg w-full md:w-1/3"
                             style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}
                         >
 
-                            <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '14px' }}>
+                            <p style={{ color: 'rgba(128, 128, 128, 1)', fontWeight: '500', fontSize: '12px' }}>
+                                Please note: All calculated amounts are rounded to the nearest whole number for simplicity.
+                            </p>
+                            <p className="my-2" style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '14px' }}>
                                 Return Calculator
                             </p>
 
