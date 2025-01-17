@@ -219,7 +219,7 @@ const CatalogDetails = () => {
                                             className="text-md font-bold my-2"
                                             style={{ color: 'rgba(0, 0, 148, 1)' }}
                                         >
-                                            ₹{Number(SelectedCatalogDetails?.returns_per_month)?.toLocaleString("en-IN") || "N/A"}
+                                            ₹{Number(SelectedCatalogDetails?.totalPayout)?.toLocaleString("en-IN") || "N/A"}
                                         </p>
                                     </div>
                                 </>

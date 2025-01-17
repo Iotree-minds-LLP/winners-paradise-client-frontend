@@ -71,7 +71,6 @@ const SignupPage = () => {
     };
 
 
-
     const onSubmit = async (data) => {
         setisLoading(true);
 
@@ -104,6 +103,8 @@ const SignupPage = () => {
             address: data.address,
             language_preference: language.toLowerCase(),
             token: tokenDetails,
+            isTermsAccepted: isChecked,
+            ...(image && { profile_image: image }),
             ...(data.alternatePhoneNumber && { alternate_mobile_no: data.alternatePhoneNumber }),
         };
 
