@@ -178,7 +178,7 @@ const EditCustomerProfile = () => {
 
                                 <div
                                     className={`border-dashed border-2 ${image ? "border-gray-300" : "border-gray-500"
-                                        } flex items-center justify-center w-40 h-40 sm:w-40 sm:h-40 rounded-full relative`}
+                                        } flex items-center justify-center  rounded-full relative`}
                                 >
                                     {image ? (
                                         <>
@@ -188,7 +188,7 @@ const EditCustomerProfile = () => {
                                                 <img
                                                     src={image}
                                                     alt="Uploaded"
-                                                    className="object-cover w-full h-full rounded-full"
+                                                    className="object-cover w-full h-full rounded-full w-40 h-40 sm:w-40 sm:h-40 "
                                                 />
 
                                                 {/* Overlay */}
@@ -208,7 +208,7 @@ const EditCustomerProfile = () => {
                                     ) : (
                                         <label
                                             htmlFor="upload-image"
-                                            className="flex flex-col items-center justify-center cursor-pointer text-gray-400"
+                                            className="flex flex-col w-40 h-40 sm:w-40 sm:h-40  items-center justify-center cursor-pointer text-gray-400"
                                         >
                                             <AddAPhoto fontSize="large" />
                                             <span className="text-sm">Upload Image</span>
@@ -376,9 +376,9 @@ const EditCustomerProfile = () => {
                                         value: 30,
                                         message: 'Residential Address cannot exceed 30 characters',
                                     },
-                                    validate: {
-                                        noSpecialChars: (value) =>
-                                            /^[a-zA-Z\s]+$/.test(value) || 'State must contain only alphabets',
+                                    pattern: {
+                                        value: /^[a-zA-Z0-9\s,.-]+$/,
+                                        message: 'Only letters, numbers, spaces, commas, periods, and hyphens are allowed',
                                     },
                                 })}
                                 error={!!errors.address}

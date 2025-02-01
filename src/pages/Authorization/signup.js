@@ -176,7 +176,7 @@ const SignupPage = () => {
 
                                 <div
                                     className={`border-dashed border-2 ${image ? "border-gray-300" : "border-gray-500"
-                                        } flex items-center justify-center w-40 h-40 sm:w-40 sm:h-40 rounded-full relative`}
+                                        } flex items-center justify-center rounded-full relative`}
                                 >
                                     {image ? (
                                         <>
@@ -186,7 +186,7 @@ const SignupPage = () => {
                                                 <img
                                                     src={image}
                                                     alt="Uploaded"
-                                                    className="object-cover w-full h-full rounded-full"
+                                                    className="object-cover w-full h-full rounded-full w-40 h-40 sm:w-40 sm:h-40 "
                                                 />
 
                                                 {/* Overlay */}
@@ -206,7 +206,7 @@ const SignupPage = () => {
                                     ) : (
                                         <label
                                             htmlFor="upload-image"
-                                            className="flex flex-col items-center justify-center cursor-pointer text-gray-400"
+                                            className="flex flex-col w-40 h-40 sm:w-40 sm:h-40  items-center justify-center cursor-pointer text-gray-400"
                                         >
                                             <AddAPhoto fontSize="large" />
                                             <span className="text-sm">Upload Image</span>
@@ -214,7 +214,7 @@ const SignupPage = () => {
                                                 id="upload-image"
                                                 type="file"
                                                 accept="image/jpeg,image/png,image/jpg"
-                                                className="hidden"
+                                                className="hidden w-40 h-40 sm:w-40 sm:h-40 "
                                                 onChange={handleImageUpload}
                                             />
                                         </label>
@@ -347,10 +347,15 @@ const SignupPage = () => {
                                 fullWidth
                                 {...register('address', {
                                     required: 'Address is required',
+                                    pattern: {
+                                        value: /^[a-zA-Z0-9\s,.-]+$/,
+                                        message: 'Only letters, numbers, spaces, commas, periods, and hyphens are allowed',
+                                    },
                                 })}
                                 error={!!errors.address}
                                 helperText={errors.address?.message}
                             />
+
 
                             <TextField
                                 label={translations.registerModule.statefield[language]}
