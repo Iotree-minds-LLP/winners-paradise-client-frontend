@@ -427,22 +427,15 @@ const SignupPage = () => {
                                 fullWidth
                                 {...register('alternatePhoneNumber', {
                                     pattern: {
-                                        value: /^[0-9]{10}$/,
-                                        message: 'Please enter a valid 10-digit Alternative phone number',
-                                    },
-                                    pattern: {
                                         value: /^[9876][0-9]{9}$/,
                                         message: `Invalid Phone Number`,
                                     },
                                 })}
                                 error={!!errors.alternatePhoneNumber}
                                 helperText={errors.alternatePhoneNumber?.message}
-
                                 InputProps={{
                                     inputProps: {
-                                        style: {
-                                            MozAppearance: "textfield",
-                                        },
+                                        style: { MozAppearance: "textfield" }, // Removes spinner in Firefox
                                     },
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -450,12 +443,12 @@ const SignupPage = () => {
                                         </InputAdornment>
                                     ),
                                 }}
-
                                 onInput={(e) => {
                                     if (e.target.value.length > 10) {
-                                        e.target.value = e.target.value.slice(0, 10); // Truncate input to 12 digits
+                                        e.target.value = e.target.value.slice(0, 10); // Truncate input to 10 digits
                                     }
                                 }}
+                                onWheel={(e) => e.target.blur()} // Prevents scrolling from changing the number
                                 sx={{
                                     "& input[type=number]": {
                                         MozAppearance: "textfield", // Removes spinner in Firefox
@@ -465,8 +458,8 @@ const SignupPage = () => {
                                         margin: 0,
                                     },
                                 }}
-
                             />
+
 
                             <TextField
                                 label={translations.registerModule.Referralcodefield[language]}
