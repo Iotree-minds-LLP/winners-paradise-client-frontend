@@ -316,7 +316,6 @@ const SignupPage = () => {
                                 label={translations.registerModule.data_of_birth[language]}
                                 type="date"
                                 size="medium"
-                                fullWidth
                                 {...register('dateOfBirth', {
                                     required: 'Date of Birth is required',
                                     validate: {
@@ -329,10 +328,16 @@ const SignupPage = () => {
                                             const today = new Date();
                                             const selectedDate = new Date(value);
                                             const minDate = new Date();
-                                            minDate.setFullYear(today.getFullYear() - 18); // 18 years ago from today
+                                            minDate.setFullYear(today.getFullYear() - 18); // At least 18 years old
                                             return selectedDate <= minDate || 'You must be at least 18 years old';
                                         },
-
+                                        withinLast100Years: (value) => {
+                                            const today = new Date();
+                                            const selectedDate = new Date(value);
+                                            const maxDate = new Date();
+                                            maxDate.setFullYear(today.getFullYear() - 100); // Not older than 100 years
+                                            return selectedDate >= maxDate || 'Date of Birth must be within the last 100 years';
+                                        },
                                     },
                                 })}
                                 error={!!errors.dateOfBirth}
@@ -341,6 +346,7 @@ const SignupPage = () => {
                                     shrink: true,
                                 }}
                             />
+
 
                             <TextField
                                 label={translations.registerModule.Residential_addressfield[language]}
