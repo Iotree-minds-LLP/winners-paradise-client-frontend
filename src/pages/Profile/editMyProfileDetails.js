@@ -533,6 +533,7 @@ const EditCustomerProfile = () => {
                             {/* Submit Button */}
                             <div className="mt-5">
                                 <button
+                                    disabled={isLoading}
                                     type="submit"
                                     className="md:w-full w-full p-3 rounded-full text-white bg-gradient-to-l from-[#020065] to-[#0400CB] flex items-center justify-center"
                                 >
