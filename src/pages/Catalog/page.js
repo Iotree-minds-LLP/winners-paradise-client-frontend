@@ -86,8 +86,12 @@ const Catalogs = () => {
     const onformSubmit = async () => {
         setcatalogListShow(true);
         const resp = await getAllCatalog();
+        console.log(resp, "Resp")
         if (resp?.data?.catalogs) {
             setlistCatalogs(resp.data.catalogs)
+            setcatalogListShow(false);
+        }
+        else {
             setcatalogListShow(false);
         }
     };
@@ -403,7 +407,7 @@ const Catalogs = () => {
 
                     {listCatalogs.length === 0 && (
                         <div className="mx-3">
-                            <p className="bg-white p-3 font-bold text-gray-400 text-lg">Sorry We dont have any catalogs for this amount</p>
+                            <p className="p-3 font-bold text-gray-400 text-lg">Sorry We dont have any catalogs for this amount</p>
                         </div>
                     )}
 

@@ -28,6 +28,7 @@ const ProfileAndSettings = () => {
             localStorage.removeItem("tokenDetails");
             localStorage.removeItem("fcmToken");
             localStorage.removeItem("tempMobileNumber");
+            localStorage.removeItem("bankUpdateToken");
             setisLoadingLogoutButton(false);
             navigate("/");
         }
@@ -36,6 +37,7 @@ const ProfileAndSettings = () => {
             localStorage.removeItem("tokenDetails");
             localStorage.removeItem("fcmToken");
             localStorage.removeItem("tempMobileNumber");
+            localStorage.removeItem("bankUpdateToken");
             setisLoadingLogoutButton(false);
             navigate("/");
         }
