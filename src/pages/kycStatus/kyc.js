@@ -287,6 +287,7 @@ const KycStatusPage = () => {
                         <div className="hidden sm:block">
                             {data?.every(item => item.status === "Review Pending" || item.status === "Cleared") ? (
                                 <>
+
                                     <div className="md:w-1/2">
                                         <div className="w-full flex flex-col items-start p-4 cursor-pointer">
                                             <div className="flex justify-between items-start w-full">
@@ -295,6 +296,7 @@ const KycStatusPage = () => {
                                                     <h1 onClick={() => navigate("/kyc-status/consent-form")} className="mx-4 text-lg font-bold" style={{ color: "#000094" }}>
                                                         Consent Form
                                                     </h1>
+
                                                 </div>
                                                 <div className="mr-5 bg-[#D4D4FF] rounded-xl p-3">
                                                     <input
@@ -305,6 +307,7 @@ const KycStatusPage = () => {
                                                     />
                                                 </div>
                                             </div>
+                                            <p className="text-xs mx-4">Click on consent form to open the form</p>
                                         </div>
                                     </div>
                                     <div className="w-full md:w-1/3 mt-4 mx-6">
@@ -460,6 +463,8 @@ const KycStatusPage = () => {
                                                         <h1 onClick={() => navigate("/kyc-status/consent-form")} className="mx-4 text-lg font-bold" style={{ color: "#000094" }}>
                                                             Consent Form
                                                         </h1>
+                                                        <p className="text-xs mx-4">Click on consent form to open the form</p>
+
                                                     </div>
                                                     <div
                                                         className="mr-5 bg-[#D4D4FF] rounded-xl p-3"
