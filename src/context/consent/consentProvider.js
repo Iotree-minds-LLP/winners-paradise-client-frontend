@@ -1,10 +1,12 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 const ConsentContext = createContext();
 
 export const ConsentProvider = ({ children }) => {
     const [isConsentAgreed, setIsConsentAgreed] = useState(false);
-
+    useEffect(() => {
+        console.log(isConsentAgreed)
+    }, [])
     return (
         <ConsentContext.Provider value={{ isConsentAgreed, setIsConsentAgreed }}>
             {children}
