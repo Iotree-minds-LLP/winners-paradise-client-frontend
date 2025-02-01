@@ -45,6 +45,7 @@ const SignupPage = () => {
     const [isLoading, setisLoading] = useState(false)
     const [isChecked, setIsChecked] = useState(false);
     const [ImageError, setImageError] = useState("")
+    const [ErrorMessageTop, setErrorMessageTop] = useState("")
 
     const handleChange = (event) => {
         setIsChecked(event.target.checked);
@@ -78,7 +79,7 @@ const SignupPage = () => {
 
         if (!isChecked) {
             setisLoading(false);
-            setErrorMessage("You Need to accept the terms and conditions to proceed");
+            setErrorMessageTop("You Need to accept the terms and conditions to proceed");
             return
         }
 
@@ -497,6 +498,14 @@ const SignupPage = () => {
                                 <p className="text-sm text-start mx-2 text-gray-600 font-semibold">
                                     Investments are subject to the market conditions and risks associated with the Indian stock market.
                                 </p>
+                            </div>
+
+                            <div className="text-start">
+                                {ErrorMessageTop && (
+                                    <span style={{ fontSize: '14px' }} className="text-red-400 text-xs text-start">
+                                        {ErrorMessageTop}
+                                    </span>
+                                )}
                             </div>
                             {/* Submit Button */}
                             <div className="mt-5">
