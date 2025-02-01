@@ -259,7 +259,6 @@ const EditCustomerProfile = () => {
                                 label="Phone Number"
                                 variant="outlined"
                                 size="medium"
-                                disabled
                                 type="number"
                                 fullWidth
                                 {...register('phoneNumber', {
