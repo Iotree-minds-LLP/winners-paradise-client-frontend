@@ -340,6 +340,13 @@ const EditCustomerProfile = () => {
                                             const selectedDate = new Date(value);
                                             return selectedDate <= today || 'Date of Birth cannot be in the future';
                                         },
+                                        minimumAge: (value) => {
+                                            const today = new Date();
+                                            const selectedDate = new Date(value);
+                                            const minDate = new Date();
+                                            minDate.setFullYear(today.getFullYear() - 18); // 18 years ago from today
+                                            return selectedDate <= minDate || 'You must be at least 18 years old';
+                                        },
                                     },
                                 })}
                                 error={!!errors.dateOfBirth}
