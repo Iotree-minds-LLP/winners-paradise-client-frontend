@@ -68,6 +68,17 @@ const BankDetails = () => {
         }
     };
 
+    const handleSendOtpAgain = async () => {
+        const otpResponse = await sendOtpForUpdate();
+        if (otpResponse.data.success) {
+            setShowOtpField(true);
+            handleSuccessClick(otpResponse.data.message);
+            localStorage.setItem("bankUpdateToken", otpResponse.data.token)
+        } else {
+            setErrorMessage("Failed to send OTP. Please try again.");
+        }
+    }
+
     const onSubmit = async (data) => {
         setisLoading(true);
         const payload = {
@@ -182,13 +193,25 @@ const BankDetails = () => {
                                         value: 3,
                                         message: "Bank name must be at least 3 characters",
                                     },
+                                    maxLength: {
+                                        value: 40,
+                                        message: "Bank name cannot exceed 40 characters",
+                                    },
+                                    pattern: {
+                                        value: /^[A-Za-z\s]+$/,
+                                        message: "Only letters and spaces are allowed",
+                                    },
                                 })}
                                 error={!!errors.bank_name}
                                 helperText={errors.bank_name?.message}
                                 InputLabelProps={{
                                     shrink: watchbankName,
                                 }}
+                                onInput={(e) => {
+                                    e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, "").slice(0, 40);
+                                }}
                             />
+
 
                             {/* IFSC Code */}
                             <TextField
@@ -220,33 +243,52 @@ const BankDetails = () => {
                                         value: 3,
                                         message: "Branch name must be at least 3 characters",
                                     },
+                                    maxLength: {
+                                        value: 40,
+                                        message: "Branch name cannot exceed 40 characters",
+                                    },
+                                    pattern: {
+                                        value: /^[A-Za-z\s]+$/,
+                                        message: "Only letters and spaces are allowed",
+                                    },
                                 })}
                                 error={!!errors.bank_branch_name}
                                 helperText={errors.bank_branch_name?.message}
                                 InputLabelProps={{
                                     shrink: watchbankBranch,
                                 }}
+                                onInput={(e) => {
+                                    e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, "").slice(0, 40);
+                                }}
                             />
+
 
                             {/* OTP Field (Conditional Rendering) */}
                             {showOtpField && (
-                                <TextField
-                                    label="Enter OTP *"
-                                    variant="outlined"
-                                    fullWidth
-                                    value={otp}
-                                    onChange={(e) => setOtp(e.target.value)}
-                                    error={!!errors.otp}
-                                    helperText={errors.otp?.message}
-                                />
+                                <>
+                                    <TextField
+                                        label="Enter OTP *"
+                                        variant="outlined"
+                                        fullWidth
+                                        value={otp}
+                                        onChange={(e) => setOtp(e.target.value)}
+                                        error={!!errors.otp}
+                                        helperText={errors.otp?.message}
+                                    />
+                                    <p onClick={handleSendOtpAgain} className="underline text-end flex justify-end mb-0 cursor-pointer items-end text-gradient-to-l from-[#020065] to-[#0400CB]">Resend OTP ?</p>
+                                </>
+
                             )}
+
 
                             {/* Submit Button */}
                             <div>
+
                                 <div className="fixed z-10 bottom-0 left-0  w-full sm:hidden bg-white shadow-lg bg-white">
                                     <div className="absolute bottom-0 left-0 w-full flex flex-col items-start p-4">
                                         <div className="w-full mt-4">
                                             <button
+                                                disabled={isLoading}
                                                 type="submit"
                                                 className="w-full p-3 px-24 flex justify-center rounded-full text-white bg-gradient-to-l from-[#020065] to-[#0400CB]"
                                             >
