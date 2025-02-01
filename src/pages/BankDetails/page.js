@@ -122,14 +122,14 @@ const BankDetails = () => {
             <div className="h-screen flex flex-col">
                 <div className="h-[60px] fixed top-100 mb-4 z-10 w-full sm:hidden  bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row p-3">
                     <img src={backButton} onClick={goBack} className="w-8 h-8" alt="Back" />
-                    <p className="text-white font-semibold my-1">Bank Account Details</p>
+                    <p className="text-white font-semibold my-1">{UpdateBankDetails && "Update"}Bank Account Details</p>
                 </div>
 
                 <div className="h-full bg-white grid grid-cols-12 md:grid-cols-12 md:overflow-hidden md:p-0 sm:p-10">
                     <div className="col-span-12 md:col-span-6 w-full order-1 md:order-2 md:px-20 mt-10 overflow-auto">
                         <div className="flex flex-row">
                             <p style={{ color: '#020065' }} className="mx-5 hidden sm:block text-start font-semibold text-3xl">
-                                Bank Account Details
+                                {UpdateBankDetails && "Update"} Bank Account Details
                             </p>
                         </div>
 
