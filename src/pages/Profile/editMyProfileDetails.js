@@ -468,7 +468,7 @@ const EditCustomerProfile = () => {
                             />
 
                             <TextField
-                                label={translations.registerModule.altno_field[language]}
+                                label="Alternative Phone Number"
                                 variant="outlined"
                                 size="medium"
                                 type="number"
