@@ -41,6 +41,9 @@ const BankDetails = () => {
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
+        if (!customer) {
+            navigate("/")
+        }
         fetchCustomerDetails(customer._id);
     }, []);
 
