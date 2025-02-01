@@ -521,7 +521,7 @@ const EditCustomerProfile = () => {
                                 type="text"
                                 fullWidth
                                 {...register('referralCode', {
-                                    required: 'Referral Code is required',
+                                    required: false,
                                 })}
                                 error={!!errors.referralCode}
                                 helperText={errors.referralCode?.message}
