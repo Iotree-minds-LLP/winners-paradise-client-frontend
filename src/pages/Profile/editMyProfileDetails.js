@@ -45,6 +45,7 @@ const EditCustomerProfile = () => {
     const [customerDetails, setCustomerDetails] = useState([]);
     const watchedName = watch("fullName");
     const [image, setImage] = useState(null);
+    const [ImageError, setImageError] = useState("")
 
     // Convert selected file to Base64
     const handleImageUpload = (event) => {
@@ -55,8 +56,9 @@ const EditCustomerProfile = () => {
                 setImage(reader.result); // Set Base64 image
             };
             reader.readAsDataURL(file);
+            setImageError("")
         } else {
-            alert("Please select a valid image file (JPEG, JPG, PNG).");
+            setImageError("Please select a valid image file (JPEG, JPG, PNG).");
         }
     };
 
@@ -222,6 +224,9 @@ const EditCustomerProfile = () => {
                                 </div>
                             </div>
 
+                            {ImageError &&
+                                <p className="text-start text-red-400 text-sm my-3">{ImageError}</p>
+                            }
 
                             <TextField
                                 label="Full Name *"

@@ -44,6 +44,7 @@ const SignupPage = () => {
     const [ErrorMessage, setErrorMessage] = useState("")
     const [isLoading, setisLoading] = useState(false)
     const [isChecked, setIsChecked] = useState(false);
+    const [ImageError, setImageError] = useState("")
 
     const handleChange = (event) => {
         setIsChecked(event.target.checked);
@@ -60,8 +61,9 @@ const SignupPage = () => {
                 setImage(reader.result); // Set Base64 image
             };
             reader.readAsDataURL(file);
+            setImageError("")
         } else {
-            alert("Please select a valid image file (JPEG, JPG, PNG).");
+            setImageError("Please select a valid image file (JPEG, JPG, PNG).");
         }
     };
 
@@ -220,6 +222,9 @@ const SignupPage = () => {
                                 </div>
                             </div>
 
+                            {ImageError &&
+                                <p className="text-start text-red-400 text-sm my-3">{ImageError}</p>
+                            }
 
                             <TextField
                                 label={translations.registerModule.fullname_field[language]}
