@@ -334,7 +334,7 @@ const EditCustomerProfile = () => {
 
                             <TextField
                                 variant="outlined"
-                                label={translations.registerModule.data_of_birth[language]}
+                                label="Date Of Birth"
                                 type="date"
                                 size="medium"
                                 {...register('dateOfBirth', {
