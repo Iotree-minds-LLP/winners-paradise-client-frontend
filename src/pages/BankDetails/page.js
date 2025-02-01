@@ -44,11 +44,6 @@ const BankDetails = () => {
         fetchCustomerDetails(customer._id);
     }, []);
 
-    useEffect(() => {
-        if (watchbankAccountNumber && watchbankName && watchbankIfsc && watchbankBranch) {
-            setUpdateBankDetails(true);
-        }
-    }, [watchbankAccountNumber, watchbankName, watchbankIfsc, watchbankBranch]);
 
     const fetchCustomerDetails = async (id) => {
         setisLoading(true);
@@ -61,6 +56,9 @@ const BankDetails = () => {
                     setValue("bank_name", resp.data.data.customer.bank_name);
                     setValue("bank_Ifsc_code", resp.data.data.customer.bank_Ifsc_code);
                     setValue("bank_branch_name", resp.data.data.customer.bank_branch_name);
+                    if (resp.data.data.customer.bank_acc_no) {
+                        setUpdateBankDetails(true);
+                    }
                 }
             }
         } catch (error) {
