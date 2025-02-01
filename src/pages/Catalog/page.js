@@ -199,17 +199,19 @@ const Catalogs = () => {
                                         </div>
                                     </div>
                                 )}
-                                <div className="p-4 w-full px-5 mb-3 rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex justify-between">
-                                    <div>
-                                        <p className="text-start text-md font-bold text-white">Add Bank Account</p>
-                                        <p style={{ color: "#54E3FC" }} className="text-xs my-2">
-                                            Link your bank account to enable to access all financial features.
-                                        </p>
+                                <Link to="/profile-and-settings/bank-details">
+                                    <div className="p-4 w-full px-5 mb-3 rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex justify-between">
+                                        <div>
+                                            <p className="text-start text-md font-bold text-white">Add Bank Account</p>
+                                            <p style={{ color: "#54E3FC" }} className="text-xs my-2">
+                                                Link your bank account to enable to access all financial features.
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <img src={image3} className="w-10 h-10 object-contain" />
+                                        </div>
                                     </div>
-                                    <div>
-                                        <img src={image3} className="w-10 h-10 object-contain" />
-                                    </div>
-                                </div>
+                                </Link>
                             </>
                         )}
                     </div>

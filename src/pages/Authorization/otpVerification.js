@@ -150,15 +150,13 @@ const OtpVerification = () => {
                         fcmData: fcmToken
                     }
                     const saveToken = await saveTokenForFcm(data);
-                    console.log(saveToken);
                 }
 
                 if (customer) {
                     setLanguage(customer.language_preference);
                     await localStorage.setItem("customerDetails", JSON.stringify(customer));
-
                     const investmentsResp = await getAllInvestments(customer._id);
-                    console.log(investmentsResp, "Resp")
+                    console.log(investmentsResp, "investmentsResp")
                     if (investmentsResp.data.status === 200) {
                         const investments = investmentsResp.data.data.data;
 

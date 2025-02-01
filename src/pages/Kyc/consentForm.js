@@ -22,6 +22,11 @@ const ConsentForm = () => {
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        console.log(isConsentAgreed, "isConsentAgreed")
+        setIsConsentAgreed(false);
+    }, [])
+
     const toggleModal = () => {
         setisModalOpen(!isModalOpen);
     }
@@ -177,9 +182,9 @@ const ConsentForm = () => {
                     )}
                 </div>
                 <div className="mt-5 sm:hidden p-3 fixed bottom-0 left-0 w-full bg-white shadow-md z-10">
-                    <Link to="/Kyc-status" onClick={setIsConsentAgreed(true)}>
+                    <Link to="/Kyc-status" >
                         <button
-                            type="submit"
+                            onClick={setIsConsentAgreed(true)}
                             className="md:w-full w-full p-3 rounded-full text-white bg-gradient-to-l from-[#020065] to-[#0400CB] flex items-center justify-center"
                         >
                             Agree & Continue
