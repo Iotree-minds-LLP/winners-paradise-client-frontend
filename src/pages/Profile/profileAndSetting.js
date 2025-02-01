@@ -245,6 +245,11 @@ const ProfileAndSettings = () => {
                         tabIndex="-1"
                         className="fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full bg-gray-800 bg-opacity-50"
                         data-modal-target="popup-modal"
+                        onClick={(e) => {
+                            if (e.target.id === "popup-modal") {
+                                toggleModal(); // Close the modal when clicking outside
+                            }
+                        }}
                     >
                         <div className="relative p-4 w-full max-w-md max-h-full">
                             <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
