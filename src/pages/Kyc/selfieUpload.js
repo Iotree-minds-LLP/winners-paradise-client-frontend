@@ -416,8 +416,6 @@ const SelfieUpload = () => {
                     </div>
                 </div>
             )}
-
-
         </>
     );
 };
