@@ -85,7 +85,6 @@ const AadharUpload = () => {
 
 
         } else {
-            console.log("KycRequestData is empty");
             setLocationStateDetails(null);
             setAadharNumber(null);
 
@@ -204,19 +203,19 @@ const AadharUpload = () => {
         setisLoading(true);
 
         if (!frontImage) {
-            setErrorMessage("Aadhar Front Image is required.");
+            setErrorMessage(translations.validations.aadharUpload.frontImage[language]);
             setisLoading(false);
             return;
         }
 
         if (!backImagePreview) {
-            setErrorMessage("Aadhar Back Image is required.");
+            setErrorMessage(translations.validations.aadharUpload.backImage[language]);
             setisLoading(false);
             return;
         }
 
         if (!AadharNumber) {
-            setErrorMessage("Aadhar Number is required.");
+            setErrorMessage(translations.validations.aadharUpload.aadharNumber[language]);
             setisLoading(false);
             return;
         }
@@ -231,14 +230,14 @@ const AadharUpload = () => {
             const res = await creteCustomerKycRequest(payload);
             if (res?.data?.status === 200) {
                 setisLoading(false);
-                handleSuccessClick("KYC Request Submitted Successfully");
+                handleSuccessClick(translations.global.kycRequestSuccess[language]);
                 navigate("/Kyc-status")
             } else {
                 setisLoading(false);
                 setErrorMessage(res.data.error);
             }
         } catch (error) {
-            setErrorMessage("Failed to submit KYC Request");
+            setErrorMessage(translations.global.kycRequestSentError[language]);
             setisLoading(false);
         }
     };

@@ -529,6 +529,20 @@
         "global": {
             "english": "This Field Is Required",
             "kannada": "This Field Is Required"
+        },
+        "aadharUpload": {
+            "frontImage": {
+                "english": "Please upload aadhar front image",
+                "kannada": "Please upload aadhar front image"
+            },
+            "backImage": {
+                "english": "Please upload aadhar back image",
+                "kannada": "Please upload aadhar back image"
+            },
+            "aadharNumber": {
+                "english": "Please enter aadhar number",
+                "kannada": "Please enter aadhar number"
+            }
         }
     },
     "logoHeading": {
@@ -563,6 +577,14 @@
         "reasonForRejection": {
             "english": "Reason for Rejection",
             "kannada": "Reason for Rejection"
+        },
+        "kycRequestSuccess": {
+            "english": "KYC Request Submitted Successfully",
+            "kannada": "KYC Request Submitted Successfully"
+        },
+        "kycRequestSentError": {
+            "english": "Error in sending KYC Request",
+            "kannada": "Error in sending KYC Request"
         }
     }
 }
