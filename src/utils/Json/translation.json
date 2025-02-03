@@ -365,6 +365,20 @@
         "cancel": {
             "english": "Cancel",
             "kannada": "Cancel"
+        },
+        "pan_card": {
+            "upload": {
+                "english": "Upload",
+                "kannada": "Upload"
+            },
+            "heading": {
+                "english": "Upload PAN CARD",
+                "kannada": "Upload PAN CARD"
+            },
+            "heading1": {
+                "english": "Pan Card",
+                "kannada": "Pan Card"
+            }
         }
     },
     "validations": {
