@@ -162,11 +162,27 @@
         },
         "card1": {
             "english": "Return Calculator",
-            "kannada": ""
+            "kannada": "Return Calculator"
+        },
+        "returnCalculatorNote": {
+            "english": "Please note: All calculated amounts are rounded to the nearest whole number for simplicity.",
+            "kannada": "Please note: All calculated amounts are rounded to the nearest whole number for simplicity."
         },
         "enterAmountfield": {
             "english": "Enter the Amount",
             "kannada": "ಮೊತ್ತವನ್ನು ನಮೂದಿಸಿ"
+        },
+        "fieldValidation": {
+            "english": "Minimum ₹1 Lakh",
+            "kannada": "Minimum ₹1 Lakh"
+        },
+        "button": {
+            "english": "Check Returns",
+            "kannada": "Check Returns"
+        },
+        "noCatalogsMessage": {
+            "english": "Sorry We dont have any catalogs for this amount.",
+            "kannada": "Sorry We dont have any catalogs for this amount."
         },
         "card2": {
             "heading1": {
@@ -179,12 +195,176 @@
             },
             "heading3": {
                 "english": "Returns per month",
-                "kannada": ""
+                "kannada": "Returns per month"
             },
             "months": {
                 "english": "Months",
                 "kannada": "ತಿಂಗಳುಗಳು"
             }
+        },
+        "kyc_card": {
+            "heading": {
+                "english": "Complete KYC",
+                "kannada": "Complete KYC"
+            },
+            "heading2": {
+                "english": "To activate all features and to transact, complete your KYC process",
+                "kannada": "To activate all features and to transact, complete your KYC process"
+            }
+        },
+        "bank_Card": {
+            "heading": {
+                "english": "Add Bank Account",
+                "kannada": "Add Bank Account"
+            },
+            "heading2": {
+                "english": "Link your bank account to enable to access all financial features.",
+                "kannada": "Link your bank account to enable to access all financial features."
+            }
+        },
+        "listingHeading": {
+            "english": "list of investment opportunities",
+            "kannada": "list of investment opportunities"
+        }
+    },
+    "Notifications": {
+        "heading": {
+            "english": "Notifications",
+            "kannada": "Notifications"
+        },
+        "heading1": {
+            "english": "My Notifications",
+            "kannada": "My Notifications"
+        },
+        "noNotificationsMessage": {
+            "english": "No Notifications Yet",
+            "kannada": "No Notifications yet"
+        }
+    },
+    "ProfileAndSettings": {
+        "heading": {
+            "english": "Profile & Settings",
+            "kannada": "Profile & Settings"
+        },
+        "heading1": {
+            "english": "Personal Details",
+            "kannada": "Personal Details"
+        },
+        "heading2": {
+            "english": "KYC",
+            "kannada": "KYC"
+        },
+        "heading3": {
+            "english": "Bank Account",
+            "kannada": "Bank Account"
+        },
+        "heading4": {
+            "english": "Language",
+            "kannada": "Language"
+        },
+        "heading5": {
+            "english": "Logout",
+            "kannada": "Logout"
+        },
+        "pwaMessage": {
+            "english": "Install the App on your device.",
+            "kannada": "Install the App on your device."
+        },
+        "logoutMessage": {
+            "english": "Are you sure you want to logout ?",
+            "kannada": "Are you sure you want to logout ?"
+        },
+        "agree": {
+            "english": "Yes, I'm sure",
+            "kannada": "Yes, I'm sure"
+        },
+        "cancel": {
+            "english": "Cancel",
+            "kannada": "Cancel"
+        }
+    },
+    "MyProfile": {
+        "heading": {
+            "english": "My Profile",
+            "kannada": "My Profile"
+        },
+        "heading1": {
+            "english": "Personal Details",
+            "kannada": "Personal Details"
+        },
+        "fullName": {
+            "english": "Full Name",
+            "kannada": "Full Name"
+        },
+        "phoneNumber": {
+            "english": "Phone Number",
+            "kannada": "Phone Number"
+        },
+        "emailId": {
+            "english": "Email ID",
+            "kannada": "Email ID"
+        },
+        "dob": {
+            "english": "Date of Birth",
+            "kannada": "Date of Birth"
+        },
+        "address": {
+            "english": "Address",
+            "kannada": "Address"
+        },
+        "alternatePhone": {
+            "english": "Alternate Phone",
+            "kannada": "Alternate Phone"
+        },
+        "editProfileButton": {
+            "english": "Edit Profile Details",
+            "kannada": "Edit Profile Details"
+        }
+    },
+    "Kyc": {
+        "heading": {
+            "english": "Complete Your KYC",
+            "kannada": "Complete Your KYC"
+        },
+        "uploadAadhar": {
+            "english": "Upload Aadhar Card",
+            "kannada": "Upload Aadhar Card"
+        },
+        "field_1": {
+            "english": "Enter Aadhar Number Here",
+            "kannada": "Enter Aadhar Number Here"
+        },
+        "field_2": {
+            "english": "Aadhar Number",
+            "kannada": "Aadhar Number"
+        },
+        "card_1_heading": {
+            "english": "Aadhar Card Front Side",
+            "kannada": "Aadhar Card Front Side"
+        },
+        "card_1_sub_heading": {
+            "english": "Upload",
+            "kannada": "Upload"
+        },
+        "card_2_heading": {
+            "english": "Aadhar Card Back Side",
+            "kannada": "Aadhar Card Back Side"
+        },
+        "card_2_sub_heading": {
+            "english": "Upload",
+            "kannada": "Upload"
+        },
+        "button": {
+            "english": "Save & Continue",
+            "kannada": "Save & Continue"
+        },
+        "capture": {
+            "english": "Capture",
+            "kannada": "Capture"
+        },
+        "cancel": {
+            "english": "Cancel",
+            "kannada": "Cancel"
         }
     },
     "validations": {
@@ -307,6 +487,32 @@
         "city_4": {
             "english": "City must contain only alphabets",
             "kannada": "City must contain only alphabets"
+        },
+        "global": {
+            "english": "This Field Is Required",
+            "kannada": "This Field Is Required"
+        }
+    },
+    "logoHeading": {
+        "english": "Winners Paradise",
+        "kannada": "ಸುಸ್ವಾಗತ"
+    },
+    "global": {
+        "chooseOption": {
+            "english": "Choose or take a picture",
+            "kannada": "Choose or take a picture"
+        },
+        "useCamera": {
+            "english": "Use Camera",
+            "kannada": "Use Camera"
+        },
+        "uploadFromFiles": {
+            "english": "Upload from Files",
+            "kannada": "Upload from Files"
+        },
+        "cancel": {
+            "english": "Cancel",
+            "kannada": "Cancel"
         }
     }
 }

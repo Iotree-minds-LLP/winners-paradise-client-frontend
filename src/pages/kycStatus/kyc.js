@@ -17,9 +17,12 @@ import { useToast } from "../../context/Toast/toastHook";
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useLanguage } from "../../context/Language/loginContext";
+import translations from "../../utils/Json/translation.json"
 
 const KycStatusPage = () => {
 
+    const { language, setLanguage } = useLanguage();
     const { isConsentAgreed, setIsConsentAgreed } = useConsent();
     const [isDisabled, setisDisabled] = useState(false);
     const [data, setdata] = useState([])
@@ -68,7 +71,6 @@ const KycStatusPage = () => {
         setkycCardShow(true);
         try {
             const res = await getKycDetailsByCustomerId(); // Fetching KYC details
-            console.log(res, "Response")
             if (res.status === 500) {
 
                 const data500 = [
@@ -200,7 +202,7 @@ const KycStatusPage = () => {
                     <div className="h-[60px] sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row justify-between p-4">
                         <div className="flex flex-row">
                             <img src={backButton} onClick={goBack} className="w-8 h-8" alt="Back" />
-                            <p className="text-white font-semibold my-1">Complete Your KYC</p>
+                            <p className="text-white font-semibold my-1">{translations.Kyc.heading[language]}</p>
                         </div>
                         {/* <div className="text-white" onClick={toggleModal}>
                             Logout
@@ -210,7 +212,7 @@ const KycStatusPage = () => {
                     <div className="flex justify-between hidden md:block">
                         <div className="flex flex-row mx-4 gap-4 mt-14">
                             {/* <img onClick={goBack} src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" className="w-auto h-8" alt="Background" /> */}
-                            <h1 className="text-start font-bold text-2xl text-black hidden md:block mx-5">Complete Your KYC</h1>
+                            <h1 className="text-start font-bold text-2xl text-black hidden md:block mx-5">{translations.Kyc.heading[language]}</h1>
                         </div>
                         {/* <p className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer	" onClick={toggleModal}>Logout</p> */}
                     </div>

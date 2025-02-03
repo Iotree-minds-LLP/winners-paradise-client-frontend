@@ -7,10 +7,12 @@ import backButton from "../../assets/Logos/backButton.png";
 import { goBack } from "../../utils/Functions/goBackScreen";
 import { getCustomersNotifications } from "../../network/Notifications/page";
 import image2 from "../../assets/Images/robo 1 (1).png";
-
+import translations from "../../utils/Json/translation.json"
+import { useLanguage } from "../../context/Language/loginContext";
 
 const Notifications = () => {
     const [expandedCard, setExpandedCard] = useState(null);
+    const { language, setLanguage } = useLanguage();
     const [isModalOpen, setisModalOpen] = useState(false);
     const [notificationData, setnotificationData] = useState(null); // Initial null to show loading state
     const [loading, setLoading] = useState(true); // Loading state
@@ -61,13 +63,13 @@ const Notifications = () => {
                     <div className="h-[60px] sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row justify-between p-4">
                         <div className="flex flex-row">
                             <img src={backButton} onClick={goBack} className="w-8 h-8" alt="Back" />
-                            <p className="text-white font-semibold my-1">Notifications</p>
+                            <p className="text-white font-semibold my-1">{translations.Notifications.heading[language]}</p>
                         </div>
                     </div>
                     <div className="flex justify-between hidden md:block">
                         <div className="flex flex-row mx-4 gap-4 mt-14">
                             {/* <img onClick={goBack} src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" className="w-auto h-8" alt="Background" /> */}
-                            <h1 className="text-start font-bold text-2xl text-black hidden md:block">My Notifications</h1>
+                            <h1 className="text-start font-bold text-2xl text-black hidden md:block">{translations.Notifications.heading1[language]}</h1>
                         </div>
                         {/* <p className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer	" onClick={toggleModal}>Logout</p> */}
                     </div>
@@ -135,7 +137,7 @@ const Notifications = () => {
                             ))
                         ) : (
                             <div className="text-center md:text-start md:mx-2  text-gray-500 font-medium text-lg md:text-xl">
-                                No notifications yet.
+                                {translations.Notifications.noNotificationsMessage[language]}
                             </div>
                         )}
                     </div>

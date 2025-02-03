@@ -10,9 +10,12 @@ import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
 import { CameraAlt, CancelOutlined, FileUpload } from "@mui/icons-material";
 import { goBack } from "../../utils/Functions/goBackScreen";
+import { useLanguage } from "../../context/Language/loginContext";
+import translations from "../../utils/Json/translation.json"
 
 const AadharUpload = () => {
 
+    const { language, setLanguage } = useLanguage();
     const [frontImage, setFrontImage] = useState(null);
     const [backImagePreview, setBackImagePreview] = useState(null);
     const [showCamera, setShowCamera] = useState(false);
@@ -259,7 +262,7 @@ const AadharUpload = () => {
                                 className="w-8 h-8"
                                 alt="Back"
                             />
-                            <p className="text-white font-semibold my-1">Upload AADHAR card</p>
+                            <p className="text-white font-semibold my-1">{translations.Kyc.uploadAadhar[language]}</p>
                         </div>
                     </div>
 
@@ -267,17 +270,17 @@ const AadharUpload = () => {
                         <div className="flex flex-row mx-4 gap-4 mt-14">
                             <img onClick={goBack} src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" className="w-auto h-8" alt="Background" />
                             <h1 className="text-start font-bold text-2xl text-black hidden md:block">
-                                Upload AADHAR card
+                                {translations.Kyc.uploadAadhar[language]}
                             </h1>
                         </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
                         <div className="flex flex-col text-start items-start justify-start w-full max-w-md rounded-md">
-                            <label className="my-3"><p>Enter Aadhar Number Here</p></label>
+                            <label className="my-3"><p>{translations.Kyc.field_1[language]}</p></label>
                             <TextField
                                 onChange={handleAadharChange}
-                                label="Aadhar Number"
+                                label={translations.Kyc.field_2[language]}
                                 value={AadharNumber}
                                 variant="outlined"
                                 size="medium"
@@ -338,8 +341,8 @@ const AadharUpload = () => {
                             ) : null}
                             <div className="mt-4 flex flex-row items-center justify-between w-full px-4">
                                 <div className="flex flex-col text-start">
-                                    <p className="text-sm">Upload</p>
-                                    <p className="text-lg font-bold">AADHAR CARD FRONT</p>
+                                    <p className="text-sm">{translations.Kyc.card_1_sub_heading[language]}</p>
+                                    <p className="text-lg font-bold">{translations.Kyc.card_1_heading[language]}</p>
                                 </div>
 
                                 {!(
@@ -388,8 +391,8 @@ const AadharUpload = () => {
                             ) : null}
                             <div className="mt-4 flex flex-row items-center justify-between w-full px-4">
                                 <div className="flex flex-col text-start">
-                                    <p className="text-sm">Upload</p>
-                                    <p className="text-lg font-bold">AADHAR CARD BACK</p>
+                                    <p className="text-sm">{translations.Kyc.card_2_sub_heading[language]}</p>
+                                    <p className="text-lg font-bold">{translations.Kyc.card_2_heading[language]}</p>
                                 </div>
 
                                 {!(
@@ -455,7 +458,7 @@ const AadharUpload = () => {
                                                 />
                                             </svg>
                                         ) : (
-                                            "Save & Continue"
+                                            `${translations.Kyc.button[language]}`
                                         )}
                                     </button>
                                 </div>
@@ -505,7 +508,7 @@ const AadharUpload = () => {
                                                 />
                                             </svg>
                                         ) : (
-                                            "Save & Continue"
+                                            `${translations.Kyc.button[language]}`
                                         )}
                                     </button>
                                 </div>
@@ -594,13 +597,13 @@ const AadharUpload = () => {
                                 onClick={capturePhoto}
                                 className="px-6 py-2  bg-gradient-to-l from-[#020065] to-[#0400CB] text-white font-bold rounded-full"
                             >
-                                Capture
+                                {translations.Kyc.capture[language]}
                             </button>
                             <button
                                 onClick={stopCamera}
                                 className="px-6 py-2 bg-gray-500 text-white font-bold rounded-full"
                             >
-                                Cancel
+                                {translations.Kyc.cancel[language]}
                             </button>
                         </div>
                     </div>
@@ -614,7 +617,7 @@ const AadharUpload = () => {
                     >
                         {/* Header */}
                         <div className="flex justify-between">
-                            <p className="text-lg font-semibold text-center mb-6">Choose or take a picture</p>
+                            <p className="text-lg font-semibold text-center mb-6">{translations.global.chooseOption[language]}</p>
                             <CancelOutlined onClick={() => setshowOptions(false)}></CancelOutlined>
                             {/* Options */}
                         </div>
@@ -625,7 +628,7 @@ const AadharUpload = () => {
                                 className="w-full p-4 flex items-center gap-4 border border-gray-100 bg-white text-black rounded-lg hover:bg-gray-100  transition"
                             >
                                 <CameraAlt></CameraAlt>
-                                <p className="font-medium">Use Camera</p>
+                                <p className="font-medium">{translations.global.useCamera[language]}</p>
                             </button>
 
                             {/* Upload from Files Option */}
@@ -634,7 +637,7 @@ const AadharUpload = () => {
                                 className="w-full p-4 flex items-center gap-4 bg-white border border-gray-100 hover:bg-gray-100 text-black rounded-lg transition cursor-pointer"
                             >
                                 <FileUpload></FileUpload>
-                                <p className="font-medium">Upload from Files</p>
+                                <p className="font-medium">{translations.global.uploadFromFiles[language]}</p>
                                 <input
                                     id="file-upload"
                                     type="file"
@@ -658,7 +661,7 @@ const AadharUpload = () => {
                     >
                         {/* Header */}
                         <div className="flex justify-between">
-                            <p className="text-lg font-semibold text-center mb-6">Choose or take a picture</p>
+                            <p className="text-lg font-semibold text-center mb-6">{translations.global.chooseOption[language]}</p>
                             <CancelOutlined onClick={() => setshowOptions2(false)}></CancelOutlined>
                             {/* Options */}
                         </div>
@@ -669,7 +672,7 @@ const AadharUpload = () => {
                                 className="w-full p-4 flex items-center gap-4 border border-gray-100 bg-white text-black rounded-lg hover:bg-gray-100  transition"
                             >
                                 <CameraAlt></CameraAlt>
-                                <p className="font-medium">Use Camera</p>
+                                <p className="font-medium">{translations.global.useCamera[language]}</p>
                             </button>
 
                             {/* Upload from Files Option */}
@@ -678,7 +681,7 @@ const AadharUpload = () => {
                                 className="w-full p-4 flex items-center gap-4 bg-white border border-gray-100 hover:bg-gray-100 text-black rounded-lg transition cursor-pointer"
                             >
                                 <FileUpload></FileUpload>
-                                <p className="font-medium">Upload from Files</p>
+                                <p className="font-medium">{translations.global.uploadFromFiles[language]}</p>
                                 <input
                                     id="file-upload"
                                     type="file"
@@ -687,9 +690,6 @@ const AadharUpload = () => {
                                     onChange={handleFileUpload2}
                                 />
                             </label>
-
-
-
                         </div>
                     </div>
                 </div>

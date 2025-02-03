@@ -25,6 +25,8 @@ import image3 from "../../assets/Images/arrow_circle_right (1).png";
 import { LogoutUser } from "../../network/Fcm/saveToken";
 import { getKycDetailsByCustomerId } from "../../network/KycVerification/page";
 import { goBack } from "../../utils/Functions/goBackScreen";
+import { useLanguage } from "../../context/Language/loginContext";
+import translations from "../../utils/Json/translation.json"
 
 const Catalogs = () => {
 
@@ -46,6 +48,7 @@ const Catalogs = () => {
     const [completeCardsLoading, setcompleteCardsLoading] = useState(false)
     const [catalogListShow, setcatalogListShow] = useState(false);
     const [LoadingButtonStart, setLoadingButtonStart] = useState(false);
+    const { language, setLanguage } = useLanguage();
 
     const getKycStatus = async () => {
         setcompleteCardsLoading(true);
@@ -86,7 +89,6 @@ const Catalogs = () => {
     const onformSubmit = async () => {
         setcatalogListShow(true);
         const resp = await getAllCatalog();
-        console.log(resp, "Resp")
         if (resp?.data?.catalogs) {
             setlistCatalogs(resp.data.catalogs)
             setcatalogListShow(false);
@@ -100,7 +102,6 @@ const Catalogs = () => {
         if (!watchedCatalogAmount) {
             onformSubmit()
         }
-        console.log("Watched Catalog Amount changed:", watchedCatalogAmount);
     }, [watchedCatalogAmount]);
 
     const onSubmit = async (data) => {
@@ -131,16 +132,14 @@ const Catalogs = () => {
                 <div className="relative z-10">
                     {/* Gradient Header */}
                     <div className="object-contain fixed top-0 z-10 flex justify-between bg-gradient-to-l sm:hidden from-[#0400CB] to-[#020065]">
-                        <h1 className="text-start font-bold text-2xl p-4 text-white hidden md:block">Catalogue</h1>
+                        <h1 className="text-start font-bold text-2xl p-4 text-white hidden md:block"> {translations.Catalog.heading[language]}</h1>
                         <img
                             className="h-auto sm:hidden w-1/5 p-4 md:mt-0 text-start"
                             src={imageLogo}
                             alt="Logo"
                         />
                         <p className="mt-6 sm:hidden text-white font-semibold text-xl">
-                            Winners Paradise
-                            {/* <p className="mt-6 sm:hidden text-white font-semibold text-sm" onClick={toggleModal}>Logout</p> */}
-
+                            {translations.logoHeading[language]}
                         </p>
                         <div className="flex flex-row text-white">
                             <Link to="/notifications">
@@ -154,7 +153,7 @@ const Catalogs = () => {
                     <div className="flex justify-between hidden md:block">
                         <div className="flex flex-row mx-4 gap-4 mt-14 mb-8">
                             {/* <img onClick={goBack} src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" className="w-auto h-8" alt="Background" /> */}
-                            <h1 className="text-start font-bold text-2xl text-black hidden md:block">Catalogue</h1>
+                            <h1 className="text-start font-bold text-2xl text-black hidden md:block">{translations.Catalog.heading[language]}</h1>
                         </div>
                         {/* <p className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer	" onClick={toggleModal}>Logout</p> */}
                     </div>
@@ -189,9 +188,9 @@ const Catalogs = () => {
                                         onClick={() => navigate("/Kyc-status")}
                                     >
                                         <div>
-                                            <p className="text-start text-md font-bold text-white">Complete KYC</p>
+                                            <p className="text-start text-md font-bold text-white">{translations.Catalog.kyc_card.heading[language]}</p>
                                             <p style={{ color: "#54E3FC" }} className="text-xs my-2">
-                                                To activate all features and to transact, complete your KYC process
+                                                {translations.Catalog.kyc_card.heading2[language]}
                                             </p>
                                         </div>
                                         <div>
@@ -202,9 +201,9 @@ const Catalogs = () => {
                                 <Link to="/profile-and-settings/bank-details">
                                     <div className="p-4 w-full px-5 mb-3 rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex justify-between">
                                         <div>
-                                            <p className="text-start text-md font-bold text-white">Add Bank Account</p>
+                                            <p className="text-start text-md font-bold text-white"> {translations.Catalog.bank_Card.heading[language]}</p>
                                             <p style={{ color: "#54E3FC" }} className="text-xs my-2">
-                                                Link your bank account to enable to access all financial features.
+                                                {translations.Catalog.bank_Card.heading2[language]}
                                             </p>
                                         </div>
                                         <div>
@@ -223,16 +222,16 @@ const Catalogs = () => {
                         >
 
                             <p style={{ color: 'rgba(128, 128, 128, 1)', fontWeight: '500', fontSize: '12px' }}>
-                                Please note: All calculated amounts are rounded to the nearest whole number for simplicity.
+                                {translations.Catalog.returnCalculatorNote[language]}
                             </p>
                             <p className="my-2" style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '14px' }}>
-                                Return Calculator
+                                {translations.Catalog.card1[language]}
                             </p>
 
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <div className="mt-3 md:flex md:justify-between gap-4">
                                     <TextField
-                                        label="Minimum ₹1 Lakh"
+                                        label={translations.Catalog.fieldValidation[language]}
                                         variant="outlined"
                                         size="medium"
                                         type="number"
@@ -240,7 +239,7 @@ const Catalogs = () => {
                                         error={!!errors.returnCalculator}
                                         helperText={errors.returnCalculator ? errors.returnCalculator.message : ''}
                                         {...register('returnCalculator', {
-                                            required: 'This field is required',
+                                            required: translations.validations.global[language],
                                         })}
                                         onChange={(e) => {
                                             console.log('Value changed:', e.target.value); // Log the value to the console
@@ -293,7 +292,7 @@ const Catalogs = () => {
                                                 </svg>
                                             ) : (
                                                 // Text before loading
-                                                <span>Check Returns</span>
+                                                <span>{translations.Catalog.button[language]}</span>
                                             )}
                                         </button>
 
@@ -316,7 +315,7 @@ const Catalogs = () => {
                     <p
                         className="text-lg text-start font-bold my-2 mx-4 mt-5 "
                         style={{ color: 'rgba(0, 0, 148, 1)' }}
-                    > list of investment opportunities</p>
+                    >   {translations.Catalog.listingHeading[language]}</p>
 
                     <div className="text-start rounded-lg p-4 grid md:grid-cols-3 grid-cols-1 gap-4 mb-36">
                         {catalogListShow ? (
@@ -371,8 +370,8 @@ const Catalogs = () => {
                                         </div>
 
                                         <div className="grid grid-cols-2 my-2">
-                                            <p>Investment Amount</p>
-                                            <p>Duration</p>
+                                            <p>{translations.Catalog.card2.heading1[language]}</p>
+                                            <p>{translations.Catalog.card2.heading2[language]}</p>
                                             <p
                                                 className="text-md font-bold my-2"
                                                 style={{ color: 'rgba(0, 0, 148, 1)' }}
@@ -383,9 +382,9 @@ const Catalogs = () => {
                                                 className="text-md font-bold my-2"
                                                 style={{ color: 'rgba(0, 0, 148, 1)' }}
                                             >
-                                                {item.no_of_months} Months
+                                                {item.no_of_months} {translations.Catalog.card2.months[language]}
                                             </p>
-                                            <p>Returns per month</p>
+                                            <p>{translations.Catalog.card2.heading3[language]}</p>
                                             <p></p>
                                             <p
                                                 className="text-md font-bold my-2"
@@ -409,7 +408,7 @@ const Catalogs = () => {
 
                     {listCatalogs.length === 0 && (
                         <div className="mx-3">
-                            <p className="p-3 font-bold text-gray-400 text-lg">Sorry We dont have any catalogs for this amount</p>
+                            <p className="p-3 font-bold text-gray-400 text-lg">{translations.Catalog.noCatalogsMessage[language]}</p>
                         </div>
                     )}
 
