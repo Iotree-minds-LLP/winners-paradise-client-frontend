@@ -543,6 +543,12 @@
                 "english": "Please enter aadhar number",
                 "kannada": "Please enter aadhar number"
             }
+        },
+        "panCard": {
+            "panImage": {
+                "english": "Please capture Pan Card",
+                "kannada": "Please capture Pan Card"
+            }
         }
     },
     "logoHeading": {

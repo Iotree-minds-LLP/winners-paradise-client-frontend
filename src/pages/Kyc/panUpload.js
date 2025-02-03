@@ -175,7 +175,7 @@ const PanUpload = () => {
         setisLoading(true);
 
         if (!frontImage) {
-            setErrorMessage("Please capture Pan Card .");
+            setErrorMessage(translations.validations.panCard.panImage[language]);
             setisLoading(false);
             return;
         }
@@ -188,14 +188,14 @@ const PanUpload = () => {
             const res = await creteCustomerKycRequest(payload, customerDetails._id);
             if (res?.data?.status === 200) {
                 setisLoading(false);
-                handleSuccessClick("KYC Request Submitted Successfully");
+                handleSuccessClick(translations.global.kycRequestSuccess[language]);
                 navigate("/Kyc-status")
             } else {
                 setisLoading(false);
                 setErrorMessage(res.data.error);
             }
         } catch (error) {
-            setErrorMessage("Failed to submit KYC Request");
+            setErrorMessage(translations.global.kycRequestSentError[language]);
             setisLoading(false);
         }
     };
