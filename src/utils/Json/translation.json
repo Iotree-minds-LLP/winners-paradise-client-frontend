@@ -376,8 +376,32 @@
                 "kannada": "Upload PAN CARD"
             },
             "heading1": {
-                "english": "Pan Card",
-                "kannada": "Pan Card"
+                "english": "PAN CARD",
+                "kannada": "PAN CARD"
+            }
+        },
+        "cheque": {
+            "upload": {
+                "english": "Upload",
+                "kannada": "Upload"
+            },
+            "heading": {
+                "english": "Upload Cancelled Cheque",
+                "kannada": "Upload Cancelled Cheque"
+            },
+            "heading1": {
+                "english": "Cancelled Cheque",
+                "kannada": "Cancelled Cheque"
+            }
+        },
+        "selfie": {
+            "upload": {
+                "english": "Upload",
+                "kannada": "Upload"
+            },
+            "heading": {
+                "english": "Upload Selfie",
+                "kannada": "Upload Selfie"
             }
         }
     },
@@ -527,6 +551,18 @@
         "cancel": {
             "english": "Cancel",
             "kannada": "Cancel"
+        },
+        "capture": {
+            "english": "Capture",
+            "kannada": "Capture"
+        },
+        "button": {
+            "english": "Save & Continue",
+            "kannada": "Save & Continue"
+        },
+        "reasonForRejection": {
+            "english": "Reason for Rejection",
+            "kannada": "Reason for Rejection"
         }
     }
 }

@@ -425,7 +425,7 @@ const AadharUpload = () => {
 
                     {locationStateDetails?.is_aadhar_verified === "REJECTED" && (
                         <div className="p-3 w-full md:w-1/3 text-start rounded-lg md:mx-5 mb-20 md:mb-0  " style={{ background: "#F1F1FF" }}>
-                            <p className="text-sm" style={{ color: "#020065" }}>Reason For Rejection</p>
+                            <p className="text-sm" style={{ color: "#020065" }}>{translations.global.reasonForRejection[language]}</p>
                             <p className="text-lg text-black">{locationStateDetails.reason_for_rejection}</p>
                         </div>
                     )}
