@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import imageLogo from "../../assets/Logos/logo1.png";
 import image3 from "../../assets/Images/sideImage.png";
@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import { useToast } from "../../context/Toast/toastHook";
 import { goBack } from "../../utils/Functions/goBackScreen";
 import { addBankDetails, updateBankDetails, sendOtpForUpdate } from "../../network/BankDetails/page";
+import addNomineeImage from "../../assets/Images/addnominee.png"
 import { getCustomerById } from "../../network/Customer/page";
 
 const BankDetails = () => {
@@ -283,6 +284,70 @@ const BankDetails = () => {
 
                             )}
 
+                            {/* Submit Button */}
+
+
+                            {/* <div className="text-start rounded-lg grid gap-4">
+                                <div className="p-4 md:p-6 rounded-lg w-full " style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}>
+                                    <div className="flex justify-between items-center">
+                                        <p style={{ color: 'rgba(0, 0, 148, 1)' }} className="font-bold text-lg">Nominee account</p>
+                                        <Link to="/profile-and-settings/edit-nominee">
+                                            <button aria-label="Edit" className="p-2 ">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24"
+                                                    fill="black"
+                                                    stroke="currentColor"
+                                                    strokeWidth="2"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    className="w-6 h-6"
+                                                >
+                                                    <path d="M12 20h9"></path>
+                                                    <path d="M16.5 3.5l4 4L7 21H3v-4L16.5 3.5z"></path>
+                                                </svg>
+                                            </button>
+                                        </Link>
+                                    </div>
+
+                                    <div className="flex justify-between items-center mt-2">
+                                        <div>
+                                            <p className="text-sm text-gray-800">Account Holder Name</p>
+                                            <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
+                                                ajsdk
+                                            </p>
+                                        </div>
+
+                                    </div>
+
+                                    <div className="my-3">
+                                        <p className="text-sm text-gray-800">Account Number</p>
+                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>12839</p>
+                                    </div>
+
+                                    <div className="my-3">
+                                        <p className="text-sm text-gray-800">IFSC Code</p>
+                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>ajsd</p>
+                                    </div>
+
+                                    <div className="my-3">
+                                        <p className="text-sm text-gray-800">Bank Name & Branch</p>
+                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
+                                            asdjk
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div> */}
+
+                            <Link to="/profile-and-settings/add-nominee" className="mb-10 md:mb-0">
+                                <div className="mt-5 p-5 w-full rounded-lg border border-black border-dotted  border-2 text-start flex justify-between">
+                                    <p className="text-lg font-bold" style={{ color: 'rgba(0, 0, 148, 1)' }}>Add Nominee</p>
+                                    <img className="w-6 h-6" src={addNomineeImage}></img>
+                                </div>
+                            </Link>
 
                             {/* Submit Button */}
                             <div>
