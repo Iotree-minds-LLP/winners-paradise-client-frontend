@@ -5,8 +5,12 @@ import cataloglogo from "../../assets/Logos/sidebarLogos/catalog.png"
 import { getAllInvestments } from "../../network/Investments/page";
 import { useInvestment } from "../../context/Investment/investmentContext";
 import { verifyToken } from "../../network/Authentication/page";
+import { useLanguage } from "../../context/Language/loginContext";
+import translations from "../../utils/Json/translation.json"
+
 const Sidebar = () => {
 
+    const { language } = useLanguage();
     const [path, setpath] = useState("")
     const location = useLocation();
     const navigate = useNavigate();
@@ -88,14 +92,14 @@ const Sidebar = () => {
                                             <svg class="flex-shrink-0 w-5 h-5 text-white transition duration-75 dark:text-gray-400 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                                                 <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
                                             </svg>
-                                            <span class="flex-1 ms-3 whitespace-nowrap ">Dashboard</span>
+                                            <span class="flex-1 ms-3 whitespace-nowrap ">{translations.sideBar.heading1[language]}</span>
                                         </Link>
                                     ) : (
                                         <Link to="/dashboard" class="text-start flex  items-start p-2 text-gray-900 p-4 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                             <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                                                 <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
                                             </svg>
-                                            <span class="flex-1 ms-3 whitespace-nowrap ">Dashboard</span>
+                                            <span class="flex-1 ms-3 whitespace-nowrap ">{translations.sideBar.heading1[language]}</span>
                                         </Link>
                                     )}
                                 </li>
@@ -119,7 +123,7 @@ const Sidebar = () => {
                                                 >
                                                     <path d="M10 2a8 8 0 1 0 8 8 8.011 8.011 0 0 0-8-8Zm0 14a6 6 0 1 1 6-6 6.006 6.006 0 0 1-6 6Zm-1-10h2a1 1 0 0 1 1 1v3h2v2h-2v1h-2v-1H7v-2h2V7Zm2 3V8h-2v2h2Z" />
                                                 </svg>
-                                                <span class="flex-1 ms-3 whitespace-nowrap">Payouts Tracker</span>
+                                                <span class="flex-1 ms-3 whitespace-nowrap">{translations.sideBar.heading3[language]}</span>
                                             </Link>
                                         ) : (
                                             <Link
@@ -135,7 +139,7 @@ const Sidebar = () => {
                                                 >
                                                     <path d="M10 2a8 8 0 1 0 8 8 8.011 8.011 0 0 0-8-8Zm0 14a6 6 0 1 1 6-6 6.006 6.006 0 0 1-6 6Zm-1-10h2a1 1 0 0 1 1 1v3h2v2h-2v1h-2v-1H7v-2h2V7Zm2 3V8h-2v2h2Z" />
                                                 </svg>
-                                                <span class="flex-1 ms-3 whitespace-nowrap">Payouts Tracker</span>
+                                                <span class="flex-1 ms-3 whitespace-nowrap">{translations.sideBar.heading3[language]}</span>
                                             </Link>
                                         )}
                                     </li>
@@ -154,7 +158,7 @@ const Sidebar = () => {
                                             <path d="M3 4a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H4a1 1 0 0 1-1-1ZM4 9a1 1 0 0 0 0 2h8a1 1 0 1 0 0-2H4Zm-1 5a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1Z" />
                                         </svg>
 
-                                        <span class="flex-1 ms-3 whitespace-nowrap ">Catalogs</span>
+                                        <span class="flex-1 ms-3 whitespace-nowrap ">{translations.sideBar.heading2[language]}</span>
                                     </Link>
                                 ) : (
                                     <Link to="/catalogs" class=" rounded-lg my-5 hover:text-black text-start flex items-center p-4 text-gray-900  dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -168,7 +172,7 @@ const Sidebar = () => {
                                             <path d="M3 4a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H4a1 1 0 0 1-1-1ZM4 9a1 1 0 0 0 0 2h8a1 1 0 1 0 0-2H4Zm-1 5a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1Z" />
                                         </svg>
 
-                                        <span class="flex-1 ms-3 whitespace-nowrap">Catalogs</span>
+                                        <span class="flex-1 ms-3 whitespace-nowrap">{translations.sideBar.heading2[language]}</span>
                                     </Link>
                                 )}
                             </li>
@@ -189,7 +193,7 @@ const Sidebar = () => {
                                         >
                                             <path d="M10 2a6 6 0 0 0-6 6v4.586l-.707.707A1 1 0 0 0 4 15h12a1 1 0 0 0 .707-1.707l-.707-.707V8a6 6 0 0 0-6-6Zm-2.293 14a2 2 0 1 0 4.586 0H7.707Z" />
                                         </svg>
-                                        <span class="flex-1 ms-3 whitespace-nowrap">My Notifications</span>
+                                        <span class="flex-1 ms-3 whitespace-nowrap">{translations.sideBar.heading4[language]}</span>
                                     </Link>
                                 ) : (
                                     <Link
@@ -205,7 +209,7 @@ const Sidebar = () => {
                                         >
                                             <path d="M10 2a6 6 0 0 0-6 6v4.586l-.707.707A1 1 0 0 0 4 15h12a1 1 0 0 0 .707-1.707l-.707-.707V8a6 6 0 0 0-6-6Zm-2.293 14a2 2 0 1 0 4.586 0H7.707Z" />
                                         </svg>
-                                        <span class="flex-1 ms-3 whitespace-nowrap">My Notifications</span>
+                                        <span class="flex-1 ms-3 whitespace-nowrap">{translations.sideBar.heading4[language]}</span>
                                     </Link>
                                 )}
                             </li>
@@ -224,7 +228,7 @@ const Sidebar = () => {
                                         >
                                             <path d="M10 0a5 5 0 1 1-5 5A5 5 0 0 1 10 0Zm0 11c-4.418 0-8 2.239-8 5v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2c0-2.761-3.582-5-8-5Z" />
                                         </svg>
-                                        <span class="flex-1 ms-3 whitespace-nowrap">Profile & Settings</span>
+                                        <span class="flex-1 ms-3 whitespace-nowrap">{translations.sideBar.heading6[language]}</span>
                                     </Link>
                                 ) : (
                                     <Link
@@ -240,7 +244,7 @@ const Sidebar = () => {
                                         >
                                             <path d="M10 0a5 5 0 1 1-5 5A5 5 0 0 1 10 0Zm0 11c-4.418 0-8 2.239-8 5v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2c0-2.761-3.582-5-8-5Z" />
                                         </svg>
-                                        <span class="flex-1 ms-3 whitespace-nowrap">Profile & Settings</span>
+                                        <span class="flex-1 ms-3 whitespace-nowrap">{translations.sideBar.heading6[language]}</span>
                                     </Link>
                                 )}
                             </li>

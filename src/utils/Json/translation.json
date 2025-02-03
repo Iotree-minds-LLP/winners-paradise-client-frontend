@@ -149,6 +149,10 @@
         "heading5": {
             "english": "My Account",
             "kannada": "ನನ್ನ ಖಾತೆ"
+        },
+        "heading6": {
+            "english": "Profile & Settings",
+            "kannada": "Profile & Settings"
         }
     },
     "Catalog": {
