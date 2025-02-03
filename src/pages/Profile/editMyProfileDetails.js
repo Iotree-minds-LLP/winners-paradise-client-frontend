@@ -17,6 +17,7 @@ import { useLanguage } from "../../context/Language/loginContext";
 import { useToast } from "../../context/Toast/toastHook";
 import { goBack } from "../../utils/Functions/goBackScreen";
 import { AddAPhoto, DeleteForeverOutlined } from "@mui/icons-material";
+import translations from "../../utils/Json/translation.json"
 
 const EditCustomerProfile = () => {
 
@@ -33,7 +34,6 @@ const EditCustomerProfile = () => {
     const handleSuccessClick = (SuccessMessage) => {
         addToast(SuccessMessage, 'success');
     };
-
     const [ShowPhoneField, setShowPhoneField] = useState(true);
     const { language, setLanguage } = useLanguage();
     const tokenDetails = localStorage.getItem("tokenDetails");
@@ -150,7 +150,7 @@ const EditCustomerProfile = () => {
                 {/* Mobile Header */}
                 <div className="h-[60px] fixed top-100 z-10 w-full sm:hidden  bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row p-3">
                     <img src={backButton} onClick={goBack} className="w-8 h-8" alt="Back" />
-                    <p className="text-white font-semibold my-1">Update Personal details</p>
+                    <p className="text-white font-semibold my-1">{translations.registerModule.heading1[language]}</p>
                 </div>
 
                 {/* Main Content */}
@@ -159,14 +159,14 @@ const EditCustomerProfile = () => {
                     <div className="col-span-12 md:col-span-6 w-full order-1 md:order-2 md:px-20 mt-10 overflow-auto">
                         <div className="flex flex-row">
                             <p style={{ color: '#020065' }} className="mx-5 hidden sm:block text-start font-semibold text-3xl">
-                                Update Personal details
+                                {translations.registerModule.heading1[language]}
                             </p>
                         </div>
                         <form
                             onSubmit={handleSubmit(onSubmit)}
                             className="my-5 grid grid-cols-1 gap-4 md:mx:0 mx-5"
                         >
-                            <p className="text-md text-start text-gray-500">Upload Profile Image</p>
+                            <p className="text-md text-start text-gray-500">{translations.registerModule.profileImage[language]}</p>
 
                             <div className="flex flex-col items-center justify-center">
 
@@ -205,7 +205,7 @@ const EditCustomerProfile = () => {
                                             className="flex flex-col w-40 h-40 sm:w-40 sm:h-40  items-center justify-center cursor-pointer text-gray-400"
                                         >
                                             <AddAPhoto fontSize="large" />
-                                            <span className="text-sm">Upload Image</span>
+                                            <span className="text-sm">{translations.registerModule.profileImageField[language]}</span>
                                             <input
                                                 id="upload-image"
                                                 type="file"
@@ -223,48 +223,48 @@ const EditCustomerProfile = () => {
                             }
 
                             <TextField
-                                label="Full Name *"
+                                label={translations.registerModule.fullname_field[language]}
                                 variant="outlined"
                                 size="medium"
                                 fullWidth
                                 {...register('fullName', {
-                                    required: 'Full Name is required',
+                                    required: `${translations.validations.fullname_1[language]}`,
                                     minLength: {
                                         value: 3,
-                                        message: 'Full Name must be at least 3 characters long',
+                                        message: `${translations.validations.fullname_3[language]}`,
                                     },
                                     maxLength: {
                                         value: 30,
-                                        message: 'Full Name cannot exceed 30 characters',
+                                        message: `${translations.validations.fullname_4[language]}`,
                                     },
                                     validate: {
                                         noSpecialChars: (value) =>
-                                            /^[a-zA-Z\s]+$/.test(value) || 'Full Name must contain only alphabets',
+                                            /^[a-zA-Z\s]+$/.test(value) || `${translations.validations.fullname_2[language]}`,
                                     },
                                 })}
                                 error={!!errors.fullName}
                                 helperText={errors.fullName?.message}
                                 InputLabelProps={{
-                                    shrink: true, // Ensures the label stays at the top when value is present
+                                    shrink: true,
                                 }}
                             />
 
                             <TextField
-                                label="Phone Number"
+                                label={translations.registerModule.phone_field[language]}
                                 variant="outlined"
                                 disabled={true}
                                 size="medium"
                                 type="number"
                                 fullWidth
                                 {...register('phoneNumber', {
-                                    required: 'Phone number is required',
+                                    required: `${translations.validations.phoneField_1[language]}`,
                                     pattern: {
                                         value: /^[0-9]{10}$/,
-                                        message: 'Please enter a valid 10-digit phone number',
+                                        message: `${translations.validations.phoneField_2[language]}`,
                                     },
                                     pattern: {
                                         value: /^[9876][0-9]{9}$/,
-                                        message: `Invalid Phone Number`,
+                                        message: translations.validations.phoneField_3[language],
                                     },
                                 })}
                                 error={!!errors.phoneNumber}
@@ -303,20 +303,20 @@ const EditCustomerProfile = () => {
                             />
 
                             <TextField
-                                label="Email Id *"
+                                label={translations.registerModule.email_id[language]}
                                 variant="outlined"
                                 type="text"
                                 size="medium"
                                 fullWidth
                                 {...register('email', {
-                                    required: 'Email is required',
+                                    required: `${translations.validations.email_1[language]}`,
                                     maxLength: {
                                         value: 40,
-                                        message: 'Email cannot exceed 30 characters',
+                                        message: `${translations.validations.email_3[language]}`,
                                     },
                                     pattern: {
                                         value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                                        message: 'Invalid email address',
+                                        message: `${translations.validations.email_2[language]}`,
                                     },
                                 })}
                                 error={!!errors.email}
@@ -328,30 +328,30 @@ const EditCustomerProfile = () => {
 
                             <TextField
                                 variant="outlined"
-                                label="Date Of Birth"
+                                label={translations.registerModule.data_of_birth[language]}
                                 type="date"
                                 size="medium"
                                 {...register('dateOfBirth', {
-                                    required: 'Date of Birth is required',
+                                    required: `${translations.validations.dob_1[language]}`,
                                     validate: {
                                         notFutureDate: (value) => {
                                             const today = new Date();
                                             const selectedDate = new Date(value);
-                                            return selectedDate <= today || 'Date of Birth cannot be in the future';
+                                            return selectedDate <= today || `${translations.validations.dob[language]}`;
                                         },
                                         minimumAge: (value) => {
                                             const today = new Date();
                                             const selectedDate = new Date(value);
                                             const minDate = new Date();
                                             minDate.setFullYear(today.getFullYear() - 18); // At least 18 years old
-                                            return selectedDate <= minDate || 'You must be at least 18 years old';
+                                            return selectedDate <= minDate || `${translations.validations.dob_2[language]}`;
                                         },
                                         withinLast100Years: (value) => {
                                             const today = new Date();
                                             const selectedDate = new Date(value);
                                             const maxDate = new Date();
                                             maxDate.setFullYear(today.getFullYear() - 100); // Not older than 100 years
-                                            return selectedDate >= maxDate || 'Date of Birth must be within the last 100 years';
+                                            return selectedDate >= maxDate || `${translations.validations.dob_3[language]}`;
                                         },
                                     },
                                 })}
@@ -363,107 +363,98 @@ const EditCustomerProfile = () => {
                             />
 
                             <TextField
-                                label="Residential Address *"
+                                label={translations.registerModule.Residential_addressfield[language]}
                                 variant="outlined"
                                 size="medium"
                                 fullWidth
                                 {...register('address', {
-                                    required: 'Address is required',
-                                    minLength: {
-                                        value: 3,
-                                        message: 'Residential Address must be at least 3 characters long',
-                                    },
-                                    maxLength: {
-                                        value: 30,
-                                        message: 'Residential Address cannot exceed 30 characters',
-                                    },
+                                    required: `${translations.validations.address_1[language]}`,
                                     pattern: {
                                         value: /^[a-zA-Z0-9\s,.-]+$/,
-                                        message: 'Only letters, numbers, spaces, commas, periods, and hyphens are allowed',
+                                        message: `${translations.validations.address_2[language]}`,
                                     },
                                 })}
                                 error={!!errors.address}
                                 helperText={errors.address?.message}
                                 InputLabelProps={{
-                                    shrink: true, // Ensures the label stays at the top when value is present
+                                    shrink: true,
                                 }}
                             />
 
                             <TextField
-                                label="State *"
+                                label={translations.registerModule.statefield[language]}
                                 variant="outlined"
                                 size="medium"
                                 fullWidth
                                 {...register('state', {
-                                    required: 'State is required',
+                                    required: `${translations.validations.state_1[language]}`,
                                     minLength: {
                                         value: 3,
-                                        message: 'State must be at least 3 characters long',
+                                        message: `${translations.validations.state_2[language]}`,
                                     },
                                     maxLength: {
-                                        value: 30,
-                                        message: 'State cannot exceed 30 characters',
+                                        value: 40,
+                                        message: `${translations.validations.state_3[language]}`,
                                     },
                                     validate: {
                                         noSpecialChars: (value) =>
-                                            /^[a-zA-Z\s]+$/.test(value) || 'State must contain only alphabets',
+                                            /^[a-zA-Z\s]+$/.test(value) || `${translations.validations.state_4[language]}`,
                                     },
                                 })}
                                 error={!!errors.state}
                                 helperText={errors.state?.message}
                                 InputLabelProps={{
-                                    shrink: true, // Ensures the label stays at the top when value is present
+                                    shrink: true,
                                 }}
                             />
 
                             <TextField
-                                label="District *"
+                                label={translations.registerModule.Destrictfield[language]}
                                 variant="outlined"
                                 size="medium"
                                 fullWidth
                                 {...register('district', {
-                                    required: 'District is required',
+                                    required: `${translations.validations.district_1[language]}`,
                                     minLength: {
                                         value: 3,
-                                        message: 'District must be at least 3 characters long',
+                                        message: `${translations.validations.district_2[language]}`,
                                     },
                                     maxLength: {
-                                        value: 30,
-                                        message: 'District cannot exceed 30 characters',
+                                        value: 40,
+                                        message: `${translations.validations.district_3[language]}`,
                                     },
                                     validate: {
                                         noSpecialChars: (value) =>
-                                            /^[a-zA-Z\s]+$/.test(value) || 'District must contain only alphabets',
+                                            /^[a-zA-Z\s]+$/.test(value) || `${translations.validations.district_4[language]}`,
                                     },
                                 })}
                                 error={!!errors.district}
                                 helperText={errors.district?.message}
                                 InputLabelProps={{
-                                    shrink: true, // Ensures the label stays at the top when value is present
+                                    shrink: true,
                                 }}
                             />
 
 
 
-
                             <TextField
-                                label="City *"
+                                label={translations.registerModule.cityfield[language]}
                                 variant="outlined"
                                 size="medium"
                                 fullWidth
                                 {...register('city', {
-                                    required: 'City is required',
+                                    required: `${translations.validations.city_1[language]}`,
                                     minLength: {
                                         value: 3,
-                                        message: 'City must be at least 3 characters long',
+                                        message: `${translations.validations.city_2[language]}`,
                                     },
                                     maxLength: {
-                                        value: 30,
-                                        message: 'City cannot exceed 30 characters',
+                                        value: 40,
+                                        message: `${translations.validations.city_3[language]}`,
                                     },
                                     validate: {
                                         noSpecialChars: (value) =>
-                                            /^[a-zA-Z\s]+$/.test(value) || 'City must contain only alphabets',
+                                            /^[a-zA-Z\s]+$/.test(value) || `${translations.validations.city_4[language]}`,
                                     },
                                 })}
                                 error={!!errors.city}
@@ -474,7 +465,7 @@ const EditCustomerProfile = () => {
                             />
 
                             <TextField
-                                label="Alternative Phone Number"
+                                label={translations.registerModule.altno_field[language]}
                                 variant="outlined"
                                 size="medium"
                                 type="number"
@@ -482,7 +473,7 @@ const EditCustomerProfile = () => {
                                 {...register('alternatePhoneNumber', {
                                     pattern: {
                                         value: /^[9876][0-9]{9}$/,
-                                        message: `Invalid Phone Number`,
+                                        message: `${translations.validations.phoneField_3[language]}`,
                                     },
                                 })}
                                 error={!!errors.alternatePhoneNumber}
@@ -511,6 +502,9 @@ const EditCustomerProfile = () => {
                                         WebkitAppearance: "none", // Removes spinner in Chrome, Safari
                                         margin: 0,
                                     },
+                                }}
+                                InputLabelProps={{
+                                    shrink: true,
                                 }}
                             />
 
@@ -556,7 +550,8 @@ const EditCustomerProfile = () => {
                                             />
                                         </svg>
                                     ) : (
-                                        "Update"
+                                        `${translations.registerModule.updateButton[language]}`
+
                                     )}
                                 </button>
                             </div>

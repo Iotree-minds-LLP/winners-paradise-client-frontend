@@ -66,6 +66,10 @@
             "english": "Submit Personal details",
             "kannada": "ವೈಯಕ್ತಿಕ ವಿವರಗಳನ್ನು ಸಲ್ಲಿಸಿ"
         },
+        "heading1": {
+            "english": "Update Personal Details",
+            "kannada": "ವೈಯಕ್ತಿಕ ವಿವರಗಳನ್ನು ನವೀಕರಿಸಿ"
+        },
         "fullname_field": {
             "english": "Full Name *",
             "kannada": "ಪೂರ್ಣ ಹೆಸರು *"
@@ -121,6 +125,10 @@
         "isConsentMessage": {
             "english": "Investments are subject to the market conditions and risks associated with the Indian stock market.",
             "kannada": "Investments are subject to the market conditions and risks associated with the Indian stock market."
+        },
+        "updateButton": {
+            "english": "Update",
+            "kannada": "Update"
         }
     },
     "bankModule": {
