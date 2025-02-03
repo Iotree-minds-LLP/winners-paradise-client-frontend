@@ -36,7 +36,7 @@ const BankDetails = () => {
     const [UpdateBankDetails, setUpdateBankDetails] = useState(false);
     const [showOtpField, setShowOtpField] = useState(false); // State to toggle OTP field
     const [otp, setOtp] = useState(""); // State to store OTP
-
+    const [ConnectedBankHolder, setConnectedBankHolder] = useState("")
     const watchbankAccountNumber = watch("bank_acc_no");
     const watchbankName = watch("bank_name");
     const watchbankIfsc = watch("bank_Ifsc_code");
@@ -63,6 +63,7 @@ const BankDetails = () => {
                     setValue("bank_name", resp.data.data.customer.bank_name);
                     setValue("bank_Ifsc_code", resp.data.data.customer.bank_Ifsc_code);
                     setValue("bank_branch_name", resp.data.data.customer.bank_branch_name);
+                    setConnectedBankHolder(resp?.data?.data?.customer?.connected_bank_account_holder_name)
                     if (resp.data.data.customer.bank_acc_no) {
                         setUpdateBankDetails(true);
                     }
@@ -141,12 +142,27 @@ const BankDetails = () => {
                     <p className="text-white font-semibold my-1">{UpdateBankDetails && "Update"}{translations.BankAccount.heading[language]}</p>
                 </div>
 
+
+
                 <div className="h-full bg-white grid grid-cols-12 md:grid-cols-12 md:overflow-hidden md:p-0 sm:p-10">
                     <div className="col-span-12 md:col-span-6 w-full order-1 md:order-2 md:px-20 mt-10 overflow-auto">
                         <div className="flex flex-row">
-                            <p style={{ color: '#020065' }} className="mx-5 hidden sm:block text-start font-semibold text-3xl">
-                                {UpdateBankDetails && "Update"} {translations.BankAccount.heading[language]}
-                            </p>
+                            <div>
+                                <p style={{ color: '#020065' }} className="mx-5 hidden sm:block text-start font-semibold text-3xl">
+                                    {UpdateBankDetails && "Update"} {translations.BankAccount.heading[language]}
+
+                                </p>
+                                
+                                {ConnectedBankHolder &&
+                                    <div className="text-xs text-start mx-5 my-3">
+                                        <p>Connected Bank Account Holder Name</p>
+                                        <p>{ConnectedBankHolder ? ConnectedBankHolder : ""}</p>
+                                    </div>
+                                }
+
+
+                            </div>
+
                         </div>
 
                         <form
