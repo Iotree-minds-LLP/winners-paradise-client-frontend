@@ -117,6 +117,7 @@ const EditCustomerProfile = () => {
     const onformSubmit2 = async (id) => {
         if (id) {
             const resp = await getCustomerById(id);
+            console.log(resp, "REsp")
             if (resp.data.status === 200) {
                 setCustomerDetails(resp?.data?.data?.customer);
                 setValue("fullName", resp?.data?.data?.customer?.name);
@@ -181,7 +182,7 @@ const EditCustomerProfile = () => {
                                                 <img
                                                     src={image}
                                                     alt="Uploaded"
-                                                    className="object-cover w-full h-full rounded-full w-40 h-40 sm:w-40 sm:h-40 "
+                                                    className="object-cover rounded-full w-40 h-40 sm:w-40 sm:h-40 "
                                                 />
 
                                                 {/* Overlay */}
