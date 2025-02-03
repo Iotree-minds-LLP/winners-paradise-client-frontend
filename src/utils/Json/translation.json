@@ -555,6 +555,12 @@
                 "english": "Please capture cheque image before continuing",
                 "kannada": "Please capture cheque image before continuing"
             }
+        },
+        "selfieValidations": {
+            "selfie": {
+                "english": "Please take your selfie to continue",
+                "kannada": "Please take your selfie to continue"
+            }
         }
     },
     "logoHeading": {
