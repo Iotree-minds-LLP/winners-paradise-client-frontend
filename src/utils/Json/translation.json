@@ -549,6 +549,12 @@
                 "english": "Please capture Pan Card",
                 "kannada": "Please capture Pan Card"
             }
+        },
+        "chequeValidations": {
+            "cheque": {
+                "english": "Please capture cheque image before continuing",
+                "kannada": "Please capture cheque image before continuing"
+            }
         }
     },
     "logoHeading": {

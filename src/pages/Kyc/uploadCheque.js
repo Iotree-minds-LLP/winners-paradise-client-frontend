@@ -10,8 +10,12 @@ import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
 import { CameraAlt, CancelOutlined, FileUpload } from "@mui/icons-material";
 import { goBack } from "../../utils/Functions/goBackScreen";
+import { useLanguage } from "../../context/Language/loginContext";
+import translations from "../../utils/Json/translation.json"
 
 const ChequeUpload = () => {
+
+    const { language, setLanguage } = useLanguage();
     const [frontImage, setFrontImage] = useState(null);
     const [backImagePreview, setBackImagePreview] = useState(null);
     const [showCamera, setShowCamera] = useState(false);
@@ -168,7 +172,7 @@ const ChequeUpload = () => {
         setisLoading(true);
 
         if (!frontImage) {
-            setErrorMessage("Please capture cheque image before continuing.");
+            setErrorMessage(translations.validations.chequeValidations.cheque[language]);
             setisLoading(false);
             return;
         }
@@ -181,14 +185,14 @@ const ChequeUpload = () => {
             const res = await creteCustomerKycRequest(payload, customerDetails._id);
             if (res?.data?.status === 200) {
                 setisLoading(false);
-                handleSuccessClick("KYC Request Submitted Successfully");
+                handleSuccessClick(translations.global.kycRequestSuccess[language]);
                 navigate("/Kyc-status")
             } else {
                 setisLoading(false);
                 setErrorMessage(res.data.error);
             }
         } catch (error) {
-            setErrorMessage("Failed to submit KYC Request");
+            setErrorMessage(translations.global.kycRequestSentError[language]);
             setisLoading(false);
         }
     };
@@ -213,7 +217,7 @@ const ChequeUpload = () => {
                                 className="w-8 h-8"
                                 alt="Back"
                             />
-                            <p className="text-white font-semibold my-1">Upload Cancelled Cheque</p>
+                            <p className="text-white font-semibold my-1">{translations.Kyc.cheque.heading[language]}</p>
                         </div>
                     </div>
 
@@ -221,7 +225,7 @@ const ChequeUpload = () => {
                         <div className="flex flex-row mx-4 gap-4 mt-14">
                             <img onClick={goBack} src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" className="w-auto h-8" alt="Background" />
                             <h1 className="text-start font-bold text-2xl text-black hidden md:block">
-                                Upload Cancelled Cheque
+                                {translations.Kyc.cheque.heading[language]}
                             </h1>
                         </div>
                     </div>
@@ -249,8 +253,8 @@ const ChequeUpload = () => {
                             <div className="mt-4 flex flex-row items-center justify-between w-full px-4">
 
                                 <div className="flex flex-col text-start">
-                                    <p className="text-sm">Upload</p>
-                                    <p className="text-lg font-bold">Cancelled Cheque</p>
+                                    <p className="text-sm">{translations.Kyc.cheque.upload[language]}</p>
+                                    <p className="text-lg font-bold">{translations.Kyc.cheque.heading1[language]}</p>
                                 </div>
 
                                 {!((cancelledCheque === "REVIEW PENDING" || cancelledCheque === "CLEARED")) && (
@@ -274,7 +278,7 @@ const ChequeUpload = () => {
 
                     {locationStateDetails?.is_blank_cheque_verified === "REJECTED" && (
                         <div className="p-3 w-full md:w-1/3 text-start rounded-lg md:mx-5 mb-20 md:mb-0  " style={{ background: "#F1F1FF" }}>
-                            <p className="text-sm" style={{ color: "#020065" }}>Reason For Rejection</p>
+                            <p className="text-sm" style={{ color: "#020065" }}>{translations.global.reasonForRejection[language]}</p>
                             <p className="text-lg text-black">{locationStateDetails.reason_for_rejection}</p>
                         </div>
                     )}
@@ -305,7 +309,7 @@ const ChequeUpload = () => {
                                         />
                                     </svg>
                                 ) : (
-                                    "Save & Continue"
+                                    `${translations.global.button[language]}`
                                 )}
                             </button>
                         </div>
@@ -349,7 +353,7 @@ const ChequeUpload = () => {
                                             />
                                         </svg>
                                     ) : (
-                                        "Save & Continue"
+                                        `${translations.global.button[language]}`
                                     )}
                                 </button>
                             </div>
@@ -433,13 +437,13 @@ const ChequeUpload = () => {
                             onClick={capturePhoto}
                             className="px-6 py-2  bg-gradient-to-l from-[#020065] to-[#0400CB] text-white font-bold rounded-full"
                         >
-                            Capture
+                            {translations.global.capture[language]}
                         </button>
                         <button
                             onClick={stopCamera}
                             className="px-6 py-2 bg-gray-500 text-white font-bold rounded-full"
                         >
-                            Cancel
+                            {translations.global.cancel[language]}
                         </button>
                     </div>
                 </div>
@@ -454,7 +458,7 @@ const ChequeUpload = () => {
                         {/* Header */}
                         <div className="flex justify-between">
 
-                            <p className="text-lg font-semibold text-center mb-6">Choose or take a picture</p>
+                            <p className="text-lg font-semibold text-center mb-6">{translations.global.chooseOption[language]}</p>
                             <CancelOutlined onClick={() => setshowOptions(false)}></CancelOutlined>
                             {/* Options */}
                         </div>
@@ -465,7 +469,7 @@ const ChequeUpload = () => {
                                 className="w-full p-4 flex items-center gap-4 border border-gray-100 bg-white text-black rounded-lg hover:bg-gray-100  transition"
                             >
                                 <CameraAlt></CameraAlt>
-                                <p className="font-medium">Use Camera</p>
+                                <p className="font-medium">{translations.global.useCamera[language]}</p>
                             </button>
 
                             {/* Upload from Files Option */}
@@ -474,7 +478,7 @@ const ChequeUpload = () => {
                                 className="w-full p-4 flex items-center gap-4 bg-white border border-gray-100 hover:bg-gray-100 text-black rounded-lg transition cursor-pointer"
                             >
                                 <FileUpload></FileUpload>
-                                <p className="font-medium">Upload from Files</p>
+                                <p className="font-medium">{translations.Kyc.cheque.upload[language]}</p>
                                 <input
                                     id="file-upload"
                                     type="file"
@@ -483,7 +487,6 @@ const ChequeUpload = () => {
                                     onChange={handleFileUpload}
                                 />
                             </label>
-
 
 
                         </div>
