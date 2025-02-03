@@ -405,6 +405,72 @@
             }
         }
     },
+    "LanguagePreference": {
+        "heading": {
+            "english": "Language Preference",
+            "kannada": "Language Preference"
+        },
+        "heading1": {
+            "english": "Select preferred language",
+            "kannada": "Select preferred language"
+        },
+        "saveButton": {
+            "english": "Save & Continue",
+            "kannada": "Save & Continue"
+        },
+        "save": {
+            "english": "Save",
+            "kannada": "Save"
+        }
+    },
+    "BankAccount": {
+        "bankAccountNumber": {
+            "english": "Bank Account Number *",
+            "kannada": "Bank Account Number *"
+        },
+        "heading": {
+            "english": "Bank Account Details *",
+            "kannada": "Bank Account Details *"
+        },
+        "bankName": {
+            "english": "Bank Name *",
+            "kannada": "Bank Name *"
+        },
+        "ifscCode": {
+            "english": "IFSC Code *",
+            "kannada": "IFSC Code *"
+        },
+        "bankBranchName": {
+            "english": "Bank Branch Name *",
+            "kannada": "Bank Branch Name *"
+        },
+        "enterOtp": {
+            "english": "Enter OTP *",
+            "kannada": "Enter OTP *"
+        },
+        "resentOtp": {
+            "english": "Resend OTP *",
+            "kannada": "Resend OTP *"
+        },
+        "sendOtpButton": {
+            "english": "Send OTP",
+            "kannada": "Send OTP"
+        },
+        "updateButton": {
+            "english": "Update",
+            "kannada": "Update"
+        },
+        "saveButton": {
+            "english": "Save & Continue",
+            "kannada": "Save & Continue"
+        }
+    },
+    "Nominee": {
+        "heading": {
+            "english": "Add Nominee",
+            "kannada": "Add Nominee"
+        }
+    },
     "validations": {
         "phoneField_1": {
             "english": "Phone number is required",
@@ -560,6 +626,56 @@
             "selfie": {
                 "english": "Please take your selfie to continue",
                 "kannada": "Please take your selfie to continue"
+            }
+        },
+        "bankDetails": {
+            "bankAccount": {
+                "english": "Bank Account Number is required",
+                "kannada": "Bank Account Number is required"
+            },
+            "bankAccount1": {
+                "english": "Enter a valid account number (9-18 digits)",
+                "kannada": "Enter a valid account number (9-18 digits)"
+            },
+            "bankName": {
+                "english": "Please enter bank name",
+                "kannada": "Please enter bank name"
+            },
+            "bankName1": {
+                "english": "Bank name must be at least 3 characters",
+                "kannada": "Bank name must be at least 3 characters"
+            },
+            "bankName2": {
+                "english": "Bank name cannot exceed 40 characters",
+                "kannada": "Bank name cannot exceed 40 characters"
+            },
+            "bankName3": {
+                "english": "Only letters and spaces are allowed",
+                "kannada": "Only letters and spaces are allowed"
+            },
+            "ifscCode": {
+                "english": "IFSC Code is required",
+                "kannada": "IFSC Code is required"
+            },
+            "ifscCode1": {
+                "english": "Enter a valid IFSC code (e.g., SBIN0001234)",
+                "kannada": "Enter a valid IFSC code (e.g., SBIN0001234)"
+            },
+            "bankBranch": {
+                "english": "Bank Branch Name is required",
+                "kannada": "Bank Branch Name is required"
+            },
+            "bankBranch1": {
+                "english": "Branch name must be at least 3 characters",
+                "kannada": "Branch name must be at least 3 characters"
+            },
+            "bankBranch2": {
+                "english": "Branch name cannot exceed 40 characters",
+                "kannada": "Branch name cannot exceed 40 characters"
+            },
+            "bankBranch3": {
+                "english": "Only letters and spaces are allowed",
+                "kannada": "Only letters and spaces are allowed"
             }
         }
     },

@@ -15,6 +15,7 @@ import { goBack } from "../../utils/Functions/goBackScreen";
 import { useToast } from "../../context/Toast/toastHook";
 
 const LanguagePreference = () => {
+
     const { language, setLanguage } = useLanguage();
     const [response, setResponse] = useState([]);
     const [customerDetailsFromAPI, setCustomerDetailsFromAPI] = useState([]);
@@ -26,7 +27,6 @@ const LanguagePreference = () => {
     const handleChange = (event) => {
         setLanguage(event.target.value);
         setSelectedValue(event.target.value);
-        console.log('Selected Language:', event.target.value);
     };
 
     const navigate = useNavigate();
@@ -105,7 +105,7 @@ const LanguagePreference = () => {
                     <div className="h-[60px] sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row justify-between p-4">
                         <div className="flex flex-row">
                             <img src={backButton} onClick={goBack} className="w-8 h-8" alt="Back" />
-                            <p className="text-white font-semibold my-1">Language Preference</p>
+                            <p className="text-white font-semibold my-1">{translations.LanguagePreference.heading[language]}</p>
                         </div>
                         {/* <div className="text-white" onClick={toggleModal}>
                             Logout
@@ -115,7 +115,7 @@ const LanguagePreference = () => {
                     <div className="flex justify-between hidden md:block">
                         <div className="flex flex-row mx-4 gap-4 mt-14">
                             <img onClick={goBack} src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" className="w-auto h-8" alt="Background" />
-                            <h1 className="text-start font-bold text-2xl text-black hidden md:block">Language Preference</h1>
+                            <h1 className="text-start font-bold text-2xl text-black hidden md:block">{translations.LanguagePreference.heading[language]}</h1>
                         </div>
                         {/* <p className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer	" onClick={toggleModal}>Logout</p> */}
                     </div>
@@ -129,7 +129,7 @@ const LanguagePreference = () => {
                                     <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '500', fontSize: '14px' }}>
                                         {translations.loginScreen.sendOtpScreen.preference[language]}
                                     </p>
-                                    <p className="hidden sm:block cursor-pointer" onClick={onSubmit}>Save</p>
+                                    <p className="hidden sm:block cursor-pointer" onClick={onSubmit}>{translations.LanguagePreference.save[language]}</p>
                                 </div>
 
                                 <FormControl component="fieldset" style={{ marginTop: '16px' }}>
@@ -296,7 +296,7 @@ const LanguagePreference = () => {
                                         />
                                     </svg>
                                 ) : (
-                                    "Save And Continue"
+                                    `${translations.LanguagePreference.saveButton[language]}`
                                 )}
                             </button>
                         </div>
