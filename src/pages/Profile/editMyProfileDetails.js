@@ -47,13 +47,12 @@ const EditCustomerProfile = () => {
     const [image, setImage] = useState(null);
     const [ImageError, setImageError] = useState("")
 
-    // Convert selected file to Base64
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
         if (file && (file.type === "image/jpeg" || file.type === "image/png" || file.type === "image/jpg")) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                setImage(reader.result); // Set Base64 image
+                setImage(reader.result);
             };
             reader.readAsDataURL(file);
             setImageError("")
@@ -62,7 +61,6 @@ const EditCustomerProfile = () => {
         }
     };
 
-    // Remove the image
     const handleRemoveImage = () => {
         setImage(null);
     };
@@ -119,7 +117,6 @@ const EditCustomerProfile = () => {
     const onformSubmit2 = async (id) => {
         if (id) {
             const resp = await getCustomerById(id);
-            console.log(resp, "Response")
             if (resp.data.status === 200) {
                 setCustomerDetails(resp?.data?.data?.customer);
                 setValue("fullName", resp?.data?.data?.customer?.name);
@@ -139,9 +136,6 @@ const EditCustomerProfile = () => {
 
                 if (resp?.data?.data?.customer?.profile_image) {
                     setImage(resp?.data?.data?.customer?.profile_image)
-                }
-                else {
-                    setImage("https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=")
                 }
 
             }

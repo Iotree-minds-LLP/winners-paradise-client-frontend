@@ -126,7 +126,14 @@ const DashboardPage = () => {
                                     alt="User Avatar"
                                     sx={{ width: 30, height: 30, bgcolor: "primary.main" }} // Matches the size and alignment of bellIcon
                                 >
-                                    <p className="text-sm"> {CustomerDetails?.name?.charAt(0) || "U"}</p>
+                                    {CustomerDetails.profile_image ?
+                                        (
+                                            <img className="text-sm" src={CustomerDetails?.profile_image}></img>
+                                        )
+                                        : (
+                                            <p className="text-sm"> {CustomerDetails?.name?.charAt(0) || "U"}</p>
+                                        )
+                                    }
                                 </Avatar>
                             </Link>
                         </div>
@@ -144,7 +151,14 @@ const DashboardPage = () => {
 
                                 sx={{ width: 40, height: 40, bgcolor: "primary.main" }} // Adjust size as needed
                             >
-                                {CustomerDetails?.name?.charAt(0) || "U"}
+                                {CustomerDetails.profile_image ?
+                                    (
+                                        <img className="text-sm" src={CustomerDetails?.profile_image}></img>
+                                    )
+                                    : (
+                                        <p className="text-sm"> {CustomerDetails?.name?.charAt(0) || "U"}</p>
+                                    )
+                                }
                             </Avatar>
                         </div>
                     </div>
