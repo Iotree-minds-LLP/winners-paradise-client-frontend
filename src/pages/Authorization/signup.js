@@ -171,7 +171,7 @@ const SignupPage = () => {
                             onSubmit={handleSubmit(onSubmit)}
                             className="my-5 grid grid-cols-1 gap-4 md:mx:0 mx-5 py-3"
                         >
-                            <p className="text-md text-start text-gray-500">Upload Profile Image</p>
+                            <p className="text-md text-start text-gray-500">{translations.registerModule.profileImage[language]}</p>
 
                             <div className="flex flex-col items-center justify-center">
                                 {/* Label for Image Upload */}
@@ -211,7 +211,7 @@ const SignupPage = () => {
                                             className="flex flex-col w-40 h-40 sm:w-40 sm:h-40  items-center justify-center cursor-pointer text-gray-400"
                                         >
                                             <AddAPhoto fontSize="large" />
-                                            <span className="text-sm">Upload Image</span>
+                                            <span className="text-sm">{translations.registerModule.profileImageField[language]}</span>
                                             <input
                                                 id="upload-image"
                                                 type="file"
@@ -267,8 +267,7 @@ const SignupPage = () => {
                                     },
                                     pattern: {
                                         value: /^[9876][0-9]{9}$/,
-                                        message: `Invalid Phone
-                                         Number`,
+                                        message: translations.validations.phoneField_3[language],
                                     },
                                 })}
                                 error={!!errors.phoneNumber}
@@ -300,11 +299,11 @@ const SignupPage = () => {
                                     required: `${translations.validations.email_1[language]}`,
                                     maxLength: {
                                         value: 40,
-                                        message: 'Email cannot exceed 40 characters',
+                                        message: `${translations.validations.email_3[language]}`,
                                     },
                                     pattern: {
                                         value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                                        message: 'Invalid email address',
+                                        message: `${translations.validations.email_2[language]}`,
                                     },
                                 })}
                                 error={!!errors.email}
@@ -317,26 +316,26 @@ const SignupPage = () => {
                                 type="date"
                                 size="medium"
                                 {...register('dateOfBirth', {
-                                    required: 'Date of Birth is required',
+                                    required: `${translations.validations.dob_1[language]}`,
                                     validate: {
                                         notFutureDate: (value) => {
                                             const today = new Date();
                                             const selectedDate = new Date(value);
-                                            return selectedDate <= today || 'Date of Birth cannot be in the future';
+                                            return selectedDate <= today || `${translations.validations.dob[language]}`;
                                         },
                                         minimumAge: (value) => {
                                             const today = new Date();
                                             const selectedDate = new Date(value);
                                             const minDate = new Date();
-                                            minDate.setFullYear(today.getFullYear() - 18); // At least 18 years old
-                                            return selectedDate <= minDate || 'You must be at least 18 years old';
+                                            minDate.setFullYear(today.getFullYear() - 18);
+                                            return selectedDate <= minDate || `${translations.validations.dob_2[language]}`;
                                         },
                                         withinLast100Years: (value) => {
                                             const today = new Date();
                                             const selectedDate = new Date(value);
                                             const maxDate = new Date();
-                                            maxDate.setFullYear(today.getFullYear() - 100); // Not older than 100 years
-                                            return selectedDate >= maxDate || 'Date of Birth must be within the last 100 years';
+                                            maxDate.setFullYear(today.getFullYear() - 100);
+                                            return selectedDate >= maxDate || `${translations.validations.dob_3[language]}`;
                                         },
                                     },
                                 })}
@@ -354,10 +353,10 @@ const SignupPage = () => {
                                 size="medium"
                                 fullWidth
                                 {...register('address', {
-                                    required: 'Address is required',
+                                    required: `${translations.validations.address_1[language]}`,
                                     pattern: {
                                         value: /^[a-zA-Z0-9\s,.-]+$/,
-                                        message: 'Only letters, numbers, spaces, commas, periods, and hyphens are allowed',
+                                        message: `${translations.validations.address_2[language]}`,
                                     },
                                 })}
                                 error={!!errors.address}
@@ -371,18 +370,18 @@ const SignupPage = () => {
                                 size="medium"
                                 fullWidth
                                 {...register('state', {
-                                    required: 'State is required',
+                                    required: `${translations.validations.state_1[language]}`,
                                     minLength: {
                                         value: 3,
-                                        message: 'State must be at least 3 characters long',
+                                        message: `${translations.validations.state_2[language]}`,
                                     },
                                     maxLength: {
                                         value: 40,
-                                        message: 'State cannot exceed 40 characters',
+                                        message: `${translations.validations.state_3[language]}`,
                                     },
                                     validate: {
                                         noSpecialChars: (value) =>
-                                            /^[a-zA-Z\s]+$/.test(value) || 'State must contain only alphabets',
+                                            /^[a-zA-Z\s]+$/.test(value) || `${translations.validations.state_4[language]}`,
                                     },
                                 })}
                                 error={!!errors.state}
@@ -395,18 +394,18 @@ const SignupPage = () => {
                                 size="medium"
                                 fullWidth
                                 {...register('district', {
-                                    required: 'District is required',
+                                    required: `${translations.validations.district_1[language]}`,
                                     minLength: {
                                         value: 3,
-                                        message: 'District must be at least 3 characters long',
+                                        message: `${translations.validations.district_2[language]}`,
                                     },
                                     maxLength: {
                                         value: 40,
-                                        message: 'District cannot exceed 40 characters',
+                                        message: `${translations.validations.district_3[language]}`,
                                     },
                                     validate: {
                                         noSpecialChars: (value) =>
-                                            /^[a-zA-Z\s]+$/.test(value) || 'District must contain only alphabets',
+                                            /^[a-zA-Z\s]+$/.test(value) || `${translations.validations.district_4[language]}`,
                                     },
                                 })}
                                 error={!!errors.district}
@@ -419,18 +418,18 @@ const SignupPage = () => {
                                 size="medium"
                                 fullWidth
                                 {...register('city', {
-                                    required: 'City is required',
+                                    required: `${translations.validations.city_1[language]}`,
                                     minLength: {
                                         value: 3,
-                                        message: 'City must be at least 3 characters long',
+                                        message: `${translations.validations.city_2[language]}`,
                                     },
                                     maxLength: {
                                         value: 40,
-                                        message: 'City cannot exceed 40 characters',
+                                        message: `${translations.validations.city_3[language]}`,
                                     },
                                     validate: {
                                         noSpecialChars: (value) =>
-                                            /^[a-zA-Z\s]+$/.test(value) || 'City must contain only alphabets',
+                                            /^[a-zA-Z\s]+$/.test(value) || `${translations.validations.city_4[language]}`,
                                     },
                                 })}
                                 error={!!errors.city}
@@ -446,7 +445,7 @@ const SignupPage = () => {
                                 {...register('alternatePhoneNumber', {
                                     pattern: {
                                         value: /^[9876][0-9]{9}$/,
-                                        message: `Invalid Phone Number`,
+                                        message: `${translations.validations.phoneField_3[language]}`,
                                     },
                                 })}
                                 error={!!errors.alternatePhoneNumber}

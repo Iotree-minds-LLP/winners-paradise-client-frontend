@@ -50,6 +50,14 @@
             "verifyOTPButton": {
                 "english": "Verify OTP",
                 "kannada": "ಒಟಿಪಿ ಪರಿಶೀಲಿಸಿ"
+            },
+            "confirm": {
+                "english": "Confirm",
+                "kannada": "Confirm"
+            },
+            "changePhoneNumber": {
+                "english": "Change Phone Number",
+                "kannada": "Change Phone Number"
             }
         }
     },
@@ -101,6 +109,18 @@
         "continue_btn": {
             "english": "Continue",
             "kannada": "ಮುಂದುವರಿಸಿ"
+        },
+        "profileImage": {
+            "english": "Upload Profile Image",
+            "kannada": "Upload Profile Image"
+        },
+        "profileImageField": {
+            "english": "Upload Image",
+            "kannada": "Upload Image"
+        },
+        "isConsentMessage": {
+            "english": "Investments are subject to the market conditions and risks associated with the Indian stock market.",
+            "kannada": "Investments are subject to the market conditions and risks associated with the Indian stock market."
         }
     },
     "bankModule": {
@@ -172,6 +192,10 @@
             "english": "Please enter a valid 10-digit phone number",
             "kannada": "ದಯವಿಟ್ಟು 10-ಅಂಕಿಯ ಸರಿಯಾದ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ"
         },
+        "phoneField_3": {
+            "english": "Invalid Phone Number",
+            "kannada": "Invalid Phone Number"
+        },
         "fullname_1": {
             "english": "Full Name is required",
             "kannada": "ದಯವಿಟ್ಟು ಪೂರ್ಣ ಹೆಸರನ್ನು ನಮೂದಿಸಿ"
@@ -200,13 +224,85 @@
             "english": "Email cannot exceed 40 characters",
             "kannada": "ಇಮೇಲ್ 40 ಅಕ್ಷರಗಳನ್ನು ಮೀರಬಾರದು"
         },
+        "alt_phone_number": {
+            "english": "Please enter a valid 10-digit Alternative phone number",
+            "kannada": "ದಯವಿಟ್ಟು ಮಾನ್ಯವಾದ 10-ಅಂಕಿಯ ಪರ್ಯಾಯ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ"
+        },
+        "otpField": {
+            "english": "OTP is required",
+            "kannada": "OTP is required"
+        },
         "dob": {
             "english": "Date of Birth cannot be in the future",
             "kannada": "ಜನ್ಮ ದಿನಾಂಕ ಭವಿಷ್ಯದ ದಿನಾಂಕವನ್ನು ಸ್ವೀಕರಿಸುವುದಿಲ್ಲ"
         },
-        "alt_phone_number": {
-            "english": "Please enter a valid 10-digit Alternative phone number",
-            "kannada": "ದಯವಿಟ್ಟು ಮಾನ್ಯವಾದ 10-ಅಂಕಿಯ ಪರ್ಯಾಯ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ"
+        "dob_1": {
+            "english": "Date of Birth is required",
+            "kannada": "Date of Birth is required"
+        },
+        "dob_2": {
+            "english": "You must be at least 18 years old",
+            "kannada": "You must be at least 18 years old"
+        },
+        "dob_3": {
+            "english": "Date of Birth must be within the last 100 years",
+            "kannada": "Date of Birth must be within the last 100 years"
+        },
+        "address_1": {
+            "english": "Address is required",
+            "kannada": "Address is required"
+        },
+        "address_2": {
+            "english": "Only letters, numbers, spaces, commas, periods, and hyphens are allowed",
+            "kannada": "Only letters, numbers, spaces, commas, periods, and hyphens are allowed"
+        },
+        "state_1": {
+            "english": "State is required",
+            "kannada": "State is required"
+        },
+        "state_2": {
+            "english": "State must be at least 3 characters long",
+            "kannada": "State must be at least 3 characters long"
+        },
+        "state_3": {
+            "english": "State cannot exceed 40 characters",
+            "kannada": "State cannot exceed 40 characters"
+        },
+        "state_4": {
+            "english": "State must contain only alphabets",
+            "kannada": "State must contain only alphabets"
+        },
+        "district_1": {
+            "english": "District is required",
+            "kannada": "District is required"
+        },
+        "district_2": {
+            "english": "District must be at least 3 characters long",
+            "kannada": "District must be at least 3 characters long"
+        },
+        "district_3": {
+            "english": "District cannot exceed 40 characters",
+            "kannada": "District cannot exceed 40 characters"
+        },
+        "district_4": {
+            "english": "District must contain only alphabets",
+            "kannada": "District must contain only alphabets"
+        },
+        "city_1": {
+            "english": "City is required",
+            "kannada": "City is required"
+        },
+        "city_2": {
+            "english": "City must be at least 3 characters long",
+            "kannada": "City must be at least 3 characters long"
+        },
+        "city_3": {
+            "english": "City cannot exceed 40 characters",
+            "kannada": "City cannot exceed 40 characters"
+        },
+        "city_4": {
+            "english": "City must contain only alphabets",
+            "kannada": "City must contain only alphabets"
         }
     }
 }

@@ -326,14 +326,14 @@ const OtpVerification = () => {
                                                     error={!!errors.phoneNumber}
                                                     helperText={errors.phoneNumber ? errors.phoneNumber.message : ''}
                                                     {...register('phoneNumber', {
-                                                        required: 'Phone number is required',
+                                                        required: translations.validations.phoneField_1[language],
                                                         pattern: {
                                                             value: /^[0-9]{10}$/,
-                                                            message: 'Please enter a valid 10-digit phone number',
+                                                            message: translations.validations.phoneField_2[language],
                                                         },
                                                         pattern: {
                                                             value: /^[9876][0-9]{9}$/,
-                                                            message: `Invalid Phone Number`,
+                                                            message: translations.validations.phoneField_3[language],
                                                         },
                                                     })}
                                                     InputProps={{
@@ -413,7 +413,7 @@ const OtpVerification = () => {
                                 >
                                     <div className="flex justify justify-between">
                                         <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '500', fontSize: '14px' }}>
-                                            Confirm +91{" "}{mobileNumber}
+                                            {translations.loginScreen.otpConfirmation.confirm[language]} +91{" "}{mobileNumber}
                                         </p>
                                         <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '500', textDecoration: "underline", fontSize: '14px' }} className="cursor-pointer" onClick={resendOTP}>
                                             {translations.loginScreen.otpConfirmation.resendOTPLink[language]}
@@ -432,7 +432,7 @@ const OtpVerification = () => {
                                                     error={!!errors.enteredOtp}
                                                     helperText={errors.enteredOtp ? errors.enteredOtp.message : ''}
                                                     {...register('enteredOtp', {
-                                                        required: 'OTP is required',
+                                                        required: translations.validations.otpField[language],
                                                     })}
                                                     onInput={(e) => {
                                                         if (e.target.value.length > 6) {
@@ -492,7 +492,9 @@ const OtpVerification = () => {
                                 </div>
                             )}
                             {ShowotpField && (
-                                <p onClick={handeChangePhoneNumber} className="py-3 underline cursor-pointer" style={{ color: 'rgba(0, 0, 148, 1)' }}>Change Phone Number</p>
+                                <p onClick={handeChangePhoneNumber} className="py-3 underline cursor-pointer" style={{ color: 'rgba(0, 0, 148, 1)' }}>
+                                    {translations.loginScreen.otpConfirmation.changePhoneNumber[language]} +91{" "}{mobileNumber}
+                                </p>
                             )}
                         </div>
 
