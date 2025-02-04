@@ -14,6 +14,7 @@ import { useLanguage } from "../../context/Language/loginContext";
 import translations from "../../utils/Json/translation.json"
 
 const BankDetails = () => {
+
     const {
         register,
         handleSubmit,

@@ -5,6 +5,7 @@ import WidgetButton from "../../widgets/Button/page";
 import FormattedJsonViewer from "../../widgets/JsonView/page";
 
 const Profile = () => {
+
     const [response, setResponse] = useState([]);
     const [customerDetails, setCustomerDetails] = useState([]);
 
@@ -15,12 +16,14 @@ const Profile = () => {
     }, []);
 
     const onformSubmit = async () => {
+
         const payload = {
             name: "CUS 1 Updated ahsjd",
             nominee: {
                 nominee_name: "venkanna Updated 2"
             }
         };
+
         const resp = await updatecustomer(payload, customerDetails._id);
         setResponse(resp.data.data);
     };

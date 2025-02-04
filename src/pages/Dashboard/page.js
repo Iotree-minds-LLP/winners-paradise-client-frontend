@@ -1,11 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllCatalogByCustomerId } from "../../network/Catalog/page";
-import profileIcon from "../../assets/Logos/trailing-icon.png"
-import belIcon from "../../assets/Logos/belIcon.png"
 import { Avatar, TextField } from "@mui/material";
-import NavBar from "../../components/Navbar/page";
-import calculateicon from "../../assets/Images/calculate.png"
-import acrrowright from "../../assets/Images/arrow_circle_right.png"
 import imageLogo from "../../assets/Logos/logohere.png";
 import bellIcon from "../../assets/Logos/bellIcon2.png";
 import userIcon from "../../assets/Logos/usericon.png";
@@ -19,7 +13,6 @@ import { getAllInvestments } from "../../network/Investments/page";
 import { getAllPayouts } from "../../network/Payouts/page";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import { goBack } from "../../utils/Functions/goBackScreen";
 import translations from "../../utils/Json/translation.json"
 import { useLanguage } from "../../context/Language/loginContext";
 
