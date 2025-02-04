@@ -7,7 +7,6 @@ import NavBar from "../../components/Navbar/page";
 import calculateicon from "../../assets/Images/calculate.png"
 import acrrowright from "../../assets/Images/arrow_circle_right.png"
 import imageLogo from "../../assets/Logos/logohere.png";
-
 import bellIcon from "../../assets/Logos/bellIcon2.png";
 import userIcon from "../../assets/Logos/usericon.png";
 import footerLogo1 from "../../assets/Logos/onboardingLogos/featured_play_list.png";
@@ -37,6 +36,7 @@ const DashboardPage = () => {
     const [listPayouts, setlistPayount] = useState([])
     const [showShimmerStatistics, setshowShimmerStatistics] = useState(false);
     const [CustomerDetails, setCustomerDetails] = useState('')
+
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
@@ -48,7 +48,6 @@ const DashboardPage = () => {
     const toggleModal = () => {
         setisModalOpen(!isModalOpen);
     }
-
 
     const onformSubmit = async (id) => {
         setloadingInvestments(true);
@@ -65,7 +64,6 @@ const DashboardPage = () => {
     const onformSubmit2 = async (id) => {
         setloadingPayouts(true);
         const resp = await getAllPayouts();
-        console.log(resp, "Resp")
         if (resp.data.status === 200) {
             setlistPayount(resp.data.data.payouts)
             console.log(resp.data.data.payouts, "resp.data.data.payouts")
