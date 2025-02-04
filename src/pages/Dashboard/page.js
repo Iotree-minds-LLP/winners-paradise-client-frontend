@@ -21,8 +21,12 @@ import { getAllPayouts } from "../../network/Payouts/page";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { goBack } from "../../utils/Functions/goBackScreen";
+import translations from "../../utils/Json/translation.json"
+import { useLanguage } from "../../context/Language/loginContext";
 
 const DashboardPage = () => {
+
+    const { language, setLanguage } = useLanguage();
     const [showAllInvestments, setShowAllInvestments] = useState(false);
     const [loadingInvestments, setloadingInvestments] = useState(false)
     const [loadingPayouts, setloadingPayouts] = useState(false)
@@ -106,8 +110,7 @@ const DashboardPage = () => {
                             alt="Logo"
                         />
                         <p className="mt-6 sm:hidden text-white font-semibold text-xl">
-                            Winners Paradise
-                            {/* <p className="mt-6 sm:hidden text-white font-semibold text-sm" onClick={toggleModal}>Logout</p> */}
+                            {translations.logoHeading[language]}
                         </p>
                         <div className="flex flex-row items-center text-white space-x-2">
                             {/* Notifications Icon */}
@@ -142,9 +145,9 @@ const DashboardPage = () => {
 
                     <div className="flex flex-row justify-between items-center mx-4 mt-14 hidden md:flex">
                         {/* Left Section */}
-                        <h1 className="font-bold text-2xl text-black">Dashboard</h1>
+                        <h1 className="font-bold text-2xl text-black">{translations.sideBar.heading1[language]}</h1>
                         <div className="flex flex-row justify-center items-center gap-4">
-                            <p style={{ color: "#020065" }} className="text-md font-bold">Welcome,{CustomerDetails.name}</p>
+                            <p style={{ color: "#020065" }} className="text-md font-bold">{translations.Dashboard.heading[language]},{CustomerDetails.name}</p>
                             <Avatar
                                 alt="User Avatar"
                                 color="primary"
@@ -166,12 +169,12 @@ const DashboardPage = () => {
 
                     <div className="text-start rounded-full mt-5 px-4 grid md:grid-cols-3 grid-cols-1">
                         <div className="mb-3 sm:hidden">
-                            <p style={{ color: "#020065" }} className="text-md font-bold">Welcome,{CustomerDetails.name}</p>
+                            <p style={{ color: "#020065" }} className="text-md font-bold">{translations.Dashboard.heading[language]},{CustomerDetails.name}</p>
                         </div>
                         <div className="p-4 rounded-lg bg-gradient-to-l from-[#020065] to-[#0400CB]">
 
                             <p className="text-white font-bold text-xl">
-                                Your Investment Statistics
+                                {translations.Dashboard.heading1[language]}
                             </p>
 
                             <div className="grid grid-cols-2 gap-4 my-3">
@@ -202,14 +205,14 @@ const DashboardPage = () => {
                                     <>
                                         <div className="flex flex-col">
                                             <p className="text-primary" style={{ color: "#7C79EB" }}>
-                                                Total Invested
+                                                {translations.Dashboard.heading2[language]}
                                             </p>
                                             <p className="text-white text-lg mt-2">₹ {totalInvested.toLocaleString("en-IN")
                                             }</p>
                                         </div>
                                         <div className="flex flex-col">
                                             <p className="text-primary" style={{ color: "#7C79EB" }}>
-                                                Total Earned
+                                                {translations.Dashboard.heading3[language]}
                                             </p>
                                             <p className="text-white text-lg mt-2">₹ {totalEarned.toLocaleString("en-IN")
                                             }</p>
@@ -223,7 +226,8 @@ const DashboardPage = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 p-3">
                         <div className="flex justify-between mx-2">
                             <p style={{ color: "#020065" }} className="text-lg font-bold">
-                                Upcoming Payouts
+                                {translations.Dashboard.heading4[language]}
+
                             </p>
                             {payoutsToDisplay && payoutsToDisplay[0] !== undefined && (
 
@@ -235,10 +239,10 @@ const DashboardPage = () => {
                                     }}
                                     onClick={() => setShowAllPayouts(!showAllPayouts)}
                                 >
-                                    {showAllPayouts ? "View Less" : "View All"}
+                                    {showAllPayouts ? `${translations.Dashboard.heading8[language]}` : `${translations.Dashboard.heading7[language]}`}
+
                                 </p>
                             )}
-
                         </div>
                     </div>
 
@@ -259,7 +263,7 @@ const DashboardPage = () => {
                                     style={{ background: "#F5F5F5" }}
                                 >
                                     <div className="flex flex-col text-start">
-                                        <p className="text-md">Payout Amount</p>
+                                        <p className="text-md">{translations.Dashboard.heading9[language]}</p>
                                         <p
                                             className="font-bold text-md"
                                             style={{ color: "#020065" }}
@@ -268,7 +272,7 @@ const DashboardPage = () => {
                                         </p>
                                     </div>
                                     <div className="flex flex-col text-start">
-                                        <p className="text-md">Payout On</p>
+                                        <p className="text-md">{translations.Dashboard.heading10[language]}</p>
                                         <p
                                             className="font-bold text-md"
                                             style={{ color: "#020065" }}
@@ -280,7 +284,7 @@ const DashboardPage = () => {
                             ))
                         ) : (
                             <div>
-                                <p className="text-start text-md font-bold text-gray-400">No Payouts Available Yet </p>
+                                <p className="text-start text-md font-bold text-gray-400">{translations.Dashboard.heading11[language]}</p>
                             </div>
                         )}
                     </div>
@@ -291,7 +295,7 @@ const DashboardPage = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 p-3">
                         <div className="flex justify-between mx-2">
                             <p style={{ color: "#020065" }} className="text-lg font-bold">
-                                Your Investments
+                                {translations.Dashboard.heading12[language]}
                             </p>
 
                             {investmentsToDisplay[0] != undefined && (
@@ -321,7 +325,7 @@ const DashboardPage = () => {
                                 {
                                     investmentsToDisplay[0] === undefined ? (
                                         <div>
-                                            <p className="text-start text-md font-bold text-gray-400">No investments found. Invest now! </p>
+                                            <p className="text-start text-md font-bold text-gray-400">{translations.Dashboard.heading13[language]} </p>
                                         </div>
                                     ) : (
                                         <>
@@ -355,7 +359,7 @@ const DashboardPage = () => {
                                                             style={{ background: "#F5F5F5" }}
                                                         >
                                                             <div className="flex flex-col text-start">
-                                                                <p className="text-md">Invested Amount</p>
+                                                                <p className="text-md">{translations.Dashboard.heading14[language]}</p>
                                                                 <p
                                                                     className="font-bold text-md"
                                                                     style={{ color: "#020065" }}
@@ -365,7 +369,7 @@ const DashboardPage = () => {
                                                                 </p>
                                                             </div>
                                                             <div className="flex flex-col text-start">
-                                                                <p className="text-md">Returns earned</p>
+                                                                <p className="text-md">{translations.Dashboard.heading15[language]}</p>
                                                                 <p
                                                                     className="font-bold text-md"
                                                                     style={{ color: "#020065" }}

@@ -12,8 +12,11 @@ import toast from "react-hot-toast";
 import { useToast } from "../../context/Toast/toastHook";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { useLanguage } from "../../context/Language/loginContext";
+import translations from "../../utils/Json/translation.json"
 
 const CatalogDetails = () => {
+    const { language, setLanguage } = useLanguage();
 
     const [expandedCard, setExpandedCard] = useState(null);
     const [isModalOpen, setisModalOpen] = useState(false);
@@ -130,7 +133,7 @@ const CatalogDetails = () => {
 
                     <div className=" text-start rounded-lg px-4 mt-4 grid md:grid-cols-3 grid-cols-1 gap-4">
                         <div className="flex flex-row  ">
-                            <p style={{ color: "#020065" }} className="text-md font-semibold">Investment Description </p>
+                            <p style={{ color: "#020065" }} className="text-md font-semibold">{translations.CatalogDetails.heading[language]}</p>
 
                         </div>
                     </div>
@@ -174,7 +177,7 @@ const CatalogDetails = () => {
                                 // Render actual content when `showShimmer` is false
                                 <>
                                     <div style={{ background: '#F5F5F5' }} className="p-3">
-                                        <p>Your Investment Amount</p>
+                                        <p>{translations.CatalogDetails.heading[language]}</p>
                                         <p
                                             className="text-md font-bold my-2"
                                             style={{ color: 'rgba(0, 0, 148, 1)' }}
@@ -183,7 +186,7 @@ const CatalogDetails = () => {
                                         </p>
                                     </div>
                                     <div style={{ background: '#F5F5F5' }} className="p-4">
-                                        <p>Returns</p>
+                                        <p>{translations.CatalogDetails.heading2[language]}</p>
                                         <p className="mt-0 md:mt-5"></p>
                                         <p
                                             className="text-md font-bold my-2"
@@ -193,18 +196,17 @@ const CatalogDetails = () => {
                                         </p>
                                     </div>
                                     <div style={{ background: '#F5F5F5' }} className="p-4">
-                                        <p>Duration</p>
+                                        <p>{translations.CatalogDetails.heading3[language]}</p>
                                         <p className="mt-0 md:mt-5"></p>
-
                                         <p
                                             className="text-md font-bold my-2"
                                             style={{ color: 'rgba(0, 0, 148, 1)' }}
                                         >
-                                            {SelectedCatalogDetails.no_of_months} Months
+                                            {SelectedCatalogDetails.no_of_months} {translations.CatalogDetails.heading6[language]}
                                         </p>
                                     </div>
                                     <div style={{ background: '#F5F5F5' }} className="p-4">
-                                        <p>Returns per month</p>
+                                        <p>{translations.CatalogDetails.heading4[language]}</p>
                                         <p
                                             className="text-md font-bold my-2"
                                             style={{ color: 'rgba(0, 0, 148, 1)' }}
@@ -214,7 +216,7 @@ const CatalogDetails = () => {
                                     </div>
 
                                     <div style={{ background: '#F5F5F5' }} className="p-4">
-                                        <p>Total Returns</p>
+                                        <p>{translations.CatalogDetails.heading5[language]}</p>
                                         <p
                                             className="text-md font-bold my-2"
                                             style={{ color: 'rgba(0, 0, 148, 1)' }}
@@ -266,7 +268,7 @@ const CatalogDetails = () => {
                                             />
                                         </svg>
                                     ) : (
-                                        "Submit Interest"
+                                        `${translations.CatalogDetails.button[language]}`
                                     )}
                                 </button>
                             </div>
@@ -295,7 +297,7 @@ const CatalogDetails = () => {
                                             />
                                         </svg>
                                     ) : (
-                                        "Submit Interest"
+                                        `${translations.CatalogDetails.button[language]}`
                                     )}
                                 </button>
                             </div>

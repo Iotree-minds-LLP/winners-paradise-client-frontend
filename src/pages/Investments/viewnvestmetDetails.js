@@ -5,11 +5,12 @@ import backButton from "../../assets/Logos/backButton.png";
 import { goBack } from "../../utils/Functions/goBackScreen";
 import { getAllOverAllPayouts, getAllPayouts, getAllPayoutsBYInvestmentId } from "../../network/Payouts/page";
 import { DownloadForOffline } from "@mui/icons-material";
+import translations from "../../utils/Json/translation.json"
+import { useLanguage } from "../../context/Language/loginContext";
 
 
 const InvestmentDetails = () => {
-
-    const [isModalOpen, setisModalOpen] = useState(false);
+    const { language, setLanguage } = useLanguage();
     const navigate = useNavigate();
     const location = useLocation();
     const [SelectedInvestmentDetails, setSelectedInvestmentDetails] = useState({});
@@ -27,28 +28,23 @@ const InvestmentDetails = () => {
             SelectedInvestmentDetails?.interest_per_month &&
             SelectedInvestmentDetails?.period_in_months
         ) {
-            // Calculate the monthly interest and add it to the amount
             const totalReturn =
                 SelectedInvestmentDetails.amount +
                 (SelectedInvestmentDetails.amount *
                     (SelectedInvestmentDetails.interest_per_month / 100) *
                     SelectedInvestmentDetails.period_in_months);
 
-            // Calculate return per month
             const returnPerMonth =
                 (SelectedInvestmentDetails.amount *
                     (SelectedInvestmentDetails.interest_per_month / 100));
 
-            // Update states
             settotalReturn(totalReturn);
             setReturnPerMonth(returnPerMonth);
         }
     }, [SelectedInvestmentDetails]);
 
 
-    const toggleModal = () => {
-        setisModalOpen(!isModalOpen);
-    };
+
 
     useEffect(() => {
 
@@ -71,21 +67,6 @@ const InvestmentDetails = () => {
         (payout) => new Date(payout.expected_payout_date) < today
     );
 
-    const yesLogout = () => {
-        localStorage.removeItem("customerDetails");
-        localStorage.removeItem("tokenDetails");
-        navigate("/");
-    };
-
-
-    const investmentAmount = SelectedInvestmentDetails?.amount || 0;
-    const annualReturnRate = SelectedInvestmentDetails?.interest_per_month || 0;
-    const durationInMonths = SelectedInvestmentDetails?.period_in_months || 12;
-
-
-    // Calculate total amount after 12 months
-    const totalReturnsIn12Months = annualReturnRate * 12;
-    const amountAfter12Months = investmentAmount + totalReturnsIn12Months;
 
     return (
         <>
@@ -99,37 +80,22 @@ const InvestmentDetails = () => {
                     <div className="h-[60px] sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row justify-between p-4">
                         <div className="flex flex-row">
                             <img src={backButton} onClick={goBack} className="w-8 h-8" alt="Back" />
-                            <p className="text-white font-semibold my-1">Investment Details </p>
+                            <p className="text-white font-semibold my-1">{translations.InvestementDetails.investmentDetails[language]}</p>
                         </div>
-                        {/* <div className="text-white" onClick={toggleModal}>
-                            Logout
-                        </div> */}
                     </div>
                     <div className="flex justify-between hidden md:block">
                         <div className="flex flex-row mx-4 gap-4 mt-14">
                             <img onClick={goBack} src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" className="w-auto h-8" alt="Background" />
                             <h1 className="text-start font-bold text-2xl text-black hidden md:block">
-                                Investment Details
+                                {translations.InvestementDetails.investmentDetails[language]}
                             </h1>
                         </div>
                     </div>
 
-                    {/* <div className=" text-start rounded-lg px-4 mt-4 grid md:grid-cols-3 grid-cols-1 gap-4">
-                        <div className="flex flex-row  ">
-                            <p style={{ color: "#020065" }} className="text-md font-semibold">Investment Description </p>
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <p className="text-md px-4 mt-3 text-start font-medium">Lorem Ipsum is simply dummy text of the printing and  typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of  type and scrambled it to make a type specimen book. It has survived not  only five centuries,</p>
-                    </div> */}
-
                     <div className="grid grid-cols-1 px-4 mt-4 md:grid-cols-2 gap-4 text-start">
-
-
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4"  >
                             <div style={{ background: "#F5F5F5" }} className="p-3">
-                                <p>Investment Amount</p>
+                                <p> {translations.InvestementDetails.investmentAmount[language]}</p>
                                 <p
                                     className="text-md font-bold my-2"
                                     style={{ color: 'rgba(0, 0, 148, 1)' }}
@@ -139,7 +105,7 @@ const InvestmentDetails = () => {
                                 </p>
                             </div>
                             <div style={{ background: "#F5F5F5" }} className="p-4">
-                                <p>Returns</p>
+                                <p> {translations.InvestementDetails.returns[language]}</p>
                                 <p></p>
                                 <p
                                     className="text-md font-bold my-2"
@@ -149,7 +115,7 @@ const InvestmentDetails = () => {
                                 </p>
                             </div>
                             <div style={{ background: "#F5F5F5" }} className="p-4">
-                                <p>Duration</p>
+                                <p> {translations.InvestementDetails.duration[language]}</p>
                                 <p
                                     className="text-md font-bold my-2"
                                     style={{ color: 'rgba(0, 0, 148, 1)' }}
@@ -158,7 +124,7 @@ const InvestmentDetails = () => {
                                 </p>
                             </div>
                             <div style={{ background: "#F5F5F5" }} className="p-4">
-                                <p>Returns per month</p>
+                                <p> {translations.InvestementDetails.returnsPerMonth[language]}</p>
                                 <p></p>
                                 <p
                                     className="text-md font-bold my-2"
@@ -169,7 +135,7 @@ const InvestmentDetails = () => {
                             </div>
 
                             <div style={{ background: "#F5F5F5" }} className="p-4">
-                                <p>Total Returns</p>
+                                <p> {translations.InvestementDetails.totalReturns[language]}</p>
                                 <p
                                     className="text-md font-bold my-2"
                                     style={{ color: 'rgba(0, 0, 148, 1)' }}
@@ -178,7 +144,7 @@ const InvestmentDetails = () => {
                                 </p>
                             </div>
                             <div style={{ background: "#F5F5F5" }} className="p-4">
-                                <p>Download Investment Plan<DownloadForOffline className="mx-0 md:mx-1"></DownloadForOffline></p>
+                                <p> {translations.InvestementDetails.downloadInvestmentPlan[language]}<DownloadForOffline className="mx-0 md:mx-1"></DownloadForOffline></p>
                             </div>
                         </div>
                     </div>
@@ -187,7 +153,7 @@ const InvestmentDetails = () => {
                     <div className=" text-start rounded-lg px-4 mt-4 grid md:grid-cols-3 grid-cols-1 gap-4">
                         <div className="flex flex-row">
                             <p style={{ color: "#020065" }} className="text-md font-semibold">
-                                Upcoming Payout
+                                {translations.InvestementDetails.upcomingPayout[language]}
                             </p>
                         </div>
                     </div>
@@ -201,7 +167,7 @@ const InvestmentDetails = () => {
                                     style={{ background: "#F5F5F5" }}
                                 >
                                     <div className="flex flex-col text-start">
-                                        <p className="text-md">Payout Amount</p>
+                                        <p className="text-md"> {translations.InvestementDetails.payoutAmount[language]}</p>
                                         <p
                                             className="font-bold text-md"
                                             style={{ color: "#020065" }}
@@ -210,7 +176,7 @@ const InvestmentDetails = () => {
                                         </p>
                                     </div>
                                     <div className="flex flex-col text-start">
-                                        <p className="text-md">Payout On</p>
+                                        <p className="text-md"> {translations.InvestementDetails.payoutOn[language]}</p>
                                         <p
                                             className="font-bold text-md"
                                             style={{ color: "#020065" }}
@@ -222,14 +188,14 @@ const InvestmentDetails = () => {
                             ))
                         ) : (
                             <p className="text-start text-md font-bold text-gray-400">
-                                No upcoming payouts available.
+                                {translations.InvestementDetails.noUpcomingPayouts[language]}
                             </p>
                         )}
                     </div>
                     <div className=" text-start rounded-lg px-4 mt-4 grid md:grid-cols-3 grid-cols-1 gap-4">
                         <div className="flex flex-row">
                             <p style={{ color: "#020065" }} className="text-md font-semibold">
-                                Payout History
+                                {translations.InvestementDetails.payoutHistory[language]}
                             </p>
                         </div>
                     </div>
@@ -243,7 +209,7 @@ const InvestmentDetails = () => {
                                     style={{ background: "#F5F5F5" }}
                                 >
                                     <div className="flex flex-col text-start">
-                                        <p className="text-md">Payout Amount</p>
+                                        <p className="text-md"> {translations.InvestementDetails.payoutAmount[language]}</p>
                                         <p
                                             className="font-bold text-md"
                                             style={{ color: "#020065" }}
@@ -252,7 +218,7 @@ const InvestmentDetails = () => {
                                         </p>
                                     </div>
                                     <div className="flex flex-col text-start">
-                                        <p className="text-md">Payout On</p>
+                                        <p className="text-md"> {translations.InvestementDetails.payoutOn[language]}</p>
                                         <p
                                             className="font-bold text-md"
                                             style={{ color: "#020065" }}
@@ -264,7 +230,7 @@ const InvestmentDetails = () => {
                             ))
                         ) : (
                             <p className="text-start text-md font-bold text-gray-400">
-                                No payout history available.
+                                {translations.InvestementDetails.noPayoutHistory[language]}
                             </p>
                         )}
                     </div>

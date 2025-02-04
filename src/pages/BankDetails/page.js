@@ -152,7 +152,7 @@ const BankDetails = () => {
                                     {UpdateBankDetails && "Update"} {translations.BankAccount.heading[language]}
 
                                 </p>
-                                
+
                                 {ConnectedBankHolder &&
                                     <div className="text-xs text-start mx-5 my-3">
                                         <p>Connected Bank Account Holder Name</p>

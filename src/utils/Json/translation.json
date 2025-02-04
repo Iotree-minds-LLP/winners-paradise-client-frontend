@@ -235,6 +235,36 @@
             "kannada": "list of investment opportunities"
         }
     },
+    "CatalogDetails": {
+        "heading": {
+            "english": "Investment Description",
+            "kannada": "Investment Description"
+        },
+        "heading2": {
+            "english": "Returns",
+            "kannada": "Returns"
+        },
+        "heading3": {
+            "english": "Duration",
+            "kannada": "Duration"
+        },
+        "heading4": {
+            "english": "Returns per month",
+            "kannada": "Returns per month"
+        },
+        "heading5": {
+            "english": "Total Returns",
+            "kannada": "Total Returns"
+        },
+        "heading6": {
+            "english": "Months",
+            "kannada": "Months"
+        },
+        "button": {
+            "english": "Submit Interest",
+            "kannada": "Submit Interest"
+        }
+    },
     "Notifications": {
         "heading": {
             "english": "Notifications",
@@ -327,6 +357,172 @@
         "editProfileButton": {
             "english": "Edit Profile Details",
             "kannada": "Edit Profile Details"
+        }
+    },
+    "Dashboard": {
+        "heading": {
+            "english": "Welcome",
+            "kannada": "Welcome"
+        },
+        "heading1": {
+            "english": "Your Investment Statistics",
+            "kannada": "Your Investment Statistics"
+        },
+        "heading2": {
+            "english": "Total Invested",
+            "kannada": "Total Invested"
+        },
+        "heading3": {
+            "english": "Total Earned",
+            "kannada": "Total Earned"
+        },
+        "heading4": {
+            "english": "Upcoming Payouts",
+            "kannada": "Upcoming Payouts"
+        },
+        "heading5": {
+            "english": "No Payouts Available Yet",
+            "kannada": "No Payouts Available Yet"
+        },
+        "heading6": {
+            "english": "Your Investments",
+            "kannada": "Your Investments"
+        },
+        "heading7": {
+            "english": "View All",
+            "kannada": "View All"
+        },
+        "heading8": {
+            "english": "View Less",
+            "kannada": "View Less"
+        },
+        "heading9": {
+            "english": "Payout Amount",
+            "kannada": "Payout Amount"
+        },
+        "heading10": {
+            "english": "Payout On",
+            "kannada": "Payout On"
+        },
+        "heading11": {
+            "english": "No Payouts Available Yet",
+            "kannada": "No Payouts Available Yet"
+        },
+        "heading12": {
+            "english": "Your Investments",
+            "kannada": "Your Investments"
+        },
+        "heading13": {
+            "english": "No investments found. Invest now!",
+            "kannada": "No investments found. Invest now!"
+        },
+        "heading14": {
+            "english": "Invested Amount",
+            "kannada": "Invested Amount"
+        },
+        "heading15": {
+            "english": "Returns earned",
+            "kannada": "Returns earned"
+        }
+    },
+    "InvestementDetails": {
+        "investmentDetails": {
+            "english": "Investment Details",
+            "kannada": "ನಿವೇಶನ ವಿವರಗಳು"
+        },
+        "investmentAmount": {
+            "english": "Investment Amount",
+            "kannada": "ನಿವೇಶನ ಮೊತ್ತ"
+        },
+        "returns": {
+            "english": "Returns",
+            "kannada": "ಪರಿದಾನಗಳು"
+        },
+        "duration": {
+            "english": "Duration",
+            "kannada": "ಅವಧಿ"
+        },
+        "returnsPerMonth": {
+            "english": "Returns per month",
+            "kannada": "ಪ್ರತಿ ತಿಂಗಳ ಲಾಭ"
+        },
+        "totalReturns": {
+            "english": "Total Returns",
+            "kannada": "ಒಟ್ಟು ಲಾಭ"
+        },
+        "downloadInvestmentPlan": {
+            "english": "Download Investment Plan",
+            "kannada": "ನಿವೇಶನ ಯೋಜನೆಯನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ"
+        },
+        "upcomingPayout": {
+            "english": "Upcoming Payout",
+            "kannada": "ಮುಂಬರುವ ಪಾವತಿ"
+        },
+        "payoutAmount": {
+            "english": "Payout Amount",
+            "kannada": "ಪಾವತಿ ಮೊತ್ತ"
+        },
+        "payoutOn": {
+            "english": "Payout On",
+            "kannada": "ಪಾವತಿ ದಿನಾಂಕ"
+        },
+        "noUpcomingPayouts": {
+            "english": "No upcoming payouts available.",
+            "kannada": "ಯಾವುದೇ ಮುಂಬರುವ ಪಾವತಿಗಳು ಲಭ್ಯವಿಲ್ಲ."
+        },
+        "payoutHistory": {
+            "english": "Payout History",
+            "kannada": "ಪಾವತಿ ಇತಿಹಾಸ"
+        },
+        "noPayoutHistory": {
+            "english": "No payout history available.",
+            "kannada": "ಪಾವತಿ ಇತಿಹಾಸ ಲಭ್ಯವಿಲ್ಲ."
+        }
+    },
+    "PayoutsDetails": {
+        "payoutsTracker": {
+            "english": "Payouts Tracker",
+            "kannada": "ಪಾವತಿ ಟ್ರ್ಯಾಕರ್"
+        },
+        "dashboard": {
+            "english": "Dashboard",
+            "kannada": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್"
+        },
+        "winnersParadise": {
+            "english": "Winners Paradise",
+            "kannada": "ವಿನ್ನರ್ಸ್ ಪ್ಯಾರಡೈಸ್"
+        },
+        "upcoming": {
+            "english": "Upcoming",
+            "kannada": "ಮುಂಬರುವ"
+        },
+        "past": {
+            "english": "Past",
+            "kannada": "ಹಳೆಯ"
+        },
+        "payoutAmount": {
+            "english": "Payout Amount",
+            "kannada": "ಪಾವತಿ ಮೊತ್ತ"
+        },
+        "payoutOn": {
+            "english": "Payout On",
+            "kannada": "ಪಾವತಿ ದಿನಾಂಕ"
+        },
+        "noPayoutsFound": {
+            "english": "No Payouts Found",
+            "kannada": "ಯಾವುದೇ ಪಾವತಿಗಳು ಕಂಡುಬಂದಿಲ್ಲ"
+        },
+        "catalogue": {
+            "english": "Catalogue",
+            "kannada": "ಕ್ಯಾಟಲಾಗ್"
+        },
+        "dashboardFooter": {
+            "english": "Dashboard",
+            "kannada": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್"
+        },
+        "payouts": {
+            "english": "Payouts",
+            "kannada": "ಪಾವತಿಗಳು"
         }
     },
     "Kyc": {
