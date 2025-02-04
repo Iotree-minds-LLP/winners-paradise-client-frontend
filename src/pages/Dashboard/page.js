@@ -80,7 +80,6 @@ const DashboardPage = () => {
     const payoutsToDisplay = showAllPayouts ? listPayouts : [listPayouts[0]];
     const totalInvested = listInvestments.reduce((total, investment) => total + investment.amount, 0);
 
-    // Calculate total earned till now
     const today = new Date();
     const totalEarned = listInvestments.reduce((total, investment) => {
         const createdAtDate = new Date(investment.createdAt);
@@ -88,7 +87,7 @@ const DashboardPage = () => {
             (today.getFullYear() - createdAtDate.getFullYear()) * 12 +
             today.getMonth() -
             createdAtDate.getMonth();
-        const effectiveMonths = Math.max(monthsSinceCreation, 0); // Ensure non-negative months
+        const effectiveMonths = Math.max(monthsSinceCreation, 0);
         const earned = investment.amount * (investment.interest_per_month / 100) * effectiveMonths;
         return total + earned;
     }, 0);
@@ -96,12 +95,9 @@ const DashboardPage = () => {
     return (
         <>
             <div className="sm:ml-72 relative bg-white">
-                {/* Background Image */}
                 <img src={backImage} className="opacity-30	hidden md:block absolute inset-0 object-cover z-0 w-full" alt="Background" />
 
-                {/* Content Wrapper */}
                 <div className="relative z-10">
-                    {/* Gradient Header */}
                     <div className="object-contain flex justify-between  sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB]">
                         <h1 className="text-start font-bold text-2xl p-4 text-white hidden md:block">Dashboard</h1>
                         <img
@@ -144,7 +140,6 @@ const DashboardPage = () => {
                     </div>
 
                     <div className="flex flex-row justify-between items-center mx-4 mt-14 hidden md:flex">
-                        {/* Left Section */}
                         <h1 className="font-bold text-2xl text-black">{translations.sideBar.heading1[language]}</h1>
                         <div className="flex flex-row justify-center items-center gap-4">
                             <p style={{ color: "#020065" }} className="text-md font-bold">{translations.Dashboard.heading[language]},{CustomerDetails.name}</p>
@@ -152,7 +147,7 @@ const DashboardPage = () => {
                                 alt="User Avatar"
                                 color="primary"
 
-                                sx={{ width: 40, height: 40, bgcolor: "primary.main" }} // Adjust size as needed
+                                sx={{ width: 40, height: 40, bgcolor: "primary.main" }}
                             >
                                 {CustomerDetails.profile_image ?
                                     (
@@ -179,7 +174,6 @@ const DashboardPage = () => {
 
                             <div className="grid grid-cols-2 gap-4 my-3">
                                 {showShimmerStatistics ? (
-                                    // Skeleton placeholders while loading
                                     <>
                                         <div className="flex flex-col">
                                             <p className="text-primary" style={{ color: "#7C79EB" }}>
@@ -201,7 +195,6 @@ const DashboardPage = () => {
 
                                     </>
                                 ) : (
-                                    // Actual data when shimmer is false
                                     <>
                                         <div className="flex flex-col">
                                             <p className="text-primary" style={{ color: "#7C79EB" }}>
@@ -290,8 +283,6 @@ const DashboardPage = () => {
                     </div>
 
 
-
-
                     <div className="grid grid-cols-1 md:grid-cols-3 p-3">
                         <div className="flex justify-between mx-2">
                             <p style={{ color: "#020065" }} className="text-lg font-bold">
@@ -330,7 +321,6 @@ const DashboardPage = () => {
                                     ) : (
                                         <>
                                             {investmentsToDisplay?.map((investment, index) => {
-                                                // Calculate number of months between createdAt and today
                                                 const createdAtDate = new Date(investment?.createdAt);
                                                 const today = new Date();
                                                 const monthsSinceCreation =
@@ -338,10 +328,8 @@ const DashboardPage = () => {
                                                     today.getMonth() -
                                                     createdAtDate.getMonth();
 
-                                                // Ensure at least 0 months (in case the dates are the same month)
                                                 const effectiveMonths = Math.max(monthsSinceCreation, 0);
 
-                                                // Calculate earned returns
                                                 const earnedReturnsAmount =
                                                     investment?.amount *
                                                     (investment?.interest_per_month / 100) *
@@ -389,16 +377,10 @@ const DashboardPage = () => {
                                     )
                                 }
                             </>
-
                         )}
 
                     </div>
 
-
-
-                    {/* Investment Cards */}
-
-                    {/* Footer Navigation */}
                     <div
                         className="sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB]"
                         style={{
@@ -408,40 +390,38 @@ const DashboardPage = () => {
                         }}
                     >
                         <div className="grid grid-cols-3">
-                            {/* Catalogue */}
+
                             <Link to="/catalogs">
                                 <div className=" p-2 flex flex-col items-center">
                                     <div className="px-5 p-3 rounded-full flex items-center justify-center">
                                         <img className="w-auto h-8" src={footerLogo1} alt="Footer Logo 1" />
                                     </div>
                                     <p className="mt-2 text-md font-bold text-center text-white">
-                                        Catalogue
+                                        {translations.Dashboard.catalogs[language]}
                                     </p>
                                 </div>
                             </Link>
 
                             <Link to="/dashboard">
 
-                                {/* Dashboard */}
                                 <div className="p-2  flex flex-col items-center">
                                     <div className="bg-white p-3 rounded-full flex items-center justify-center">
                                         <img className="w-auto h-8" src={footerLogo2} alt="Footer Logo 2" />
                                     </div>
                                     <p className="mt-2 text-md font-bold text-center text-white" >
-                                        Dashboard
+                                        {translations.Dashboard.dashboard[language]}
                                     </p>
                                 </div>
 
                             </Link>
 
                             <Link to="/payouts">
-                                {/* Payouts */}
                                 <div className=" p-2 flex flex-col items-center">
                                     <div className="p-3 rounded-full flex items-center justify-center">
                                         <img className="w-auto h-8" src={footerLogo4} alt="Footer Logo 3" />
                                     </div>
                                     <p className="mt-2 text-md font-bold text-center text-white">
-                                        Payouts
+                                        {translations.Dashboard.payouts[language]}
                                     </p>
                                 </div>
                             </Link>

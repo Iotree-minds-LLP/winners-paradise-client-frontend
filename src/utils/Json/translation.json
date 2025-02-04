@@ -423,6 +423,18 @@
         "heading15": {
             "english": "Returns earned",
             "kannada": "Returns earned"
+        },
+        "catalogs": {
+            "english": "Catalogs",
+            "kannada": "Catalogs"
+        },
+        "dashboard": {
+            "english": "Dashboard",
+            "kannada": "Dashboard"
+        },
+        "payouts": {
+            "english": "Payouts",
+            "kannada": "Payouts"
         }
     },
     "InvestementDetails": {
