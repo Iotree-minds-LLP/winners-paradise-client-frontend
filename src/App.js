@@ -6,7 +6,7 @@ import { onMessage } from "firebase/messaging"
 import { verifyToken } from './network/Authentication/page';
 const App = () => {
   const [token, settoken] = useState()
-  
+
 
   useEffect(() => {
     const generateTokenFromFcm = async () => {

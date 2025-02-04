@@ -13,6 +13,29 @@ const addBankDetails = async (payload) => {
 };
 
 
+const addNomineeDetails = async (payload) => {
+    try {
+        const res = await axiosInstance.post(`nominee/add-nominee`, payload);
+        const data = res;
+        return { data };
+    } catch (err) {
+        const errRes = (err && err.response) || "Network Error";
+        return { ...errRes };
+    }
+};
+
+const UpdateNominee = async (payload) => {
+    try {
+        const res = await axiosInstance.put(`nominee/edit-nominee`, payload);
+        const data = res;
+        return { data };
+    } catch (err) {
+        const errRes = (err && err.response) || "Network Error";
+        return { ...errRes };
+    }
+};
+
+
 const updateBankDetails = async (payload) => {
     try {
         const res = await axiosInstance.put(`customer/update-bank-account-details`, payload);
@@ -37,4 +60,4 @@ const sendOtpForUpdate = async () => {
 };
 
 
-export { addBankDetails, sendOtpForUpdate, updateBankDetails };
+export { addBankDetails, sendOtpForUpdate, updateBankDetails, addNomineeDetails, UpdateNominee };

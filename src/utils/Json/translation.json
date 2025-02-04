@@ -685,6 +685,38 @@
         "heading": {
             "english": "Add Nominee",
             "kannada": "Add Nominee"
+        },
+        "nomineeField": {
+            "english": "Nominee Name",
+            "kannada": "Nominee Name"
+        },
+        "validation1": {
+            "english": "Please enter nominee name",
+            "kannada": "Please enter nominee name"
+        },
+        "aadharField": {
+            "english": "Aadhaar Number",
+            "kannada": "Aadhaar Number"
+        },
+        "panNumber": {
+            "english": "PAN Number",
+            "kannada": "PAN Number"
+        },
+        "uploadAadhaar": {
+            "english": "Upload Aadhaar",
+            "kannada": "Upload Aadhaar"
+        },
+        "uploadPan": {
+            "english": "Uplaod PAN",
+            "kannada": "Uplaod PAN"
+        },
+        "uploadPhoto": {
+            "english": "Uplaod Photo",
+            "kannada": "Uplaod Photo"
+        },
+        "cheque": {
+            "english": "Cheque",
+            "kannada": "Cheque"
         }
     },
     "validations": {
@@ -892,6 +924,76 @@
             "bankBranch3": {
                 "english": "Only letters and spaces are allowed",
                 "kannada": "Only letters and spaces are allowed"
+            }
+        },
+        "nomineeValidations": {
+            "nominee1": {
+                "english": "Nominee name must be at least 3 characters",
+                "kannada": "Nominee name must be at least 3 characters"
+            },
+            "nominee": {
+                "english": "Nominee name is required",
+                "kannada": "Nominee name is required"
+            },
+            "nominee2": {
+                "english": "Nominee name cannot exceed 40 characters",
+                "kannada": "Nominee name cannot exceed 40 characters"
+            },
+            "nominee3": {
+                "english": "Only letters and spaces are allowed",
+                "kannada": "Only letters and spaces are allowed"
+            },
+            "aadhaarField1": {
+                "english": "Aadhaar Number must 12 digit",
+                "kannada": "Aadhaar Number must 12 digit"
+            },
+            "panNumberfield": {
+                "english": "Pan Number must 10 digit",
+                "kannada": "Pan Number must 10 digit"
+            },
+            "valid": {
+                "english": "Invalid PAN format. Example: ABCDE1234F",
+                "kannada": "Invalid PAN format. Example: ABCDE1234F"
+            },
+            "aadhaarUpload1": {
+                "english": "Only PDF files are allowed",
+                "kannada": "Only PDF files are allowed"
+            },
+            "aadhaarUpload2": {
+                "english": "File size should not exceed 2MB.",
+                "kannada": "File size should not exceed 2MB."
+            },
+            "aadhaarUpload3": {
+                "english": "Error in file upload. Please try again",
+                "kannada": "Error in file upload. Please try again"
+            },
+            "panUpload1": {
+                "english": "Only PDF files are allowed",
+                "kannada": "Only PDF files are allowed"
+            },
+            "panUpload2": {
+                "english": "File size should not exceed 2MB.",
+                "kannada": "File size should not exceed 2MB."
+            },
+            "panUpload3": {
+                "english": "Error in file upload. Please try again",
+                "kannada": "Error in file upload. Please try again"
+            },
+            "selfieUpload1": {
+                "english": "Only image (JPG, JPEG, PNG) are allowed",
+                "kannada": "ಕೇವಲ ಚಿತ್ರ ಫೈಲ್ಗಳು (JPG, JPEG, PNG) ಅನುಮತಿಸಲಾಗಿದೆ"
+            },
+            "selfieUpload2": {
+                "english": "File size should not exceed 2MB.",
+                "kannada": "File size should not exceed 2MB."
+            },
+            "chequeUpload1": {
+                "english": "Only image (JPG, JPEG, PNG) are allowed",
+                "kannada": "ಕೇವಲ ಚಿ"
+            },
+            "chequeUpload2": {
+                "english": "File size should not exceed 2MB.",
+                "kannada": "File size should not exceed 2MB."
             }
         }
     },
