@@ -241,10 +241,6 @@ const Catalogs = () => {
                     </div>
                     <div className="text-start rounded-lg px-4 grid md:grid-cols-1 grid-cols-1">
 
-                        <div className="border bg-gray-100 mb-5 p-3 md:hidden flex flex-row items-center justify-start gap-3">
-                            <img className="text-sm w-10 h-10" src={CustomerDetails?.profile_image}></img>
-                            <p className="text-sm">Welcome:{CustomerDetails?.name}</p>
-                        </div>
 
                         <div
                             className="px-6 py-3 pb-4 rounded-lg w-full md:w-1/3"

@@ -145,6 +145,11 @@ const DashboardPage = () => {
 
                     </div>
 
+                    <div className="m-3 border bg-gray-100 mb-5 p-3 md:hidden flex flex-row items-center justify-start gap-3 rounded-lg">
+                        <img className="text-sm w-10 h-10" src={CustomerDetails?.profile_image}></img>
+                        <p className="text-sm">{translations.Dashboard.heading[language]}:{CustomerDetails?.name}</p>
+                    </div>
+
                     <div className="flex flex-row justify-between items-center mx-4 mt-14 hidden md:flex">
                         <h1 className="font-bold text-2xl text-black">{translations.sideBar.heading1[language]}</h1>
                         <div className="flex flex-row justify-center items-center gap-4">
@@ -169,9 +174,9 @@ const DashboardPage = () => {
 
 
                     <div className="text-start rounded-full mt-5 px-4 grid md:grid-cols-3 grid-cols-1">
-                        <div className="mb-3 sm:hidden">
+                        {/* <div className="mb-3 sm:hidden">
                             <p style={{ color: "#020065" }} className="text-md font-bold">{translations.Dashboard.heading[language]},{CustomerDetails.name}</p>
-                        </div>
+                        </div> */}
                         <div className="p-4 rounded-lg bg-gradient-to-l from-[#020065] to-[#0400CB]">
 
                             <p className="text-white font-bold text-xl">
@@ -281,8 +286,6 @@ const DashboardPage = () => {
                                         </p>
                                     </div>
                                 </div>
-                                {/* <div className="hidden sm:block"></div>
-                                <div className="hidden sm:block"></div> */}
                             </>
                         ))
                         ) : (
@@ -290,9 +293,6 @@ const DashboardPage = () => {
                                 <p className="text-start text-md font-bold text-gray-400">{translations.Dashboard.heading11[language]}</p>
                             </div>
                         )}
-
-
-
                     </div>
 
 
