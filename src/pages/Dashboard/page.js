@@ -15,6 +15,7 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import translations from "../../utils/Json/translation.json"
 import { useLanguage } from "../../context/Language/loginContext";
+import { getCustomerById } from "../../network/Customer/page";
 
 const DashboardPage = () => {
 
@@ -33,10 +34,25 @@ const DashboardPage = () => {
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
-        setCustomerDetails(customer);
         onformSubmit(customer?._id)
         onformSubmit2(customer?._id)
     }, []);
+
+    useEffect(() => {
+        const data = localStorage.getItem("customerDetails");
+        const customer = JSON.parse(data);
+        fetchCustomerDetails(customer._id);
+    }, []);
+
+    const fetchCustomerDetails = async (id) => {
+        if (id) {
+            const resp = await getCustomerById(id);
+            if (resp.data.status === 200) {
+                setCustomerDetails(resp.data.data.customer);
+
+            }
+        }
+    };
 
     const toggleModal = () => {
         setisModalOpen(!isModalOpen);
@@ -70,7 +86,6 @@ const DashboardPage = () => {
     const investmentsToDisplay = showAllInvestments ? listInvestments : [listInvestments[0]];
     const payoutsToDisplay = showAllPayouts ? listPayouts : [listPayouts[0]];
     const totalInvested = listInvestments.reduce((total, investment) => total + investment.amount, 0);
-    console.log(payoutsToDisplay, "payoutsToDisplay ")
     const today = new Date();
     const totalEarned = listInvestments.reduce((total, investment) => {
         const createdAtDate = new Date(investment.createdAt);
@@ -137,12 +152,11 @@ const DashboardPage = () => {
                             <Avatar
                                 alt="User Avatar"
                                 color="primary"
-
                                 sx={{ width: 40, height: 40, bgcolor: "primary.main" }}
                             >
                                 {CustomerDetails.profile_image ?
                                     (
-                                        <img className="text-sm" src={CustomerDetails?.profile_image}></img>
+                                        <img className="text-sm w-full h-full" src={CustomerDetails?.profile_image}></img>
                                     )
                                     : (
                                         <p className="text-sm"> {CustomerDetails?.name?.charAt(0) || "U"}</p>
@@ -151,6 +165,7 @@ const DashboardPage = () => {
                             </Avatar>
                         </div>
                     </div>
+
 
 
                     <div className="text-start rounded-full mt-5 px-4 grid md:grid-cols-3 grid-cols-1">

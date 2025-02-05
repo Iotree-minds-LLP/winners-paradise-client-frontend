@@ -49,6 +49,7 @@ const Catalogs = () => {
     const [catalogListShow, setcatalogListShow] = useState(false);
     const [LoadingButtonStart, setLoadingButtonStart] = useState(false);
     const { language, setLanguage } = useLanguage();
+    const [BankDetailsPresent, setBankDetailsPresent] = useState(true);
 
     const getKycStatus = async () => {
         setcompleteCardsLoading(true);
@@ -70,6 +71,10 @@ const Catalogs = () => {
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
+        console.log(customer, "Customer")
+        if (customer.bank_acc_no) {
+            setBankDetailsPresent(false);
+        }
         onformSubmit()
         getKycStatus()
     }, []);
@@ -202,19 +207,23 @@ const Catalogs = () => {
                                         </div>
                                     </div>
                                 )}
-                                <Link to="/profile-and-settings/bank-details">
-                                    <div className="p-4 w-full px-5 mb-3 rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex justify-between">
-                                        <div>
-                                            <p className="text-start text-md font-bold text-white"> {translations.Catalog.bank_Card.heading[language]}</p>
-                                            <p style={{ color: "#54E3FC" }} className="text-xs my-2">
-                                                {translations.Catalog.bank_Card.heading2[language]}
-                                            </p>
+
+                                {BankDetailsPresent && (
+                                    <Link to="/profile-and-settings/bank-details">
+                                        <div className="p-4 w-full px-5 mb-3 rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex justify-between">
+                                            <div>
+                                                <p className="text-start text-md font-bold text-white"> {translations.Catalog.bank_Card.heading[language]}</p>
+                                                <p style={{ color: "#54E3FC" }} className="text-xs my-2">
+                                                    {translations.Catalog.bank_Card.heading2[language]}
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <img src={image3} className="w-10 h-10 object-contain" />
+                                            </div>
                                         </div>
-                                        <div>
-                                            <img src={image3} className="w-10 h-10 object-contain" />
-                                        </div>
-                                    </div>
-                                </Link>
+                                    </Link>
+                                )}
+
                             </>
                         )}
                     </div>

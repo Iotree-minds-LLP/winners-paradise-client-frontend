@@ -76,7 +76,6 @@ const CatalogDetails = () => {
         }
 
         const resp = await createEnquiry(payload, SelectedCatalogDetails._id);
-        console.log(resp.data.status, "Resp")
         if (resp.data.status === 201) {
             setEnquirySent(true);
             handleSuccessClick("Enquiry Sent Successfully");
