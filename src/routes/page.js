@@ -31,6 +31,7 @@ import EditNominee from '../pages/BankDetails/editNominee';
 import ConsentForm from '../pages/Kyc/consentForm';
 import { verifyToken } from '../network/Authentication/page';
 import SplashScreen from '../pages/Splash/page';
+import ViewDetails from '../pages/BankDetails/viewDetails';
 
 const routes = [
   { path: "/", element: <OtpVerification /> },
@@ -61,13 +62,14 @@ const routes = [
   { path: "/profile-and-settings/add-nominee", element: <AddNominee /> },
   { path: "/profile-and-settings/edit-nominee", element: <EditNominee /> },
   { path: "/kyc-status/consent-form", element: <ConsentForm /> },
+  { path: "/profile-and-settings/view-bank-details", element: <ViewDetails /> },
 ];
 
 function AppLayout() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const hideSidebarRoutes = ["/", "/register", "/edit-customer-details", "/profile-and-settings/bank-details", "/profile-and-settings/edit-bank-details", "/profile-and-settings/edit-nominee", "/profile-and-settings/add-nominee"];
+  const hideSidebarRoutes = ["/", "/register", "/edit-customer-details", "/profile-and-settings/bank-details", "/profile-and-settings/edit-bank-details", "/profile-and-settings/edit-nominee", "/profile-and-settings/add-nominee", "/profile-and-settings/view-bank-details"]
   const isSidebarHidden = hideSidebarRoutes.includes(location.pathname);
 
   useEffect(() => {

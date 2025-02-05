@@ -3,7 +3,7 @@
         "sendOtpScreen": {
             "heading1": {
                 "english": "Welcome to",
-                "kannada": "ಆಲ್ಗೋ ಅಚೀವರ್ಸ್ ಗೆ"
+                "kannada": "ಸುಸ್ವಾಗತ"
             },
             "heading2": {
                 "english": "Winners Paradise",
@@ -53,11 +53,11 @@
             },
             "confirm": {
                 "english": "Confirm",
-                "kannada": "Confirm"
+                "kannada": "ಖಚಿತಪಡಿಸಿ"
             },
             "changePhoneNumber": {
                 "english": "Change Phone Number",
-                "kannada": "Change Phone Number"
+                "kannada": "ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಬದಲಾಯಿಸಿ"
             }
         }
     },
@@ -116,19 +116,19 @@
         },
         "profileImage": {
             "english": "Upload Profile Image",
-            "kannada": "Upload Profile Image"
+            "kannada": "ಪ್ರೊಫೈಲ್ ಚಿತ್ರ ಅಪ್ಲೋಡ್ ಮಾಡಿ"
         },
         "profileImageField": {
             "english": "Upload Image",
-            "kannada": "Upload Image"
+            "kannada": "ಚಿತ್ರವನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ"
         },
         "isConsentMessage": {
             "english": "Investments are subject to the market conditions and risks associated with the Indian stock market.",
-            "kannada": "Investments are subject to the market conditions and risks associated with the Indian stock market."
+            "kannada": "ಹೂಡಿಕೆಗಳು ಭಾರತೀಯ ಷೇರು ಮಾರುಕಟ್ಟೆಗೆ ಸಂಬಂಧಿಸಿದ ಮಾರುಕಟ್ಟೆ ಪರಿಸ್ಥಿತಿಗಳು ಮತ್ತು ಅಪಾಯಗಳಿಗೆ ಒಳಪಟ್ಟಿರುತ್ತವೆ."
         },
         "updateButton": {
             "english": "Update",
-            "kannada": "Update"
+            "kannada": "ನವೀಕರಿಸಿ"
         }
     },
     "bankModule": {
@@ -160,7 +160,7 @@
         },
         "heading6": {
             "english": "Profile & Settings",
-            "kannada": "Profile & Settings"
+            "kannada": "ಪ್ರೊಫೈಲ್ ಮತ್ತು ಸಂಯೋಜನೆ(ಸೆಟ್ಟಿಂಗ್ಸ್)"
         }
     },
     "Catalog": {
@@ -170,11 +170,11 @@
         },
         "card1": {
             "english": "Return Calculator",
-            "kannada": "Return Calculator"
+            "kannada": "ಪ್ರತ್ಯಾವರ್ತನೆ ಲೆಕ್ಕಾಚಾರ"
         },
         "returnCalculatorNote": {
             "english": "Please note: All calculated amounts are rounded to the nearest whole number for simplicity.",
-            "kannada": "Please note: All calculated amounts are rounded to the nearest whole number for simplicity."
+            "kannada": "ದಯವಿಟ್ಟು ಗಮನಿಸಿ: ಎಲ್ಲಾ ಲೆಕ್ಕಿಸಲಾದ ಮೊತ್ತಗಳು ಸರಳತೆಯಕ್ಕಾಗಿ ಸಮೀಪದ ಪೂರ್ಣ ಸಂಖ್ಯೆಗೆ ವೃತ್ತೀಕರಿಸಲಾಗಿದೆ."
         },
         "enterAmountfield": {
             "english": "Enter the Amount",
@@ -182,15 +182,15 @@
         },
         "fieldValidation": {
             "english": "Minimum ₹1 Lakh",
-            "kannada": "Minimum ₹1 Lakh"
+            "kannada": "ಕನಿಷ್ಠ ₹1 ಲಕ್ಷ ನಮೂದಿಸಿ"
         },
         "button": {
             "english": "Check Returns",
-            "kannada": "Check Returns"
+            "kannada": "ಪ್ರತ್ಯಾವರ್ತನೆಗಳನ್ನು ಪರಿಶೀಲಿಸಿ"
         },
         "noCatalogsMessage": {
             "english": "Sorry We dont have any catalogs for this amount.",
-            "kannada": "Sorry We dont have any catalogs for this amount."
+            "kannada": "ಕ್ಷಮಿಸಿ, ಈ ಮೊತ್ತಕ್ಕೆ ನಮ್ಮ ಬಳಿ ಯಾವುದೇ ಕಾಟಲಾಗ್‌ಗಳು ಲಭ್ಯವಿಲ್ಲ"
         },
         "card2": {
             "heading1": {
@@ -203,7 +203,7 @@
             },
             "heading3": {
                 "english": "Returns per month",
-                "kannada": "Returns per month"
+                "kannada": "ಪ್ರತಿ ತಿಂಗಳ ಆದಾಯ"
             },
             "months": {
                 "english": "Months",
@@ -213,80 +213,80 @@
         "kyc_card": {
             "heading": {
                 "english": "Complete KYC",
-                "kannada": "Complete KYC"
+                "kannada": "KYC ಪೂರ್ಣಗೊಳಿಸಿ"
             },
             "heading2": {
                 "english": "To activate all features and to transact, complete your KYC process",
-                "kannada": "To activate all features and to transact, complete your KYC process"
+                "kannada": "ಎಲ್ಲಾ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ಮತ್ತು ವಹಿವಾಟು ಮಾಡಲು, ನಿಮ್ಮ KYC ಪ್ರಕ್ರಿಯೆಯನ್ನು ಪೂರ್ಣಗೊಳಿಸಿ"
             }
         },
         "bank_Card": {
             "heading": {
                 "english": "Add Bank Account",
-                "kannada": "Add Bank Account"
+                "kannada": "ಬ್ಯಾಂಕ್ ಖಾತೆಯನ್ನು ಸೇರಿಸಿ"
             },
             "heading2": {
                 "english": "Link your bank account to enable to access all financial features.",
-                "kannada": "Link your bank account to enable to access all financial features."
+                "kannada": "ಎಲ್ಲಾ ಆರ್ಥಿಕ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಬಳಸಲು ನಿಮ್ಮ ಬ್ಯಾಂಕ್ ಖಾತೆಯನ್ನು ಲಿಂಕ್ ಮಾಡಿ."
             }
         },
         "listingHeading": {
             "english": "list of investment opportunities",
-            "kannada": "list of investment opportunities"
+            "kannada": "ಹೂಡಿಕೆ ಅವಕಾಶಗಳ ಪಟ್ಟಿ"
         }
     },
     "CatalogDetails": {
         "heading": {
             "english": "Investment Description",
-            "kannada": "Investment Description"
+            "kannada": "ಹೂಡಿಕೆ ವಿವರಣೆ"
         },
         "heading2": {
             "english": "Returns",
-            "kannada": "Returns"
+            "kannada": "ಪ್ರತ್ಯಾವರ್ತನೆ"
         },
         "heading3": {
             "english": "Duration",
-            "kannada": "Duration"
+            "kannada": "ಅವಧಿ"
         },
         "heading4": {
             "english": "Returns per month",
-            "kannada": "Returns per month"
+            "kannada": "ಪ್ರತಿ ತಿಂಗಳ ಪ್ರತ್ಯಾವರ್ತನೆ"
         },
         "heading5": {
             "english": "Total Returns",
-            "kannada": "Total Returns"
+            "kannada": "ಒಟ್ಟು ಪ್ರತ್ಯಾವರ್ತನೆ"
         },
         "heading6": {
             "english": "Months",
-            "kannada": "Months"
+            "kannada": "ತಿಂಗಳುಗಳು"
         },
         "button": {
             "english": "Submit Interest",
-            "kannada": "Submit Interest"
+            "kannada": "ಆಸಕ್ತಿಯನ್ನು ಸಲ್ಲಿಸಿ"
         }
     },
     "Notifications": {
         "heading": {
             "english": "Notifications",
-            "kannada": "Notifications"
+            "kannada": "ಅಧಿಸೂಚನೆಗಳು"
         },
         "heading1": {
             "english": "My Notifications",
-            "kannada": "My Notifications"
+            "kannada": "ನನ್ನ ಅಧಿಸೂಚನೆಗಳು"
         },
         "noNotificationsMessage": {
             "english": "No Notifications Yet",
-            "kannada": "No Notifications yet"
+            "kannada": "ಇದೀಗ ಯಾವುದೇ ಅಧಿಸೂಚನೆಗಳು ಲಭ್ಯವಿಲ್ಲ"
         }
     },
     "ProfileAndSettings": {
         "heading": {
             "english": "Profile & Settings",
-            "kannada": "Profile & Settings"
+            "kannada": "ಪ್ರೊಫೈಲ್ ಮತ್ತು ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
         },
         "heading1": {
             "english": "Personal Details",
-            "kannada": "Personal Details"
+            "kannada": "ವೈಯಕ್ತಿಕ ವಿವರಗಳು"
         },
         "heading2": {
             "english": "KYC",
@@ -294,161 +294,161 @@
         },
         "heading3": {
             "english": "Bank Account",
-            "kannada": "Bank Account"
+            "kannada": "ಬ್ಯಾಂಕ್ ಖಾತೆ"
         },
         "heading4": {
             "english": "Language",
-            "kannada": "Language"
+            "kannada": "ಭಾಷೆ"
         },
         "heading5": {
             "english": "Logout",
-            "kannada": "Logout"
+            "kannada": "ಲಾಗ್ಔಟ್"
         },
         "pwaMessage": {
             "english": "Install the App on your device.",
-            "kannada": "Install the App on your device."
+            "kannada": "ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಆಪ್ ಅನ್ನು ಇನ್ಸ್ಟಾಲ್ ಮಾಡಿ."
         },
         "logoutMessage": {
             "english": "Are you sure you want to logout ?",
-            "kannada": "Are you sure you want to logout ?"
+            "kannada": "ನೀವು ಲಾಗ್ಔಟ್ ಮಾಡಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?"
         },
         "agree": {
             "english": "Yes, I'm sure",
-            "kannada": "Yes, I'm sure"
+            "kannada": "ಹೌದು, ನಾನು ಖಚಿತವಾಗಿದ್ದೇನೆ"
         },
         "cancel": {
             "english": "Cancel",
-            "kannada": "Cancel"
+            "kannada": "ರದ್ದುಗೊಳಿಸು"
         }
     },
     "MyProfile": {
         "heading": {
             "english": "My Profile",
-            "kannada": "My Profile"
+            "kannada": "ನನ್ನ ಪ್ರೊಫೈಲ್"
         },
         "heading1": {
             "english": "Personal Details",
-            "kannada": "Personal Details"
+            "kannada": "ವೈಯಕ್ತಿಕ ವಿವರಗಳು"
         },
         "fullName": {
             "english": "Full Name",
-            "kannada": "Full Name"
+            "kannada": "ಪೂರ್ಣ ಹೆಸರು"
         },
         "phoneNumber": {
             "english": "Phone Number",
-            "kannada": "Phone Number"
+            "kannada": "ದೂರವಾಣಿ ಸಂಖ್ಯೆ"
         },
         "emailId": {
             "english": "Email ID",
-            "kannada": "Email ID"
+            "kannada": "ಇಮೇಲ್ ಐಡಿ"
         },
         "dob": {
             "english": "Date of Birth",
-            "kannada": "Date of Birth"
+            "kannada": "ಹುಟ್ಟಿದ ದಿನಾಂಕ"
         },
         "address": {
             "english": "Address",
-            "kannada": "Address"
+            "kannada": "ವಿಳಾಸ"
         },
         "alternatePhone": {
             "english": "Alternate Phone",
-            "kannada": "Alternate Phone"
+            "kannada": "ಪರ್ಯಾಯ ಫೋನ್"
         },
         "editProfileButton": {
             "english": "Edit Profile Details",
-            "kannada": "Edit Profile Details"
+            "kannada": "ಪ್ರೊಫೈಲ್ ಮಾಹಿತಿಯನ್ನು ಸಂಪಾದಿಸಿ"
         }
     },
     "Dashboard": {
         "heading": {
             "english": "Welcome",
-            "kannada": "Welcome"
+            "kannada": "ಸ್ವಾಗತ"
         },
         "heading1": {
             "english": "Your Investment Statistics",
-            "kannada": "Your Investment Statistics"
+            "kannada": "ನಿಮ್ಮ ಹೂಡಿಕೆ ಅಂಕಿಅಂಶಗಳು"
         },
         "heading2": {
             "english": "Total Invested",
-            "kannada": "Total Invested"
+            "kannada": "ಒಟ್ಟು ಹೂಡಿಕೆ"
         },
         "heading3": {
             "english": "Total Earned",
-            "kannada": "Total Earned"
+            "kannada": "ಒಟ್ಟು ಗಳಿಸಿದ ಮೊತ್ತ"
         },
         "heading4": {
             "english": "Upcoming Payouts",
-            "kannada": "Upcoming Payouts"
+            "kannada": "ಮುಂಬರುವ ಪಾವತಿಗಳು"
         },
         "heading5": {
             "english": "No Payouts Available Yet",
-            "kannada": "No Payouts Available Yet"
+            "kannada": "ಈವರೆಗೆ ಯಾವುದೇ ಪಾವತಿಗಳು ಲಭ್ಯವಿಲ್ಲ"
         },
         "heading6": {
             "english": "Your Investments",
-            "kannada": "Your Investments"
+            "kannada": "ನಿಮ್ಮ ಹೂಡಿಕೆಗಳು"
         },
         "heading7": {
             "english": "View All",
-            "kannada": "View All"
+            "kannada": "ಎಲ್ಲವನ್ನು ವೀಕ್ಷಿಸಿ"
         },
         "heading8": {
             "english": "View Less",
-            "kannada": "View Less"
+            "kannada": "ಕಡಿಮೆ ವೀಕ್ಷಿಸಿ"
         },
         "heading9": {
             "english": "Payout Amount",
-            "kannada": "Payout Amount"
+            "kannada": "ಪಾವತಿಯ ಮೊತ್ತ"
         },
         "heading10": {
             "english": "Payout On",
-            "kannada": "Payout On"
+            "kannada": "ಪಾವತಿ ಆರಂಭ"
         },
         "heading11": {
             "english": "No Payouts Available Yet",
-            "kannada": "No Payouts Available Yet"
+            "kannada": "ಈವರೆಗೆ ಯಾವುದೇ ಪಾವತಿಗಳು ಲಭ್ಯವಿಲ್ಲ"
         },
         "heading12": {
             "english": "Your Investments",
-            "kannada": "Your Investments"
+            "kannada": "ನಿಮ್ಮ ಹೂಡಿಕೆಗಳು"
         },
         "heading13": {
             "english": "No investments found. Invest now!",
-            "kannada": "No investments found. Invest now!"
+            "kannada": "ಯಾವುದೇ ಹೂಡಿಕೆಗಳು ಕಂಡುಬಂದಿಲ್ಲ. ಈಗಲೇ ಹೂಡಿಕೆ ಮಾಡಿ!"
         },
         "heading14": {
             "english": "Invested Amount",
-            "kannada": "Invested Amount"
+            "kannada": "ಹೂಡಿಕೆ ಮಾಡಿದ ಮೊತ್ತ"
         },
         "heading15": {
             "english": "Returns earned",
-            "kannada": "Returns earned"
+            "kannada": "ಪ್ರತ್ಯಾವರ್ತನೆ ಗಳಿಕೆ"
         },
         "catalogs": {
             "english": "Catalogs",
-            "kannada": "Catalogs"
+            "kannada": "ಕ್ಯಾಟಲಾಗ್‌ಗಳು"
         },
         "dashboard": {
             "english": "Dashboard",
-            "kannada": "Dashboard"
+            "kannada": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್"
         },
         "payouts": {
             "english": "Payouts",
-            "kannada": "Payouts"
+            "kannada": "ಪಾವತಿಗಳು"
         }
     },
     "InvestementDetails": {
         "investmentDetails": {
             "english": "Investment Details",
-            "kannada": "ನಿವೇಶನ ವಿವರಗಳು"
+            "kannada": "ಹೂಡಿಕೆ ವಿವರಗಳು"
         },
         "investmentAmount": {
             "english": "Investment Amount",
-            "kannada": "ನಿವೇಶನ ಮೊತ್ತ"
+            "kannada": "ಹೂಡಿಕೆ ಮೊತ್ತ"
         },
         "returns": {
             "english": "Returns",
-            "kannada": "ಪರಿದಾನಗಳು"
+            "kannada": "ಪ್ರತ್ಯಾವರ್ತನೆ"
         },
         "duration": {
             "english": "Duration",
@@ -456,7 +456,7 @@
         },
         "returnsPerMonth": {
             "english": "Returns per month",
-            "kannada": "ಪ್ರತಿ ತಿಂಗಳ ಲಾಭ"
+            "kannada": "ಪ್ರತಿ ತಿಂಗಳ ಪ್ರತ್ಯಾವರ್ತನೆ"
         },
         "totalReturns": {
             "english": "Total Returns",
@@ -464,7 +464,7 @@
         },
         "downloadInvestmentPlan": {
             "english": "Download Investment Plan",
-            "kannada": "ನಿವೇಶನ ಯೋಜನೆಯನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ"
+            "kannada": "ಹೂಡಿಕೆ ಯೋಜನೆಯನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ"
         },
         "upcomingPayout": {
             "english": "Upcoming Payout",
@@ -510,7 +510,7 @@
         },
         "past": {
             "english": "Past",
-            "kannada": "ಹಳೆಯ"
+            "kannada": "ಹಿಂದಿನ"
         },
         "payoutAmount": {
             "english": "Payout Amount",
@@ -540,183 +540,187 @@
     "Kyc": {
         "heading": {
             "english": "Complete Your KYC",
-            "kannada": "Complete Your KYC"
+            "kannada": "ನಿಮ್ಮ KYC ಅನ್ನು ಪೂರ್ಣಗೊಳಿಸಿ"
         },
         "uploadAadhar": {
             "english": "Upload Aadhar Card",
-            "kannada": "Upload Aadhar Card"
+            "kannada": "ಆಧಾರ್ ಕಾರ್ಡ್ ಅನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ"
         },
         "field_1": {
             "english": "Enter Aadhar Number Here",
-            "kannada": "Enter Aadhar Number Here"
+            "kannada": "ಇಲ್ಲಿ ಆಧಾರ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ"
         },
         "field_2": {
             "english": "Aadhar Number",
-            "kannada": "Aadhar Number"
+            "kannada": "ಆಧಾರ್ ಸಂಖ್ಯೆ"
         },
         "card_1_heading": {
             "english": "Aadhar Card Front Side",
-            "kannada": "Aadhar Card Front Side"
+            "kannada": "ಆಧಾರ್ ಕಾರ್ಡ್ ಮುಂಭಾಗ"
         },
         "card_1_sub_heading": {
             "english": "Upload",
-            "kannada": "Upload"
+            "kannada": "ಅಪ್ಲೋಡ್ ಮಾಡಿ"
         },
         "card_2_heading": {
             "english": "Aadhar Card Back Side",
-            "kannada": "Aadhar Card Back Side"
+            "kannada": "ಆಧಾರ್ ಕಾರ್ಡ್ ಹಿಂಭಾಗ"
         },
         "card_2_sub_heading": {
             "english": "Upload",
-            "kannada": "Upload"
+            "kannada": "ಅಪ್ಲೋಡ್ ಮಾಡಿ"
         },
         "button": {
             "english": "Save & Continue",
-            "kannada": "Save & Continue"
+            "kannada": "ಉಳಿಸಿ ಮತ್ತು ಮುಂದುವರಿಸು"
         },
         "capture": {
             "english": "Capture",
-            "kannada": "Capture"
+            "kannada": "ಸೆರೆಹಿಡಿಯಿರಿ"
         },
         "cancel": {
             "english": "Cancel",
-            "kannada": "Cancel"
+            "kannada": "ರದ್ದುಮಾಡಿ"
         },
         "pan_card": {
             "upload": {
                 "english": "Upload",
-                "kannada": "Upload"
+                "kannada": "ಅಪ್ಲೋಡ್ ಮಾಡಿ"
             },
             "heading": {
                 "english": "Upload PAN CARD",
-                "kannada": "Upload PAN CARD"
+                "kannada": "ಪ್ಯಾನ್ ಕಾರ್ಡ್ ಅನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ"
             },
             "heading1": {
                 "english": "PAN CARD",
-                "kannada": "PAN CARD"
+                "kannada": "ಪ್ಯಾನ್ ಕಾರ್ಡ್"
             }
         },
         "cheque": {
             "upload": {
                 "english": "Upload",
-                "kannada": "Upload"
+                "kannada": "ಅಪ್ಲೋಡ್ ಮಾಡಿ"
             },
             "heading": {
                 "english": "Upload Cancelled Cheque",
-                "kannada": "Upload Cancelled Cheque"
+                "kannada": "ರದ್ದಾದ ಚೆಕ್ ಅನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ"
             },
             "heading1": {
                 "english": "Cancelled Cheque",
-                "kannada": "Cancelled Cheque"
+                "kannada": "ರದ್ದಾದ ಚೆಕ್"
             }
         },
         "selfie": {
             "upload": {
                 "english": "Upload",
-                "kannada": "Upload"
+                "kannada": "ಅಪ್ಲೋಡ್ ಮಾಡಿ"
             },
             "heading": {
                 "english": "Upload Selfie",
-                "kannada": "Upload Selfie"
+                "kannada": "ಸೆಲ್ಫಿ ಅಪ್ಲೋಡ್ ಮಾಡಿ"
             }
         }
     },
     "LanguagePreference": {
         "heading": {
             "english": "Language Preference",
-            "kannada": "Language Preference"
+            "kannada": "ಭಾಷಾ ಆದ್ಯತೆ"
         },
         "heading1": {
             "english": "Select preferred language",
-            "kannada": "Select preferred language"
+            "kannada": "ಆದ್ಯತೆಯ ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ"
         },
         "saveButton": {
             "english": "Save & Continue",
-            "kannada": "Save & Continue"
+            "kannada": "ಉಳಿಸಿ ಮತ್ತು ಮುಂದುವರಿಸಿ"
         },
         "save": {
             "english": "Save",
-            "kannada": "Save"
+            "kannada": "ಉಳಿಸಿ"
         }
     },
     "BankAccount": {
         "bankAccountNumber": {
             "english": "Bank Account Number *",
-            "kannada": "Bank Account Number *"
+            "kannada": "ಬ್ಯಾಂಕ್ ಖಾತೆ ಸಂಖ್ಯೆ*"
         },
         "heading": {
             "english": "Bank Account Details *",
-            "kannada": "Bank Account Details *"
+            "kannada": "ಬ್ಯಾಂಕ್ ಖಾತೆ ವಿವರಗಳು *"
         },
         "bankName": {
             "english": "Bank Name *",
-            "kannada": "Bank Name *"
+            "kannada": "ಬ್ಯಾಂಕ್ ಹೆಸರು *"
         },
         "ifscCode": {
             "english": "IFSC Code *",
-            "kannada": "IFSC Code *"
+            "kannada": "ಐಎಫ್‌ಎಸ್‌ಸಿ ಕೋಡ್ *"
         },
         "bankBranchName": {
             "english": "Bank Branch Name *",
-            "kannada": "Bank Branch Name *"
+            "kannada": "ಬ್ಯಾಂಕ್ ಶಾಖೆಯ ಹೆಸರು *"
         },
         "enterOtp": {
             "english": "Enter OTP *",
-            "kannada": "Enter OTP *"
+            "kannada": "ಒಟಿಪಿ ನಮೂದಿಸಿ *"
         },
         "resentOtp": {
             "english": "Resend OTP *",
-            "kannada": "Resend OTP *"
+            "kannada": "ಒಟಿಪಿ ಮರುಕಳುಹಿಸಿ *"
         },
         "sendOtpButton": {
             "english": "Send OTP",
-            "kannada": "Send OTP"
+            "kannada": "ಒಟಿಪಿ ಕಳುಹಿಸಿ"
         },
         "updateButton": {
             "english": "Update",
-            "kannada": "Update"
+            "kannada": "ನವೀಕರಿಸಿ"
         },
         "saveButton": {
             "english": "Save & Continue",
-            "kannada": "Save & Continue"
+            "kannada": "ಉಳಿಸಿ ಮತ್ತು ಮುಂದುವರಿಸಿ"
         }
     },
     "Nominee": {
         "heading": {
             "english": "Add Nominee",
-            "kannada": "Add Nominee"
+            "kannada": "ನಾಮಿನಿಯನ್ನು ಸೇರಿಸಿ"
+        },
+        "nomineeDetails": {
+            "english": "Nominee Details",
+            "kannada": "ನಾಮಿನಿ ವಿವರಗಳು"
         },
         "nomineeField": {
             "english": "Nominee Name",
-            "kannada": "Nominee Name"
+            "kannada": "ನಾಮಿನಿ ಹೆಸರು"
         },
         "validation1": {
             "english": "Please enter nominee name",
-            "kannada": "Please enter nominee name"
+            "kannada": "ದಯವಿಟ್ಟು ನಾಮಿನಿ ಹೆಸರನ್ನು ನಮೂದಿಸಿ"
         },
         "aadharField": {
             "english": "Aadhaar Number",
-            "kannada": "Aadhaar Number"
+            "kannada": "ಆಧಾರ್ ಸಂಖ್ಯೆ"
         },
         "panNumber": {
             "english": "PAN Number",
-            "kannada": "PAN Number"
+            "kannada": "ಪ್ಯಾನ್ ಸಂಖ್ಯೆ"
         },
         "uploadAadhaar": {
             "english": "Upload Aadhaar",
-            "kannada": "Upload Aadhaar"
+            "kannada": "ಆಧಾರ್ ಅಪ್ಲೋಡ್ ಮಾಡಿ"
         },
         "uploadPan": {
             "english": "Uplaod PAN",
-            "kannada": "Uplaod PAN"
+            "kannada": "PAN ಕಾರ್ಡ್ ಅನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ"
         },
         "uploadPhoto": {
             "english": "Uplaod Photo",
-            "kannada": "Uplaod Photo"
+            "kannada": "ಫೋಟೋ ಅಪ್ಲೋಡ್ ಮಾಡಿ"
         },
         "cheque": {
             "english": "Cheque",
-            "kannada": "Cheque"
+            "kannada": "ಚೆಕ್"
         }
     },
     "validations": {
@@ -730,7 +734,7 @@
         },
         "phoneField_3": {
             "english": "Invalid Phone Number",
-            "kannada": "Invalid Phone Number"
+            "kannada": "ಅಮಾನ್ಯವಾದ ಫೋನ್ ಸಂಖ್ಯೆ"
         },
         "fullname_1": {
             "english": "Full Name is required",
@@ -766,7 +770,7 @@
         },
         "otpField": {
             "english": "OTP is required",
-            "kannada": "OTP is required"
+            "kannada": "ಒಟಿಪಿ ಅಗತ್ಯವಿದೆ"
         },
         "dob": {
             "english": "Date of Birth cannot be in the future",
@@ -774,71 +778,71 @@
         },
         "dob_1": {
             "english": "Date of Birth is required",
-            "kannada": "Date of Birth is required"
+            "kannada": "ದಯವಿಟ್ಟು ಹುಟ್ಟಿದ ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
         },
         "dob_2": {
             "english": "You must be at least 18 years old",
-            "kannada": "You must be at least 18 years old"
+            "kannada": "Yನೀವು ಕನಿಷ್ಟ 18 ವರ್ಷ ವಯಸ್ಸಿನವರಾಗಿರಬೇಕು"
         },
         "dob_3": {
             "english": "Date of Birth must be within the last 100 years",
-            "kannada": "Date of Birth must be within the last 100 years"
+            "kannada": "ಹುಟ್ಟಿದ ದಿನಾಂಕವು ಕಳೆದ 100 ವರ್ಷಗಳೊಳಗಿರಬೇಕು"
         },
         "address_1": {
             "english": "Address is required",
-            "kannada": "Address is required"
+            "kannada": "ದಯವಿಟ್ಟು ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ"
         },
         "address_2": {
             "english": "Only letters, numbers, spaces, commas, periods, and hyphens are allowed",
-            "kannada": "Only letters, numbers, spaces, commas, periods, and hyphens are allowed"
+            "kannada": "ಅಕ್ಷರಗಳು, ಸಂಖ್ಯೆಗಳನ್ನು, ಖಾಲಿ ಜಾಗಗಳನ್ನು, ಅಲ್ಪವಿರಾಮ, ಪೂರ್ಣವಿರಾಮ ಮತ್ತು ಹೈಫನ್ ಮಾತ್ರ ಅನುಮತಿಸಲಾಗಿದೆ."
         },
         "state_1": {
             "english": "State is required",
-            "kannada": "State is required"
+            "kannada": "ದಯವಿಟ್ಟು ರಾಜ್ಯದ ಹೆಸರನ್ನು ನಮೂದಿಸಿ"
         },
         "state_2": {
             "english": "State must be at least 3 characters long",
-            "kannada": "State must be at least 3 characters long"
+            "kannada": "ರಾಜ್ಯವು ಕನಿಷ್ಠ 3 ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿರಬೇಕು"
         },
         "state_3": {
             "english": "State cannot exceed 40 characters",
-            "kannada": "State cannot exceed 40 characters"
+            "kannada": "ರಾಜ್ಯವು 40 ಅಕ್ಷರಗಳನ್ನು ಮೀರಬಾರದು"
         },
         "state_4": {
             "english": "State must contain only alphabets",
-            "kannada": "State must contain only alphabets"
+            "kannada": "ರಾಜ್ಯವು ಕೇವಲ ಅಕ್ಷರಗಳನ್ನು ಮಾತ್ರ ಹೊಂದಿರಬೇಕು"
         },
         "district_1": {
             "english": "District is required",
-            "kannada": "District is required"
+            "kannada": "ದಯವಿಟ್ಟು ಜಿಲ್ಲೆಯ ಹೆಸರನ್ನು ನಮೂದಿಸಿ"
         },
         "district_2": {
             "english": "District must be at least 3 characters long",
-            "kannada": "District must be at least 3 characters long"
+            "kannada": "ಜಿಲ್ಲೆಯ ಹೆಸರು ಕನಿಷ್ಠ 3 ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿರಬೇಕು"
         },
         "district_3": {
             "english": "District cannot exceed 40 characters",
-            "kannada": "District cannot exceed 40 characters"
+            "kannada": "ಜಿಲ್ಲೆಯ ಹೆಸರು 40 ಅಕ್ಷರಗಳನ್ನು ಮೀರುವಂತಿಲ್ಲ"
         },
         "district_4": {
             "english": "District must contain only alphabets",
-            "kannada": "District must contain only alphabets"
+            "kannada": "ಜಿಲ್ಲೆಯ ಹೆಸರು ಕೇವಲ ಅಕ್ಷರಗಳನ್ನು ಮಾತ್ರ ಹೊಂದಿರಬೇಕು"
         },
         "city_1": {
             "english": "City is required",
-            "kannada": "City is required"
+            "kannada": "ದಯವಿಟ್ಟು ನಗರವನ್ನು ನಮೂದಿಸಿ"
         },
         "city_2": {
             "english": "City must be at least 3 characters long",
-            "kannada": "City must be at least 3 characters long"
+            "kannada": "ನಗರವು ಕನಿಷ್ಠ 3 ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿರಬೇಕು"
         },
         "city_3": {
             "english": "City cannot exceed 40 characters",
-            "kannada": "City cannot exceed 40 characters"
+            "kannada": "ನಗರವು 40 ಅಕ್ಷರಗಳನ್ನು ಮೀರುವಂತಿಲ್ಲ"
         },
         "city_4": {
             "english": "City must contain only alphabets",
-            "kannada": "City must contain only alphabets"
+            "kannada": "ನಗರವು ಕೇವಲ ಅಕ್ಷರಗಳನ್ನು ಮಾತ್ರ ಹೊಂದಿರಬೇಕು"
         },
         "global": {
             "english": "This Field Is Required",
@@ -847,153 +851,153 @@
         "aadharUpload": {
             "frontImage": {
                 "english": "Please upload aadhar front image",
-                "kannada": "Please upload aadhar front image"
+                "kannada": "ದಯವಿಟ್ಟು ಆಧಾರ್ ಮುಂಭಾಗದ ಚಿತ್ರವನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ"
             },
             "backImage": {
                 "english": "Please upload aadhar back image",
-                "kannada": "Please upload aadhar back image"
+                "kannada": "ದಯವಿಟ್ಟು ಆಧಾರ್ ಹಿಂಬಾಗದ ಚಿತ್ರವನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ."
             },
             "aadharNumber": {
                 "english": "Please enter aadhar number",
-                "kannada": "Please enter aadhar number"
+                "kannada": "ದಯವಿಟ್ಟು ಆಧಾರ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ"
             }
         },
         "panCard": {
             "panImage": {
                 "english": "Please capture Pan Card",
-                "kannada": "Please capture Pan Card"
+                "kannada": "ದಯವಿಟ್ಟು ಪ್ಯಾನ್ ಕಾರ್ಡ್ ಚಿತ್ರವನ್ನು ಸೆರೆಹಿಡಿಯಿರಿ"
             }
         },
         "chequeValidations": {
             "cheque": {
                 "english": "Please capture cheque image before continuing",
-                "kannada": "Please capture cheque image before continuing"
+                "kannada": "ಮುಂದುವರಿಯುವ ಮೊದಲು ದಯವಿಟ್ಟು ಚೆಕ್ ಚಿತ್ರದ ಚಿತ್ರವನ್ನು ಸೆರೆಹಿಡಿಯಿರಿ."
             }
         },
         "selfieValidations": {
             "selfie": {
                 "english": "Please take your selfie to continue",
-                "kannada": "Please take your selfie to continue"
+                "kannada": "ಮುಂದುವರಿಯಲು ದಯವಿಟ್ಟು ನಿಮ್ಮ ಸೆಲ್ಫಿ ತೆಗೆದುಕೊಳ್ಳಿ"
             }
         },
         "bankDetails": {
             "bankAccount": {
                 "english": "Bank Account Number is required",
-                "kannada": "Bank Account Number is required"
+                "kannada": "ದಯವಿಟ್ಟು ಬ್ಯಾಂಕ್ ಖಾತೆ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ"
             },
             "bankAccount1": {
                 "english": "Enter a valid account number (9-18 digits)",
-                "kannada": "Enter a valid account number (9-18 digits)"
+                "kannada": "ಮಾನ್ಯವಾದ ಬ್ಯಾಂಕ್ ಖಾತೆ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ (9-18 ಅಂಕೆಗಳು)"
             },
             "bankName": {
                 "english": "Please enter bank name",
-                "kannada": "Please enter bank name"
+                "kannada": "ದಯವಿಟ್ಟು ಬ್ಯಾಂಕ್ ಹೆಸರನ್ನು ನಮೂದಿಸಿ"
             },
             "bankName1": {
                 "english": "Bank name must be at least 3 characters",
-                "kannada": "Bank name must be at least 3 characters"
+                "kannada": "ಬ್ಯಾಂಕ್ ಹೆಸರು ಕನಿಷ್ಠ 3 ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿರಬೇಕು"
             },
             "bankName2": {
                 "english": "Bank name cannot exceed 40 characters",
-                "kannada": "Bank name cannot exceed 40 characters"
+                "kannada": "ಬ್ಯಾಂಕ್ ಹೆಸರು 40 ಅಕ್ಷರಗಳನ್ನು ಮೀರುವಂತಿಲ್ಲ"
             },
             "bankName3": {
                 "english": "Only letters and spaces are allowed",
-                "kannada": "Only letters and spaces are allowed"
+                "kannada": "ಅಕ್ಷರಗಳು ಮತ್ತು ಖಾಲಿ ಜಾಗಗಳನ್ನು ಮಾತ್ರ ಅನುಮತಿಸಲಾಗಿದೆ."
             },
             "ifscCode": {
                 "english": "IFSC Code is required",
-                "kannada": "IFSC Code is required"
+                "kannada": "ದಯವಿಟ್ಟು ಐಎಫ್‌ಎಸ್‌ಸಿ ಕೋಡ್ ನಮೂದಿಸಿ"
             },
             "ifscCode1": {
                 "english": "Enter a valid IFSC code (e.g., SBIN0001234)",
-                "kannada": "Enter a valid IFSC code (e.g., SBIN0001234)"
+                "kannada": "ಮಾನ್ಯವಾದ ಐಎಫ್‌ಎಸ್‌ಸಿ ಕೋಡ್ ಅನ್ನು ನಮೂದಿಸಿ (ಉದಾ., SBIN0001234)"
             },
             "bankBranch": {
                 "english": "Bank Branch Name is required",
-                "kannada": "Bank Branch Name is required"
+                "kannada": "ದಯವಿಟ್ಟು ಬ್ಯಾಂಕ್ ಶಾಖೆಯ ಹೆಸರನ್ನು ನಮೂದಿಸಿ"
             },
             "bankBranch1": {
                 "english": "Branch name must be at least 3 characters",
-                "kannada": "Branch name must be at least 3 characters"
+                "kannada": "ಶಾಖೆಯ ಹೆಸರು ಕನಿಷ್ಠ 3 ಅಕ್ಷರಗಳಾಗಿರಬೇಕು"
             },
             "bankBranch2": {
                 "english": "Branch name cannot exceed 40 characters",
-                "kannada": "Branch name cannot exceed 40 characters"
+                "kannada": "ಶಾಖೆಯ ಹೆಸರು 40 ಅಕ್ಷರಗಳನ್ನು ಮೀರಬಾರದು"
             },
             "bankBranch3": {
                 "english": "Only letters and spaces are allowed",
-                "kannada": "Only letters and spaces are allowed"
+                "kannada": "ಅಕ್ಷರಗಳು ಮತ್ತು ಖಾಲಿ ಜಾಗಗಳನ್ನು ಮಾತ್ರ ಅನುಮತಿಸಲಾಗಿದೆ"
             }
         },
         "nomineeValidations": {
             "nominee1": {
                 "english": "Nominee name must be at least 3 characters",
-                "kannada": "Nominee name must be at least 3 characters"
+                "kannada": "ನಾಮಿನಿ ಹೆಸರು ಕನಿಷ್ಠ 3 ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿರಬೇಕು"
             },
             "nominee": {
                 "english": "Nominee name is required",
-                "kannada": "Nominee name is required"
+                "kannada": "ನಾಮಿನಿ ಹೆಸರು ಅಗತ್ಯವಿದೆ"
             },
             "nominee2": {
                 "english": "Nominee name cannot exceed 40 characters",
-                "kannada": "Nominee name cannot exceed 40 characters"
+                "kannada": "ನಾಮಿನಿ ಹೆಸರು 40 ಅಕ್ಷರಗಳನ್ನು ಮೀರುವಂತಿಲ್ಲ"
             },
             "nominee3": {
                 "english": "Only letters and spaces are allowed",
-                "kannada": "Only letters and spaces are allowed"
+                "kannada": "ಅಕ್ಷರಗಳು ಮತ್ತು ಖಾಲಿ ಜಾಗಗಳು ಮಾತ್ರ ಅನುಮತಿಸಲಾಗಿದೆ"
             },
             "aadhaarField1": {
                 "english": "Aadhaar Number must 12 digit",
-                "kannada": "Aadhaar Number must 12 digit"
+                "kannada": "ಆಧಾರ್ ಸಂಖ್ಯೆ 12 ಅಂಕಿಗಳನ್ನು ಹೊಂದಿರಬೇಕು"
             },
             "panNumberfield": {
                 "english": "Pan Number must 10 digit",
-                "kannada": "Pan Number must 10 digit"
+                "kannada": "ಪ್ಯಾನ್ ಸಂಖ್ಯೆಯು 10 ಅಂಕೆಗಳನ್ನು ಹೊಂದಿರಬೇಕು"
             },
             "valid": {
                 "english": "Invalid PAN format. Example: ABCDE1234F",
-                "kannada": "Invalid PAN format. Example: ABCDE1234F"
+                "kannada": "ಅಮಾನ್ಯ PAN ಮಾದರಿ. ಉದಾಹರಣೆ: ABCDE1234F"
             },
             "aadhaarUpload1": {
                 "english": "Only PDF files are allowed",
-                "kannada": "Only PDF files are allowed"
+                "kannada": "ಪಿಡಿಎಫ್ ಫೈಲ್ಗಳನ್ನು ಮಾತ್ರ ಅನುಮತಿಸಲಾಗಿದೆ"
             },
             "aadhaarUpload2": {
                 "english": "File size should not exceed 2MB.",
-                "kannada": "File size should not exceed 2MB."
+                "kannada": "ಕಡತದ ಗಾತ್ರ 2MB ಮೀರಬಾರದು."
             },
             "aadhaarUpload3": {
                 "english": "Error in file upload. Please try again",
-                "kannada": "Error in file upload. Please try again"
+                "kannada": "ಫೈಲ್ ಅಪ್‌ಲೋಡ್ ಮಾಡುವಲ್ಲಿ ದೋಷ ಕಂಡುಬಂದಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ"
             },
             "panUpload1": {
                 "english": "Only PDF files are allowed",
-                "kannada": "Only PDF files are allowed"
+                "kannada": "ಪಿಡಿಎಫ್ ಫೈಲ್ಗಳನ್ನು ಮಾತ್ರ ಅನುಮತಿಸಲಾಗಿದೆ"
             },
             "panUpload2": {
                 "english": "File size should not exceed 2MB.",
-                "kannada": "File size should not exceed 2MB."
+                "kannada": "ಕಡತದ ಗಾತ್ರ 2MB ಮೀರಬಾರದು."
             },
             "panUpload3": {
                 "english": "Error in file upload. Please try again",
-                "kannada": "Error in file upload. Please try again"
+                "kannada": "ಫೈಲ್ ಅಪ್‌ಲೋಡ್ ಮಾಡುವಲ್ಲಿ ದೋಷ ಕಂಡುಬಂದಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ"
             },
             "selfieUpload1": {
                 "english": "Only image (JPG, JPEG, PNG) are allowed",
-                "kannada": "ಕೇವಲ ಚಿತ್ರ ಫೈಲ್ಗಳು (JPG, JPEG, PNG) ಅನುಮತಿಸಲಾಗಿದೆ"
+                "kannada": "ಕೇವಲ ಚಿತ್ರ ಕಡತಗಳು (JPG, JPEG, PNG) ಅನುಮತಿಸಲಾಗಿದೆ"
             },
             "selfieUpload2": {
                 "english": "File size should not exceed 2MB.",
-                "kannada": "File size should not exceed 2MB."
+                "kannada": "ಕಡತದ ಗಾತ್ರ 2MB ಮೀರಬಾರದು."
             },
             "chequeUpload1": {
                 "english": "Only image (JPG, JPEG, PNG) are allowed",
-                "kannada": "ಕೇವಲ ಚಿ"
+                "kannada": "ಕೆವಲ ಚಿತ್ರ ಕಡತಗಳು (JPG, JPEG, PNG) ಮಾತ್ರ ಅನುಮತಿಸಲಾಗಿದೆ."
             },
             "chequeUpload2": {
                 "english": "File size should not exceed 2MB.",
-                "kannada": "File size should not exceed 2MB."
+                "kannada": "ಕಡತದ ಗಾತ್ರ 2MB ಮೀರಬಾರದು."
             }
         }
     },
@@ -1004,39 +1008,39 @@
     "global": {
         "chooseOption": {
             "english": "Choose or take a picture",
-            "kannada": "Choose or take a picture"
+            "kannada": "ಚಿತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ ಅಥವಾ ತೆಗೆದುಕೊಳ್ಳಿ"
         },
         "useCamera": {
             "english": "Use Camera",
-            "kannada": "Use Camera"
+            "kannada": "ಕ್ಯಾಮೆರಾ ಬಳಸಿ"
         },
         "uploadFromFiles": {
             "english": "Upload from Files",
-            "kannada": "Upload from Files"
+            "kannada": "ಫೈಲ್‌ಗಳಿಂದ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ"
         },
         "cancel": {
             "english": "Cancel",
-            "kannada": "Cancel"
+            "kannada": "ರದ್ದುಮಾಡಿ"
         },
         "capture": {
             "english": "Capture",
-            "kannada": "Capture"
+            "kannada": "ಸೆರೆಹಿಡಿಯಿರಿ"
         },
         "button": {
             "english": "Save & Continue",
-            "kannada": "Save & Continue"
+            "kannada": "ಉಳಿಸಿ ಮತ್ತು ಮುಂದುವರಿಸಿ"
         },
         "reasonForRejection": {
             "english": "Reason for Rejection",
-            "kannada": "Reason for Rejection"
+            "kannada": "ನಿರಾಕರಣೆಗೆ ಕಾರಣ"
         },
         "kycRequestSuccess": {
             "english": "KYC Request Submitted Successfully",
-            "kannada": "KYC Request Submitted Successfully"
+            "kannada": "KYC ವಿನಂತಿಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಸಲಾಗಿದೆ"
         },
         "kycRequestSentError": {
             "english": "Error in sending KYC Request",
-            "kannada": "Error in sending KYC Request"
+            "kannada": "ಕೆವೈಸಿ ವಿನಂತಿ ಸಲ್ಲಿಸುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ"
         }
     }
 }

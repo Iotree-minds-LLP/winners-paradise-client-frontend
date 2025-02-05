@@ -69,7 +69,6 @@ const MyProfile = () => {
                     <div className="text-start rounded-lg mt-5 p-4 md:px-10 grid md:grid-cols-1 grid-cols-1 gap-4">
                         <div className="p-4 md:p-6 rounded-lg w-full md:w-1/2" style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}>
                             {isLoading ? (
-                                // Shimmering Effect for Loading State
                                 <>
                                     <div className="mb-4">
                                         <Skeleton width="50%" height={20} />

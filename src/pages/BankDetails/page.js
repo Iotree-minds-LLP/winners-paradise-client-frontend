@@ -9,9 +9,11 @@ import { useToast } from "../../context/Toast/toastHook";
 import { goBack } from "../../utils/Functions/goBackScreen";
 import { addBankDetails, updateBankDetails, sendOtpForUpdate } from "../../network/BankDetails/page";
 import addNomineeImage from "../../assets/Images/addnominee.png"
+import infoPng from "../../assets/Images/info.png"
 import { getCustomerById } from "../../network/Customer/page";
 import { useLanguage } from "../../context/Language/loginContext";
 import translations from "../../utils/Json/translation.json"
+import { MoreRounded } from "@mui/icons-material";
 
 const BankDetails = () => {
 
@@ -362,14 +364,22 @@ const BankDetails = () => {
 
                             </div> */}
 
-                            <Link to="/profile-and-settings/add-nominee" className="mb-10 md:mb-0">
+                            {/* <Link to="/profile-and-settings/add-nominee" className="mb-10 md:mb-0">
                                 <div className="mt-5 p-5 w-full rounded-lg border border-black border-dotted  border-2 text-start flex justify-between">
                                     <p className="text-lg font-bold" style={{ color: 'rgba(0, 0, 148, 1)' }}>{translations.Nominee.heading[language]}</p>
                                     <img className="w-6 h-6" src={addNomineeImage}></img>
                                 </div>
-                            </Link>
+                            </Link> */}
 
                             {/* Submit Button */}
+                            {UpdateBankDetails &&
+                                <div className="bg-gray-100 rounded-lg">
+                                    <div className="text-start p-4 flex flex-row">
+                                        <img className="w-6 h-6" src={infoPng}></img>
+                                        <p className="text-xs mx-2 mt-1">You need to verify your registered mobile number to update your bank details.</p>
+                                    </div>
+                                </div>
+                            }
                             <div>
 
                                 <div className="fixed z-10 bottom-0 left-0  w-full sm:hidden bg-white shadow-lg bg-white">
