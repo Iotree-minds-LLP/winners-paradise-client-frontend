@@ -272,17 +272,28 @@ const ViewDetails = () => {
                                 </div>
                             </div>
                         ) : (
-                            <Link to="/profile-and-settings/add-nominee" className="mb-10 md:mb-0 mx-4">
-                                <div className="mt-5 p-5 w-full rounded-lg border border-black border-dotted  border-2 text-start flex justify-between">
-                                    <p className="text-lg font-bold" style={{ color: 'rgba(0, 0, 148, 1)' }}>{translations.Nominee.heading[language]}</p>
-                                    <img className="w-6 h-6" src={addNomineeImage}></img>
-                                </div>
-                            </Link>
+                            <>
+
+                                {isLoading ? (
+                                    <div className="mb-4" >
+                                        <Skeleton width="50%" height={20} />
+                                        <Skeleton width="80%" height={25} className="mt-2" />
+                                    </div>
+                                ) : (
+                                    <Link to="/profile-and-settings/add-nominee" className="mb-10 md:mb-0 mx-4">
+                                        <div className="mt-5 p-5 w-full rounded-lg border border-black border-dotted border-2 text-start flex justify-between">
+                                            <p className="text-lg font-bold" style={{ color: 'rgba(0, 0, 148, 1)' }}>
+                                                {translations.Nominee.heading[language]}
+                                            </p>
+                                            <img className="w-6 h-6" src={addNomineeImage} alt="Add Nominee" />
+                                        </div>
+                                    </Link>
+                                )}
+
+                            </>
                         )}
 
                     </div>
-
-
                     <div className="col-span-12 hidden sm:block overflow-hidden md:col-span-6 w-full max-h-[100vh] order-2 md:order-1 responsive relative">
                         <img src={image3} alt="Image description" className="w-full h-auto object-cover" />
                         <div className="absolute inset-0 flex items-center justify-center">
