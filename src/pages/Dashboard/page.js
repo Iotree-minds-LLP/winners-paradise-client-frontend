@@ -172,7 +172,6 @@ const DashboardPage = () => {
                     </div>
 
 
-
                     <div className="text-start rounded-full mt-5 px-4 grid md:grid-cols-3 grid-cols-1">
                         {/* <div className="mb-3 sm:hidden">
                             <p style={{ color: "#020065" }} className="text-md font-bold">{translations.Dashboard.heading[language]},{CustomerDetails.name}</p>

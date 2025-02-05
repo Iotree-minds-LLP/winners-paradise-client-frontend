@@ -56,6 +56,7 @@ const KycStatusPage = () => {
             if (res?.data?.status === 200) {
                 setisLoading(false);
                 handleSuccessClick(res.data.data.message);
+                navigate("/profile-and-settings")
             } else {
                 setisLoading(false);
                 seterrorMessage(res.data.error);
