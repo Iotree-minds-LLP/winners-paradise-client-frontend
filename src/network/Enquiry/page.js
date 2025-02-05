@@ -4,7 +4,7 @@ import { axiosInstance, axiosInstanceWithoutToken } from "../../axiosInstance/Ax
 
 const createEnquiry = async (payload, id) => {
     try {
-        const res = await axiosInstance.post(`customer/create-enquiry`, payload);
+        const res = await axiosInstance.post(`enquiry/create-enquiry`, payload);
         const data = res;
         return { data };
     } catch (err) {
