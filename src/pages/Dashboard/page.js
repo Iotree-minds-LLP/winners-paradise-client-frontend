@@ -57,9 +57,9 @@ const DashboardPage = () => {
     const onformSubmit2 = async (id) => {
         setloadingPayouts(true);
         const resp = await getAllPayouts();
+        console.log(resp.data.status, "Rsp")
         if (resp.data.status === 200) {
             setlistPayount(resp.data.data.payouts)
-            console.log(resp.data.data.payouts, "resp.data.data.payouts")
         }
         else {
             setlistPayount([])
@@ -70,7 +70,7 @@ const DashboardPage = () => {
     const investmentsToDisplay = showAllInvestments ? listInvestments : [listInvestments[0]];
     const payoutsToDisplay = showAllPayouts ? listPayouts : [listPayouts[0]];
     const totalInvested = listInvestments.reduce((total, investment) => total + investment.amount, 0);
-
+    console.log(payoutsToDisplay, "payoutsToDisplay ")
     const today = new Date();
     const totalEarned = listInvestments.reduce((total, investment) => {
         const createdAtDate = new Date(investment.createdAt);
@@ -211,8 +211,8 @@ const DashboardPage = () => {
                         <div className="flex justify-between mx-2">
                             <p style={{ color: "#020065" }} className="text-lg font-bold">
                                 {translations.Dashboard.heading4[language]}
-
                             </p>
+
                             {payoutsToDisplay && payoutsToDisplay[0] !== undefined && (
 
                                 <p
@@ -231,6 +231,7 @@ const DashboardPage = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 px-5 gap-4">
+
                         {loadingPayouts ? (
                             Array.from({ length: 3 }).map((_, index) => (
                                 <Skeleton
@@ -239,8 +240,8 @@ const DashboardPage = () => {
                                     style={{ borderRadius: "8px", background: "#F5F5F5" }}
                                 />
                             ))
-                        ) : payoutsToDisplay && payoutsToDisplay[0] === "undefined" && payoutsToDisplay.length > 0 ? (
-                            payoutsToDisplay.map((payout, index) => (
+                        ) : payoutsToDisplay && payoutsToDisplay.length > 0 ? (payoutsToDisplay.map((payout, index) => (
+                            <>
                                 <div
                                     key={index}
                                     className="flex justify-between p-4 rounded-lg"
@@ -265,12 +266,18 @@ const DashboardPage = () => {
                                         </p>
                                     </div>
                                 </div>
-                            ))
+                                {/* <div className="hidden sm:block"></div>
+                                <div className="hidden sm:block"></div> */}
+                            </>
+                        ))
                         ) : (
                             <div>
                                 <p className="text-start text-md font-bold text-gray-400">{translations.Dashboard.heading11[language]}</p>
                             </div>
                         )}
+
+
+
                     </div>
 
 
@@ -359,8 +366,8 @@ const DashboardPage = () => {
                                                                 </p>
                                                             </div>
                                                         </div>
-                                                        <div className="hidden sm:block"></div>
-                                                        <div className="hidden sm:block"></div>
+                                                        {/* <div className="hidden sm:block"></div>
+                                                        <div className="hidden sm:block"></div> */}
                                                     </>
                                                 );
                                             })}

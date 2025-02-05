@@ -140,7 +140,6 @@ const CatalogDetails = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <p className="text-md px-4 mt-3 text-start font-medium">
                             {SelectedCatalogDetails?.description}
-
                         </p>
                     </div>
                     <div className="grid grid-cols-1 px-4 mt-4 md:grid-cols-2 gap-4 text-start">

@@ -536,127 +536,139 @@ const AddNominee = () => {
                                 }}
                             />
 
-                            {PhotoBase64 && (
-                                <div className="relative w-1/3 border-2 border-gray-300 rounded-md overflow-hidden">
-                                    <button
-                                        onClick={() => handleDelete("photo")}
-                                        className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full shadow-md hover:bg-red-600"
-                                    >
-                                        <DeleteForever />
-                                    </button>
+                            {PhotoBase64 ? (
+                                <>
+                                    <p className="text-start text-sm">Uploaded Photo</p>
+                                    <div className="relative w-1/3 border-2 border-gray-300 rounded-md overflow-hidden">
+                                        <button
+                                            onClick={() => handleDelete("photo")}
+                                            className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full shadow-md hover:bg-red-600"
+                                        >
+                                            <DeleteForever />
+                                        </button>
 
-                                    <img className="w-full h-auto" src={PhotoBase64} alt="Preview" />
-                                </div>
+                                        <img className="w-full h-auto" src={PhotoBase64} alt="Preview" />
+                                    </div>
+                                </>
+                            ) : (
+
+                                <TextField
+                                    type="file"
+                                    variant="outlined"
+                                    label={translations.Nominee.uploadPhoto[language]}
+                                    size="medium"
+                                    {...register('selfie_photo', {
+                                        required: false,
+                                        validate: {
+                                            validFileType: (fileList) => {
+                                                if (!fileList || fileList.length === 0) return true; // Skip validation if no file is selected
+
+                                                const file = fileList[0];
+                                                const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+
+                                                if (!allowedTypes.includes(file.type)) {
+                                                    return translations.validations.nomineeValidations.selfieUpload1[language]; // Invalid file type
+                                                }
+
+                                                if (file.size > 2 * 1024 * 1024) {
+                                                    return translations.validations.nomineeValidations.selfieUpload2[language]; // File size too large
+                                                }
+                                                return true;
+                                            },
+                                        },
+                                    })}
+                                    error={!!errors.selfie_photo}
+                                    helperText={errors.selfie_photo?.message}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    onChange={(e) => {
+                                        const file = e.target.files;
+                                        if (file.length > 0) {
+                                            const reader = new FileReader();
+                                            reader.readAsDataURL(file[0]);
+                                            reader.onload = () => {
+                                                setPhotoBase64(reader.result);
+                                            };
+                                        }
+                                    }}
+                                    inputProps={{
+                                        accept: 'image/jpeg, image/jpg, image/png', // Restrict file selection to images only
+                                    }}
+                                    inputRef={(input) => (fileInputRef.current = input)}
+                                />
                             )}
 
 
-                            <TextField
-                                type="file"
-                                variant="outlined"
-                                label={translations.Nominee.uploadPhoto[language]}
-                                size="medium"
-                                {...register('selfie_photo', {
-                                    required: false,
-                                    validate: {
-                                        validFileType: (fileList) => {
-                                            if (!fileList || fileList.length === 0) return true; // Skip validation if no file is selected
 
-                                            const file = fileList[0];
-                                            const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
 
-                                            if (!allowedTypes.includes(file.type)) {
-                                                return translations.validations.nomineeValidations.selfieUpload1[language]; // Invalid file type
-                                            }
+                            {ChequeBase64 ? (
+                                <>
+                                    <p className="text-start text-sm">Uploaded Cheque Photo</p>
+                                    <div className="relative w-1/3 border-2 border-gray-300 rounded-md overflow-hidden">
+                                        <button
+                                            onClick={() => handleDelete("cheque")}
+                                            className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full shadow-md hover:bg-red-600"
+                                        >
+                                            <DeleteForever />
+                                        </button>
 
-                                            if (file.size > 2 * 1024 * 1024) {
-                                                return translations.validations.nomineeValidations.selfieUpload2[language]; // File size too large
-                                            }
-                                            return true;
+                                        <img className="w-full h-auto" src={ChequeBase64} alt="Preview" />
+                                    </div>
+                                </>
+                            ) : (
+
+                                <TextField
+                                    type="file"
+                                    variant="outlined"
+                                    label={translations.Nominee.cheque[language]}
+                                    size="medium"
+                                    {...register('cheque_photo', {
+                                        required: false,
+                                        validate: {
+                                            validFileType: (fileList) => {
+                                                if (!fileList || fileList.length === 0) return true; // Skip validation if no file is selected
+
+                                                const file = fileList[0];
+                                                const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+
+                                                if (!allowedTypes.includes(file.type)) {
+                                                    return translations.validations.nomineeValidations.chequeUpload1[language]; // Invalid file type
+                                                }
+
+                                                if (file.size > 2 * 1024 * 1024) {
+                                                    return translations.validations.nomineeValidations.chequeUpload2[language]; // File size too large
+                                                }
+                                                return true;
+                                            },
                                         },
-                                    },
-                                })}
-                                error={!!errors.selfie_photo}
-                                helperText={errors.selfie_photo?.message}
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                onChange={(e) => {
-                                    const file = e.target.files;
-                                    if (file.length > 0) {
-                                        const reader = new FileReader();
-                                        reader.readAsDataURL(file[0]);
-                                        reader.onload = () => {
-                                            setPhotoBase64(reader.result);
-                                        };
-                                    }
-                                }}
-                                inputProps={{
-                                    accept: 'image/jpeg, image/jpg, image/png', // Restrict file selection to images only
-                                }}
-                                inputRef={(input) => (fileInputRef.current = input)}
-                            />
+                                    })}
+                                    error={!!errors.cheque_photo}
+                                    helperText={errors.cheque_photo?.message}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    onChange={(e) => {
+                                        const file = e.target.files;
+                                        if (file.length > 0) {
+                                            const reader = new FileReader();
+                                            reader.readAsDataURL(file[0]);
+                                            reader.onload = () => {
+                                                setChequeBase64(reader.result);
+                                            };
+                                        }
+                                    }}
+                                    inputProps={{
+                                        accept: 'image/jpeg, image/jpg, image/png', // Restrict file selection to images only
+                                    }}
 
-                            {ChequeBase64 && (
-                                <div className="relative w-1/3 border-2 border-gray-300 rounded-md overflow-hidden">
-                                    <button
-                                        onClick={() => handleDelete("cheque")}
-                                        className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full shadow-md hover:bg-red-600"
-                                    >
-                                        <DeleteForever />
-                                    </button>
+                                    inputRef={(input) => (fileInputRef1.current = input)}
 
-                                    <img className="w-full h-auto" src={ChequeBase64} alt="Preview" />
-                                </div>
+                                />
                             )}
 
 
-                            <TextField
-                                type="file"
-                                variant="outlined"
-                                label={translations.Nominee.cheque[language]}
-                                size="medium"
-                                {...register('cheque_photo', {
-                                    required: false,
-                                    validate: {
-                                        validFileType: (fileList) => {
-                                            if (!fileList || fileList.length === 0) return true; // Skip validation if no file is selected
 
-                                            const file = fileList[0];
-                                            const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-
-                                            if (!allowedTypes.includes(file.type)) {
-                                                return translations.validations.nomineeValidations.chequeUpload1[language]; // Invalid file type
-                                            }
-
-                                            if (file.size > 2 * 1024 * 1024) {
-                                                return translations.validations.nomineeValidations.chequeUpload2[language]; // File size too large
-                                            }
-                                            return true;
-                                        },
-                                    },
-                                })}
-                                error={!!errors.cheque_photo}
-                                helperText={errors.cheque_photo?.message}
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                onChange={(e) => {
-                                    const file = e.target.files;
-                                    if (file.length > 0) {
-                                        const reader = new FileReader();
-                                        reader.readAsDataURL(file[0]);
-                                        reader.onload = () => {
-                                            setChequeBase64(reader.result);
-                                        };
-                                    }
-                                }}
-                                inputProps={{
-                                    accept: 'image/jpeg, image/jpg, image/png', // Restrict file selection to images only
-                                }}
-
-                                inputRef={(input) => (fileInputRef1.current = input)}
-
-                            />
 
                             <div className="">
 
@@ -754,6 +766,13 @@ const AddNominee = () => {
                                     src={imageLogo}
                                     alt="Logo"
                                 />
+                                <div className="p-2 ">
+                                    <h1 className="text-3xl text-white font-semibold"> {translations.loginScreen.sendOtpScreen.heading1[language]}</h1>
+                                </div>
+
+                                <div className="">
+                                    <h1 className="text-4xl mt-2 text-white font-bold pt-4"> {translations.loginScreen.sendOtpScreen.heading2[language]}</h1>
+                                </div>
                             </h1>
                         </div>
                     </div>
