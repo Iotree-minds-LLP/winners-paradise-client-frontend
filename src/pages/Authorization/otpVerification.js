@@ -183,7 +183,7 @@ const OtpVerification = () => {
 
             // Display a more user-friendly error message
             const errorMessage =
-                error?.response?.data?.message || "Failed to verify OTP. Please try again.";
+                error?.response?.data?.message || "OTP verification failed. Please try again.";
             setErrorMessage(errorMessage);
             setisLoading(false);
         }
