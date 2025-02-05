@@ -27,6 +27,9 @@ import { getKycDetailsByCustomerId } from "../../network/KycVerification/page";
 import { goBack } from "../../utils/Functions/goBackScreen";
 import { useLanguage } from "../../context/Language/loginContext";
 import translations from "../../utils/Json/translation.json"
+import { getCustomerById } from "../../network/Customer/page";
+import { Avatar } from "@mui/material";
+
 
 const Catalogs = () => {
 
@@ -50,11 +53,11 @@ const Catalogs = () => {
     const [LoadingButtonStart, setLoadingButtonStart] = useState(false);
     const { language, setLanguage } = useLanguage();
     const [BankDetailsPresent, setBankDetailsPresent] = useState(true);
+    const [CustomerDetails, setCustomerDetails] = useState()
 
     const getKycStatus = async () => {
         setcompleteCardsLoading(true);
         const res = await getKycDetailsByCustomerId();
-        console.log(res, "Res")
         if (res?.data?.data?.status === "pending" || res?.data?.data?.status === "rejected") {
             setshowCompleteKycCard(true);
             setcompleteCardsLoading(false);
@@ -71,13 +74,22 @@ const Catalogs = () => {
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
-        console.log(customer, "Customer")
+        fetchCustomerDetails(customer._id);
         if (customer.bank_acc_no) {
             setBankDetailsPresent(false);
         }
         onformSubmit()
         getKycStatus()
     }, []);
+
+    const fetchCustomerDetails = async (id) => {
+        if (id) {
+            const resp = await getCustomerById(id);
+            if (resp.data.status === 200) {
+                setCustomerDetails(resp.data.data.customer);
+            }
+        }
+    };
 
     const toggleModal = () => {
         setisModalOpen(!isModalOpen);
@@ -159,13 +171,14 @@ const Catalogs = () => {
                         </div>
                     </div>
 
+
+
                     <div className="flex justify-between hidden md:block">
                         <div className="flex flex-row mx-4 gap-4 mt-14 mb-8">
-                            {/* <img onClick={goBack} src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" className="w-auto h-8" alt="Background" /> */}
                             <h1 className="text-start font-bold text-2xl text-black hidden md:block">{translations.Catalog.heading[language]}</h1>
                         </div>
-                        {/* <p className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer	" onClick={toggleModal}>Logout</p> */}
                     </div>
+
                     <div className="grid grid-cols-1 md:py-0 py-5 md:grid-cols-3 px-4 gap-0 md:gap-10 mt-20 md:mt-0 text-start">
                         {completeCardsLoading ? (
                             <>
@@ -189,7 +202,6 @@ const Catalogs = () => {
                                 </div>
                             </>
                         ) : (
-                            // Show actual cards when loading is complete
                             <>
                                 {showCompleteKycCard && (
                                     <div
@@ -228,6 +240,11 @@ const Catalogs = () => {
                         )}
                     </div>
                     <div className="text-start rounded-lg px-4 grid md:grid-cols-1 grid-cols-1">
+
+                        <div className="border bg-gray-100 mb-5 p-3 md:hidden flex flex-row items-center justify-start gap-3">
+                            <img className="text-sm w-10 h-10" src={CustomerDetails?.profile_image}></img>
+                            <p className="text-sm">Welcome:{CustomerDetails?.name}</p>
+                        </div>
 
                         <div
                             className="px-6 py-3 pb-4 rounded-lg w-full md:w-1/3"
