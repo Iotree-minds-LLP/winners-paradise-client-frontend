@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 import imageLogo from "../../assets/Logos/logo1.png";
 import image3 from "../../assets/Images/sideImage.png";
 import { TextField } from '@mui/material';
@@ -11,6 +11,7 @@ import { addBankDetails, addNomineeDetails, UpdateNominee } from "../../network/
 import { useLanguage } from "../../context/Language/loginContext";
 import translations from "../../utils/Json/translation.json"
 import { getCustomerById } from "../../network/Customer/page";
+import { DeleteForever } from "@mui/icons-material";
 
 const AddNominee = () => {
 
@@ -25,6 +26,28 @@ const AddNominee = () => {
 
     const { addToast } = useToast();
 
+
+    const handlePreviewClick = (base64String) => {
+        if (base64String.startsWith('http://') || base64String.startsWith('https://')) {
+            window.open(base64String, '_blank');
+        } else {
+            try {
+                const byteCharacters = atob(base64String.split(',')[1]);
+                const byteNumbers = new Array(byteCharacters.length);
+                for (let i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+                const byteArray = new Uint8Array(byteNumbers);
+                const blob = new Blob([byteArray], { type: 'application/pdf' });
+                const blobUrl = URL.createObjectURL(blob);
+                window.open(blobUrl, '_blank');
+            } catch (error) {
+                console.error("Error processing the Base64 string:", error);
+            }
+        }
+    };
+
+
     const handleSuccessClick = (SuccessMessage) => {
         addToast(SuccessMessage, 'success');
     };
@@ -34,6 +57,24 @@ const AddNominee = () => {
     const [PanBase64, setPanBase64] = useState("")
     const [ChequeBase64, setChequeBase64] = useState("")
     const [PhotoBase64, setPhotoBase64] = useState("")
+    const fileInputRef = useRef(null);
+    const fileInputRef1 = useRef(null);
+
+
+    const handleDelete = (field) => {
+        if (field === "photo") {
+            setPhotoBase64("");
+            if (fileInputRef.current) {
+                fileInputRef.current.value = ""; // Reset file input field
+            }
+        }
+        if (field === "cheque") {
+            setChequeBase64("");
+            if (fileInputRef1.current) {
+                fileInputRef1.current.value = ""; // Reset file input field
+            }
+        }
+    }
 
     const { language } = useLanguage();
     const navigate = useNavigate();
@@ -46,7 +87,10 @@ const AddNominee = () => {
     const watchNomineeName = watch("nominee_name");
     const watchAadhaarNumber = watch("aadhaar_number");
     const watchPanNumber = watch("pan_no");
-    const watchDateOfBirth = watch("dateOfBirth");
+
+    useEffect(() => {
+        console.log(AadhaarBase64)
+    }, [AadhaarBase64])
 
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
@@ -62,20 +106,29 @@ const AddNominee = () => {
 
         try {
             if (id) {
+
                 const resp = await getCustomerById(id);
+                console.log(resp, "resp")
 
                 if (resp.data.status === 200) {
+
                     if (resp.data.data.customer.nominee_id) {
                         setUpdateNomineeDetails(true);
                     }
+
                     setValue("bank_acc_no", resp.data.data.customer.nominee_id?.nominee_bank_acc_no);
                     setValue("bank_Ifsc_code", resp.data.data.customer.nominee_id?.nominee_bank_ifsc_code);
                     setValue("bank_branch_name", resp.data.data.customer.nominee_id?.nominee_bank_branch);
                     setValue("nominee_name", resp.data.data.customer.nominee_id?.nominee_name);
                     setValue("aadhaar_number", resp.data.data.customer.nominee_id?.nominee_aadhar_no);
                     setValue("pan_no", resp.data.data.customer.nominee_id?.nominee_pan_no);
+                    setAadhaarBase64(resp.data.data.customer.nominee_id?.nominee_aadhar_file);
+                    setChequeBase64(resp.data.data.customer.nominee_id?.nominee_cancelled_cheque);
+                    setPanBase64(resp.data.data.customer.nominee_id?.nominee_pan_file);
+                    setPhotoBase64(resp.data.data.customer.nominee_id?.nominee_photo)
 
                     const nomineeDob = resp.data.data.customer.nominee_id?.nominee_dob;
+
                     if (nomineeDob) {
                         const formattedDate = new Date(nomineeDob).toISOString().split('T')[0]; // Extract YYYY-MM-DD
                         setValue("dateOfBirth", formattedDate, { shouldValidate: true, shouldDirty: true });
@@ -229,7 +282,7 @@ const AddNominee = () => {
                                 error={!!errors.dateOfBirth}
                                 helperText={errors.dateOfBirth?.message}
                                 InputLabelProps={{
-                                    shrink: watchDateOfBirth,
+                                    shrink: true,
                                 }}
                             />
 
@@ -383,6 +436,16 @@ const AddNominee = () => {
                                 }}
                             />
 
+                            {AadhaarBase64 && (
+                                <p
+                                    className="bg-gradient-to-l from-[#020065] to-[#0400CB] bg-clip-text text-transparent text-xs text-end cursor-pointer"
+                                    onClick={() => handlePreviewClick(AadhaarBase64)}
+                                >
+                                    Preview
+                                </p>
+                            )}
+
+
                             <TextField
                                 label={translations.Nominee.uploadAadhaar[language]}
                                 variant="outlined"
@@ -422,6 +485,15 @@ const AddNominee = () => {
                                     shrink: true,
                                 }}
                             />
+
+                            {PanBase64 && (
+                                <p
+                                    className="bg-gradient-to-l from-[#020065] to-[#0400CB] bg-clip-text text-transparent text-xs text-end cursor-pointer"
+                                    onClick={() => handlePreviewClick(PanBase64)}
+                                >
+                                    Preview
+                                </p>
+                            )}
 
 
                             <TextField
@@ -463,6 +535,20 @@ const AddNominee = () => {
                                     shrink: true,
                                 }}
                             />
+
+                            {PhotoBase64 && (
+                                <div className="relative w-1/3 border-2 border-gray-300 rounded-md overflow-hidden">
+                                    <button
+                                        onClick={() => handleDelete("photo")}
+                                        className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full shadow-md hover:bg-red-600"
+                                    >
+                                        <DeleteForever />
+                                    </button>
+
+                                    <img className="w-full h-auto" src={PhotoBase64} alt="Preview" />
+                                </div>
+                            )}
+
 
                             <TextField
                                 type="file"
@@ -507,7 +593,22 @@ const AddNominee = () => {
                                 inputProps={{
                                     accept: 'image/jpeg, image/jpg, image/png', // Restrict file selection to images only
                                 }}
+                                inputRef={(input) => (fileInputRef.current = input)}
                             />
+
+                            {ChequeBase64 && (
+                                <div className="relative w-1/3 border-2 border-gray-300 rounded-md overflow-hidden">
+                                    <button
+                                        onClick={() => handleDelete("cheque")}
+                                        className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full shadow-md hover:bg-red-600"
+                                    >
+                                        <DeleteForever />
+                                    </button>
+
+                                    <img className="w-full h-auto" src={ChequeBase64} alt="Preview" />
+                                </div>
+                            )}
+
 
                             <TextField
                                 type="file"
@@ -552,7 +653,11 @@ const AddNominee = () => {
                                 inputProps={{
                                     accept: 'image/jpeg, image/jpg, image/png', // Restrict file selection to images only
                                 }}
+
+                                inputRef={(input) => (fileInputRef1.current = input)}
+
                             />
+
                             <div className="">
 
                                 <div className="fixed z-10 bottom-0 left-0  w-full sm:hidden bg-white shadow-lg bg-white">
