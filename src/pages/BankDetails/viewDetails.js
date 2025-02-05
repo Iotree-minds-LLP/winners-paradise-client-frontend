@@ -103,7 +103,7 @@ const ViewDetails = () => {
                                             <div>
                                                 <p className="text-sm text-gray-800">  {translations.BankAccount.heading[language]}</p>
                                             </div>
-                                            <Link to="/edit-customer-details">
+                                            <Link to="/profile-and-settings/bank-details">
                                                 <button aria-label="Edit" className="p-2">
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
@@ -184,7 +184,7 @@ const ViewDetails = () => {
                                                 <div>
                                                     <p className="text-sm text-gray-800">{translations.Nominee.nomineeDetails[language]} *</p>
                                                 </div>
-                                                <Link to="/edit-customer-details">
+                                                <Link to="/profile-and-settings/add-nominee">
                                                     <button aria-label="Edit" className="p-2">
                                                         <svg
                                                             xmlns="http://www.w3.org/2000/svg"

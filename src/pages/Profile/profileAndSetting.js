@@ -9,6 +9,7 @@ import { Logoutuser } from "../../network/Authentication/page";
 import { goBack } from "../../utils/Functions/goBackScreen";
 import translations from "../../utils/Json/translation.json"
 import { useLanguage } from "../../context/Language/loginContext";
+import { getCustomerById } from "../../network/Customer/page";
 
 const ProfileAndSettings = () => {
     const [isModalOpen, setisModalOpen] = useState(false);
@@ -89,6 +90,31 @@ const ProfileAndSettings = () => {
         }
     };
 
+    useEffect(() => {
+        const data = localStorage.getItem("customerDetails");
+        const customer = JSON.parse(data);
+        fetchCustomerDetails(customer._id);
+    }, []);
+
+    const [bankDetails, setbankDetails] = useState(false);
+
+    const fetchCustomerDetails = async (id) => {
+
+        if (id) {
+            const resp = await getCustomerById(id);
+            console.log(resp, "Resp")
+            if (resp.data.status === 200) {
+
+                if (resp.data.data.customer.bank_acc_no) {
+                    setbankDetails(true)
+                } else {
+                    setbankDetails(false)
+                }
+            }
+        }
+
+    };
+
     return (
         <>
             <div className="sm:ml-72 relative bg-white">
@@ -154,26 +180,48 @@ const ProfileAndSettings = () => {
                             </div>
                         </Link>
 
-                        <Link to="/profile-and-settings/bank-details">
-                            <div
-                                className="p-4 md:p-6 rounded-lg md:w-1/2"
-                                style={{ backgroundColor: "rgba(245, 245, 245, 1)" }}
-                            >
-                                <div className="flex justify justify-between">
-                                    <p
-                                        style={{
-                                            color: "rgba(0, 0, 148, 1)",
-                                            fontWeight: "700",
-                                            fontSize: "18px",
-                                        }}
-                                    >
-                                        {translations.ProfileAndSettings.heading3[language]}
-                                    </p>
-                                    <img src={acrrowright} className="w-auto h-8" alt="Arrow Icon"></img>
+                        {bankDetails ? (
+                            <Link to="/profile-and-settings/view-bank-details">
+                                <div
+                                    className="p-4 md:p-6 rounded-lg md:w-1/2"
+                                    style={{ backgroundColor: "rgba(245, 245, 245, 1)" }}
+                                >
+                                    <div className="flex justify justify-between">
+                                        <p
+                                            style={{
+                                                color: "rgba(0, 0, 148, 1)",
+                                                fontWeight: "700",
+                                                fontSize: "18px",
+                                            }}
+                                        >
+                                            {translations.ProfileAndSettings.heading3[language]}
+                                        </p>
+                                        <img src={acrrowright} className="w-auto h-8" alt="Arrow Icon"></img>
+                                    </div>
                                 </div>
-                            </div>
-                        </Link>
+                            </Link>
+                        ) : (
 
+                            <Link to="/profile-and-settings/bank-details">
+                                <div
+                                    className="p-4 md:p-6 rounded-lg md:w-1/2"
+                                    style={{ backgroundColor: "rgba(245, 245, 245, 1)" }}
+                                >
+                                    <div className="flex justify justify-between">
+                                        <p
+                                            style={{
+                                                color: "rgba(0, 0, 148, 1)",
+                                                fontWeight: "700",
+                                                fontSize: "18px",
+                                            }}
+                                        >
+                                            {translations.ProfileAndSettings.heading3[language]}
+                                        </p>
+                                        <img src={acrrowright} className="w-auto h-8" alt="Arrow Icon"></img>
+                                    </div>
+                                </div>
+                            </Link>
+                        )}
                         <div
                             className="p-4 md:p-6 rounded-lg md:w-1/2"
                             style={{ backgroundColor: "rgba(245, 245, 245, 1)" }}
