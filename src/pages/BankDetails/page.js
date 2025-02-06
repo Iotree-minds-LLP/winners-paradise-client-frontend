@@ -142,7 +142,7 @@ const BankDetails = () => {
             <div className="h-screen flex flex-col">
                 <div className="h-[60px] fixed top-100 mb-4 z-10 w-full sm:hidden  bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row p-3">
                     <img src={backButton} onClick={goBack} className="w-8 h-8" alt="Back" />
-                    <p className="text-white font-semibold my-1">{UpdateBankDetails && "Update"}{translations.BankAccount.heading[language]}</p>
+                    <p className="text-white font-semibold my-1">{UpdateBankDetails && `${translations.global.update[language]}`}{translations.BankAccount.heading[language]}</p>
                 </div>
 
 
@@ -152,17 +152,16 @@ const BankDetails = () => {
                         <div className="flex flex-row">
                             <div>
                                 <p style={{ color: '#020065' }} className="mx-5 hidden sm:block text-start font-semibold text-3xl">
-                                    {UpdateBankDetails && "Update"} {translations.BankAccount.heading[language]}
+                                    {UpdateBankDetails && `${translations.global.update[language]}`} {translations.BankAccount.heading[language]}
 
                                 </p>
 
                                 {ConnectedBankHolder &&
                                     <div className="text-xs text-start mx-5 my-3">
-                                        <p>Connected Bank Account Holder Name</p>
+                                        <p>{translations.global.connectedBankAccountHolderName[language]}</p>
                                         <p>{ConnectedBankHolder ? ConnectedBankHolder : ""}</p>
                                     </div>
                                 }
-
 
                             </div>
 
@@ -376,7 +375,7 @@ const BankDetails = () => {
                                 <div className="bg-gray-100 rounded-lg">
                                     <div className="text-start p-4 flex flex-row">
                                         <img className="w-6 h-6" src={infoPng}></img>
-                                        <p className="text-xs mx-2 mt-1">You need to verify your registered mobile number to update your bank details.</p>
+                                        <p className="text-xs mx-2 mt-1">{translations.global.verifyMobile[language]}</p>
                                     </div>
                                 </div>
                             }

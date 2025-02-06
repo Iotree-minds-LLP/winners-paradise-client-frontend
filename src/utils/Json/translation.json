@@ -1069,6 +1069,14 @@
         "agreeContinue": {
             "english": "Agree & Continue",
             "kannada": "ಒಪ್ಪಿ ಮುಂದುವರಿಯಿರಿ"
+        },
+        "connectedBankAccountHolderName": {
+            "english": "Connected Bank Account Holder Name",
+            "kannada": "ಸಂಪರ್ಕಿಸಲಾದ ಬ್ಯಾಂಕ್ ಖಾತೆ ಹೆಸರು"
+        },
+        "update": {
+            "english": "Update",
+            "kannada": "ನವೀಕರಣ"
         }
     }
 }
