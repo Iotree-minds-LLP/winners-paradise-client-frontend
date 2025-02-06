@@ -441,7 +441,7 @@ const AddNominee = () => {
                                     className="bg-gradient-to-l from-[#020065] to-[#0400CB] bg-clip-text text-transparent text-xs text-end cursor-pointer"
                                     onClick={() => handlePreviewClick(AadhaarBase64)}
                                 >
-                                    Preview
+                                    {translations.global.preview[language]}
                                 </p>
                             )}
 
@@ -491,7 +491,8 @@ const AddNominee = () => {
                                     className="bg-gradient-to-l from-[#020065] to-[#0400CB] bg-clip-text text-transparent text-xs text-end cursor-pointer"
                                     onClick={() => handlePreviewClick(PanBase64)}
                                 >
-                                    Preview
+                                    {translations.global.preview[language]}
+
                                 </p>
                             )}
 
