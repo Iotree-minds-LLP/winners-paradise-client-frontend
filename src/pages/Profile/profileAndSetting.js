@@ -12,6 +12,7 @@ import { useLanguage } from "../../context/Language/loginContext";
 import { getCustomerById } from "../../network/Customer/page";
 
 const ProfileAndSettings = () => {
+
     const [isModalOpen, setisModalOpen] = useState(false);
     const [isPwaPromptAvailable, setIsPwaPromptAvailable] = useState(false);
     const [deferredPrompt, setDeferredPrompt] = useState(null);
@@ -64,9 +65,9 @@ const ProfileAndSettings = () => {
 
         window.addEventListener("beforeinstallprompt", (e) => {
             console.log("beforeinstallprompt event fired");
-            e.preventDefault(); // Prevent the browser's default installation prompt
+            e.preventDefault();
             setDeferredPrompt(e);
-            setIsPwaPromptAvailable(true); // Show the "Download PWA" option
+            setIsPwaPromptAvailable(true);
         });
 
         return () => {
@@ -93,7 +94,7 @@ const ProfileAndSettings = () => {
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
-        fetchCustomerDetails(customer._id);
+        fetchCustomerDetails(customer?._id);
     }, []);
 
     const [bankDetails, setbankDetails] = useState(false);
@@ -102,7 +103,6 @@ const ProfileAndSettings = () => {
 
         if (id) {
             const resp = await getCustomerById(id);
-            console.log(resp, "Resp")
             if (resp.data.status === 200) {
 
                 if (resp.data.data.customer.bank_acc_no) {
