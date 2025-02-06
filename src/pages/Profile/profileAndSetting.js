@@ -4,9 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import backButton from "../../assets/Logos/backButton.png";
 import acrrowright from "../../assets/Images/arrow_circle_right.png";
 import image2 from "../../assets/Images/robo 1 (1).png";
-import logoutImage from "../../assets/Images/logoutItemLogo.png";
 import { Logoutuser } from "../../network/Authentication/page";
-import { goBack } from "../../utils/Functions/goBackScreen";
 import translations from "../../utils/Json/translation.json"
 import { useLanguage } from "../../context/Language/loginContext";
 import { getCustomerById } from "../../network/Customer/page";
