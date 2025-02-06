@@ -146,13 +146,13 @@ const InvestmentDetails = () => {
                         </div>
                     </div>
 
-
                     {/* <div className="grid grid-cols-6 rounded-lg flex items-center p-4  transition duration-200">
                         <div className="bg-gray-100">
                             <img className="w-6 h-6 mr-3" src={infoPng} alt="Info Icon" />
                             <p className="text-sm font-medium">You can download your agreement PDF here</p>
                         </div>
                     </div> */}
+
                     <Link to={SelectedInvestmentDetails.agreement_url} target="_blank">
                         <div className=" grid md:grid-cols-6 grid-cols-2 gap-4 px-4 mt-3 cursor-pointer">
                             <div className="bg-gray-100 rounded-sm shadow-md flex justify-start text-start items-center p-4 hover:bg-gray-200 transition duration-200">

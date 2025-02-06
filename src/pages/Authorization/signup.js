@@ -101,6 +101,7 @@ const SignupPage = () => {
             email_id: data.email,
             mobile_no: data.phoneNumber,
             state: data.state,
+            referred_by: data.referralCode,
             district: data.district,
             city: data.city,
             address: data.address,
