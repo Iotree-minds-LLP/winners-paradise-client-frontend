@@ -300,7 +300,7 @@ const KycStatusPage = () => {
                                                     </h1>
 
                                                 </div>
-                                                <div className="mr-5 bg-[#D4D4FF] rounded-xl p-3">
+                                                <div className="bg-[#D4D4FF] rounded-xl p-3">
                                                     <input
                                                         checked={isConsentAgreed}
                                                         type="checkbox"
