@@ -306,7 +306,7 @@ const DashboardPage = () => {
                                     style={{ color: "#020065", textDecoration: "underline", cursor: "pointer" }}
                                     onClick={() => setShowAllInvestments(!showAllInvestments)}
                                 >
-                                    {showAllInvestments ? "View Less" : "View All"}
+                                    {showAllInvestments ? `${translations.Dashboard.heading8[language]}` : `${translations.Dashboard.heading7[language]}`}
                                 </p>
                             )}
 

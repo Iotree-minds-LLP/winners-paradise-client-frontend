@@ -244,7 +244,7 @@ const Sidebar = () => {
                                         >
                                             <path d="M10 0a5 5 0 1 1-5 5A5 5 0 0 1 10 0Zm0 11c-4.418 0-8 2.239-8 5v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2c0-2.761-3.582-5-8-5Z" />
                                         </svg>
-                                        <span class="flex-1 ms-3 whitespace-nowrap">{translations.sideBar.heading6[language]}</span>
+                                        <span class="flex-1 ms-3 whitespace-wrap">{translations.sideBar.heading6[language]}</span>
                                     </Link>
                                 )}
                             </li>
