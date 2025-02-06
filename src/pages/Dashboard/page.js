@@ -19,6 +19,9 @@ import { getCustomerById } from "../../network/Customer/page";
 
 const DashboardPage = () => {
 
+    const [InvestmentLength, setInvestmentLength] = useState();
+    const [PayoutsLength, setPayoutsLength] = useState()
+
     const { language, setLanguage } = useLanguage();
     const [showAllInvestments, setShowAllInvestments] = useState(false);
     const [loadingInvestments, setloadingInvestments] = useState(false)
@@ -49,7 +52,6 @@ const DashboardPage = () => {
             const resp = await getCustomerById(id);
             if (resp.data.status === 200) {
                 setCustomerDetails(resp.data.data.customer);
-
             }
         }
     };
@@ -64,6 +66,7 @@ const DashboardPage = () => {
         const resp = await getAllInvestments(id);
         if (resp.data.status === 200) {
             setlistInvestments(resp.data.data.data)
+            setInvestmentLength(resp?.data?.data?.data?.length);
         }
         setshowShimmerStatistics(false);
         setloadingInvestments(false);
@@ -75,6 +78,7 @@ const DashboardPage = () => {
         const resp = await getAllPayouts();
         console.log(resp.data.status, "Rsp")
         if (resp.data.status === 200) {
+            setPayoutsLength(resp?.data?.data?.data?.length);
             setlistPayount(resp.data.data.payouts)
         }
         else {
@@ -240,8 +244,12 @@ const DashboardPage = () => {
                                     }}
                                     onClick={() => setShowAllPayouts(!showAllPayouts)}
                                 >
-                                    {showAllPayouts ? `${translations.Dashboard.heading8[language]}` : `${translations.Dashboard.heading7[language]}`}
 
+                                    {PayoutsLength > 1 &&
+                                        <>
+                                            {showAllPayouts ? `${translations.Dashboard.heading8[language]}` : `${translations.Dashboard.heading7[language]}`}
+                                        </>
+                                    }
                                 </p>
                             )}
                         </div>
@@ -295,6 +303,7 @@ const DashboardPage = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 p-3">
                         <div className="flex justify-between mx-2">
+
                             <p style={{ color: "#020065" }} className="text-lg font-bold">
                                 {translations.Dashboard.heading12[language]}
                             </p>
@@ -304,7 +313,11 @@ const DashboardPage = () => {
                                     style={{ color: "#020065", textDecoration: "underline", cursor: "pointer" }}
                                     onClick={() => setShowAllInvestments(!showAllInvestments)}
                                 >
-                                    {showAllInvestments ? `${translations.Dashboard.heading8[language]}` : `${translations.Dashboard.heading7[language]}`}
+                                    {InvestmentLength > 1 && (
+                                        <>
+                                            {showAllInvestments ? `${translations.Dashboard.heading8[language]}` : `${translations.Dashboard.heading7[language]}`}
+                                        </>
+                                    )}
                                 </p>
                             )}
 

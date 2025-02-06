@@ -210,9 +210,9 @@ const SelfieUpload = () => {
                     <div className={`flex flex-col md:flex-row gap-10 p-4 md:mb-0 overflow-y-auto ${locationStateDetails?.is_profile_image_verified === "REJECTED" ? "mb-0" : "mb-20"}`}>
                         <div
                             className={`flex flex-col text-center items-center justify-start p-4 border border-2 border-dotted border-gray-300 relative w-full max-w-md rounded-md ${frontImage
-                                ? selfieUpload === "Cleared"
+                                ? selfieUpload === "CLEARED"
                                     ? "bg-[#BBFF99]"
-                                    : selfieUpload === "Rejected"
+                                    : selfieUpload === "REJECTED"
                                         ? "bg-[#FFDA99]"
                                         : "bg-[#F1F1FF]"
                                 : ""
@@ -234,11 +234,9 @@ const SelfieUpload = () => {
                                 </div>
 
                                 {!((selfieUpload === "REVIEW PENDING" || selfieUpload === "CLEARED")) && (
-
                                     <div
                                         className="p-2 rounded-2xl cursor-pointer"
                                         {...(frontImage ? { style: { backgroundColor: "#ffffff" } } : { style: { backgroundColor: "#D4D4FF" } })}
-
                                     >
                                         {frontImage ?
                                             (
@@ -251,7 +249,6 @@ const SelfieUpload = () => {
                                 )}
                             </div>
                         </div>
-
 
                     </div>
 
