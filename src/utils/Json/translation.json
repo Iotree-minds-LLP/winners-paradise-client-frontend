@@ -1081,6 +1081,14 @@
         "preview": {
             "english": "Preview",
             "kannada": "ಪೂರ್ವನೋಟ"
+        },
+        "nomineeDetails": {
+            "english": "Nominee Details",
+            "kannada": "ನಾಮನಿರ್ದೇಶಿತರ ವಿವರಗಳು"
+        },
+        "add": {
+            "english": "Add",
+            "kannada": "ಸೇರಿಸು"
         }
     }
 }
