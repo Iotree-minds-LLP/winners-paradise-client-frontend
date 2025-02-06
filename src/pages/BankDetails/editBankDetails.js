@@ -219,8 +219,6 @@ const EditBankDetails = () => {
                                 helperText={errors.bankName?.message}
                             />
 
-                            {/* Submit Button */}
-
                             <div>
                                 <div className="fixed z-10 bottom-0 left-0 w-full sm:hidden bg-white shadow-lg bg-white">
                                     <div className="absolute bottom-0 left-0 w-full flex flex-col items-start p-4">

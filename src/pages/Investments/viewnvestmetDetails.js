@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import backImage from "../../assets/Images/backImage.jpg";
 import backButton from "../../assets/Logos/backButton.png";
 import { goBack } from "../../utils/Functions/goBackScreen";
@@ -7,7 +7,7 @@ import { getAllOverAllPayouts, getAllPayouts, getAllPayoutsBYInvestmentId } from
 import { DownloadForOffline } from "@mui/icons-material";
 import translations from "../../utils/Json/translation.json"
 import { useLanguage } from "../../context/Language/loginContext";
-
+import infoPng from "../../assets/Images/info.png"
 
 const InvestmentDetails = () => {
     const { language, setLanguage } = useLanguage();
@@ -143,12 +143,26 @@ const InvestmentDetails = () => {
                                     ₹{SelectedInvestmentDetails.totalPayout?.toLocaleString("en-IN")}
                                 </p>
                             </div>
-                            <div style={{ background: "#F5F5F5" }} className="p-4">
-                                <p> {translations.InvestementDetails.downloadInvestmentPlan[language]}<DownloadForOffline className="mx-0 md:mx-1"></DownloadForOffline></p>
-                            </div>
                         </div>
                     </div>
 
+
+                    {/* <div className="grid grid-cols-6 rounded-lg flex items-center p-4  transition duration-200">
+                        <div className="bg-gray-100">
+                            <img className="w-6 h-6 mr-3" src={infoPng} alt="Info Icon" />
+                            <p className="text-sm font-medium">You can download your agreement PDF here</p>
+                        </div>
+                    </div> */}
+                    <Link to={SelectedInvestmentDetails.agreement_url} target="_blank">
+                        <div className=" grid md:grid-cols-6 grid-cols-2 gap-4 px-4 mt-3 cursor-pointer">
+                            <div className="bg-gray-100 rounded-sm shadow-md flex justify-start text-start items-center p-4 hover:bg-gray-200 transition duration-200">
+                                <p className="text-sm flex items-center font-medium">
+                                    {translations.InvestementDetails.downloadInvestmentPlan[language]}
+                                    <DownloadForOffline className="ml-2 text-xl" />
+                                </p>
+                            </div>
+                        </div>
+                    </Link>
 
                     <div className=" text-start rounded-lg px-4 mt-4 grid md:grid-cols-3 grid-cols-1 gap-4">
                         <div className="flex flex-row">
