@@ -10,6 +10,8 @@ import acrrowright from "../../assets/Images/arrow_circle_right.png"
 import image2 from "../../assets/Images/robo 1 (1).png";
 import { goBack } from "../../utils/Functions/goBackScreen";
 import { useConsent } from "../../context/consent/consentProvider";
+import { useLanguage } from "../../context/Language/loginContext";
+import translations from "../../utils/Json/translation.json"
 
 const ConsentForm = () => {
 
@@ -19,6 +21,9 @@ const ConsentForm = () => {
     const [ErrorMessage, setErrorMessage] = useState("")
     const [isModalOpen, setisModalOpen] = useState(false);
     const { isConsentAgreed, setIsConsentAgreed } = useConsent();
+
+    const { language, setlanguage } = useLanguage();
+
 
     const navigate = useNavigate();
 
@@ -39,11 +44,11 @@ const ConsentForm = () => {
                     <div className="h-[60px] sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row justify-between p-4">
                         <div className="flex flex-row">
                             <img src={backButton} onClick={goBack} className="w-8 h-8" alt="Back" />
-                            <p className="text-white font-semibold my-1">Consent form</p>
+                            <p className="text-white font-semibold my-1">{translations.global.consentForm[language]}</p>
                         </div>
                     </div>
                     <div className="flex justify-between">
-                        <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10 mx-6">Consent form</h1>
+                        <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10 mx-6">{translations.global.consentForm[language]}</h1>
                     </div>
                     <div className="text-start rounded-lg mt-5 p-4 md:px-10 grid md:grid-cols-1 grid-cols-1 gap-4">
                         <div className="p-4 md:p-6 rounded-lg w-full md:w-1/2" style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}>
@@ -58,7 +63,7 @@ const ConsentForm = () => {
                                 onClick={handleSubmit}
                                 className="md:w-full w-full p-3 rounded-full text-white bg-gradient-to-l from-[#020065] to-[#0400CB] flex items-center justify-center"
                             >
-                                Agree & Continue
+                                {translations.global.agreeContinue[language]}
                             </button>
                         </Link>
                     </div>
@@ -70,7 +75,8 @@ const ConsentForm = () => {
                             onClick={handleSubmit}
                             className="md:w-full w-full p-3 rounded-full text-white bg-gradient-to-l from-[#020065] to-[#0400CB] flex items-center justify-center"
                         >
-                            Agree & Continue
+                            {translations.global.agreeContinue[language]}
+
                         </button>
                     </Link>
                 </div>

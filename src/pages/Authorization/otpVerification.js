@@ -476,7 +476,7 @@ const OtpVerification = () => {
                                                             />
                                                         </svg>
                                                     ) : (
-                                                        `Verify OTP`
+                                                        `${translations.loginScreen.sendOtpScreen.verifyOtp[language]}`
                                                     )}
                                                 </button>
                                                 <div className="text-start">

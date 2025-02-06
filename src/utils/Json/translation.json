@@ -28,6 +28,10 @@
             "getOTPButton": {
                 "english": "Get OTP",
                 "kannada": "ಒಟಿಪಿ ಕಳುಹಿಸಿ"
+            },
+            "verifyOtp": {
+                "english": "Verify OTP",
+                "kannada": "ವೆರಿಫೈ ಓಟಿಪಿ"
             }
         },
         "otpConfirmation": {
@@ -1041,6 +1045,30 @@
         "kycRequestSentError": {
             "english": "Error in sending KYC Request",
             "kannada": "ಕೆವೈಸಿ ವಿನಂತಿ ಸಲ್ಲಿಸುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ"
+        },
+        "readAndAgree": {
+            "english": "Read & Agree to",
+            "kannada": "ಮತ್ತು ಒಪ್ಪಿಗೆ ಓದಿ"
+        },
+        "clickOnConsentForm": {
+            "english": "Click on consent form to open the form",
+            "kannada": "ಫಾರ್ಮ್ ತೆರೆಯಲು ಒಪ್ಪಿಗೆ ಅರ್ಜಿಗೆ ಕ್ಲಿಕ್ ಮಾಡಿ"
+        },
+        "consentForm": {
+            "english": "Consent Form",
+            "kannada": "ಒಪ್ಪಿಗೆ ಅರ್ಜಿ"
+        },
+        "verifyMobile": {
+            "english": "You need to verify your registered mobile number to update your bank details",
+            "kannada": "ನಿಮ್ಮ ಬ್ಯಾಂಕ್ ವಿವರಗಳನ್ನು ನವೀಕರಿಸಲು ನಿಮ್ಮ ನೋಂದಾಯಿಸಿದ ಮೊಬೈಲ್ ಸಂಖ್ಯವನ್ನು ದೃಢೀಕರಿಸಬೇಕು"
+        },
+        "submitRequest": {
+            "english": "Submit Request",
+            "kannada": "ಅರ್ಜಿ ಸಲ್ಲಿಸಿ"
+        },
+        "agreeContinue": {
+            "english": "Agree & Continue",
+            "kannada": "ಒಪ್ಪಿ ಮುಂದುವರಿಯಿರಿ"
         }
     }
 }
