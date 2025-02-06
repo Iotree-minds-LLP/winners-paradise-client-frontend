@@ -1093,6 +1093,10 @@
         "postedOn": {
             "english": "Posted On",
             "kannada": "ಪೋಸ್ಟ್ ಮಾಡಲಾದ ದಿನಾಂಕ"
+        },
+        "uploaded": {
+            "english": "Uploaded",
+            "kannada": "ಆಪ್ಲೋಡ"
         }
     }
 }

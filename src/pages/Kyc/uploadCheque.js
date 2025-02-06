@@ -242,18 +242,25 @@ const ChequeUpload = () => {
                                 }`}
                         >
                             {frontImage ? (
-                                <div className="w-full h-auto">
+                                <div className="w-full h-64 flex items-center justify-center overflow-hidden">
                                     <img
                                         src={frontImage}
-                                        className="w-full max-h-50 object-contain"
+                                        className="w-full h-full object-cover" // Updated to object-cover
                                         alt="Uploaded Front"
                                     />
                                 </div>
+
                             ) : null}
                             <div className="mt-4 flex flex-row items-center justify-between w-full px-4">
 
                                 <div className="flex flex-col text-start">
-                                    <p className="text-sm">{translations.Kyc.cheque.upload[language]}</p>
+
+                                    {cancelledCheque === "CLEARED" ? (
+                                        <p className="text-start text-sm ">{translations.global.uploaded[language]}</p>
+                                    ) : (
+                                        <p className="text-sm">{translations.Kyc.cheque.upload[language]}</p>
+                                    )}
+
                                     <p className="text-lg font-bold">{translations.Kyc.cheque.heading1[language]}</p>
                                 </div>
 

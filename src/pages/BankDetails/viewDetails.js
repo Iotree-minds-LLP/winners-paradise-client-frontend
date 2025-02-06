@@ -273,22 +273,25 @@ const ViewDetails = () => {
                             </div>
                         ) : (
                             <>
+                                <div className="mx-3">
 
-                                {isLoading ? (
-                                    <div className="mb-4" >
-                                        <Skeleton width="50%" height={20} />
-                                        <Skeleton width="80%" height={25} className="mt-2" />
-                                    </div>
-                                ) : (
-                                    <Link to="/profile-and-settings/add-nominee" className="mb-10 md:mb-0 mx-4">
-                                        <div className="mt-5 p-5 w-full rounded-lg border border-black border-dotted border-2 text-start flex justify-between">
-                                            <p className="text-lg font-bold" style={{ color: 'rgba(0, 0, 148, 1)' }}>
-                                                {translations.Nominee.heading[language]}
-                                            </p>
-                                            <img className="w-6 h-6" src={addNomineeImage} alt="Add Nominee" />
+                                    {isLoading ? (
+                                        <div className="mb-4" >
+                                            <Skeleton width="50%" height={20} />
+                                            <Skeleton width="80%" height={25} className="mt-2" />
                                         </div>
-                                    </Link>
-                                )}
+                                    ) : (
+                                        <Link to="/profile-and-settings/add-nominee" className="mb-10 md:mb-0 mx-4 p-5">
+                                            <div className="mt-5 p-5 w-full rounded-lg border border-black border-dotted border-2 text-start flex justify-between">
+                                                <p className="text-lg font-bold" style={{ color: 'rgba(0, 0, 148, 1)' }}>
+                                                    {translations.Nominee.heading[language]}
+                                                </p>
+                                                <img className="w-6 h-6" src={addNomineeImage} alt="Add Nominee" />
+                                            </div>
+                                        </Link>
+                                    )}
+
+                                </div>
 
                             </>
                         )}

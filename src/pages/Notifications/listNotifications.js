@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css"; // Import default styles
+import "react-loading-skeleton/dist/skeleton.css";
 import backImage from "../../assets/Images/backImage.jpg";
 import backButton from "../../assets/Logos/backButton.png";
 import { goBack } from "../../utils/Functions/goBackScreen";
@@ -11,11 +11,12 @@ import translations from "../../utils/Json/translation.json"
 import { useLanguage } from "../../context/Language/loginContext";
 
 const Notifications = () => {
+
     const [expandedCard, setExpandedCard] = useState(null);
     const { language, setLanguage } = useLanguage();
     const [isModalOpen, setisModalOpen] = useState(false);
-    const [notificationData, setnotificationData] = useState(null); // Initial null to show loading state
-    const [loading, setLoading] = useState(true); // Loading state
+    const [notificationData, setnotificationData] = useState(null);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -25,7 +26,7 @@ const Notifications = () => {
     }, []);
 
     const getAllNotifications = async (id) => {
-        setLoading(true); // Start loading
+        setLoading(true);
         try {
             const resp = await getCustomersNotifications(id);
             setnotificationData(resp?.data?.data?.payoutsNotifications?.notifications || []);
@@ -33,7 +34,7 @@ const Notifications = () => {
             console.error("Error fetching notifications:", error);
             setnotificationData([]);
         } finally {
-            setLoading(false); // End loading
+            setLoading(false);
         }
     };
 

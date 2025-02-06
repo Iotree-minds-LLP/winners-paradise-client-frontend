@@ -330,17 +330,26 @@ const AadharUpload = () => {
                                 }`}
                         >
                             {frontImage ? (
-                                <div className="w-full h-auto">
+                                <div className="w-full h-64 flex items-center justify-center overflow-hidden">
                                     <img
                                         src={frontImage}
-                                        className="w-full max-h-50 object-contain"
+                                        className="w-full h-full object-contain"
                                         alt="Uploaded Front"
                                     />
                                 </div>
                             ) : null}
                             <div className="mt-4 flex flex-row items-center justify-between w-full px-4">
                                 <div className="flex flex-col text-start">
-                                    <p className="text-sm">{translations.Kyc.card_1_sub_heading[language]}</p>
+                                    {AadharFrontStatus === "CLEARED" ? (
+                                        <p className="text-sm">
+                                            <span className="text-sm"> {translations.global.uploaded[language]}</span>
+                                        </p>
+                                    ) : (
+                                        <p className="text-sm">
+                                            <span className="text-sm">{translations.Kyc.card_1_sub_heading[language]}</span>
+                                        </p>
+
+                                    )}
                                     <p className="text-lg font-bold">{translations.Kyc.card_1_heading[language]}</p>
                                 </div>
 
@@ -352,7 +361,6 @@ const AadharUpload = () => {
                                             className="p-2 rounded-2xl cursor-pointer"
                                             {...(frontImage ? { style: { backgroundColor: "#ffffff" } } : { style: { backgroundColor: "#D4D4FF" } })}
                                         >
-
                                             {frontImage ?
                                                 (
                                                     <img
@@ -380,17 +388,27 @@ const AadharUpload = () => {
                                 }`}
                         >
                             {backImagePreview ? (
-                                <div className="w-full h-auto">
+                                <div className="w-full h-64 flex items-center justify-center overflow-hidden">
                                     <img
                                         src={backImagePreview}
-                                        className="w-full max-h-50 object-contain"
+                                        className="w-full h-full object-contain"
                                         alt="Uploaded Back"
                                     />
                                 </div>
+
                             ) : null}
                             <div className="mt-4 flex flex-row items-center justify-between w-full px-4">
                                 <div className="flex flex-col text-start">
-                                    <p className="text-sm">{translations.Kyc.card_2_sub_heading[language]}</p>
+                                    {AadharBackStatus === "CLEARED" ? (
+                                        <p className="text-sm">
+                                            <span className="text-sm"> {translations.global.uploaded[language]}</span>
+                                        </p>
+                                    ) : (
+                                        <p className="text-sm">
+                                            <span className="text-sm">{translations.Kyc.card_1_sub_heading[language]}</span>
+                                        </p>
+
+                                    )}
                                     <p className="text-lg font-bold">{translations.Kyc.card_2_heading[language]}</p>
                                 </div>
 
