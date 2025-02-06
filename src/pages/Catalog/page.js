@@ -179,6 +179,13 @@ const Catalogs = () => {
                         </div>
                     </div>
 
+                    {!isInvestmentCreated && (
+                        <div className="border bg-gray-100 mb-5 p-3 md:hidden flex flex-row items-center justify-start gap-3 rounded-lg">
+                            <img className="text-sm w-10 h-10" src={CustomerDetails?.profile_image}></img>
+                            <p className="text-sm">{translations.Dashboard.heading[language]}:{CustomerDetails?.name}</p>
+                        </div>
+                    )}
+
                     <div className="grid grid-cols-1 md:py-0 py-5 md:grid-cols-3 px-4 gap-0 md:gap-10 mt-20 md:mt-0 text-start">
                         {completeCardsLoading ? (
                             <>
@@ -240,12 +247,7 @@ const Catalogs = () => {
                         )}
                     </div>
                     <div className="text-start rounded-lg px-4 grid md:grid-cols-1 grid-cols-1">
-                        {!isInvestmentCreated && (
-                            <div className="border bg-gray-100 mb-5 p-3 md:hidden flex flex-row items-center justify-start gap-3 rounded-lg">
-                                <img className="text-sm w-10 h-10" src={CustomerDetails?.profile_image}></img>
-                                <p className="text-sm">{translations.Dashboard.heading[language]}:{CustomerDetails?.name}</p>
-                            </div>
-                        )}
+
                         <div
                             className="px-6 py-3 pb-4 rounded-lg w-full md:w-1/3"
                             style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}
