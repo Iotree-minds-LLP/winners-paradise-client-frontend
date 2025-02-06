@@ -240,8 +240,12 @@ const Catalogs = () => {
                         )}
                     </div>
                     <div className="text-start rounded-lg px-4 grid md:grid-cols-1 grid-cols-1">
-
-
+                        {!isInvestmentCreated && (
+                            <div className="border bg-gray-100 mb-5 p-3 md:hidden flex flex-row items-center justify-start gap-3 rounded-lg">
+                                <img className="text-sm w-10 h-10" src={CustomerDetails?.profile_image}></img>
+                                <p className="text-sm">{translations.Dashboard.heading[language]}:{CustomerDetails?.name}</p>
+                            </div>
+                        )}
                         <div
                             className="px-6 py-3 pb-4 rounded-lg w-full md:w-1/3"
                             style={{ backgroundColor: 'rgba(245, 245, 245, 1)' }}
@@ -450,7 +454,6 @@ const Catalogs = () => {
                         {isInvestmentCreated && (
 
                             <div className={`grid ${isInvestmentCreated ? "grid-cols-3" : "grid-cols-2"} `}>
-                                {/* Catalogue */}
                                 <div className=" p-2 flex flex-col items-center">
                                     <div className="bg-white px-5 p-3 rounded-full flex items-center justify-center">
                                         <img className="w-auto h-8" src={footerLogo1} alt="Footer Logo 1" />
@@ -461,7 +464,6 @@ const Catalogs = () => {
                                     </p>
                                 </div>
 
-                                {/* Dashboard */}
                                 <Link to="/dashboard">
                                     <div className="p-2  flex flex-col items-center">
                                         <div className="p-3 rounded-full flex items-center justify-center">
@@ -475,7 +477,6 @@ const Catalogs = () => {
                                 </Link>
 
                                 <Link to="/payouts">
-                                    {/*zPayouts */}
                                     <div className=" p-2 flex flex-col items-center">
                                         <div className="p-3 rounded-full flex items-center justify-center">
                                             <img className="w-auto h-8" src={footerLogo4} alt="Footer Logo 3" />

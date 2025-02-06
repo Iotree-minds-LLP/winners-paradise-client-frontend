@@ -312,6 +312,7 @@ const SignupPage = () => {
 
                             <TextField
                                 variant="outlined"
+                                placeholder="Select Date"
                                 label={translations.registerModule.data_of_birth[language]}
                                 type="date"
                                 size="medium"

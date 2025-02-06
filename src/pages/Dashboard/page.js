@@ -115,7 +115,6 @@ const DashboardPage = () => {
                             {translations.logoHeading[language]}
                         </p>
                         <div className="flex flex-row items-center text-white space-x-2">
-                            {/* Notifications Icon */}
                             <Link to="/notifications">
                                 <img
                                     src={bellIcon}
@@ -124,7 +123,6 @@ const DashboardPage = () => {
                                 />
                             </Link>
 
-                            {/* Profile Avatar */}
                             <Link to="/profile-and-settings">
                                 <Avatar
                                     className="mr-3"

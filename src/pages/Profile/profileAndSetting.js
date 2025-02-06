@@ -263,7 +263,7 @@ const ProfileAndSettings = () => {
                         )}
 
                         <div
-                            className="p-4 md:p-6 rounded-lg md:w-1/2"
+                            className="p-4 md:p-6 rounded-lg md:w-1/2 cursor-pointer"
                             style={{ backgroundColor: "rgba(245, 245, 245, 1)" }}
                         >
                             <>
