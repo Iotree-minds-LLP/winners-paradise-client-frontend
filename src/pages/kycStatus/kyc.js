@@ -287,10 +287,9 @@ const KycStatusPage = () => {
 
                     {!kycCardShow && (
 
-                        <div className="hidden sm:block">
-                            {data?.every(item => item.status === "Review Pending" || item.status === "Cleared") ? (
+                        <div className="mx-0 md:mx-4 fixed bottom-0 left-0 md:static">
+                            {data?.every(item => item.status === "Review Pending" || item.status === "Cleared") && (
                                 <>
-
                                     <div className="md:w-1/2">
                                         <div className="w-full flex flex-col items-start p-4 cursor-pointer">
                                             <div className="flex justify-between items-start w-full">
@@ -349,23 +348,6 @@ const KycStatusPage = () => {
                                             <p className="text-start text-red-400">{errorMessage}</p>
                                         )}
                                     </div>
-                                </>
-                            ) : (
-                                <>
-                                    {/* <div className="grid grid-cols-2 mx-6">
-                                        <div className="grid grid-cols-2 gap-4 mx-5">
-                                            <div className="w-full mt-4">
-                                                <button
-                                                    onClick={() => navigate("/profile-and-settings")}
-                                                    type="submit"
-                                                    style={{ color: "#65558F" }}
-                                                    className="w-full p-3 px-24 flex justify-center rounded-full text-sm font-semibold border border-gray-600 bg-white"
-                                                >
-                                                    Skip Now
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div> */}
                                 </>
                             )}
 
