@@ -350,7 +350,7 @@ const EditCustomerProfile = () => {
                                             const today = new Date();
                                             const selectedDate = new Date(value);
                                             const maxDate = new Date();
-                                            maxDate.setFullYear(today.getFullYear() - 100); // Not older than 100 years
+                                            maxDate.setFullYear(today.getFullYear() - 150); // Not older than 100 years
                                             return selectedDate >= maxDate || `${translations.validations.dob_3[language]}`;
                                         },
                                     },

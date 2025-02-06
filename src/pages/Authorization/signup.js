@@ -334,7 +334,7 @@ const SignupPage = () => {
                                             const today = new Date();
                                             const selectedDate = new Date(value);
                                             const maxDate = new Date();
-                                            maxDate.setFullYear(today.getFullYear() - 100);
+                                            maxDate.setFullYear(today.getFullYear() - 150);
                                             return selectedDate >= maxDate || `${translations.validations.dob_3[language]}`;
                                         },
                                     },
