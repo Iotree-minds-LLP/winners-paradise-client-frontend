@@ -1089,6 +1089,10 @@
         "add": {
             "english": "Add",
             "kannada": "ಸೇರಿಸು"
+        },
+        "postedOn": {
+            "english": "Posted On",
+            "kannada": "ಪೋಸ್ಟ್ ಮಾಡಲಾದ ದಿನಾಂಕ"
         }
     }
 }

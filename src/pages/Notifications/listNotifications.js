@@ -68,16 +68,12 @@ const Notifications = () => {
                     </div>
                     <div className="flex justify-between hidden md:block">
                         <div className="flex flex-row mx-4 gap-4 mt-14">
-                            {/* <img onClick={goBack} src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" className="w-auto h-8" alt="Background" /> */}
                             <h1 className="text-start font-bold text-2xl text-black hidden md:block">{translations.Notifications.heading1[language]}</h1>
                         </div>
-                        {/* <p className="text-start font-bold text-xl p-4 text-black hidden md:block mt-10 cursor-pointer	" onClick={toggleModal}>Logout</p> */}
                     </div>
-
 
                     <div className="text-start rounded-lg mt-5 p-4 grid md:grid-cols-3 grid-cols-1 gap-4">
                         {loading ? (
-                            // Shimmering Effect Using Skeleton
                             Array.from({ length: 6 }).map((_, index) => (
                                 <div key={index} className="p-4 rounded-lg bg-gray-100">
                                     <Skeleton height={20} width={`60%`} />
@@ -87,10 +83,9 @@ const Notifications = () => {
                                 </div>
                             ))
                         ) : notificationData && notificationData.length > 0 ? (
-                            // Notifications List
                             notificationData.map((notification) => (
                                 <div
-                                    key={notification.id}
+                                    key={notification._id}
                                     className={`p-4 rounded-lg transition-all duration-300 flex flex-col justify-between ${expandedCard === notification.id ? "h-auto" : "h-32"
                                         }`}
                                     style={{ backgroundColor: "rgba(245, 245, 245, 1)" }}
@@ -106,7 +101,7 @@ const Notifications = () => {
                                             {notification.title}
                                         </p>
 
-                                        {expandedCard === notification.id ? (
+                                        {expandedCard === notification._id ? (
                                             <p className="my-2 text-gray-600">{notification.body}</p>
                                         ) : (
                                             <p className="my-2">
@@ -116,7 +111,7 @@ const Notifications = () => {
                                     </div>
                                     <div className="flex justify-between items-center mt-2">
                                         <p className="text-sm text-gray-500">
-                                            Posted By{" "}
+                                            {translations.global.postedOn[language]}{" "}
                                             {new Date(notification.createdAt).toLocaleDateString(
                                                 "en-US",
                                                 {
@@ -126,12 +121,15 @@ const Notifications = () => {
                                                 }
                                             )}
                                         </p>
-                                        <p
-                                            className="text-sm cursor-pointer text-blue-600"
-                                            onClick={() => toggleCard(notification.id)}
-                                        >
-                                            <b>{expandedCard === notification.id ? "Know Less" : "Know More"}</b>
-                                        </p>
+                                        {notification.body.trim().length > 30 &&
+                                            <p
+                                                className="text-sm cursor-pointer text-blue-600"
+                                                onClick={() => toggleCard(notification._id)}
+                                            >
+                                                <b>{expandedCard === notification._id ? "Know Less" : "Know More"}</b>
+                                            </p>
+                                        }
+
                                     </div>
                                 </div>
                             ))
@@ -144,7 +142,6 @@ const Notifications = () => {
                 </div>
             </div>
 
-
             <div className="fixed bottom-0 left-0 w-full sm:hidden">
                 <div className="bg-white shadow-md">
                     <img
@@ -153,7 +150,6 @@ const Notifications = () => {
                         className="w-full h-full object-contain"
                     />
                 </div>
-
             </div>
         </>
     );
