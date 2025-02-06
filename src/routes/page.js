@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from
 import "../App.css";
 import Signup from "../pages/Authorization/signup";
 import OtpVerification from '../pages/Authorization/otpVerification';
-import HomePage from '../pages/Home/page';
 import Notifications from '../pages/Notifications/listNotifications';
 import ListInvestments from '../pages/Investments/listInvestments';
 import Enquiry from '../pages/Enquiry/page';
@@ -29,7 +28,6 @@ import EditBankDetails from '../pages/BankDetails/editBankDetails';
 import AddNominee from '../pages/BankDetails/nominee';
 import EditNominee from '../pages/BankDetails/editNominee';
 import ConsentForm from '../pages/Kyc/consentForm';
-import { verifyToken } from '../network/Authentication/page';
 import SplashScreen from '../pages/Splash/page';
 import ViewDetails from '../pages/BankDetails/viewDetails';
 
