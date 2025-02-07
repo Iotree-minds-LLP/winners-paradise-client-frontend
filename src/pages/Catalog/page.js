@@ -345,7 +345,6 @@ const Catalogs = () => {
 
                     <div className="text-start rounded-lg p-4 grid md:grid-cols-3 grid-cols-1 gap-4 mb-36">
                         {catalogListShow ? (
-                            // Show shimmer effect for two catalog cards
                             Array.from({ length: 2 }).map((_, index) => (
                                 <div
                                     key={index}
@@ -367,7 +366,6 @@ const Catalogs = () => {
                             ))
                         ) : (
                             // Show actual catalog cards
-
 
                             listCatalogs.map((item, index) => {
 
@@ -450,34 +448,33 @@ const Catalogs = () => {
                         {isInvestmentCreated && (
 
                             <div className={`grid ${isInvestmentCreated ? "grid-cols-3" : "grid-cols-2"} `}>
+
                                 <div className=" p-2 flex flex-col items-center">
-                                    <div className="bg-white px-5 p-3 rounded-full flex items-center justify-center">
+                                    <div className="bg-white px-5 p-1 rounded-full flex items-center justify-center">
                                         <img className="w-auto h-8" src={footerLogo1} alt="Footer Logo 1" />
                                     </div>
-                                    <p className="mt-2 text-md font-bold text-center text-white">
+                                    <p className="mt-2 text-sm font-bold text-center text-white">
                                         {translations.Dashboard.catalogs[language]}
-
                                     </p>
                                 </div>
 
                                 <Link to="/dashboard">
                                     <div className="p-2  flex flex-col items-center">
-                                        <div className="p-3 rounded-full flex items-center justify-center">
+                                        <div className="p-1 rounded-full flex items-center justify-center">
                                             <img className="w-auto h-8" src={footerLogo2} alt="Footer Logo 2" />
                                         </div>
-                                        <p className="mt-2 text-md font-bold text-center text-white" >
+                                        <p className="mt-2 text-sm font-bold text-center text-white" >
                                             {translations.Dashboard.dashboard[language]}
-
                                         </p>
                                     </div>
                                 </Link>
 
                                 <Link to="/payouts">
                                     <div className=" p-2 flex flex-col items-center">
-                                        <div className="p-3 rounded-full flex items-center justify-center">
+                                        <div className="p-1 rounded-full flex items-center justify-center">
                                             <img className="w-auto h-8" src={footerLogo4} alt="Footer Logo 3" />
                                         </div>
-                                        <p className="mt-2 text-md font-bold text-center text-white">
+                                        <p className="mt-2 text-sm font-bold text-center text-white">
                                             {translations.Dashboard.payouts[language]}
                                         </p>
                                     </div>

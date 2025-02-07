@@ -416,10 +416,10 @@ const DashboardPage = () => {
 
                             <Link to="/catalogs">
                                 <div className=" p-2 flex flex-col items-center">
-                                    <div className="px-5 p-3 rounded-full flex items-center justify-center">
+                                    <div className="px-5 p-1 rounded-full flex items-center justify-center">
                                         <img className="w-auto h-8" src={footerLogo1} alt="Footer Logo 1" />
                                     </div>
-                                    <p className="mt-2 text-md font-bold text-center text-white">
+                                    <p className="mt-2 text-sm font-bold text-center text-white">
                                         {translations.Dashboard.catalogs[language]}
                                     </p>
                                 </div>
@@ -428,10 +428,10 @@ const DashboardPage = () => {
                             <Link to="/dashboard">
 
                                 <div className="p-2  flex flex-col items-center">
-                                    <div className="bg-white p-3 rounded-full flex items-center justify-center">
+                                    <div className="bg-white p-1 rounded-full flex items-center justify-center">
                                         <img className="w-auto h-8" src={footerLogo2} alt="Footer Logo 2" />
                                     </div>
-                                    <p className="mt-2 text-md font-bold text-center text-white" >
+                                    <p className="mt-2 text-sm font-bold text-center text-white" >
                                         {translations.Dashboard.dashboard[language]}
                                     </p>
                                 </div>
@@ -440,10 +440,10 @@ const DashboardPage = () => {
 
                             <Link to="/payouts">
                                 <div className=" p-2 flex flex-col items-center">
-                                    <div className="p-3 rounded-full flex items-center justify-center">
+                                    <div className="p-1 rounded-full flex items-center justify-center">
                                         <img className="w-auto h-8" src={footerLogo4} alt="Footer Logo 3" />
                                     </div>
-                                    <p className="mt-2 text-md font-bold text-center text-white">
+                                    <p className="mt-2 text-sm font-bold text-center text-white">
                                         {translations.Dashboard.payouts[language]}
                                     </p>
                                 </div>
