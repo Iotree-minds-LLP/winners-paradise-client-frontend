@@ -348,7 +348,6 @@ const SignupPage = () => {
                                 }}
                             />
 
-
                             <TextField
                                 label={translations.registerModule.Residential_addressfield[language]}
                                 variant="outlined"
@@ -357,7 +356,7 @@ const SignupPage = () => {
                                 {...register('address', {
                                     required: `${translations.validations.address_1[language]}`,
                                     pattern: {
-                                        value: /^[a-zA-Z0-9\s,.-]+$/,
+                                        value: /^[a-zA-Z0-9 ,./-]+$/,
                                         message: `${translations.validations.address_2[language]}`,
                                     },
                                 })}

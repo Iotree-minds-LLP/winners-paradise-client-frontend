@@ -370,7 +370,7 @@ const EditCustomerProfile = () => {
                                 {...register('address', {
                                     required: `${translations.validations.address_1[language]}`,
                                     pattern: {
-                                        value: /^[a-zA-Z0-9\s,.-]+$/,
+                                        value: /^[a-zA-Z0-9 ,./-]+$/,
                                         message: `${translations.validations.address_2[language]}`,
                                     },
                                 })}
@@ -380,6 +380,7 @@ const EditCustomerProfile = () => {
                                     shrink: true,
                                 }}
                             />
+
 
                             <TextField
                                 label={translations.registerModule.statefield[language]}
