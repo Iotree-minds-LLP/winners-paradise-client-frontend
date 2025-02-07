@@ -75,7 +75,7 @@ const AadharUpload = () => {
     useEffect(() => {
 
         if (location.state?.KycRequestData && Object.keys(location.state.KycRequestData).length > 0) {
-            if (location.state.KycRequestData.is_aadhar_verified === "REVIEW PENDING") {
+            if (location.state.KycRequestData.is_aadhar_verified === "REVIEW PENDING" || location.state.KycRequestData.is_aadhar_verified === "CLEARED") {
                 setdisableAadharField(true);
             }
             else {
