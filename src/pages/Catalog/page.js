@@ -1,12 +1,8 @@
 import { useEffect, useState } from "react";
 import { getAllCatalog, getAllCatalogByReturnCalculator } from "../../network/Catalog/page";
-import profileIcon from "../../assets/Logos/trailing-icon.png"
-import belIcon from "../../assets/Logos/belIcon.png"
 import { TextField } from "@mui/material";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import NavBar from "../../components/Navbar/page";
-import calculateicon from "../../assets/Images/calculate.png"
 import acrrowright from "../../assets/Images/arrow_circle_right.png"
 import imageLogo from "../../assets/Logos/logohere.png";
 import bellIcon from "../../assets/Logos/bellIcon2.png";
@@ -146,12 +142,9 @@ const Catalogs = () => {
     return (
         <>
             <div className="sm:ml-72 relative bg-white">
-                {/* Background Image */}
                 <img src={backImage} className="opacity-30	hidden md:block absolute inset-0 object-cover z-0 w-full" alt="Background" />
 
-                {/* Content Wrapper */}
                 <div className="relative z-10">
-                    {/* Gradient Header */}
                     <div className="object-contain fixed top-0 z-10 flex justify-between bg-gradient-to-l sm:hidden from-[#0400CB] to-[#020065]">
                         <h1 className="text-start font-bold text-2xl p-4 text-white hidden md:block"> {translations.Catalog.heading[language]}</h1>
                         <img
