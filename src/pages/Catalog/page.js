@@ -173,8 +173,6 @@ const Catalogs = () => {
                         </div>
                     </div>
 
-
-
                     <div className="flex justify-between hidden md:block">
                         <div className="flex flex-row mx-4 gap-4 mt-14 mb-8">
                             <h1 className="text-start font-bold text-2xl text-black hidden md:block">{translations.Catalog.heading[language]}</h1>
