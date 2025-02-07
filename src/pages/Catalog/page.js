@@ -157,11 +157,26 @@ const Catalogs = () => {
                             {translations.logoHeading[language]}
                         </p>
 
-                        <div className="flex flex-row text-white">
+                        <div className="flex flex-row justify-center items-center text-white">
                             <Link to="/notifications">
-                                <img src={bellIcon} className="w-auto h-12 mt-4" alt="Bell Icon"></img>
-                            </Link>   <Link to="/profile-and-settings">
-                                <img src={userIcon} className="w-auto h-12 mt-4" alt="User Icon"></img>
+                                <img src={bellIcon} className="w-auto h-12 " alt="Bell Icon"></img>
+                            </Link>
+                            <Link to="/profile-and-settings">
+                                <Avatar
+                                    className="mr-3 flex justify-center items-center"
+                                    alt="User Avatar"
+                                    sx={{ width: 30, height: 30, bgcolor: "primary.main", fontSize: 14, fontWeight: "bold" }}
+                                >
+                                    {CustomerDetails?.profile_image ? (
+                                        <img
+                                            src={CustomerDetails.profile_image}
+                                            alt="Profile"
+                                            className="w-full h-full object-cover rounded-full"
+                                        />
+                                    ) : (
+                                        CustomerDetails?.name?.charAt(0)?.toUpperCase() || "U"
+                                    )}
+                                </Avatar>
                             </Link>
                         </div>
                     </div>

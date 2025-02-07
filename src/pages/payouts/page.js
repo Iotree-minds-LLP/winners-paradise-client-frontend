@@ -13,11 +13,14 @@ import { getAllOverAllPayouts, getAllPayouts, getAllReferralPayouts } from "../.
 import { useInvestment } from "../../context/Investment/investmentContext";
 import translations from "../../utils/Json/translation.json"
 import { useLanguage } from "../../context/Language/loginContext";
+import { Avatar } from "@mui/material";
+import { getCustomerById } from "../../network/Customer/page";
 
 
 const Payouts = () => {
     const { isInvestmentCreated, setIsInvestmentCreated } = useInvestment();
     const { language, setLanguage } = useLanguage();
+    const [CustomerDetails, setCustomerDetails] = useState();
     const [isModalOpen, setisModalOpen] = useState(false);
     const navigate = useNavigate();
     const [past, setpast] = useState(false)
@@ -27,8 +30,22 @@ const Payouts = () => {
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
+        fetchCustomerDetails(customer._id);
         onformSubmit()
     }, []);
+
+
+
+
+    const fetchCustomerDetails = async (id) => {
+        if (id) {
+            const resp = await getCustomerById(id);
+            if (resp.data.status === 200) {
+                setCustomerDetails(resp.data.data.customer);
+            }
+        }
+    };
+
 
 
     const onformSubmit = async () => {
@@ -77,12 +94,26 @@ const Payouts = () => {
                         <p className="mt-6 sm:hidden text-white font-semibold text-xl">
                             {translations.PayoutsDetails.winnersParadise[language]}
                         </p>
-                        <div className="flex flex-row text-white">
+                        <div className="flex flex-row justify-center items-center text-white">
                             <Link to="/notifications">
-                                <img src={bellIcon} className="w-auto h-12 mt-4" alt="Bell Icon"></img>
+                                <img src={bellIcon} className="w-auto h-12 " alt="Bell Icon"></img>
                             </Link>
                             <Link to="/profile-and-settings">
-                                <img src={userIcon} className="w-auto h-12 mt-4" alt="User Icon"></img>
+                                <Avatar
+                                    className="mr-3 flex justify-center items-center"
+                                    alt="User Avatar"
+                                    sx={{ width: 30, height: 30, bgcolor: "primary.main", fontSize: 14, fontWeight: "bold" }}
+                                >
+                                    {CustomerDetails?.profile_image ? (
+                                        <img
+                                            src={CustomerDetails.profile_image}
+                                            alt="Profile"
+                                            className="w-full h-full object-cover rounded-full"
+                                        />
+                                    ) : (
+                                        CustomerDetails?.name?.charAt(0)?.toUpperCase() || "U"
+                                    )}
+                                </Avatar>
                             </Link>
                         </div>
                     </div>
