@@ -797,8 +797,8 @@
             "kannada": "ದಯವಿಟ್ಟು ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ"
         },
         "address_2": {
-            "english": "Only letters, numbers, spaces, commas, periods, and hyphens are allowed",
-            "kannada": "ಅಕ್ಷರಗಳು, ಸಂಖ್ಯೆಗಳನ್ನು, ಖಾಲಿ ಜಾಗಗಳನ್ನು, ಅಲ್ಪವಿರಾಮ, ಪೂರ್ಣವಿರಾಮ ಮತ್ತು ಹೈಫನ್ ಮಾತ್ರ ಅನುಮತಿಸಲಾಗಿದೆ."
+            "english": "Special Characters Not Allowed",
+            "kannada": "ವಿಶೇಷ ಅಕ್ಷರಗಳನ್ನು ಬಳಸಲು ಅನುಮತಿ ಇಲ್ಲ."
         },
         "state_1": {
             "english": "State is required",

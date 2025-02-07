@@ -436,8 +436,6 @@ const EditCustomerProfile = () => {
                                 }}
                             />
 
-
-
                             <TextField
                                 label={translations.registerModule.cityfield[language]}
                                 variant="outlined"

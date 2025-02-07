@@ -164,7 +164,6 @@ const MyProfile = () => {
                                         </div>
                                     )}
 
-
                                     {customerDetailsFromAPI.referred_by && (
                                         <div className="my-3">
                                             <p className="text-sm text-gray-800">{translations.global.referredBy[language]}</p>
