@@ -353,6 +353,8 @@ const OtpVerification = () => {
                                                             e.target.value = e.target.value.slice(0, 10); // Truncate input to 12 digits
                                                         }
                                                     }}
+                                                    onWheel={(e) => e.target.blur()} // Prevents value change on scroll
+
                                                     sx={{
                                                         "& input[type=number]": {
                                                             MozAppearance: "textfield", // Removes spinner in Firefox
@@ -439,6 +441,8 @@ const OtpVerification = () => {
                                                             e.target.value = e.target.value.slice(0, 6); // Truncate input to 12 digits
                                                         }
                                                     }}
+                                                    onWheel={(e) => e.target.blur()} // Prevents value change on scroll
+
                                                     sx={{
                                                         "& input[type=number]": {
                                                             MozAppearance: "textfield", // Removes spinner in Firefox

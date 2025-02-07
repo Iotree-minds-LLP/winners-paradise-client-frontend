@@ -192,6 +192,8 @@ const BankDetails = () => {
                                         e.target.value = e.target.value.slice(0, 18); // Truncate input to 18 digits
                                     }
                                 }}
+                                onWheel={(e) => e.target.blur()} // Prevents value change on scroll
+
                                 sx={{
                                     "& input[type=number]": {
                                         MozAppearance: "textfield", // Removes spinner in Firefox
@@ -206,7 +208,6 @@ const BankDetails = () => {
                                 }}
                             />
 
-                            {/* Bank Name */}
                             <TextField
                                 value={watchbankName}
                                 label={translations.BankAccount.bankName[language]}
@@ -237,8 +238,6 @@ const BankDetails = () => {
                                 }}
                             />
 
-
-                            {/* IFSC Code */}
                             <TextField
                                 label={translations.BankAccount.ifscCode[language]}
                                 variant="outlined"
@@ -257,7 +256,6 @@ const BankDetails = () => {
                                 }}
                             />
 
-                            {/* Bank Branch Name */}
                             <TextField
                                 label={translations.BankAccount.bankBranchName[language]}
                                 variant="outlined"
