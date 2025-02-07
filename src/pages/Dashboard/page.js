@@ -129,7 +129,7 @@ const DashboardPage = () => {
 
                             <Link to="/profile-and-settings">
                                 <Avatar
-                                    className="mr-3"
+                                    className="mr-3 flex justify-center items-center"
                                     alt="User Avatar"
                                     sx={{ width: 30, height: 30, bgcolor: "primary.main" }} // Matches the size and alignment of bellIcon
                                 >
@@ -138,7 +138,7 @@ const DashboardPage = () => {
                                             <img className="text-sm" src={CustomerDetails?.profile_image}></img>
                                         )
                                         : (
-                                            <p className="text-sm"> {CustomerDetails?.name?.charAt(0) || "U"}</p>
+                                            <p className="text-sm flex justify-center items-center"> {CustomerDetails?.name?.charAt(0) || "U"}</p>
                                         )
                                     }
                                 </Avatar>
@@ -148,9 +148,17 @@ const DashboardPage = () => {
                     </div>
 
                     <div className="m-3 border bg-gray-100 mb-5 p-3 md:hidden flex flex-row items-center justify-start gap-3 rounded-lg">
-                        <img className="text-sm w-10 h-10" src={CustomerDetails?.profile_image}></img>
-                        <p className="text-sm">{translations.Dashboard.heading[language]}:{CustomerDetails?.name}</p>
+
+                        {CustomerDetails?.profile_image ? (
+                            <img className="text-sm w-10 h-10 rounded-full" src={CustomerDetails.profile_image} alt="Profile" />
+                        ) : (
+                            <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-300 text-gray-700 text-lg font-bold">
+                                {CustomerDetails?.name?.charAt(0).toUpperCase()}
+                            </div>
+                        )}
+                        <p className="text-sm">{translations.Dashboard.heading[language]}: {CustomerDetails?.name}</p>
                     </div>
+
 
                     <div className="flex flex-row justify-between items-center mx-4 mt-14 hidden md:flex">
                         <h1 className="font-bold text-2xl text-black">{translations.sideBar.heading1[language]}</h1>
