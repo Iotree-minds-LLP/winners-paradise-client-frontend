@@ -304,15 +304,15 @@ const AddNominee = () => {
                                 helperText={errors.bank_acc_no?.message}
                                 onInput={(e) => {
                                     if (e.target.value.length > 18) {
-                                        e.target.value = e.target.value.slice(0, 18); // Truncate input to 18 digits
+                                        e.target.value = e.target.value.slice(0, 18);
                                     }
                                 }}
                                 sx={{
                                     "& input[type=number]": {
-                                        MozAppearance: "textfield", // Removes spinner in Firefox
+                                        MozAppearance: "textfield",
                                     },
                                     "& input[type=number]::-webkit-inner-spin-button, & input[type=number]::-webkit-outer-spin-button": {
-                                        WebkitAppearance: "none", // Removes spinner in Chrome, Safari
+                                        WebkitAppearance: "none",
                                         margin: 0,
                                     },
                                 }}
