@@ -213,6 +213,7 @@ const AddNominee = () => {
                 <div className="h-full bg-white grid grid-cols-12 md:grid-cols-12 md:overflow-hidden md:p-0 sm:p-10">
                     <div className="col-span-12 md:col-span-6 w-full order-1 md:order-2 md:px-20 mt-10 overflow-auto">
                         <div className="flex flex-row">
+                            <img onClick={goBack} src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" className="w-auto h-8 mt-1 hidden md:block" alt="Background" />
                             <div>
                                 <p style={{ color: '#020065' }} className="mx-5 hidden sm:block text-start font-semibold text-3xl">
                                     {UpdateNomineeDetails ? `${translations.global.update[language]}` : `${translations.global.add[language]}`} {translations.global.nomineeDetails[language]}

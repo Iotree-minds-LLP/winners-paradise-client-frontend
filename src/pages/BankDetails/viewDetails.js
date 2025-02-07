@@ -75,6 +75,7 @@ const ViewDetails = () => {
                     <div className="col-span-12 md:col-span-6 w-full order-1 md:order-2 md:px-20 mt-10 overflow-auto">
 
                         <div className="flex flex-row">
+                            <img onClick={goBack} src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" className="w-auto h-8 mt-1 hidden md:block" alt="Background" />
                             <p style={{ color: '#020065' }} className="mx-5 hidden sm:block text-start font-semibold text-3xl">
                                 {translations.BankAccount.heading[language]}
                             </p>

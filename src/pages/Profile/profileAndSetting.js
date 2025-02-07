@@ -138,11 +138,12 @@ const ProfileAndSettings = () => {
 
 
                     <div className="text-start rounded-lg mt-5 p-4 md:p-10 grid md:grid-cols-1 grid-cols-1 gap-4">
-                        <div
-                            className="p-4 md:p-6 rounded-lg w-full md:w-1/2"
-                            style={{ backgroundColor: "rgba(245, 245, 245, 1)" }}
-                        >
-                            <Link to="/my-profile">
+
+                        <Link to="/my-profile">
+                            <div
+                                className="p-4 md:p-6 rounded-lg w-full md:w-1/2"
+                                style={{ backgroundColor: "rgba(245, 245, 245, 1)" }}
+                            >
                                 <div className="flex justify justify-between">
                                     <p
                                         style={{
@@ -155,8 +156,8 @@ const ProfileAndSettings = () => {
                                     </p>
                                     <img src={acrrowright} className="w-auto h-8" alt="Arrow Icon"></img>
                                 </div>
-                            </Link>
-                        </div>
+                            </div>
+                        </Link>
 
                         <Link to="/Kyc-status">
                             <div
@@ -220,11 +221,12 @@ const ProfileAndSettings = () => {
                                 </div>
                             </Link>
                         )}
-                        <div
-                            className="p-4 md:p-6 rounded-lg md:w-1/2"
-                            style={{ backgroundColor: "rgba(245, 245, 245, 1)" }}
-                        >
-                            <Link to="/update-language-preference">
+
+                        <Link to="/update-language-preference">
+                            <div
+                                className="p-4 md:p-6 rounded-lg md:w-1/2"
+                                style={{ backgroundColor: "rgba(245, 245, 245, 1)" }}
+                            >
                                 <div className="flex justify justify-between">
                                     <p
                                         style={{
@@ -237,8 +239,9 @@ const ProfileAndSettings = () => {
                                     </p>
                                     <img src={acrrowright} className="w-auto h-8" alt="Arrow Icon"></img>
                                 </div>
-                            </Link>
-                        </div>
+                            </div>
+                        </Link>
+
 
                         {/* New Section: Download PWA */}
                         {isPwaPromptAvailable && (
@@ -284,7 +287,7 @@ const ProfileAndSettings = () => {
                     </div>
 
                 </div>
-            </div>
+            </div >
             <div>
                 {isModalOpen && (
                     <div
