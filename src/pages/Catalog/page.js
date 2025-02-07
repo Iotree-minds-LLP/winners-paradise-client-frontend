@@ -55,7 +55,7 @@ const Catalogs = () => {
 
         setcompleteCardsLoading(true);
         const res = await getKycDetailsByCustomerId();
-        if (res.data.data.is_aadhar_verified === "REVIEW PENDING" && res.data.data.is_blank_cheque_verified === "REVIEW PENDING" && res.data.data.is_pan_verified === "REVIEW PENDING" && res.data.data.is_profile_image_verified === "REVIEW PENDING") {
+        if (res.data?.data?.is_aadhar_verified === "REVIEW PENDING" && res?.data?.data?.is_blank_cheque_verified === "REVIEW PENDING" && res?.data?.data?.is_pan_verified === "REVIEW PENDING" && res?.data?.data?.is_profile_image_verified === "REVIEW PENDING") {
             setcompleteCardsLoading(false);
         }
         else {
