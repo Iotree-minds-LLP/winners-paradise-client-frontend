@@ -99,8 +99,10 @@ const KycStatusPage = () => {
 
                 if (isConsentAgreed === true) {
                     setisDisabled(true);
+
                 }
-                else if (res?.data?.data?.is_consent_given) {
+                if (res?.data?.data?.is_consent_given) {
+                    setShowConsentForm(false);
                     setIsConsentAgreed(res?.data?.data?.is_consent_given || false)
                     setisDisabled(true);
                 }

@@ -172,9 +172,6 @@ const Catalogs = () => {
                         </div>
                     </div>
 
-                    {console.log(isInvestmentCreated, "isInvestmentCreated")}
-
-
                     <div className="grid grid-cols-1 md:py-0 py-5 md:grid-cols-3 px-4 gap-0 md:gap-10 mt-20 md:mt-0 text-start">
 
                         {!isInvestmentCreated && (
