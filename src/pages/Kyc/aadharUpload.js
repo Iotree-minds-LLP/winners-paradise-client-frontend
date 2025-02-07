@@ -8,7 +8,7 @@ import { creteCustomerKycRequest } from "../../network/KycVerification/page";
 import { useToast } from "../../context/Toast/toastHook";
 import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
-import { CameraAlt, CancelOutlined, FileUpload } from "@mui/icons-material";
+import { CameraAlt, CancelOutlined, CloseFullscreen, FileUpload } from "@mui/icons-material";
 import { goBack } from "../../utils/Functions/goBackScreen";
 import { useLanguage } from "../../context/Language/loginContext";
 import translations from "../../utils/Json/translation.json"
@@ -78,9 +78,11 @@ const AadharUpload = () => {
             if (location.state.KycRequestData.is_aadhar_verified === "REVIEW PENDING") {
                 setdisableAadharField(true);
             }
+            else {
+                setdisableAadharField(false);
+            }
             setLocationStateDetails(location.state.KycRequestData);
             setAadharNumber(location.state.KycRequestData.aadhar_no || null);
-            setdisableAadharField(location.state.KycRequestData.aadhar_no)
             setBackImagePreview(location.state.KycRequestData.aadhar_file_back);
             setFrontImage(location.state.KycRequestData.aadhar_file_front);
             setAadharFrontStatus(location.state.KycRequestData.is_aadhar_verified);
