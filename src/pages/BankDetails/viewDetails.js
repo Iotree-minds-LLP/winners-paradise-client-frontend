@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { getCustomerById } from "../../network/Customer/page";
 import addNomineeImage from "../../assets/Images/addnominee.png"
 import formatDate from "../../utils/Functions/formatDate";
+import image2 from "../../assets/Images/robo 1 (1).png";
 
 const ViewDetails = () => {
 
@@ -318,6 +319,19 @@ const ViewDetails = () => {
                     </div>
                 </div >
             </div >
+            {!NomineeDetails &&
+
+
+                <div className="fixed bottom-0 left-0 w-full sm:hidden">
+                    <div className="bg-white shadow-md">
+                        <img
+                            src={image2}
+                            alt="Image description"
+                            className="w-full h-full object-contain"
+                        />
+                    </div>
+                </div>
+            }
 
         </>
     );

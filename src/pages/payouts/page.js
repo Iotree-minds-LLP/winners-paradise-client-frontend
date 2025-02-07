@@ -18,6 +18,7 @@ import { getCustomerById } from "../../network/Customer/page";
 
 
 const Payouts = () => {
+
     const { isInvestmentCreated, setIsInvestmentCreated } = useInvestment();
     const { language, setLanguage } = useLanguage();
     const [CustomerDetails, setCustomerDetails] = useState();
@@ -84,73 +85,76 @@ const Payouts = () => {
                 <img src={backImage} className="opacity-30	hidden md:block absolute inset-0 object-cover z-0 w-full" alt="Background" />
 
                 <div className="relative z-10">
-                    <div className="object-contain flex justify-between  sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB]">
-                        <h1 className="text-start font-bold text-2xl p-4 text-white hidden md:block">{translations.PayoutsDetails.dashboard[language]}</h1>
-                        <img
-                            className="h-auto sm:hidden w-1/5 p-4 md:mt-0 text-start"
-                            src={imageLogo}
-                            alt="Logo"
-                        />
-                        <p className="mt-6 sm:hidden text-white font-semibold text-xl">
-                            {translations.PayoutsDetails.winnersParadise[language]}
-                        </p>
-                        <div className="flex flex-row justify-center items-center text-white">
-                            <Link to="/notifications">
-                                <img src={bellIcon} className="w-auto h-12 " alt="Bell Icon"></img>
-                            </Link>
-                            <Link to="/profile-and-settings">
-                                <Avatar
-                                    className="mr-3 flex justify-center items-center"
-                                    alt="User Avatar"
-                                    sx={{ width: 30, height: 30, bgcolor: "primary.main", fontSize: 14, fontWeight: "bold" }}
+                    <div className="fixed top-0 z-10">
+                        <div className="object-contain flex justify-between  sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB]">
+                            <h1 className="text-start font-bold text-2xl p-4 text-white hidden md:block">{translations.PayoutsDetails.dashboard[language]}</h1>
+                            <img
+                                className="h-auto sm:hidden w-1/5 p-4 md:mt-0 text-start"
+                                src={imageLogo}
+                                alt="Logo"
+                            />
+                            <p className="mt-6 sm:hidden text-white font-semibold text-xl">
+                                {translations.PayoutsDetails.winnersParadise[language]}
+                            </p>
+                            <div className="flex flex-row justify-center items-center text-white">
+                                <Link to="/notifications">
+                                    <img src={bellIcon} className="w-auto h-12 " alt="Bell Icon"></img>
+                                </Link>
+                                <Link to="/profile-and-settings">
+                                    <Avatar
+                                        className="mr-3 flex justify-center items-center"
+                                        alt="User Avatar"
+                                        sx={{ width: 30, height: 30, bgcolor: "primary.main", fontSize: 14, fontWeight: "bold" }}
+                                    >
+                                        {CustomerDetails?.profile_image ? (
+                                            <img
+                                                src={CustomerDetails.profile_image}
+                                                alt="Profile"
+                                                className="w-full h-full object-cover rounded-full"
+                                            />
+                                        ) : (
+                                            CustomerDetails?.name?.charAt(0)?.toUpperCase() || "U"
+                                        )}
+                                    </Avatar>
+                                </Link>
+                            </div>
+                        </div>
+
+                        <div className="flex justify-between">
+                            <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10 px-10">{translations.PayoutsDetails.payoutsTracker[language]}</h1>
+                        </div>
+
+                        <div className="text-start grid grid-cols-12 grid-cols-12  md:p-10">
+                            <div className="col-span-6">
+                                <div onClick={toggleSelection}
+                                    className="p-4 flex flex-row justify-center items-center gap-2" style={{ background: "#E7E7FF" }}
                                 >
-                                    {CustomerDetails?.profile_image ? (
-                                        <img
-                                            src={CustomerDetails.profile_image}
-                                            alt="Profile"
-                                            className="w-full h-full object-cover rounded-full"
-                                        />
-                                    ) : (
-                                        CustomerDetails?.name?.charAt(0)?.toUpperCase() || "U"
-                                    )}
-                                </Avatar>
-                            </Link>
-                        </div>
-                    </div>
-
-                    <div className="flex justify-between">
-                        <h1 className="text-start font-bold text-2xl p-4 text-black hidden md:block mt-10 px-10">{translations.PayoutsDetails.payoutsTracker[language]}</h1>
-                    </div>
-
-                    <div className="text-start grid grid-cols-12 grid-cols-12  md:p-10">
-                        <div className="col-span-6">
-                            <div onClick={toggleSelection}
-                                className="p-4 flex flex-row justify-center items-center gap-2" style={{ background: "#E7E7FF" }}
-                            >
-                                <img className="w-5 h-5" src={logo1}></img>
-                                <p style={{ color: "#020065" }} className="font-bold text-md">
-                                    {translations.PayoutsDetails.upcoming[language]}
-                                </p>
+                                    <img className="w-5 h-5" src={logo1}></img>
+                                    <p style={{ color: "#020065" }} className="font-bold text-md">
+                                        {translations.PayoutsDetails.upcoming[language]}
+                                    </p>
+                                </div>
+                                {!past && (
+                                    <p style={{ background: "#020065", height: '2.5px' }} ></p>
+                                )}
                             </div>
-                            {!past && (
-                                <p style={{ background: "#020065", height: '2.5px' }} ></p>
-                            )}
-                        </div>
-                        <div className="col-span-6">
-                            <div
-                                onClick={toggleSelection}
-                                className="p-4 flex flex-row justify-center gap-2 items-center" style={{ background: "#E7E7FF" }}
-                            >
-                                <img className="w-5 h-5" src={logo2}></img>
-                                <p style={{ color: "#020065" }} className="font-bold text-md">
-                                    {translations.PayoutsDetails.past[language]}
-                                </p>
+                            <div className="col-span-6">
+                                <div
+                                    onClick={toggleSelection}
+                                    className="p-4 flex flex-row justify-center gap-2 items-center" style={{ background: "#E7E7FF" }}
+                                >
+                                    <img className="w-5 h-5" src={logo2}></img>
+                                    <p style={{ color: "#020065" }} className="font-bold text-md">
+                                        {translations.PayoutsDetails.past[language]}
+                                    </p>
 
+                                </div>
+                                {past && (
+                                    <p style={{ background: "#020065", height: '2.5px' }} ></p>
+                                )}
                             </div>
-                            {past && (
-                                <p style={{ background: "#020065", height: '2.5px' }} ></p>
-                            )}
                         </div>
+
                     </div>
 
                     <div className="py-5 md:py-0 grid grid-cols-1 md:grid-cols-3 px-5 gap-4 mx-0 md:mx-4 mb-20 ">

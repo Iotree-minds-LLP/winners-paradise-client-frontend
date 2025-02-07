@@ -315,6 +315,8 @@ const EditBankDetails = () => {
 
             </div >
 
+          
+
         </>
     );
 };

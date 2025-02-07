@@ -14,6 +14,7 @@ import { getCustomerById } from "../../network/Customer/page";
 import { useLanguage } from "../../context/Language/loginContext";
 import translations from "../../utils/Json/translation.json"
 import { MoreRounded } from "@mui/icons-material";
+import image2 from "../../assets/Images/robo 1 (1).png";
 
 const BankDetails = () => {
 
@@ -474,6 +475,15 @@ const BankDetails = () => {
                                     alt="Logo"
                                 />
                             </h1>
+                        </div>
+                    </div>
+                    <div className="fixed bottom-0 left-0 w-full sm:hidden">
+                        <div className="bg-white shadow-md">
+                            <img
+                                src={image2}
+                                alt="Image description"
+                                className="w-full h-full object-contain"
+                            />
                         </div>
                     </div>
                 </div>

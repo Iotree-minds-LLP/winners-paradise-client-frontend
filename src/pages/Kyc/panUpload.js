@@ -12,6 +12,7 @@ import { CameraAlt, CancelOutlined, FileUpload } from "@mui/icons-material";
 import { goBack } from "../../utils/Functions/goBackScreen";
 import { useLanguage } from "../../context/Language/loginContext";
 import translations from "../../utils/Json/translation.json"
+import image2 from "../../assets/Images/robo 1 (1).png";
 
 const PanUpload = () => {
 
@@ -511,7 +512,15 @@ const PanUpload = () => {
                 </div>
             )}
 
-
+            <div className="fixed bottom-0 left-0 w-full sm:hidden">
+                <div className="bg-white shadow-md">
+                    <img
+                        src={image2}
+                        alt="Image description"
+                        className="w-full h-full object-contain"
+                    />
+                </div>
+            </div>
         </>
     );
 };

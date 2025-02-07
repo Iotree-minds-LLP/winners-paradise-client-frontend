@@ -108,7 +108,7 @@ const DashboardPage = () => {
                 <img src={backImage} className="opacity-30	hidden md:block absolute inset-0 object-cover z-0 w-full" alt="Background" />
 
                 <div className="relative z-10">
-                    <div className="object-contain flex justify-between  sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB]">
+                    <div className="object-contain  fixed top-0 z-10 flex justify-between  sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB]">
                         <h1 className="text-start font-bold text-2xl p-4 text-white hidden md:block">Dashboard</h1>
                         <img
                             className="h-auto sm:hidden w-1/5 p-4 md:mt-0 text-start"

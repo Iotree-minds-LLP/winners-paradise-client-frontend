@@ -91,7 +91,7 @@ const EditCustomerProfile = () => {
             address: data.address,
             language_preference: language.toLowerCase(),
             token: tokenDetails,
-            ...(image && { profile_image: image }),
+            profile_image: image ? image : null
         };
         let resp;
         try {
@@ -105,7 +105,7 @@ const EditCustomerProfile = () => {
                 navigate("/catalogs");
             }
             else {
-                setErrorMessage(resp.data.error);
+                setErrorMessage(resp.data.message);
                 setisLoading(false);
             }
         } catch (error) {

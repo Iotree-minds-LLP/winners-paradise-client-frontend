@@ -93,19 +93,17 @@ const KycStatusPage = () => {
 
             } else if (res.data.status === 200) {
 
-                if (res.data.data.status === "completed") {
-                    setShowConsentForm(false);
-                }
-
-                if (isConsentAgreed === true) {
-                    setisDisabled(true);
-
-                }
                 if (res?.data?.data?.is_consent_given) {
                     setShowConsentForm(false);
                     setIsConsentAgreed(res?.data?.data?.is_consent_given || false)
                     setisDisabled(true);
                 }
+                else if (isConsentAgreed) {
+                    setShowConsentForm(true);
+                    setisDisabled(false);
+                    setIsConsentAgreed(true);
+                }
+
                 else {
                     setIsConsentAgreed(false)
                 }
@@ -363,8 +361,20 @@ const KycStatusPage = () => {
                             )}
                         </>
                     }
-
                 </div>
+
+                {!ShowConsentForm &&
+                    <div className="fixed bottom-0 left-0 w-full sm:hidden">
+                        <div className="bg-white shadow-md">
+                            <img
+                                src={image2}
+                                alt="Image description"
+                                className="w-full h-full object-contain"
+                            />
+                        </div>
+                    </div>
+                }
+
             </div >
         </>
     );
