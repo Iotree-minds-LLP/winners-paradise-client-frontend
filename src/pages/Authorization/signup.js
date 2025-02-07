@@ -184,12 +184,12 @@ const SignupPage = () => {
                                     {image ? (
                                         <>
                                             {/* Uploaded Image */}
-                                            <div className="relative w-full h-full group">
+                                            <div className="relative w-full h-auto group rounded-full">
                                                 {/* Image */}
                                                 <img
                                                     src={image}
                                                     alt="Uploaded"
-                                                    className="object-cover w-full h-full rounded-full w-40 h-40 sm:w-40 sm:h-40 "
+                                                    className="object-coverrounded-full w-40 h-40 sm:w-40 sm:h-40 "
                                                 />
 
                                                 {/* Overlay */}

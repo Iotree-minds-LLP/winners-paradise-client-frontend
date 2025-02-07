@@ -34,12 +34,14 @@ const Payouts = () => {
     const onformSubmit = async () => {
         const resp = await getAllOverAllPayouts();
         if (resp?.data?.data?.payouts) {
+            console.log(resp?.data?.data?.payouts, "resp?.data?.data?.payouts")
             setlistPayouts(resp?.data?.data?.payouts)
         }
         else {
             setlistPayouts([])
         }
     };
+
     const today = new Date();
 
     const upcomingPayouts = listPayouts.filter(
@@ -120,7 +122,7 @@ const Payouts = () => {
                         </div>
                     </div>
 
-                    <div className="py-5 md:py-0 grid grid-cols-1 md:grid-cols-3 px-5 gap-4 mx-0 md:mx-4  ">
+                    <div className="py-5 md:py-0 grid grid-cols-1 md:grid-cols-3 px-5 gap-4 mx-0 md:mx-4 mb-20 ">
                         {payoutsToDisplay?.map((payout, index) => (
                             <>
                                 <div
@@ -136,6 +138,8 @@ const Payouts = () => {
                                         >
                                             ₹{payout?.expected_payout_amount}
                                         </p>
+                                        <p className="mt-2 text-xs py-2 rounded-lg p-2 text-black" style={{ backgroundColor: "#E7E7FF" }}>Payout Type:{payout.payout_type}</p>
+
                                     </div>
                                     <div className="flex flex-col text-start">
                                         <p className="text-md">{translations.PayoutsDetails.payoutOn[language]}</p>
