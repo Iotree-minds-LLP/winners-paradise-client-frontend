@@ -299,7 +299,7 @@ const AddNominee = () => {
                                         message: translations.validations.bankDetails.bankAccount1[language],
                                     },
                                 })}
-                                onWheel={(e) => e.target.blur()} // Prevents value change on scroll
+                                onWheel={(e) => e.target.blur()}
                                 error={!!errors.bank_acc_no}
                                 helperText={errors.bank_acc_no?.message}
                                 onInput={(e) => {
