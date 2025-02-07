@@ -1097,6 +1097,14 @@
         "uploaded": {
             "english": "Uploaded",
             "kannada": "ಆಪ್ಲೋಡ"
+        },
+        "referredBy": {
+            "english": "Referred By",
+            "kannada": "ಉಲ್ಲೇಖಿಸಿದವರು"
+        },
+        "referralCode": {
+            "english": "Referral Code",
+            "kannada": "ಉಲ್ಲೇಖ ಕೋಡ್"
         }
     }
 }

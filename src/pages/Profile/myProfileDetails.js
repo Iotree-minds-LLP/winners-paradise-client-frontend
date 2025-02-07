@@ -29,6 +29,7 @@ const MyProfile = () => {
         try {
             if (id) {
                 const resp = await getCustomerById(id);
+                console.log(resp.data.data.customer, "Hello")
                 if (resp.data.status === 200) {
                     setCustomerDetailsFromAPI(resp.data.data.customer);
                 }
@@ -159,6 +160,25 @@ const MyProfile = () => {
                                             <p className="text-sm text-gray-800">{translations.MyProfile.alternatePhone[language]}</p>
                                             <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
                                                 {customerDetailsFromAPI.alternate_mobile_no}
+                                            </p>
+                                        </div>
+                                    )}
+
+
+                                    {customerDetailsFromAPI.referred_by && (
+                                        <div className="my-3">
+                                            <p className="text-sm text-gray-800">{translations.global.referredBy[language]}</p>
+                                            <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
+                                                {customerDetailsFromAPI.referred_by.name}
+                                            </p>
+                                        </div>
+                                    )}
+
+                                    {customerDetailsFromAPI.reference_id && (
+                                        <div className="my-3">
+                                            <p className="text-sm text-gray-800">{translations.global.referralCode[language]}</p>
+                                            <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
+                                                {customerDetailsFromAPI.reference_id}
                                             </p>
                                         </div>
                                     )}
