@@ -13,6 +13,7 @@ import { goBack } from "../../utils/Functions/goBackScreen";
 import { useLanguage } from "../../context/Language/loginContext";
 import translations from "../../utils/Json/translation.json"
 import image2 from "../../assets/Images/robo 1 (1).png";
+import infoPng from "../../assets/Images/info.png"
 
 const SelfieUpload = () => {
 
@@ -207,6 +208,15 @@ const SelfieUpload = () => {
                             </h1>
                         </div>
                     </div>
+
+                    {selfieUpload === "REVIEW PENDING" &&
+                        <div className="mt-3 md:mt-10 grid grid-cols-1 md:grid-cols-3 mx-3">
+                            <div className="text-start p-4 flex flex-row bg-gray-100 rounded-lg">
+                                <img className="w-6 h-6" src={infoPng}></img>
+                                <p className="text-xs mx-2 mt-1">{translations.global.noUpdateMessage[language]}</p>
+                            </div>
+                        </div>
+                    }
 
                     <div className={`flex flex-col md:flex-row gap-10 p-4 md:mb-0 overflow-y-auto ${locationStateDetails?.is_profile_image_verified === "REJECTED" ? "mb-0" : "mb-20"}`}>
                         <div

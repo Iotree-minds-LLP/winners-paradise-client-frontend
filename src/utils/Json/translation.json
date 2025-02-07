@@ -1062,6 +1062,10 @@
             "english": "You need to verify your registered mobile number to update your bank details",
             "kannada": "ನಿಮ್ಮ ಬ್ಯಾಂಕ್ ವಿವರಗಳನ್ನು ನವೀಕರಿಸಲು ನಿಮ್ಮ ನೋಂದಾಯಿಸಿದ ಮೊಬೈಲ್ ಸಂಖ್ಯವನ್ನು ದೃಢೀಕರಿಸಬೇಕು"
         },
+        "noUpdateMessage": {
+            "english": "You cannot update this as your uploaded file is in progress for verification by the admin.",
+            "kannada": "ನೀವು ಇದನ್ನು ಅಪ್‌ಡೇಟ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ, ಏಕೆಂದರೆ ನಿಮ್ಮ ಅಪ್‌ಲೋಡ್ ಮಾಡಿದ ಫೈಲ್ ಆಡ್ಮಿನ್‌ನ ಪರಿಶೀಲನೆಗೆ ಪ್ರಗತಿಯಲ್ಲಿದೆ."
+        },
         "submitRequest": {
             "english": "Submit Request",
             "kannada": "ಅರ್ಜಿ ಸಲ್ಲಿಸಿ"

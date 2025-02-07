@@ -12,10 +12,12 @@ import { CameraAlt, CancelOutlined, FileUpload } from "@mui/icons-material";
 import { goBack } from "../../utils/Functions/goBackScreen";
 import { useLanguage } from "../../context/Language/loginContext";
 import translations from "../../utils/Json/translation.json"
+import infoPng from "../../assets/Images/info.png"
 
 const AadharUpload = () => {
 
     const { language, setLanguage } = useLanguage();
+    const [disableAadharField, setdisableAadharField] = useState(false)
     const [frontImage, setFrontImage] = useState(null);
     const [backImagePreview, setBackImagePreview] = useState(null);
     const [showCamera, setShowCamera] = useState(false);
@@ -73,13 +75,14 @@ const AadharUpload = () => {
     useEffect(() => {
 
         if (location.state?.KycRequestData && Object.keys(location.state.KycRequestData).length > 0) {
-            console.log(location.state.KycRequestData);
+            if (location.state.KycRequestData.is_aadhar_verified === "REVIEW PENDING") {
+                setdisableAadharField(true);
+            }
             setLocationStateDetails(location.state.KycRequestData);
             setAadharNumber(location.state.KycRequestData.aadhar_no || null);
-
+            setdisableAadharField(location.state.KycRequestData.aadhar_no)
             setBackImagePreview(location.state.KycRequestData.aadhar_file_back);
             setFrontImage(location.state.KycRequestData.aadhar_file_front);
-
             setAadharFrontStatus(location.state.KycRequestData.is_aadhar_verified);
             setAadharBackStatus(location.state.KycRequestData.is_aadhar_verified);
 
@@ -281,6 +284,7 @@ const AadharUpload = () => {
                                 onChange={handleAadharChange}
                                 label={translations.Kyc.field_2[language]}
                                 value={AadharNumber}
+                                disabled={disableAadharField}
                                 variant="outlined"
                                 size="medium"
                                 type="number"
@@ -314,8 +318,15 @@ const AadharUpload = () => {
                                     shrink: { AadharNumber }, // Ensures the label stays at the top when value is present
                                 }}
                             />
-
                         </div>
+
+                        <div className="mt-0 md:mt-10">
+                            <div className="text-start p-4 flex flex-row bg-gray-100 rounded-lg">
+                                <img className="w-6 h-6" src={infoPng}></img>
+                                <p className="text-xs mx-2 mt-1">{translations.global.noUpdateMessage[language]}</p>
+                            </div>
+                        </div>
+
                     </div>
 
                     <div className={`flex flex-col md:flex-row gap-10 p-4 md:mb-0 overflow-y-auto ${locationStateDetails?.is_aadhar_verified === "REJECTED" ? "mb-0" : "mb-20"}`}>

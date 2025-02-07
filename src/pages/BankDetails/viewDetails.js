@@ -28,6 +28,7 @@ const ViewDetails = () => {
     const [isLoading, setisLoading] = useState(false)
     const [customerDetailsFromAPI, setCustomerDetailsFromAPI] = useState({});
     const [NomineeDetails, setNomineeDetails] = useState(null)
+    const [ConnectedBankHolder, setConnectedBankHolder] = useState();
 
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
@@ -43,6 +44,8 @@ const ViewDetails = () => {
                 console.log(resp, "Resp")
                 if (resp.data.status === 200) {
                     setCustomerDetailsFromAPI(resp.data.data.customer);
+                    setConnectedBankHolder(resp?.data?.data?.customer?.connected_bank_account_holder_name)
+
                 }
                 if (resp.data.data.customer.nominee_id) {
                     setNomineeDetails(resp.data.data.customer.nominee_id)
@@ -62,7 +65,7 @@ const ViewDetails = () => {
     return (
         <>
             <div className="h-screen flex flex-col">
-                {/* Mobile Header */}
+
                 <div className="h-[60px] fixed top-100 mb-4 z-10 w-full sm:hidden  bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row p-3">
                     <img src={backButton} onClick={goBack} className="w-8 h-8" alt="Back" />
                     <p className="text-white font-semibold my-1">{translations.BankAccount.heading[language]}</p>
@@ -101,9 +104,11 @@ const ViewDetails = () => {
                                 ) : (
                                     <>
                                         <div className="flex justify-between items-center">
+
                                             <div>
-                                                <p className="text-sm text-gray-800">  {translations.BankAccount.heading[language]}</p>
+                                                <p className="text-lg text-gray-800">{translations.BankAccount.heading[language]}</p>
                                             </div>
+
                                             <Link to="/profile-and-settings/bank-details">
                                                 <button aria-label="Edit" className="p-2">
                                                     <svg
@@ -121,32 +126,46 @@ const ViewDetails = () => {
                                                     </svg>
                                                 </button>
                                             </Link>
+
                                         </div>
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+
+                                            {ConnectedBankHolder &&
+                                                <>
+                                                    <div>
+                                                        <div className="text-sm ">{translations.global.connectedBankAccountHolderName[language]}</div>
+                                                        <p className="text-sm" style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700' }}>
+                                                            {ConnectedBankHolder ? ConnectedBankHolder : ""}
+                                                        </p>
+                                                    </div>
+                                                </>
+                                            }
+
+
                                             <div>
                                                 <div className="text-sm ">{translations.BankAccount.bankAccountNumber[language]}</div>
-                                                <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
+                                                <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700' }} className="text-sm">
                                                     {customerDetailsFromAPI.bank_acc_no}
                                                 </p>
                                             </div>
 
                                             <div>
                                                 <div className="text-sm ">{translations.BankAccount.ifscCode[language]}</div>
-                                                <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
+                                                <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700' }} className="text-sm">
                                                     {customerDetailsFromAPI.bank_Ifsc_code}
                                                 </p>
                                             </div>
 
                                             <div>
                                                 <div className="text-sm ">{translations.BankAccount.bankBranchName[language]}</div>
-                                                <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
+                                                <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700' }} className="text-sm">
                                                     {customerDetailsFromAPI.bank_branch_name}
                                                 </p>
                                             </div>
 
                                             <div>
                                                 <div className="text-sm ">{translations.BankAccount.bankName[language]}</div>
-                                                <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
+                                                <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700' }} className="text-sm">
                                                     {customerDetailsFromAPI.bank_name}
                                                 </p>
                                             </div>
@@ -183,7 +202,7 @@ const ViewDetails = () => {
                                         <>
                                             <div className="flex justify-between items-center">
                                                 <div>
-                                                    <p className="text-sm text-gray-800">{translations.Nominee.nomineeDetails[language]} *</p>
+                                                    <p className="text-md text-gray-800">{translations.Nominee.nomineeDetails[language]} *</p>
                                                 </div>
                                                 <Link to="/profile-and-settings/add-nominee">
                                                     <button aria-label="Edit" className="p-2">
@@ -207,7 +226,7 @@ const ViewDetails = () => {
 
                                                 <div>
                                                     <div className="text-sm ">{translations.Nominee.nomineeField[language]}</div>
-                                                    <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
+                                                    <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700' }} className="text-sm">
                                                         {NomineeDetails.nominee_name}
                                                     </p>
                                                 </div>
@@ -216,7 +235,7 @@ const ViewDetails = () => {
 
                                                     <div>
                                                         <div className="text-sm ">{translations.MyProfile.dob[language]}</div>
-                                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
+                                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700' }} className="text-sm">
                                                             {formatDate(NomineeDetails.nominee_dob)}
                                                         </p>
                                                     </div>
@@ -227,7 +246,7 @@ const ViewDetails = () => {
                                                 {NomineeDetails.nominee_pan_no &&
                                                     <div>
                                                         <div className="text-sm ">{translations.Nominee.panNumber[language]}</div>
-                                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
+                                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700' }} className="text-sm">
                                                             {NomineeDetails.nominee_pan_no}
                                                         </p>
                                                     </div>
@@ -237,7 +256,7 @@ const ViewDetails = () => {
 
                                                     <div>
                                                         <div className="text-sm ">{translations.BankAccount.bankAccountNumber[language]}</div>
-                                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
+                                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700' }} className="text-sm">
                                                             {NomineeDetails.nominee_bank_acc_no}
                                                         </p>
                                                     </div>
@@ -248,7 +267,7 @@ const ViewDetails = () => {
 
                                                     <div>
                                                         <div className="text-sm ">{translations.BankAccount.bankBranchName[language]}</div>
-                                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
+                                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700' }} className="text-sm">
                                                             {NomineeDetails.nominee_bank_branch}
                                                         </p>
                                                     </div>
@@ -259,7 +278,7 @@ const ViewDetails = () => {
 
                                                     <div>
                                                         <div className="text-sm ">{translations.BankAccount.ifscCode[language]}</div>
-                                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
+                                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700' }} className="text-sm">
                                                             {NomineeDetails.nominee_bank_ifsc_code}
                                                         </p>
                                                     </div>
