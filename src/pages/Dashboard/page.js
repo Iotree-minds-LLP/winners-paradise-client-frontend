@@ -212,8 +212,10 @@ const DashboardPage = () => {
                                             <p className="text-primary" style={{ color: "#7C79EB" }}>
                                                 {translations.Dashboard.heading2[language]}
                                             </p>
-                                            <p className="text-white text-lg mt-2">₹ {totalInvested.toLocaleString("en-IN")
-                                            }</p>
+                                            <p className="text-white whitespace-wrap text-lg mt-2">
+                                                ₹ {Math.round(totalInvested).toLocaleString("en-IN")}
+                                            </p>
+
                                         </div>
                                         <div className="flex flex-col">
                                             <p className="text-primary" style={{ color: "#7C79EB" }}>
@@ -278,7 +280,7 @@ const DashboardPage = () => {
                                             className="font-bold text-md"
                                             style={{ color: "#020065" }}
                                         >
-                                            ₹{payout?.expected_payout_amount}
+                                            ₹{Math.round(payout?.expected_payout_amount)}
                                         </p>
                                     </div>
                                     <div className="flex flex-col text-start">
@@ -375,7 +377,7 @@ const DashboardPage = () => {
                                                                     className="font-bold text-md"
                                                                     style={{ color: "#020065" }}
                                                                 >
-                                                                    ₹{investment?.amount.toLocaleString("en-IN")
+                                                                    ₹{Math.round(investment?.amount).toLocaleString("en-IN")
                                                                     }
                                                                 </p>
                                                             </div>
@@ -385,7 +387,7 @@ const DashboardPage = () => {
                                                                     className="font-bold text-md"
                                                                     style={{ color: "#020065" }}
                                                                 >
-                                                                    ₹{earnedReturnsAmount.toLocaleString("en-IN")
+                                                                    ₹{Math.round(earnedReturnsAmount).toLocaleString("en-IN")
                                                                     } (
                                                                     {earnedReturnsPercentage}%)
                                                                 </p>

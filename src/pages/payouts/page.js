@@ -136,7 +136,7 @@ const Payouts = () => {
                                             className="font-bold text-md"
                                             style={{ color: "#020065" }}
                                         >
-                                            ₹{payout?.expected_payout_amount}
+                                            ₹{Math.round(payout?.expected_payout_amount)}
                                         </p>
                                         <p className="mt-2 text-xs py-2 rounded-lg p-2 text-black" style={{ backgroundColor: "#E7E7FF" }}>Payout Type:{payout.payout_type}</p>
 
