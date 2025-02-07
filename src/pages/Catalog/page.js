@@ -73,9 +73,7 @@ const Catalogs = () => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
         fetchCustomerDetails(customer._id);
-        if (customer.bank_acc_no) {
-            setBankDetailsPresent(false);
-        }
+
         onformSubmit()
         getKycStatus()
     }, []);
@@ -84,6 +82,9 @@ const Catalogs = () => {
         if (id) {
             const resp = await getCustomerById(id);
             if (resp.data.status === 200) {
+                if (resp.data.data.customer.bank_acc_no) {
+                    setBankDetailsPresent(false);
+                }
                 setCustomerDetails(resp.data.data.customer);
             }
         }
@@ -190,7 +191,7 @@ const Catalogs = () => {
                     <div className="grid grid-cols-1 md:py-0 py-5 md:grid-cols-3 px-4 gap-0 md:gap-10 mt-20 md:mt-0 text-start">
 
                         {!isInvestmentCreated && (
-                            <div className="my-3 border bg-gray-100 mb-5 p-3 md:hidden flex flex-row items-center justify-start gap-3 rounded-lg">
+                            <div className="my-3 border bg-gray-100 p-3 md:hidden flex flex-row items-center justify-start gap-3 rounded-lg">
                                 {CustomerDetails?.profile_image ? (
                                     <img className="text-sm w-10 h-10 rounded-full" src={CustomerDetails.profile_image} alt="Profile" />
                                 ) : (

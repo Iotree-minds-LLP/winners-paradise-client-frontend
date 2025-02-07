@@ -319,9 +319,8 @@ const ViewDetails = () => {
                     </div>
                 </div >
             </div >
+
             {!NomineeDetails &&
-
-
                 <div className="fixed bottom-0 left-0 w-full sm:hidden">
                     <div className="bg-white shadow-md">
                         <img

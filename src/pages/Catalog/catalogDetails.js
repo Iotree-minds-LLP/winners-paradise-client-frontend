@@ -56,7 +56,7 @@ const CatalogDetails = () => {
     };
 
     const handleFailedToast = (SuccessMessage) => {
-        addToast(SuccessMessage, 'failed');
+        addToast(SuccessMessage, 'danger');
     };
 
     const sendResponse = async () => {
@@ -83,7 +83,7 @@ const CatalogDetails = () => {
             setenquirySubmitedSuccessfully(true);
         }
         else {
-            handleFailedToast("Failed to send Enquiry");
+            handleFailedToast(resp.data.error);
             setisLoading(false);
             setenquirySubmitedSuccessfully(false);
         }

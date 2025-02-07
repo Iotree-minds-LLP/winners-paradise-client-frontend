@@ -20,7 +20,6 @@ const Enquiry = () => {
     }, []);
 
     const onformSubmit = async () => {
-        // Use today's date without causing any timezone issues
         const todayDate = moment().toDate(); // This gets the current local date and time
 
         const payload = {
@@ -35,6 +34,7 @@ const Enquiry = () => {
                 setResponse(`Error: ${res.data.error}`);
                 setIsError(true);
             } else {
+                console.log(res, "res")
                 setResponse(res.data.data.data);
                 setIsError(false);
             }
