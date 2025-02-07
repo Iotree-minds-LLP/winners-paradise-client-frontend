@@ -52,6 +52,7 @@ const Catalogs = () => {
     const [CustomerDetails, setCustomerDetails] = useState()
 
     const getKycStatus = async () => {
+
         setcompleteCardsLoading(true);
         const res = await getKycDetailsByCustomerId();
         if (res?.data?.data?.status === "pending" || res?.data?.data?.status === "rejected") {
@@ -65,6 +66,7 @@ const Catalogs = () => {
             setshowCompleteKycCard(true);
             setcompleteCardsLoading(false);
         }
+
     }
 
     useEffect(() => {
@@ -170,14 +172,18 @@ const Catalogs = () => {
                         </div>
                     </div>
 
-                    {!isInvestmentCreated && (
-                        <div className="border bg-gray-100 mb-5 p-3 md:hidden flex flex-row items-center justify-start gap-3 rounded-lg">
-                            <img className="text-sm w-10 h-10" src={CustomerDetails?.profile_image}></img>
-                            <p className="text-sm">{translations.Dashboard.heading[language]}:{CustomerDetails?.name}</p>
-                        </div>
-                    )}
+                    {console.log(isInvestmentCreated, "isInvestmentCreated")}
+
 
                     <div className="grid grid-cols-1 md:py-0 py-5 md:grid-cols-3 px-4 gap-0 md:gap-10 mt-20 md:mt-0 text-start">
+
+                        {!isInvestmentCreated && (
+                            <div className="border bg-gray-100 mb-5 p-3 md:hidden flex flex-row items-center justify-start gap-3 rounded-lg">
+                                <img className="text-sm w-10 h-10" src={CustomerDetails?.profile_image}></img>
+                                <p className="text-sm">{translations.Dashboard.heading[language]}:{CustomerDetails?.name}</p>
+                            </div>
+                        )}
+
                         {completeCardsLoading ? (
                             <>
                                 <div className="p-4 w-full px-5 mb-3 bg-gray-100 rounded-lg flex justify-between">
