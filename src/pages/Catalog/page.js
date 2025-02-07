@@ -92,8 +92,6 @@ const Catalogs = () => {
     }
 
     const yesLogout = async () => {
-        // const res = await LogoutUser();
-        // console.log(res, "Response")
         localStorage.removeItem("customerDetails");
         localStorage.removeItem("tokenDetails");
         navigate("/")
