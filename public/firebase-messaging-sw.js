@@ -19,7 +19,7 @@ messaging.onBackgroundMessage((payload) => {
         body: payload.notification.body,
         icon: payload.notification.icon || '/default-icon.png',
         image: payload.notification.image,
-        data: { url: payload.notification.click_action || "https://infosys.com" }
+        data: { url: payload.notification.click_action || "https://wp-client-frontend.staging-server-static.iotreeminds.com/" }
     };
 
     self.registration.showNotification(notificationTitle, notificationOptions);
@@ -28,7 +28,7 @@ messaging.onBackgroundMessage((payload) => {
 self.addEventListener('notificationclick', (event) => {
     event.notification.close();
     console.log(event, "Event");
-    const targetUrl = event.notification.data.url || "https://infosys.com";
+    const targetUrl = event.notification.data.url || "https://wp-client-frontend.staging-server-static.iotreeminds.com/";
     console.log(targetUrl, "targetUrl")
     event.waitUntil(
         clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clientList) => {
