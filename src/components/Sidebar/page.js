@@ -144,6 +144,7 @@ const Sidebar = () => {
                                         )}
                                     </li>
                                 )}
+
                             <li>
 
                                 {currentUrl === "/catalogs" ? (

@@ -73,7 +73,8 @@ const Notifications = () => {
                         </div>
                     </div>
 
-                    <div className="text-start rounded-lg mt-5 p-4 grid md:grid-cols-3 grid-cols-1 gap-4">
+                    <div className="text-start rounded-lg mt-5 p-4 grid md:grid-cols-1 w-full md:w-1/3 grid-cols-1 gap-4">
+
                         {loading ? (
                             Array.from({ length: 6 }).map((_, index) => (
                                 <div key={index} className="p-4 rounded-lg bg-gray-100">
@@ -132,6 +133,7 @@ const Notifications = () => {
                                         }
 
                                     </div>
+
                                 </div>
                             ))
                         ) : (
@@ -140,6 +142,7 @@ const Notifications = () => {
                             </div>
                         )}
                     </div>
+
                 </div>
             </div>
 
