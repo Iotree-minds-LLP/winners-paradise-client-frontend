@@ -30,7 +30,6 @@ import translations from "../../utils/Json/translation.json"
 import { getCustomerById } from "../../network/Customer/page";
 import { Avatar } from "@mui/material";
 
-
 const Catalogs = () => {
 
     const {
@@ -41,6 +40,7 @@ const Catalogs = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
+
     const [ErrorMessage, setErrorMessage] = useState("");
     const [isModalOpen, setisModalOpen] = useState(false);
     const navigate = useNavigate();
@@ -159,9 +159,11 @@ const Catalogs = () => {
                             src={imageLogo}
                             alt="Logo"
                         />
+
                         <p className="mt-6 sm:hidden text-white font-semibold text-xl">
                             {translations.logoHeading[language]}
                         </p>
+
                         <div className="flex flex-row text-white">
                             <Link to="/notifications">
                                 <img src={bellIcon} className="w-auto h-12 mt-4" alt="Bell Icon"></img>
