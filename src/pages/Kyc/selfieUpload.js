@@ -222,11 +222,10 @@ const SelfieUpload = () => {
                                 <div className="w-full h-64 flex items-center justify-center overflow-hidden">
                                     <img
                                         src={frontImage}
-                                        className="w-full h-full object-cover" // Updated to object-cover
-                                        alt="Uploaded Front"
+                                        className="w-full h-full object-contain"
+                                        alt="Uploaded Back"
                                     />
                                 </div>
-
                             ) : null}
                             <div className="mt-4 flex flex-row items-center justify-between w-full px-4">
 

@@ -55,11 +55,11 @@ const Catalogs = () => {
 
         setcompleteCardsLoading(true);
         const res = await getKycDetailsByCustomerId();
-        if (res?.data?.data?.status === "pending" || res?.data?.data?.status === "rejected") {
-            setshowCompleteKycCard(true);
+        if (res.data.data.is_aadhar_verified === "REVIEW PENDING" && res.data.data.is_blank_cheque_verified === "REVIEW PENDING" && res.data.data.is_pan_verified === "REVIEW PENDING" && res.data.data.is_profile_image_verified === "REVIEW PENDING") {
             setcompleteCardsLoading(false);
         }
         else {
+            setshowCompleteKycCard(true);
             setcompleteCardsLoading(false);
         }
         if (res.status === 500) {
