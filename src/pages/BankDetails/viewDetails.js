@@ -203,7 +203,7 @@ const ViewDetails = () => {
                                         <>
                                             <div className="flex justify-between items-center">
                                                 <div>
-                                                    <p className="text-md text-gray-800">{translations.Nominee.nomineeDetails[language]} *</p>
+                                                    <p className="text-lg text-gray-800">{translations.Nominee.nomineeDetails[language]} *</p>
                                                 </div>
                                                 <Link to="/profile-and-settings/add-nominee">
                                                     <button aria-label="Edit" className="p-2">
