@@ -163,7 +163,8 @@ const Catalogs = () => {
         }
 
         const resp = await getAllCatalogByReturnCalculator(payload);
-        if (resp?.data?.catalogs.length > 0) {
+        console.log(resp, "Resp")
+        if (resp?.data?.catalogs?.length > 0) {
             navigate(`/catalogs/catalog-details`, { state: { item: resp.data.catalogs[0] } })
         }
         else {
