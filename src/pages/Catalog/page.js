@@ -326,10 +326,11 @@ const Catalogs = () => {
                                         })}
                                         onChange={(e) => {
                                             console.log('Value changed:', e.target.value); // Log the value to the console
-                                            setValue("returnCalculator", e.target.value); // Update the state
+                                            setValue("returnCalculator", e.target.value.replace(/[^0-9]/g, '')); // Remove non-numeric values
                                         }}
                                         InputProps={{
                                             inputProps: {
+                                                min: 0, // Ensure no negative values
                                                 style: {
                                                     MozAppearance: "textfield",
                                                 },
@@ -338,6 +339,11 @@ const Catalogs = () => {
                                         onInput={(e) => {
                                             if (e.target.value.length > 10) {
                                                 e.target.value = e.target.value.slice(0, 10);
+                                            }
+                                        }}
+                                        onKeyDown={(e) => {
+                                            if (["-", "+", "e", "E"].includes(e.key)) {
+                                                e.preventDefault();
                                             }
                                         }}
                                         sx={{
@@ -350,6 +356,7 @@ const Catalogs = () => {
                                             },
                                         }}
                                     />
+
                                     <div>
                                         <button
                                             type="submit"

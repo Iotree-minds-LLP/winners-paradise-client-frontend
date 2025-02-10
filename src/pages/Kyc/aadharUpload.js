@@ -322,12 +322,15 @@ const AadharUpload = () => {
                             />
                         </div>
 
-                        <div className="mt-0 md:mt-10">
-                            <div className="text-start p-4 flex flex-row bg-gray-100 rounded-lg">
-                                <img className="w-6 h-6" src={infoPng}></img>
-                                <p className="text-xs mx-2 mt-1">{translations.global.noUpdateMessage[language]}</p>
+                        {disableAadharField &&
+                            <div className="mt-0 md:mt-10">
+                                <div className="text-start p-4 flex flex-row bg-gray-100 rounded-lg">
+                                    <img className="w-6 h-6" src={infoPng}></img>
+                                    <p className="text-xs mx-2 mt-1">{translations.global.noUpdateMessage[language]}</p>
+                                </div>
                             </div>
-                        </div>
+                        }
+
 
                     </div>
 

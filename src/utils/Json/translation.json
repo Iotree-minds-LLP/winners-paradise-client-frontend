@@ -169,7 +169,7 @@
     },
     "Catalog": {
         "heading": {
-            "english": "Catalog",
+            "english": "Catalogs",
             "kannada": "ಕ್ಯಾಟಲಾಗ್"
         },
         "card1": {
@@ -547,19 +547,19 @@
             "kannada": "ನಿಮ್ಮ KYC ಅನ್ನು ಪೂರ್ಣಗೊಳಿಸಿ"
         },
         "uploadAadhar": {
-            "english": "Upload Aadhar Card",
+            "english": "Upload Aadhaar Card",
             "kannada": "ಆಧಾರ್ ಕಾರ್ಡ್ ಅನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ"
         },
         "field_1": {
-            "english": "Enter Aadhar Number Here",
+            "english": "Enter Aadhaar Number Here",
             "kannada": "ಇಲ್ಲಿ ಆಧಾರ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ"
         },
         "field_2": {
-            "english": "Aadhar Number",
+            "english": "Aadhaar Number",
             "kannada": "ಆಧಾರ್ ಸಂಖ್ಯೆ"
         },
         "card_1_heading": {
-            "english": "Aadhar Card Front Side",
+            "english": "Aadhaar Card Front Side",
             "kannada": "ಆಧಾರ್ ಕಾರ್ಡ್ ಮುಂಭಾಗ"
         },
         "card_1_sub_heading": {
@@ -567,7 +567,7 @@
             "kannada": "ಅಪ್ಲೋಡ್ ಮಾಡಿ"
         },
         "card_2_heading": {
-            "english": "Aadhar Card Back Side",
+            "english": "Aadhaar Card Back Side",
             "kannada": "ಆಧಾರ್ ಕಾರ್ಡ್ ಹಿಂಭಾಗ"
         },
         "card_2_sub_heading": {

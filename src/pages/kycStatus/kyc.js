@@ -75,7 +75,7 @@ const KycStatusPage = () => {
             if (res.status === 500) {
 
                 const data500 = [
-                    { id: 1, title: "AADHAR CARD", uploaded: 1 },
+                    { id: 1, title: "AADHAAR CARD", uploaded: 1 },
                     { id: 2, title: "PAN CARD", uploaded: 2 },
                     { id: 3, title: "CANCELLED CHEQUE", uploaded: 3 },
                     { id: 4, title: "SELFIE", uploaded: 4 },
@@ -126,7 +126,7 @@ const KycStatusPage = () => {
                 const dataToBeUpdate = [
                     {
                         id: 1,
-                        title: "AADHAR CARD",
+                        title: "AADHAAR CARD",
                         uploaded: 1,
                         ...verificationStatuses[is_aadhar_verified] || verificationStatuses["NOT SUBMITTED"],
                     },
@@ -167,7 +167,7 @@ const KycStatusPage = () => {
         //     return;
         // }
 
-        if (item.title === "AADHAR CARD") {
+        if (item.title === "AADHAAR CARD") {
             navigate("/kyc/aadhar-card-upload", { state: { KycRequestData } })
         }
 
