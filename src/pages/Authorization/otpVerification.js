@@ -75,7 +75,7 @@ const OtpVerification = () => {
         try {
             resp = await SendOtp(payload);
 
-            if (resp.data.status === 200) {
+            if (resp?.data?.status === 200) {
                 setErrorMessage("");
                 handleSuccessClick(resp.data.data.message);
                 setShowotpField(true);

@@ -21,7 +21,7 @@ const MyProfile = () => {
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
-        fetchCustomerDetails(customer._id);
+        fetchCustomerDetails(customer?._id);
     }, []);
 
     const fetchCustomerDetails = async (id) => {
@@ -94,7 +94,7 @@ const MyProfile = () => {
                                     <div className="flex justify-between items-center">
                                         <div>
                                             <p className="text-sm text-gray-800">{translations.MyProfile.fullName[language]}</p>
-                                            <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
+                                            <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '15px' }}>
                                                 {customerDetailsFromAPI.name}
                                             </p>
                                         </div>
@@ -119,17 +119,17 @@ const MyProfile = () => {
 
                                     <div className="my-3">
                                         <p className="text-sm text-gray-800">{translations.MyProfile.phoneNumber[language]}</p>
-                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>+91 {customerDetailsFromAPI.mobile_no}</p>
+                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '15px' }}>+91 {customerDetailsFromAPI.mobile_no}</p>
                                     </div>
 
                                     <div className="my-3">
                                         <p className="text-sm text-gray-800">{translations.MyProfile.emailId[language]}</p>
-                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>{customerDetailsFromAPI.email_id}</p>
+                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '15px' }}>{customerDetailsFromAPI.email_id}</p>
                                     </div>
 
                                     <div className="my-3">
                                         <p className="text-sm text-gray-800">{translations.MyProfile.dob[language]}</p>
-                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
+                                        <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '15px' }}>
                                             {new Date(customerDetailsFromAPI.dob).toLocaleDateString('en-GB', {
                                                 day: '2-digit',
                                                 month: '2-digit',
@@ -144,7 +144,7 @@ const MyProfile = () => {
                                             style={{
                                                 color: 'rgba(0, 0, 148, 1)',
                                                 fontWeight: '700',
-                                                fontSize: '18px',
+                                                fontSize: '15px',
                                                 wordWrap: 'break-word', // Ensures text wraps to the next line
                                                 overflowWrap: 'break-word', // Break long words if needed
                                                 whiteSpace: 'normal', // Prevents text from staying in a single line
@@ -158,7 +158,7 @@ const MyProfile = () => {
                                     {customerDetailsFromAPI.alternate_mobile_no && (
                                         <div className="my-3">
                                             <p className="text-sm text-gray-800">{translations.MyProfile.alternatePhone[language]}</p>
-                                            <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
+                                            <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '15px' }}>
                                                 {customerDetailsFromAPI.alternate_mobile_no}
                                             </p>
                                         </div>
@@ -167,7 +167,7 @@ const MyProfile = () => {
                                     {customerDetailsFromAPI.referred_by && (
                                         <div className="my-3">
                                             <p className="text-sm text-gray-800">{translations.global.referredBy[language]}</p>
-                                            <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
+                                            <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '15px' }}>
                                                 {customerDetailsFromAPI.referred_by.name}
                                             </p>
                                         </div>
@@ -176,7 +176,7 @@ const MyProfile = () => {
                                     {customerDetailsFromAPI.reference_id && (
                                         <div className="my-3">
                                             <p className="text-sm text-gray-800">{translations.global.referralCode[language]}</p>
-                                            <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '18px' }}>
+                                            <p style={{ color: 'rgba(0, 0, 148, 1)', fontWeight: '700', fontSize: '15px' }}>
                                                 {customerDetailsFromAPI.reference_id}
                                             </p>
                                         </div>

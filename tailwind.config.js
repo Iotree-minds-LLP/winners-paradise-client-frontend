@@ -6,7 +6,17 @@ module.exports = {
     "./node_modules/@mui/material/**/*.js"
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        expandPadding: "expandPadding 0.3s ease-out forwards",
+      },
+      keyframes: {
+        expandPadding: {
+          "0%": { paddingLeft: "0px", paddingRight: "0px" },
+          "100%": { paddingLeft: "20px", paddingRight: "20px" }, // `px-5` in Tailwind
+        },
+      },
+    },
   },
   plugins: [
     // If you wish to use DaisyUI or other plugins, you can uncomment this line

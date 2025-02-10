@@ -98,7 +98,7 @@ const AddNominee = () => {
         if (!customer) {
             navigate("/")
         }
-        fetchCustomerDetails(customer._id)
+        fetchCustomerDetails(customer?._id)
     }, []);
 
     const fetchCustomerDetails = async (id) => {

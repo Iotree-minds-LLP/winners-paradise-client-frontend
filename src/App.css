@@ -57,3 +57,13 @@
     animation: slide-up 0.3s ease-out;
   }
 }
+@keyframes expandBackground {
+  0% {
+      background-color: rgba(255, 255, 255, 0); /* Fully transparent */
+      transform: scale(0.5); /* Start small */
+  }
+  100% {
+      background-color: white;
+      transform: scale(1); /* Full size */
+  }
+}

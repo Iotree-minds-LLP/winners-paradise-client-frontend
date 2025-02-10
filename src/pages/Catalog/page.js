@@ -25,8 +25,41 @@ import { useLanguage } from "../../context/Language/loginContext";
 import translations from "../../utils/Json/translation.json"
 import { getCustomerById } from "../../network/Customer/page";
 import { Avatar } from "@mui/material";
+import { useSwipeable } from "react-swipeable";
+import GlobalHeader from "../../components/Navbar/mobileView";
 
 const Catalogs = () => {
+    const [isSwipingHorizontally, setIsSwipingHorizontally] = useState(false);
+
+    const handlers = useSwipeable({
+        onSwipedLeft: () => {
+            navigate("/dashboard"); // Navigate forward
+        },
+        onSwipeStart: (eventData) => {
+            // Detect if the swipe is primarily horizontal
+            setIsSwipingHorizontally(Math.abs(eventData.deltaX) > Math.abs(eventData.deltaY));
+        },
+        onSwiped: () => {
+            setIsSwipingHorizontally(false); // Reset after swipe ends
+        },
+        preventScrollOnSwipe: false, // Do not block scrolling
+        trackTouch: true, // Ensure touch gestures work on mobile
+        trackMouse: false, // Disable mouse swipes (optional)
+    });
+
+    useEffect(() => {
+        const disableTouchMove = (e) => {
+            if (isSwipingHorizontally) {
+                e.preventDefault(); // Only prevent default if swiping horizontally
+            }
+        };
+
+        document.addEventListener("touchmove", disableTouchMove, { passive: false });
+
+        return () => {
+            document.removeEventListener("touchmove", disableTouchMove);
+        };
+    }, [isSwipingHorizontally]);
 
     const {
         control,
@@ -72,7 +105,7 @@ const Catalogs = () => {
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
-        fetchCustomerDetails(customer._id);
+        fetchCustomerDetails(customer?._id);
 
         onformSubmit()
         getKycStatus()
@@ -81,7 +114,7 @@ const Catalogs = () => {
     const fetchCustomerDetails = async (id) => {
         if (id) {
             const resp = await getCustomerById(id);
-            if (resp.data.status === 200) {
+            if (resp?.data?.status === 200) {
                 if (resp.data.data.customer.bank_acc_no) {
                     setBankDetailsPresent(false);
                 }
@@ -142,14 +175,16 @@ const Catalogs = () => {
 
     return (
         <>
-            <div className="sm:ml-72 relative bg-white">
+            <div
+                {...handlers}
+                className="sm:ml-72 relative bg-white">
                 <img src={backImage} className="opacity-30	hidden md:block absolute inset-0 object-cover z-0 w-full" alt="Background" />
 
                 <div className="relative z-10">
-                    <div className="object-contain fixed top-0 z-10 flex justify-between bg-gradient-to-l sm:hidden from-[#0400CB] to-[#020065]">
+                    {/* <div className="object-contain w-full fixed top-0 z-10 flex justify-between bg-gradient-to-l sm:hidden from-[#0400CB] to-[#020065]">
                         <h1 className="text-start font-bold text-2xl p-4 text-white hidden md:block"> {translations.Catalog.heading[language]}</h1>
                         <img
-                            className="h-auto sm:hidden w-1/5 p-4 md:mt-0 text-start"
+                            className="h-auto sm:hidden w-1/6 p-4 md:mt-0 text-start"
                             src={imageLogo}
                             alt="Logo"
                         />
@@ -180,15 +215,15 @@ const Catalogs = () => {
                                 </Avatar>
                             </Link>
                         </div>
-                    </div>
-
+                    </div> */}
+                    {/* <GlobalHeader></GlobalHeader> */}
                     <div className="flex justify-between hidden md:block">
                         <div className="flex flex-row mx-4 gap-4 mt-14 mb-8">
                             <h1 className="text-start font-bold text-2xl text-black hidden md:block">{translations.Catalog.heading[language]}</h1>
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:py-0 py-5 md:grid-cols-3 px-4 gap-0 md:gap-10 mt-20 md:mt-0 text-start">
+                    <div className="grid grid-cols-1 md:py-0 md:grid-cols-3 px-4 gap-0 md:gap-10 mt-20 md:mt-0 text-start">
 
                         {!isInvestmentCreated && (
                             <div className="my-3 border bg-gray-100 p-3 md:hidden flex flex-row items-center justify-start gap-3 rounded-lg">
@@ -318,7 +353,7 @@ const Catalogs = () => {
                                     <div>
                                         <button
                                             type="submit"
-                                            className="text-white p-4 w-full mt-4 md:mt-0 rounded-full md:rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex items-center justify-center whitespace-nowrap"
+                                            className="text-white p-3 md:p-4 w-full mt-4 md:mt-0 rounded-full md:rounded-lg bg-gradient-to-r from-[#0400CB] to-[#020065] flex items-center justify-center whitespace-nowrap"
                                         >
                                             {LoadingButtonStart ? (
                                                 // Loading spinner
@@ -340,7 +375,7 @@ const Catalogs = () => {
                                                 </svg>
                                             ) : (
                                                 // Text before loading
-                                                <span>{translations.Catalog.button[language]}</span>
+                                                <span className="text-sm">{translations.Catalog.button[language]}</span>
                                             )}
                                         </button>
 
@@ -471,10 +506,11 @@ const Catalogs = () => {
 
                             <div className={`grid ${isInvestmentCreated ? "grid-cols-3" : "grid-cols-2"} `}>
 
-                                <div className=" p-2 flex flex-col items-center">
-                                    <div className="bg-white px-5 p-1 rounded-full flex items-center justify-center">
-                                        <img className="w-auto h-8" src={footerLogo1} alt="Footer Logo 1" />
+                                <div className="p-2 flex flex-col items-center">
+                                    <div className="bg-white p-1 rounded-full flex items-center justify-center animate-expandPadding">
+                                        <img className="w-auto h-8 px-3" src={footerLogo1} alt="Footer Logo 1" />
                                     </div>
+
                                     <p className="mt-2 text-sm font-bold text-center text-white">
                                         {translations.Dashboard.catalogs[language]}
                                     </p>

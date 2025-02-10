@@ -10,13 +10,11 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="#020065">
   <meta name="description" content="Web site created using create-react-app" />
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet">
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   <title>Winners Paradise</title>
+
   <style>
+    /* Disable swipe gestures, pull-to-refresh, and overscroll behavior */
     /* Modal Styles */
     #pwa-popup {
       position: fixed;
@@ -33,7 +31,6 @@
     #pwa-popup.active {
       display: flex;
       animation: slideUpSlowly 0.5s ease-out forwards;
-      /* Slide-up animation */
     }
 
     @keyframes slideUpSlowly {
@@ -80,6 +77,21 @@
       cursor: pointer;
       color: #000;
     }
+
+    /* Optional Refresh Button for PWA */
+    #manual-refresh {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      padding: 10px 15px;
+      background: #020065;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      display: none;
+    }
   </style>
 </head>
 
@@ -87,36 +99,57 @@
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
 
+  <!-- PWA Installation Popup -->
   <div id="pwa-popup">
     <div id="pwa-popup-content">
-      <!-- App Logo -->
       <img src="%PUBLIC_URL%/logo192.png" alt="App Logo" />
-      <!-- Install Message -->
       <h2 id="pwa-proceed" class="underline mx-3 text-black text-md">
         Install App for a Better Experience
       </h2>
-      <!-- Cancel Button -->
       <button id="pwa-cancel" class="fixed top-0 right-0 mr-3 p-3">✕</button>
     </div>
   </div>
 
+  <!-- Optional Manual Refresh Button (Only in PWA) -->
+  <button id="manual-refresh" onclick="location.reload();">Refresh</button>
+
   <script>
+
     document.addEventListener("DOMContentLoaded", () => {
       function isPWA() {
         return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
       }
 
-      // Detect iOS devices
+      if (isPWA()) {
+        console.log("Running as PWA - Disabling pull-to-refresh and zoom");
+
+        // Create a <style> tag dynamically
+        const style = document.createElement("style");
+        style.innerHTML = `
+        html, body {
+          overscroll-behavior: none; /* Prevent pull-to-refresh */
+          touch-action: manipulation; /* Disable unintended touch actions */
+        }
+      `;
+
+        // Append style only for PWA mode
+        document.head.appendChild(style);
+      }
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      function isPWA() {
+        return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+      }
+
       function isIOS() {
         return /iPhone|iPad|iPod/i.test(navigator.userAgent);
       }
 
-      // Detect Android devices
       function isAndroid() {
         return /Android/i.test(navigator.userAgent);
       }
 
-      // Detect mobile devices
       function isMobileDevice() {
         return isIOS() || isAndroid();
       }
@@ -124,75 +157,69 @@
       const pwaPopup = document.getElementById('pwa-popup');
       const pwaProceed = document.getElementById('pwa-proceed');
       const pwaCancel = document.getElementById('pwa-cancel');
+      const refreshButton = document.getElementById('manual-refresh');
 
       let deferredPrompt;
 
-      // Do not proceed if the app is already running as a PWA
       if (isPWA()) {
         console.log("App is already running as a PWA");
-        return;
+
+        // Show the manual refresh button inside the PWA
+        refreshButton.style.display = "block";
+
+        // Prevent pull-to-refresh
+        document.addEventListener('touchmove', function (event) {
+          if (event.touches.length > 1) {
+            event.preventDefault();
+          }
+        }, { passive: false });
+
+        // Disable refresh via keyboard shortcuts
+        window.addEventListener("keydown", function (e) {
+          if ((e.ctrlKey && e.key === 'r') || e.key === 'F5') {
+            e.preventDefault();
+          }
+        });
+
+        return; // Exit early if PWA is installed
       }
 
-      // Do not show popup if not a mobile device
       if (!isMobileDevice()) {
         console.log("Not a mobile device. PWA popup will not be shown.");
         return;
       }
 
-      // Handle for Android (beforeinstallprompt)
       if (isAndroid()) {
-        // Listen for the 'beforeinstallprompt' event
         window.addEventListener('beforeinstallprompt', (e) => {
           console.log('beforeinstallprompt event fired');
-          e.preventDefault(); // Prevent the browser's default behavior
+          e.preventDefault();
           deferredPrompt = e;
-
-          // Show the custom popup
           pwaPopup.classList.add('active');
         });
 
-        // Handle the "Proceed" button click for Android
         pwaProceed.addEventListener('click', () => {
           if (deferredPrompt) {
             deferredPrompt.prompt();
-
             deferredPrompt.userChoice.then((choiceResult) => {
-              if (choiceResult.outcome === 'accepted') {
-                console.log('User accepted the PWA installation prompt');
-              } else {
-                console.log('User dismissed the PWA installation prompt');
-              }
-
-              // Clear deferredPrompt after the first interaction
               deferredPrompt = null;
             });
-          } else {
-            console.log("Install prompt is not available or already used.");
           }
-
-          // Always hide the custom popup after the "Proceed" button is clicked
           pwaPopup.classList.remove('active');
         });
       }
 
-      // Handle for iOS (manual installation instructions)
       if (isIOS()) {
-        console.log("iOS device detected. Showing custom Add to Home Screen instructions.");
-        // Show the custom popup
+        console.log("iOS device detected. Showing Add to Home Screen instructions.");
         pwaPopup.classList.add('active');
 
-        // Handle the "Proceed" button click for iOS
         pwaProceed.addEventListener('click', () => {
-          alert(
-            "To install this app, tap the Share button in Safari and select 'Add to Home Screen'."
-          );
-          pwaPopup.classList.remove('active'); // Hide the popup
+          alert("To install this app, tap the Share button in Safari and select 'Add to Home Screen'.");
+          pwaPopup.classList.remove('active');
         });
       }
 
-      // Handle the "Cancel" button click for both platforms
       pwaCancel.addEventListener('click', () => {
-        pwaPopup.classList.remove('active'); // Hide the popup
+        pwaPopup.classList.remove('active');
         console.log("User dismissed the custom PWA popup.");
       });
     });

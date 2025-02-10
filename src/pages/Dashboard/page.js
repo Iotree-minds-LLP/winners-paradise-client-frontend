@@ -16,8 +16,46 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import translations from "../../utils/Json/translation.json"
 import { useLanguage } from "../../context/Language/loginContext";
 import { getCustomerById } from "../../network/Customer/page";
+import { useSwipeable } from "react-swipeable";
+import GlobalHeader from "../../components/Navbar/mobileView";
 
 const DashboardPage = () => {
+
+    const [isSwipingHorizontally, setIsSwipingHorizontally] = useState(false);
+
+    const handlers = useSwipeable({
+        onSwipedLeft: () => {
+            navigate("/payouts"); // Navigate forward
+        },
+        onSwipedRight: () => {
+            navigate("/catalogs"); // Navigate backward
+        },
+        onSwipeStart: (eventData) => {
+            // Detect if the swipe is primarily horizontal
+            setIsSwipingHorizontally(Math.abs(eventData.deltaX) > Math.abs(eventData.deltaY));
+        },
+        onSwiped: () => {
+            setIsSwipingHorizontally(false); // Reset after swipe ends
+        },
+        preventScrollOnSwipe: false, // Do not block scrolling
+        trackTouch: true, // Ensure touch gestures work on mobile
+        trackMouse: false, // Disable mouse swipes (optional)
+    });
+
+    useEffect(() => {
+        const disableTouchMove = (e) => {
+            if (isSwipingHorizontally) {
+                e.preventDefault(); // Only prevent default if swiping horizontally
+            }
+        };
+
+        document.addEventListener("touchmove", disableTouchMove, { passive: false });
+
+        return () => {
+            document.removeEventListener("touchmove", disableTouchMove);
+        };
+    }, [isSwipingHorizontally]);
+
 
     const [InvestmentLength, setInvestmentLength] = useState();
     const [PayoutsLength, setPayoutsLength] = useState()
@@ -44,7 +82,7 @@ const DashboardPage = () => {
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
-        fetchCustomerDetails(customer._id);
+        fetchCustomerDetails(customer?._id);
     }, []);
 
     const fetchCustomerDetails = async (id) => {
@@ -104,14 +142,16 @@ const DashboardPage = () => {
 
     return (
         <>
-            <div className="sm:ml-72 relative bg-white">
+            <div
+                {...handlers}
+                className="sm:ml-72 relative bg-white">
                 <img src={backImage} className="opacity-30	hidden md:block absolute inset-0 object-cover z-0 w-full" alt="Background" />
 
                 <div className="relative z-10">
-                    <div className="object-contain  fixed top-0 z-10 flex justify-between  sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB]">
+                    {/* <div className="object-contain  fixed top-0 z-10 flex justify-between  sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB]">
                         <h1 className="text-start font-bold text-2xl p-4 text-white hidden md:block">Dashboard</h1>
                         <img
-                            className="h-auto sm:hidden w-1/5 p-4 md:mt-0 text-start"
+                            className="h-auto sm:hidden w-1/6 p-4 md:mt-0 text-start"
                             src={imageLogo}
                             alt="Logo"
                         />
@@ -141,22 +181,11 @@ const DashboardPage = () => {
                             </Link>
                         </div>
 
-                    </div>
+                    </div> */}
 
-                    <div className="m-3 border bg-gray-100 mb-5 p-3 md:hidden flex flex-row items-center justify-start gap-3 rounded-lg">
+                    {/* <GlobalHeader></GlobalHeader> */}
 
-                        {CustomerDetails?.profile_image ? (
-                            <img className="text-sm w-10 h-10 rounded-full" src={CustomerDetails.profile_image} alt="Profile" />
-                        ) : (
-                            <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-300 text-gray-700 text-lg font-bold">
-                                {CustomerDetails?.name?.charAt(0).toUpperCase()}
-                            </div>
-                        )}
-                        <p className="text-sm">{translations.Dashboard.heading[language]}: {CustomerDetails?.name}</p>
-                    </div>
-
-
-                    <div className="flex flex-row justify-between items-center mx-4 mt-14 hidden md:flex">
+                    <div className="flex flex-row justify-between items-center mx-4 mt-10 hidden md:flex">
                         <h1 className="font-bold text-2xl text-black">{translations.sideBar.heading1[language]}</h1>
                         <div className="flex flex-row justify-center items-center gap-4">
                             <p style={{ color: "#020065" }} className="text-md font-bold">{translations.Dashboard.heading[language]},{CustomerDetails.name}</p>
@@ -178,10 +207,19 @@ const DashboardPage = () => {
                     </div>
 
 
-                    <div className="text-start rounded-full mt-5 px-4 grid md:grid-cols-3 grid-cols-1">
-                        {/* <div className="mb-3 sm:hidden">
-                            <p style={{ color: "#020065" }} className="text-md font-bold">{translations.Dashboard.heading[language]},{CustomerDetails.name}</p>
-                        </div> */}
+                    <div className="text-start rounded-full mt-1 px-4 grid md:grid-cols-3 grid-cols-1">
+
+                        <div className="mt-20 border bg-gray-100 mb-3 p-3 md:hidden flex flex-row items-center justify-start gap-3 rounded-lg">
+                            {CustomerDetails?.profile_image ? (
+                                <img className="text-sm w-10 h-10 rounded-full" src={CustomerDetails.profile_image} alt="Profile" />
+                            ) : (
+                                <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-300 text-gray-700 text-lg font-bold">
+                                    {CustomerDetails?.name?.charAt(0).toUpperCase()}
+                                </div>
+                            )}
+                            <p className="text-sm">{translations.Dashboard.heading[language]}: {CustomerDetails?.name}</p>
+                        </div>
+
                         <div className="p-4 rounded-lg bg-gradient-to-l from-[#020065] to-[#0400CB]">
 
                             <p className="text-white font-bold text-xl">
@@ -431,18 +469,15 @@ const DashboardPage = () => {
                                 </div>
                             </Link>
 
-                            <Link to="/dashboard">
-
-                                <div className="p-2  flex flex-col items-center">
-                                    <div className="bg-white p-1 rounded-full flex items-center justify-center">
-                                        <img className="w-auto h-8" src={footerLogo2} alt="Footer Logo 2" />
-                                    </div>
-                                    <p className="mt-2 text-sm font-bold text-center text-white" >
-                                        {translations.Dashboard.dashboard[language]}
-                                    </p>
+                            <div className="p-2 flex flex-col items-center">
+                                <div className="bg-white p-1 rounded-full flex items-center justify-center animate-expandPadding">
+                                    <img className="w-auto h-8" src={footerLogo2} alt="Footer Logo 1" />
                                 </div>
 
-                            </Link>
+                                <p className="mt-2 text-sm font-bold text-center text-white">
+                                    {translations.Dashboard.dashboard[language]}
+                                </p>
+                            </div>
 
                             <Link to="/payouts">
                                 <div className=" p-2 flex flex-col items-center">
@@ -458,7 +493,6 @@ const DashboardPage = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
 
         </>

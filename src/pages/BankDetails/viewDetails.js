@@ -33,7 +33,7 @@ const ViewDetails = () => {
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
         const customer = JSON.parse(data);
-        fetchCustomerDetails(customer._id);
+        fetchCustomerDetails(customer?._id);
     }, []);
 
     const fetchCustomerDetails = async (id) => {
@@ -340,7 +340,7 @@ const ViewDetails = () => {
                 </div >
             </div >
 
-            {!NomineeDetails &&
+            {/* {!NomineeDetails &&
                 <div className="fixed bottom-0 left-0 w-full sm:hidden">
                     <div className="bg-white shadow-md">
                         <img
@@ -350,7 +350,7 @@ const ViewDetails = () => {
                         />
                     </div>
                 </div>
-            }
+            } */}
 
         </>
     );

@@ -90,7 +90,7 @@ const KycStatusPage = () => {
                 }));
                 setdata(updatedData);
                 setkycCardShow(false);
-
+                setShowConsentForm(false);
             } else if (res.data.status === 200) {
 
                 if (res?.data?.data?.is_consent_given) {
@@ -103,7 +103,6 @@ const KycStatusPage = () => {
                     setisDisabled(false);
                     setIsConsentAgreed(true);
                 }
-
                 else {
                     setIsConsentAgreed(false)
                 }
@@ -307,8 +306,9 @@ const KycStatusPage = () => {
                                                             </h1>
 
                                                         </div>
-                                                        <div className="bg-[#D4D4FF] rounded-xl p-3">
+                                                        <div className="bg-[#D4D4FF] rounded-xl p-3" onClick={() => navigate("/kyc-status/consent-form")}>
                                                             <input
+                                                                onClick={() => navigate("/kyc-status/consent-form")}
                                                                 checked={isConsentAgreed}
                                                                 type="checkbox"
                                                                 id="customCheckbox"
@@ -316,7 +316,7 @@ const KycStatusPage = () => {
                                                             />
                                                         </div>
                                                     </div>
-                                                    <p className="text-xs mx-4">{translations.global.clickOnConsentForm[language]}</p>
+                                                    {/* <p className="text-xs mx-4">{translations.global.clickOnConsentForm[language]}</p> */}
                                                 </div>
                                             </div>
                                             <div className="w-full md:w-1/3 mt-4 mx-6">
@@ -331,10 +331,10 @@ const KycStatusPage = () => {
                                                     {isLoading ? (
                                                         <svg
                                                             aria-hidden="true"
-                                                            className="w-5 h-5 text-gray-200 flex justify-center animate-spin dark:text-gray-600 fill-blue-600"
+                                                            className="w-5 h-5 w-full mx-10 text-gray-200 flex justify-center animate-spin dark:text-gray-600 fill-blue-600"
                                                             viewBox="0 0 100 101"
                                                             fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns="http1://www.w3.org/2000/svg"
                                                         >
                                                             <path
                                                                 d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
@@ -363,7 +363,7 @@ const KycStatusPage = () => {
                         </>
                     }
                 </div>
-
+                {console.log(ShowConsentForm, "ShowConsentForm")}
                 {!ShowConsentForm &&
                     <div className="fixed bottom-0 left-0 w-full sm:hidden">
                         <div className="bg-white shadow-md">
@@ -375,7 +375,6 @@ const KycStatusPage = () => {
                         </div>
                     </div>
                 }
-
             </div >
         </>
     );

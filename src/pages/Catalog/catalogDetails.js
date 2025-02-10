@@ -109,7 +109,7 @@ const CatalogDetails = () => {
                     alt="Background"
                 />
                 <div className="relative z-10">
-                    <div className="h-[60px] sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row justify-between p-4">
+                    <div className="fixed w-full top-0 right-0 h-[60px] sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row justify-between p-4">
                         <div className="flex flex-row">
                             <img src={backButton} onClick={goBack} className="w-8 h-8" alt="Back" />
                             <p className="text-white font-semibold my-1">{SelectedCatalogDetails?.name} </p>
@@ -123,7 +123,7 @@ const CatalogDetails = () => {
                     </div> */}
 
                     <div className="flex justify-between hidden md:block">
-                        <div className="flex flex-row mx-4 gap-4 mt-14 mb-8">
+                        <div className="flex  flex-row mx-4 gap-4 mt-14 mb-8">
                             <img onClick={goBack} src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" className="w-auto h-8" alt="Background" />
                             <h1 className="text-start font-bold text-2xl text-black hidden md:block">{SelectedCatalogDetails?.name}</h1>
                         </div>
@@ -136,7 +136,7 @@ const CatalogDetails = () => {
 
                         </div>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                         <p className="text-md px-4 mt-3 text-start font-medium">
                             {SelectedCatalogDetails?.description}
                         </p>
@@ -226,7 +226,7 @@ const CatalogDetails = () => {
                             )}
                         </div>
                     </div>
-                    <div className="grid grid-cols-1 px-4 mt-4 md:grid-cols-2 gap-4 text-start mb-10">
+                    <div className="grid grid-cols-1 px-4 mt-4 md:grid-cols-2 gap-4 text-start mb-20">
                         <img className="rounded-2xl" src={image}></img>
                     </div>
 

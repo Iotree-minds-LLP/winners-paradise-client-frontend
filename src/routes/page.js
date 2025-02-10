@@ -30,6 +30,7 @@ import EditNominee from '../pages/BankDetails/editNominee';
 import ConsentForm from '../pages/Kyc/consentForm';
 import SplashScreen from '../pages/Splash/page';
 import ViewDetails from '../pages/BankDetails/viewDetails';
+import GlobalHeader from '../components/Navbar/mobileView';
 
 const routes = [
   { path: "/", element: <OtpVerification /> },
@@ -70,6 +71,9 @@ function AppLayout() {
   const hideSidebarRoutes = ["/", "/register", "/edit-customer-details", "/profile-and-settings/bank-details", "/profile-and-settings/edit-bank-details", "/profile-and-settings/edit-nominee", "/profile-and-settings/add-nominee", "/profile-and-settings/view-bank-details"]
   const isSidebarHidden = hideSidebarRoutes.includes(location.pathname);
 
+  const showNavMobile = ["/catalogs", "/dashboard", "/payouts"]
+  const isNavShow = showNavMobile.includes(location.pathname);
+
   useEffect(() => {
     const customerDetails = localStorage.getItem("customerDetails");
     const publicRoutes = ["/", "/register"];
@@ -82,6 +86,7 @@ function AppLayout() {
   return (
     <div className="App">
       {!isSidebarHidden && <Sidebar />}
+      {isNavShow && <GlobalHeader />}
       <div className={isSidebarHidden ? "content-full" : "content-wrapper"}>
         <Routes>
           {routes.map((route, index) => (

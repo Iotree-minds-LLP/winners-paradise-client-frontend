@@ -15,9 +15,10 @@ const Notifications = () => {
     const [expandedCard, setExpandedCard] = useState(null);
     const { language, setLanguage } = useLanguage();
     const [isModalOpen, setisModalOpen] = useState(false);
-    const [notificationData, setnotificationData] = useState(null);
+    const [notificationData, setnotificationData] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+
 
     useEffect(() => {
         const data = localStorage.getItem("customerDetails");
@@ -61,7 +62,7 @@ const Notifications = () => {
                     alt="Background"
                 />
                 <div className="relative z-10">
-                    <div className="h-[60px] sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row justify-between p-4">
+                    <div className="h-[60px] fixed top-0 right-0 left-0 w-full sm:hidden bg-gradient-to-l from-[#020065] to-[#0400CB] flex flex-row justify-between p-4">
                         <div className="flex flex-row">
                             <img src={backButton} onClick={goBack} className="w-8 h-8" alt="Back" />
                             <p className="text-white font-semibold my-1">{translations.Notifications.heading[language]}</p>
@@ -73,7 +74,7 @@ const Notifications = () => {
                         </div>
                     </div>
 
-                    <div className="text-start rounded-lg mt-5 p-4 grid md:grid-cols-1 w-full md:w-1/3 grid-cols-1 gap-4">
+                    <div className="text-start rounded-lg md:mt-5 mt-14 p-4 grid md:grid-cols-1 w-full md:w-1/3 grid-cols-1 gap-4 ">
 
                         {loading ? (
                             Array.from({ length: 6 }).map((_, index) => (

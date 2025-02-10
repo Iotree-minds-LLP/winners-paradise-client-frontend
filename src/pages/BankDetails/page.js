@@ -52,7 +52,7 @@ const BankDetails = () => {
         if (!customer) {
             navigate("/")
         }
-        fetchCustomerDetails(customer._id);
+        fetchCustomerDetails(customer?._id);
     }, []);
 
 
