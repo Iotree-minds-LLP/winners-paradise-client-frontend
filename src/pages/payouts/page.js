@@ -98,13 +98,9 @@ const Payouts = () => {
 
     const today = new Date();
 
-    const upcomingPayouts = listPayouts.filter(
-        (payout) => new Date(payout?.expected_payout_date) >= today
-    );
+    const upcomingPayouts = listPayouts.filter((payout => payout.status === "not_paid"))
 
-    const pastPayouts = listPayouts.filter(
-        (payout) => new Date(payout?.actual_paid_date) < today
-    );
+    const pastPayouts = listPayouts.filter((payout => payout.status === "paid"))
 
     const payoutsToDisplay = past ? pastPayouts : upcomingPayouts;
 
