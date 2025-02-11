@@ -239,27 +239,74 @@ const Payouts = () => {
                                     className="flex justify-between p-4 rounded-lg"
                                     style={{ background: "#F5F5F5" }}
                                 >
-                                    <div className="flex flex-col text-start">
-                                        <p className="text-md">{translations.PayoutsDetails.payoutAmount[language]}</p>
-                                        <p
-                                            className="font-bold text-md"
-                                            style={{ color: "#020065" }}
-                                        >
-                                            ₹{Math.round(payout?.expected_payout_amount)}
-                                        </p>
-                                        <p className="mt-2 text-xs py-2 rounded-lg p-2 text-black" style={{ backgroundColor: "#E7E7FF" }}>Payout Type:{payout.payout_type}</p>
+                                    {!past ? (
+                                        <>
+                                            <div className="flex flex-col text-start">
+                                                <p className="text-md">{translations.PayoutsDetails.payoutAmount[language]}</p>
+                                                <p
+                                                    className="font-bold text-md"
+                                                    style={{ color: "#020065" }}
+                                                >
+                                                    ₹{Math.round(payout?.expected_payout_amount)}
+                                                </p>
+                                                <p className="mt-2 text-xs py-2 rounded-lg p-2 text-black" style={{ backgroundColor: "#E7E7FF" }}>Payout Type:{payout.payout_type}</p>
 
-                                    </div>
-                                    <div className="flex flex-col text-start">
-                                        <p className="text-md">{translations.PayoutsDetails.payoutOn[language]}</p>
-                                        <p
-                                            className="font-bold text-md"
-                                            style={{ color: "#020065" }}
-                                        >
-                                            {new Date(payout?.expected_payout_date).toLocaleDateString("en-GB")}
-                                        </p>
-                                    </div>
+                                            </div>
+                                            <div className="flex flex-col text-start">
+                                                <p className="text-md">{translations.PayoutsDetails.payoutOn[language]}</p>
+                                                <p
+                                                    className="font-bold text-md"
+                                                    style={{ color: "#020065" }}
+                                                >
+                                                    {new Date(payout?.expected_payout_date).toLocaleDateString("en-GB")}
+                                                </p>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <div className="flex flex-col text-start">
+                                                <p className="text-md">{translations.global.expectedAmount[language]}</p>
+                                                <p
+                                                    className="font-bold text-md"
+                                                    style={{ color: "#020065" }}
+                                                >
+                                                    ₹{Math.round(payout?.expected_payout_amount)}
+                                                </p>
 
+                                                <p className="text-md mt-2">{translations.global.actualPaidAmount[language]}</p>
+                                                <p
+                                                    className="font-bold text-md"
+                                                    style={{ color: "#020065" }}
+                                                >
+                                                    ₹{Math.round(payout?.actual_paid_amount)}
+                                                </p>
+
+
+                                                <p className="mt-2 text-xs py-2 rounded-lg p-2 text-black" style={{ backgroundColor: "#E7E7FF" }}>Payout Type:{payout.payout_type}</p>
+
+
+                                            </div>
+                                            <div className="flex flex-col text-start">
+                                                <p className="text-md">{translations.global.expectedDate[language]}</p>
+                                                <p
+                                                    className="font-bold text-md"
+                                                    style={{ color: "#020065" }}
+                                                >
+                                                    {new Date(payout?.expected_payout_date).toLocaleDateString("en-GB")}
+                                                </p>
+
+                                                <p className="text-md mt-2">{translations.global.actualPaidDate[language]}</p>
+                                                <p
+                                                    className="font-bold text-md"
+                                                    style={{ color: "#020065" }}
+                                                >
+                                                    {new Date(payout?.actual_paid_date).toLocaleDateString("en-GB")}
+                                                </p>
+
+
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                                 <div className="hidden sm:block"></div>
                                 <div className="hidden sm:block"></div>

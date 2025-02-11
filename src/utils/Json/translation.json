@@ -1109,6 +1109,22 @@
         "referralCode": {
             "english": "Referral Code",
             "kannada": "ಉಲ್ಲೇಖ ಕೋಡ್"
+        },
+        "expectedAmount": {
+            "english": "Expected Amount",
+            "kannada": "ಪ್ರತೀಕ"
+        },
+        "expectedDate": {
+            "english": "Expected Date",
+            "kannada": "ಪ್ರತೀಕ"
+        },
+        "actualPaidDate": {
+            "english": "Actual Paid Date",
+            "kannada": "ನಿಜವಾದ"
+        },
+        "actualPaidAmount": {
+            "english": "Actual Paid Amount",
+            "kannada": "ನಿಜವಾದ"
         }
     }
 }

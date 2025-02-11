@@ -189,7 +189,7 @@ const SignupPage = () => {
                                                 <img
                                                     src={image}
                                                     alt="Uploaded"
-                                                    className="object-coverrounded-full w-40 h-40 sm:w-40 sm:h-40 "
+                                                    className="object-coverrounded-full w-40 h-40 sm:w-40 sm:h-40 rounded-full "
                                                 />
 
                                                 {/* Overlay */}
