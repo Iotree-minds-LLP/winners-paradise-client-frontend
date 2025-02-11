@@ -247,7 +247,7 @@ const Payouts = () => {
                                                     className="font-bold text-md"
                                                     style={{ color: "#020065" }}
                                                 >
-                                                    ₹{Math.round(payout?.expected_payout_amount)}
+                                                    ₹{payout?.expected_payout_amount ? Math.round(payout.expected_payout_amount).toLocaleString("en-IN") : 0}
                                                 </p>
                                                 <p className="mt-2 text-xs py-2 rounded-lg p-2 text-black" style={{ backgroundColor: "#E7E7FF" }}>Payout Type:{payout.payout_type}</p>
 
@@ -270,7 +270,8 @@ const Payouts = () => {
                                                     className="font-bold text-md"
                                                     style={{ color: "#020065" }}
                                                 >
-                                                    ₹{Math.round(payout?.expected_payout_amount)}
+                                                    ₹{Math.round(payout?.expected_payout_amount)?.toLocaleString("en-IN")}
+
                                                 </p>
 
                                                 <p className="text-md mt-2">{translations.global.actualPaidAmount[language]}</p>
@@ -278,7 +279,7 @@ const Payouts = () => {
                                                     className="font-bold text-md"
                                                     style={{ color: "#020065" }}
                                                 >
-                                                    ₹{Math.round(payout?.actual_paid_amount)}
+                                                    ₹{Math.round(payout?.actual_paid_amount)?.toLocaleString("en-IN")}
                                                 </p>
 
 
