@@ -60,11 +60,11 @@ const InvestmentDetails = () => {
     const today = new Date();
 
     const upcomingPayouts = listPayouts?.filter(
-        (payout) => new Date(payout.expected_payout_date) >= today || payout.status === "not_paid"
+        (payout) => payout.status === "not_paid"
     );
 
     const pastPayouts = listPayouts?.filter(
-        (payout) => new Date(payout.expected_payout_date) < today
+        (payout) => payout.status === "paid"
     );
 
 

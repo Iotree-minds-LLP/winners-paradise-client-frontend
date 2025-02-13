@@ -116,8 +116,12 @@ const DashboardPage = () => {
         const resp = await getAllPayouts();
         console.log(resp.data.status, "Rsp")
         if (resp.data.status === 200) {
-            setPayoutsLength(resp?.data?.data?.data?.length);
-            setlistPayount(resp.data.data.payouts)
+            setPayoutsLength(resp?.data?.data?.payouts?.length);
+
+            const upcomingPayouts = resp.data.data.payouts?.filter(
+                (payout) => payout.status === "not_paid"
+            );
+            setlistPayount(upcomingPayouts)
         }
         else {
             setlistPayount([])

@@ -191,7 +191,7 @@ const EditCustomerProfile = () => {
                                                     <IconButton
                                                         aria-label="delete"
                                                         size="small"
-                                                        className="absolute top-2 right-2 bg-white text-red-500 p-2 rounded-full group-hover:bg-red-500 group-hover:text-white shadow-md transition duration-300"
+                                                        className="absolute top-0 right-0 text-red-500 p-2 rounded-full group-hover:bg-red-500 group-hover:text-white shadow-md transition duration-300"
                                                         onClick={handleRemoveImage}
                                                     >
                                                         <DeleteForeverOutlined fontSize="small" />

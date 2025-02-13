@@ -15,7 +15,7 @@ const getAllPayouts = async () => {
 
 const getAllPayoutsBYInvestmentId = async (id) => {
     try {
-        const res = await axiosInstance.get(`payouts/list-my-payouts${id}`);
+        const res = await axiosInstance.get(`payouts/list-my-payouts/${id}`);
         const data = res;
         return { data };
     } catch (err) {
